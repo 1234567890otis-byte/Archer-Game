@@ -7179,18 +7179,57 @@
 // ==== js/10b-save-transfer.js
 // 10b. 存檔匯出／匯入：把 localStorage 的存檔轉成一段文字或檔案，換電腦、清瀏覽器資料也能還原
     // =========================================================================
-    const SAVE_CODE_PREFIX = "AOG1:";
+    // 存檔代碼格式
+    //   AOG2:<Base64 存檔>.<檢查碼>：有防竄改檢查碼，代碼被改過任何一個字就匯入失敗
+    //   AOG1:<Base64 存檔>：舊格式（沒有檢查碼）— 只接受從主機存檔讀取，手動貼上的會被拒絕（不然改用舊格式就能繞過檢查）
+    //   註：檢查碼的密鑰在遊戲程式裡，擋得住「打開代碼改數字」，擋不住會讀程式的人（單機遊戲的本質限制）
+    const SAVE_CODE_PREFIX = "AOG2:";
+    const SAVE_CODE_LEGACY = "AOG1:";
+    const SAVE_CODE_SALT = "aog-save|7f3c9e21|弓箭對決|v2";
+
+    // cyrb53 雜湊（同步、不需要 https；區網 http 網址也能用）
+    function saveChecksum(str) {
+        let h1 = 0xdeadbeef ^ 0x5a17, h2 = 0x41c6ce57 ^ 0x5a17;
+        const s = SAVE_CODE_SALT + str + SAVE_CODE_SALT;
+        for (let i = 0; i < s.length; i++) {
+            const ch = s.charCodeAt(i);
+            h1 = Math.imul(h1 ^ ch, 2654435761);
+            h2 = Math.imul(h2 ^ ch, 1597334677);
+        }
+        h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+        h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+        return (h2 >>> 0).toString(36) + (h1 >>> 0).toString(36);
+    }
 
     // UTF-8 安全的 Base64（存檔裡有中文）
     function encodeSaveText(json) {
-        return SAVE_CODE_PREFIX + btoa(unescape(encodeURIComponent(json)));
+        const body = btoa(unescape(encodeURIComponent(json)));
+        return SAVE_CODE_PREFIX + body + "." + saveChecksum(body);
     }
 
-    function decodeSaveText(code) {
-        const text = String(code || "").trim();
-        if (!text.startsWith(SAVE_CODE_PREFIX)) throw new Error("不是這個遊戲的存檔代碼（應該以 " + SAVE_CODE_PREFIX + " 開頭）");
-        const json = decodeURIComponent(escape(atob(text.slice(SAVE_CODE_PREFIX.length))));
-        const data = JSON.parse(json);
+    // allowLegacy：從主機存檔讀取時才允許舊格式
+    function decodeSaveText(code, allowLegacy) {
+        const text = String(code || "").replace(/\s+/g, "");
+        let body;
+        if (text.startsWith(SAVE_CODE_PREFIX)) {
+            const rest = text.slice(SAVE_CODE_PREFIX.length);
+            const dot = rest.lastIndexOf(".");
+            if (dot < 0) throw new Error("存檔代碼不完整（少了最後的檢查碼）");
+            body = rest.slice(0, dot);
+            if (saveChecksum(body) !== rest.slice(dot + 1)) throw new Error("存檔代碼被修改過或複製不完整，不能匯入");
+        } else if (text.startsWith(SAVE_CODE_LEGACY)) {
+            if (!allowLegacy) throw new Error("這是舊版的存檔代碼（沒有防竄改保護）。請在原本的地方重新匯出一次，再貼新的代碼");
+            body = text.slice(SAVE_CODE_LEGACY.length);
+        } else {
+            throw new Error("不是這個遊戲的存檔代碼（應該以 " + SAVE_CODE_PREFIX + " 開頭）");
+        }
+        let json, data;
+        try {
+            json = decodeURIComponent(escape(atob(body)));
+            data = JSON.parse(json);
+        } catch (e) {
+            throw new Error("存檔代碼內容損壞，不能匯入");
+        }
         if (!data || typeof data !== "object" || typeof data.highestStage !== "number") throw new Error("存檔內容不完整");
         return { json, data };
     }
@@ -7332,7 +7371,7 @@
         if (!name) { dom.saveBanner.innerHTML = `<span style="color:#fca5a5;">請先輸入帳號名稱（或點下面的帳號）</span>`; return; }
         fetch("/api/save?name=" + encodeURIComponent(name), { headers: pwHeaders(pw) }).then((r) => r.json().then((d) => ({ ok: r.ok, d }))).then(({ ok, d }) => {
             if (!ok) throw new Error(d.error || "讀取失敗");
-            const parsed = decodeSaveText(d.code);
+            const parsed = decodeSaveText(d.code, true); // 主機上的舊格式存檔照常可讀
             const s = parsed.data;
             const when = new Date(d.savedAt || Date.now()).toLocaleString();
             if (!window.confirm("要讀取主機上的「" + name + "」嗎？\n（最高關卡 STAGE " + s.highestStage + "、金幣 " + (s.coins || 0) + "，存於 " + when + "）\n這個網址目前的進度會被取代。")) return;
@@ -7424,7 +7463,7 @@
         const pw = hostSavePw(dom.hostRemotePw);
         fetch(LOCAL_SERVER_URL + "/api/save?name=" + encodeURIComponent(name), { headers: pwHeaders(pw) }).then((r) => r.json().then((d) => ({ ok: r.ok, d }))).then(({ ok, d }) => {
             if (!ok) throw new Error(d.error || "讀取失敗");
-            const parsed = decodeSaveText(d.code);
+            const parsed = decodeSaveText(d.code, true); // 主機上的舊格式存檔照常可讀
             const s = parsed.data;
             const when = new Date(d.savedAt || Date.now()).toLocaleString();
             if (!window.confirm("要讀取電腦伺服器上的「" + name + "」嗎？\n（最高關卡 STAGE " + s.highestStage + "、金幣 " + (s.coins || 0) + "，存於 " + when + "）\n這個網址目前的進度會被取代。")) return;
