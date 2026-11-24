@@ -2357,7 +2357,7 @@
             .gacha-grid > .focused {
                 box-shadow: 0 0 0 2px #fde047 inset;
             }
-            /* 弓比較少（19 把），格子可以大一點 */
+            /* 弓比較少（26 把），格子可以大一點 */
             #bow-grid {
                 grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
             }
@@ -3536,7 +3536,7 @@
                         <button id="hub-nav-settings" type="button" class="hub-nav-btn"><span>⚙️</span><span>設定</span></button>
                         <button id="hub-nav-keybinds" type="button" class="hub-nav-btn"><span>⌨️</span><span>按鍵設定</span></button>
                         <button id="hub-nav-touch-mode" type="button" class="hub-nav-btn touch-only"><span>🕹️</span><span id="hub-touch-mode-label">手機操控：圓盤搖桿</span></button>
-                        <button id="hub-nav-save" type="button" class="hub-nav-btn"><span>💾</span><span>存檔匯出／匯入</span></button>
+                        <button id="hub-nav-save" type="button" class="hub-nav-btn"><span>💾</span><span>存檔匯出／匯入</span><span id="hub-badge-save" class="nav-badge hidden"></span></button>
                         <button id="hub-nav-guide" type="button" class="hub-nav-btn"><span>📜</span><span>遊戲說明</span></button>
                         <button id="hub-btn-reset-save" type="button" class="hub-nav-btn danger-btn"><span>🗑️</span><span>重置本機存檔</span></button>
                     </details>
@@ -3683,7 +3683,7 @@
                 </div>
                 <div class="save-col">
                     <div class="codex-section-title">📥 匯入（會覆蓋目前進度）</div>
-                    <textarea id="save-import-text" class="save-textarea" placeholder="把存檔代碼貼在這裡（以 AOG1: 開頭）"></textarea>
+                    <textarea id="save-import-text" class="save-textarea" placeholder="把存檔代碼貼在這裡（以 AOG2: 開頭）"></textarea>
                     <div class="btn-row">
                         <label class="secondary-btn" style="cursor:pointer;">📂 選擇存檔檔案<input id="save-import-file" type="file" accept=".txt,text/plain" style="display:none;"></label>
                         <button id="btn-save-import" type="button" class="primary-btn">📥 匯入</button>
@@ -4189,6 +4189,21 @@
     const COMBO_CODEX = [
         // ---------- 元素反應 ----------
         {
+            title: "🔥💥 爆燃（灼燒滿層）",
+            pair: "烈焰附魔（或火焰弓）連續命中 → 灼燒疊滿 5 層",
+            desc: "灼燒疊滿時爆炸，造成大量傷害，並炸毀目標身邊的石牆、雕像、替身。熾焰連弩每次多疊 1 層，更快爆燃。"
+        },
+        {
+            title: "🧊 冰封（冰凍滿層）",
+            pair: "冰霜附魔（或冰凍弓）連續命中 → 冰凍疊滿 5 層",
+            desc: "疊滿時把目標凍住定身 1.1 秒（不能移動也不能射擊），之後 5 秒冰封抗性。冰封中搭寒鋒冰晶弓傷害 +40%。"
+        },
+        {
+            title: "🌈 稜鏡共鳴（三元素齊聚）",
+            pair: "元素稜鏡弓：讓敵人同時灼燒、冰緩、中毒",
+            desc: "三種元素都在敵人身上時，下一箭觸發稜鏡共鳴追加傷害（3 秒一次）。"
+        },
+        {
             title: "☣️🔥 毒火引爆（雙元素滿層）",
             pair: "劇毒附魔疊滿 3 層 → 烈焰附魔把灼燒疊滿 5 層（讀條火球一發 +3 層）",
             desc: "劇毒滿層時灼燒疊滿，不會爆燃，改成依目標最大生命 8% 的大爆炸（介於攻擊 2.5～5 倍），炸毀附近建築並額外獲得金幣。"
@@ -4264,7 +4279,7 @@
         {
             title: "⏳🌪️ 箭幕壓制",
             pair: "疾風連發／三連散射 → 時緩增幅",
-            desc: "先射出一大片箭再開時緩，整片箭慢慢推進形成箭幕：互撞範圍 +10、撞到敵箭不會消失，把對面的箭全部擋掉。"
+            desc: "先射出一大片箭再開時緩，整片箭慢慢推進形成箭幕：互撞範圍 +6、撞到敵箭不會消失，把對面的箭全部擋掉。"
         },
         {
             title: "⏳☔ 緩降箭雨",
@@ -4329,7 +4344,7 @@
 
 ;
 // ==== js/03-bow-catalog.js
-    // 3. 弓箭圖鑑（共 19 把弓）
+    // 3. 弓箭圖鑑（共 26 把弓）
     // =========================================================================
     const BOW_CATALOG = {
         starter_bow: {
@@ -4356,13 +4371,13 @@
             color: "#38bdf8",
             weight: 22,
             dmgMult: 0.9,
-            cdMult: 0.52,
+            cdMult: 0.72,
             speedMult: 1.06,
             bonusArrows: 0,
             passiveFlameChance: 0,
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
-            desc: "射箭冷卻大幅縮短 48%（0.39s），高頻壓制對手。"
+            desc: "射箭冷卻大幅縮短 28%，高頻壓制對手；攻擊 -10%。"
         },
         titan_heavybow: {
             id: "titan_heavybow",
@@ -4372,7 +4387,7 @@
             color: "#fb923c",
             weight: 18,
             dmgMult: 1.52,
-            cdMult: 1.18,
+            cdMult: 1.1,
             speedMult: 1.04,
             bonusArrows: 0,
             passiveFlameChance: 0,
@@ -4421,13 +4436,13 @@
             color: "#a78bfa",
             weight: 10,
             dmgMult: 1.25,
-            cdMult: 0.76,
+            cdMult: 0.82,
             speedMult: 1.12,
             bonusArrows: 0,
             passiveFlameChance: 0,
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
-            desc: "冷卻 -24%、攻擊 +25%、箭速倍率 +12%。"
+            desc: "冷卻 -18%、攻擊 +25%、箭速倍率 +12%。"
         },
         soul_reaper_bow: {
             id: "soul_reaper_bow",
@@ -4452,14 +4467,14 @@
             rarity: "LEGENDARY",
             color: "#fbbf24",
             weight: 5,
-            dmgMult: 1.42,
-            cdMult: 0.65,
+            dmgMult: 1.2,
+            cdMult: 0.75,
             speedMult: 1.10,
             bonusArrows: 0, // 平衡：原本 +1 箭會讓輸出直接翻倍（第二名的 2.5 倍），改為不額外加箭
             passiveFlameChance: 0.15,
             passiveFrostChance: 0.15,
             passiveLeechRatio: 0,
-            desc: "冷卻 -35%、攻擊 +42%、箭速倍率 +10%，並有 15% 機率附帶烈焰或冰凍。"
+            desc: "冷卻 -25%、攻擊 +20%、箭速倍率 +10%，並有 15% 機率附帶烈焰或冰凍。"
         },
         // ---- 特色弓：special 的實際效果寫在 16b-bow-specials.js ----
         blast_powder_bow: {
@@ -4469,7 +4484,7 @@
             rarity: "RARE",
             color: "#f59e0b",
             weight: 12,
-            dmgMult: 0.88,
+            dmgMult: 1.1,
             cdMult: 0.95,
             speedMult: 1.0,
             bonusArrows: 0,
@@ -4477,7 +4492,7 @@
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
             special: "ground_blast",
-            desc: "【落地爆破】沒射中的箭落地會小爆炸，波及附近敵人（0.55 倍傷害）。直擊攻擊 -12%。擦邊也算數。"
+            desc: "【落地爆破】沒射中的箭落地會小爆炸，波及附近敵人（0.75 倍傷害）。擦邊也算數。"
         },
         hawkeye_longbow: {
             id: "hawkeye_longbow",
@@ -4486,7 +4501,7 @@
             rarity: "EPIC",
             color: "#f87171",
             weight: 9,
-            dmgMult: 1.05,
+            dmgMult: 1.12,
             cdMult: 1.12,
             speedMult: 1.05,
             bonusArrows: 0,
@@ -4545,7 +4560,7 @@
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
             special: "venom_flame_cycle",
-            desc: "【毒火循環】射擊依序為 毒→毒→火 循環；火箭命中中毒敵人會觸發「毒火引爆」。"
+            desc: "【毒火循環】射擊依序為 毒→毒→火 循環，自動幫你同時疊劇毒和灼燒；兩種都疊滿時觸發「毒火引爆」。"
         },
         arcane_circuit_bow: {
             id: "arcane_circuit_bow",
@@ -4554,7 +4569,7 @@
             rarity: "LEGENDARY",
             color: "#e879f9",
             weight: 4,
-            dmgMult: 1.2,
+            dmgMult: 1.12,
             cdMult: 0.8,
             speedMult: 1.08,
             bonusArrows: 0,
@@ -4579,7 +4594,7 @@
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
             special: "tide",
-            desc: "【潮汐】連續命中每次 +8% 傷害（最多 5 層 +40%）；任何一箭落地沒射中就歸零。"
+            desc: "【潮汐】連續命中每次 +10% 傷害（最多 5 層 +50%）；任何一箭落地沒射中就歸零。"
         },
         star_orbit_bow: {
             id: "star_orbit_bow",
@@ -4596,7 +4611,7 @@
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
             special: "orbit",
-            desc: "【星軌】箭矢重力 -40%、射程更遠；飛得越久越痛，每飛行 1 秒傷害 +45%（最高 +90%）。"
+            desc: "【星軌】箭矢重力 -40%、射程更遠；飛得越久越痛，每飛行 1 秒傷害 +60%（最高 +120%）。"
         },
         shatter_ice_bow: {
             id: "shatter_ice_bow",
@@ -4605,7 +4620,7 @@
             rarity: "RARE",
             color: "#bae6fd",
             weight: 11,
-            dmgMult: 1.05,
+            dmgMult: 1.15,
             cdMult: 0.95,
             speedMult: 1.02,
             bonusArrows: 0,
@@ -4622,7 +4637,7 @@
             rarity: "RARE",
             color: "#a7f3d0",
             weight: 11,
-            dmgMult: 0.95,
+            dmgMult: 1.08,
             cdMult: 1.0,
             speedMult: 1.0,
             bonusArrows: 0,
@@ -4639,15 +4654,64 @@
             rarity: "LEGENDARY",
             color: "#c4b5fd",
             weight: 4,
-            dmgMult: 0.9,
-            cdMult: 1.15,
+            dmgMult: 1.35,
+            cdMult: 1.0,
             speedMult: 1.0,
             bonusArrows: 0,
             passiveFlameChance: 0,
             passiveFrostChance: 0,
             passiveLeechRatio: 0,
             special: "chrono_amp",
-            desc: "【時蝕增幅】箭飛越久越大（每秒 +1.2 倍，上限 2.6 倍），每大 1 倍傷害 +50%。近身普通、遠射重砲。重複抽到：上限 +0.1 倍、傷害係數 +3%。"
+            desc: "【時蝕增幅】箭飛越久越大（每秒 +1.2 倍，上限 2.6 倍），每大 1 倍傷害 +55%。近身普通、遠射重砲。重複抽到：上限 +0.1 倍、傷害係數 +3%。"
+        },
+        // ---------- 新弓（特色邏輯在 16h-new-bows.js）----------
+        hunter_shortbow: {
+            id: "hunter_shortbow", name: "獵人短弓", icon: "🪃", rarity: "COMMON", color: "#a3a3a3", weight: 20,
+            dmgMult: 1.12, cdMult: 0.94, speedMult: 1.03, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0, passiveLeechRatio: 0,
+            desc: "攻擊 +12%、冷卻 -6%、箭速 +3%。比聖光長弓稍強一點的入門弓。"
+        },
+        venom_fang_bow: {
+            id: "venom_fang_bow", name: "腐蝕毒牙弓", icon: "🐍", rarity: "RARE", color: "#84cc16", weight: 12,
+            dmgMult: 1.05, cdMult: 0.95, speedMult: 1.02, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0, passiveVenomChance: 0.3, passiveLeechRatio: 0,
+            special: "venom_fang",
+            desc: "【毒牙】每次射擊 30% 機率附帶劇毒；這把弓上的劇毒疊滿後，每跳扣血 +40%。"
+        },
+        split_bow: {
+            id: "split_bow", name: "連珠分裂弓", icon: "🔱", rarity: "RARE", color: "#60a5fa", weight: 11,
+            dmgMult: 0.92, cdMult: 0.95, speedMult: 1.04, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0, passiveLeechRatio: 0,
+            special: "split",
+            desc: "【分裂】每第 3 次射擊多射出 2 支箭（多重箭只有中間那支能撞掉敵箭）。攻擊 -8%。"
+        },
+        ember_bow: {
+            id: "ember_bow", name: "熾焰連弩", icon: "🔥", rarity: "EPIC", color: "#f97316", weight: 8,
+            dmgMult: 1.08, cdMult: 0.88, speedMult: 1.06, bonusArrows: 0,
+            passiveFlameChance: 0.3, passiveFrostChance: 0, passiveLeechRatio: 0,
+            special: "ember",
+            desc: "【熾焰】每次射擊 30% 機率附帶烈焰；這把弓的火焰每次命中多疊 1 層灼燒，更快觸發爆燃。"
+        },
+        frost_lance_bow: {
+            id: "frost_lance_bow", name: "寒鋒冰晶弓", icon: "🧊", rarity: "EPIC", color: "#67e8f9", weight: 8,
+            dmgMult: 1.1, cdMult: 0.95, speedMult: 1.08, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0.3, passiveLeechRatio: 0,
+            special: "frost_lance",
+            desc: "【寒鋒】每次射擊 30% 機率附帶冰凍；敵人每有 1 層冰凍，箭傷害 +8%；敵人冰封中傷害 +40%。"
+        },
+        siege_pierce_bow: {
+            id: "siege_pierce_bow", name: "破城穿心弓", icon: "🏰", rarity: "EPIC", color: "#d6d3d1", weight: 8,
+            dmgMult: 1.25, cdMult: 1.05, speedMult: 1.15, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0, passiveLeechRatio: 0,
+            special: "siege_pierce",
+            desc: "【破城】箭會穿過敵方的石牆、雕像、替身繼續飛，並對建築造成雙倍傷害。專剋召喚與架牆的對手。"
+        },
+        prism_bow: {
+            id: "prism_bow", name: "元素稜鏡弓", icon: "🌈", rarity: "LEGENDARY", color: "#f0abfc", weight: 4,
+            dmgMult: 1.0, cdMult: 1.05, speedMult: 1.06, bonusArrows: 0,
+            passiveFlameChance: 0, passiveFrostChance: 0, passiveLeechRatio: 0,
+            special: "prism",
+            desc: "【稜鏡】射擊依序附帶 火→冰→毒 循環；敵人同時有灼燒、冰緩、中毒時，命中觸發【稜鏡共鳴】追加 0.8 倍傷害（3 秒一次）。"
         }
     };
 
@@ -4670,7 +4734,14 @@
         "star_orbit_bow",
         "archer_god_bow",
         "arcane_circuit_bow",
-        "chrono_amp_bow"
+        "chrono_amp_bow",
+        "hunter_shortbow",
+        "venom_fang_bow",
+        "split_bow",
+        "ember_bow",
+        "frost_lance_bow",
+        "siege_pierce_bow",
+        "prism_bow"
     ];
 
     // =========================================================================
@@ -5325,7 +5396,7 @@
             maxCd: 0,
             baseMult: 1.0,
             gachaStatLabel: "每升1級 +8% 反擊傷害",
-            desc: "【被動】用無敵幀或護盾躲過攻擊後，下一箭傷害 ×1.5，且 1.5 秒內受到的傷害 -30%（閃避架勢）。"
+            desc: "【被動】用無敵幀或護盾躲過攻擊後，下一箭傷害 ×1.5；躲過攻擊、或使用幻影疾步／鉤爪後，1.5 秒內受到的傷害 -30%（閃避架勢）。"
         }
     };
 
@@ -6265,6 +6336,7 @@
         hubStatusBox: document.getElementById("hub-status-box"),
         hubNavKeybinds: document.getElementById("hub-nav-keybinds"),
         hubNavSave: document.getElementById("hub-nav-save"),
+        hubBadgeSave: document.getElementById("hub-badge-save"),
         saveModal: document.getElementById("save-modal"),
         saveBanner: document.getElementById("save-banner"),
         saveExportText: document.getElementById("save-export-text"),
@@ -6774,6 +6846,7 @@
                 pvpLoadout: game.pvpLoadout || null,
                 newbie: game.newbie || {},
                 hintsSeen: game.hintsSeen || {},
+                lastBackupAt: game.lastBackupAt || 0,
                 settings: getSettings(),
                 firstClearPaid: game.firstClearPaid || 0,
                 dungeon: game.dungeonSave || {},
@@ -6948,6 +7021,7 @@
             // 新手導覽／任務；首次通關加碼（舊存檔：已經打過的關卡不再補發）
             game.newbie = data.newbie && typeof data.newbie === "object" ? data.newbie : {};
             game.hintsSeen = data.hintsSeen && typeof data.hintsSeen === "object" ? data.hintsSeen : {};
+            game.lastBackupAt = typeof data.lastBackupAt === "number" ? data.lastBackupAt : 0;
             game.settings = data.settings && typeof data.settings === "object" ? data.settings : {};
             applySettings(); // 設定（12j）：音量、靜音
             game.firstClearPaid = typeof data.firstClearPaid === "number" ? data.firstClearPaid : Math.max(0, game.highestStage - 1);
@@ -7234,6 +7308,30 @@
         return { json, data };
     }
 
+    // ---------- 備份提醒 ----------
+    //   複製代碼、下載檔案、存到主機（含自動同步）、傳到電腦伺服器 都算備份
+    //   打到第 5 關以上、超過 7 天沒備份 → 大廳「建議下一步」與存檔按鈕提醒
+    const BACKUP_REMIND_DAYS = 7;
+
+    function markBackupDone() {
+        game.lastBackupAt = Date.now();
+        saveGameProgress();
+        if (typeof renderHubCurrenciesAndBadges === "function" && game.state === "HUB") renderHubCurrenciesAndBadges();
+    }
+
+    function needsBackupReminder() {
+        if ((game.highestStage || 1) < 5) return false;
+        const last = game.lastBackupAt || 0;
+        return !last || Date.now() - last > BACKUP_REMIND_DAYS * 86400000;
+    }
+
+    function getBackupStatusText() {
+        const last = game.lastBackupAt || 0;
+        if (!last) return "⚠️ 這份存檔還沒備份過";
+        const days = Math.floor((Date.now() - last) / 86400000);
+        return days <= 0 ? "✅ 今天備份過" : (days > BACKUP_REMIND_DAYS ? "⚠️ " : "") + "上次備份：" + days + " 天前";
+    }
+
     function openSaveTransferModal() {
         if (game.state !== "HUB") return;
         sfx.unlock();
@@ -7245,9 +7343,11 @@
         const raw = localStorage.getItem(SAVE_STORAGE_KEY) || "{}";
         dom.saveExportText.value = encodeSaveText(raw);
         dom.saveImportText.value = "";
-        dom.saveBanner.innerHTML = hostInfo
+        const ios = typeof isIOSDevice === "function" && isIOSDevice() && !(typeof isAppStandalone === "function" && isAppStandalone());
+        dom.saveBanner.innerHTML = getBackupStatusText() + "｜" + (hostInfo
             ? "🖥️ 推薦用下面的「主機存檔」：輸入帳號名稱按「存到主機」，換網址或換手機時按「從主機讀取」。"
-            : "📤 複製左邊的存檔代碼或下載檔案保存；📥 要還原時，把代碼貼到右邊或選擇存檔檔案再按「匯入」。";
+            : "📤 複製左邊的存檔代碼或下載檔案保存；📥 要還原時，把代碼貼到右邊或選擇存檔檔案再按「匯入」。") +
+            (ios ? "<br>📱 iPhone 提醒：網站超過 7 天沒開，Safari 可能會清掉存檔；記得常備份，或加到主畫面當 App 玩。" : "");
         renderHostSaveBox();
     }
 
@@ -7262,7 +7362,7 @@
     function copySaveCode() {
         const box = dom.saveExportText;
         const text = box.value;
-        const ok = () => { dom.saveBanner.innerHTML = `<span style="color:#86efac;">✅ 已複製存檔代碼，請貼到安全的地方保存。</span>`; };
+        const ok = () => { markBackupDone(); dom.saveBanner.innerHTML = `<span style="color:#86efac;">✅ 已複製存檔代碼，請貼到安全的地方保存。</span>`; };
         const fail = () => { dom.saveBanner.innerHTML = `<span style="color:#fca5a5;">⚠️ 這個瀏覽器不讓網頁自動複製：請長按（或滑鼠選取）左邊的代碼手動複製，或改用「下載存檔檔案」／「存到主機」。</span>`; };
         const legacyCopy = () => {
             let copied = false;
@@ -7357,6 +7457,7 @@
         }).then((r) => r.json().then((d) => ({ ok: r.ok, d }))).then(({ ok, d }) => {
             if (!ok) throw new Error(d.error || "上傳失敗");
             rememberAccount(name, pw);
+            markBackupDone(); // 存到主機（含自動同步）也算備份
             if (!silent && dom.saveBanner) dom.saveBanner.innerHTML = `<span style="color:#86efac;">✅ 已存到主機（帳號「${name}」）。其他網址／裝置輸入同一個帳號和密碼，按「從主機讀取」就能接著玩。${pwSetNote(d, pw)}</span>`;
             if (!silent) renderHostSaveBox();
         }).catch((e) => {
@@ -7453,6 +7554,7 @@
         }).then((r) => r.json().then((d) => ({ ok: r.ok, d }))).then(({ ok, d }) => {
             if (!ok) throw new Error(d.error || "上傳失敗");
             rememberAccount(name, pw);
+            markBackupDone();
             dom.saveBanner.innerHTML = `<span style="color:#86efac;">✅ 已傳到電腦上的伺服器（帳號「${name}」）。用 http://localhost:8080 或手機打開連線版，輸入帳號和密碼按「從主機讀取」就能接著玩。${pwSetNote(d, pw)}</span>`;
         }).catch(remoteFail);
     }
@@ -7494,6 +7596,7 @@
         a.click();
         a.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
+        markBackupDone();
         dom.saveBanner.innerHTML = `<span style="color:#86efac;">✅ 已下載存檔檔案。</span>`;
     }
 
@@ -7711,6 +7814,7 @@
         setBadge(dom.hubBadgeLogin, canClaimLogin() ? "可領取" : "");
         dom.hubBadgeDaily.textContent = getDailyBadge();
         updateNewbieBadge();
+        setBadge(dom.hubBadgeSave, needsBackupReminder() ? "該備份" : ""); // 備份提醒（10b）
     }
 
     // 右側「戰況總覽」：下一隻 Boss、裝備中的遺物、成長提醒
@@ -8254,6 +8358,9 @@
         s.chestsOpened = s.chestsOpened || 0;
         s.bossKills = s.bossKills || {};
         s.combos = s.combos || {};
+        s.burnBursts = s.burnBursts || 0;   // 元素系統（16g）
+        s.freezes = s.freezes || 0;
+        s.venomFlames = s.venomFlames || 0;
         return s;
     }
 
@@ -8275,7 +8382,10 @@
         whirlwind: "旋風散射連擊",
         blood_wind: "血風連襲",
         scatter_mine: "散射雷陣",
-        chrono_resonance: "時蝕共鳴"
+        chrono_resonance: "時蝕共鳴",
+        burn_burst: "爆燃",
+        deep_freeze: "冰封",
+        prism_resonance: "稜鏡共鳴"
     };
 
     // 各連攜觸發時呼叫（只記錄玩家觸發的；訓練模式也算）
@@ -8358,6 +8468,9 @@
             { id: "combo_5", icon: "🔗", name: "Combo 學徒", desc: "打出 5 種不同的 Combo", target: 5, prog: () => Object.keys(s().combos).length, coins: 200 },
             { id: "combo_12", icon: "⛓️", name: "Combo 大師", desc: "打出 12 種不同的 Combo", target: 12, prog: () => Object.keys(s().combos).length, coins: 600, evo: 2, tp: 2 },
             { id: "combo_all", icon: "🌈", name: "Combo 宗師", desc: "打出全部 " + Object.keys(COMBO_KEYS).length + " 種 Combo", target: Object.keys(COMBO_KEYS).length, prog: () => Object.keys(s().combos).length, coins: 1000, evo: 3, tp: 3, crystals: 10 },
+            { id: "burst_10", icon: "🔥", name: "爆燃專家", desc: "觸發 10 次爆燃（灼燒疊滿）", target: 10, prog: () => s().burnBursts, coins: 300, crystals: 3 },
+            { id: "freeze_10", icon: "🧊", name: "冰封之主", desc: "冰封敵人 10 次（冰凍疊滿）", target: 10, prog: () => s().freezes, coins: 300, crystals: 3 },
+            { id: "venomflame_3", icon: "☣️", name: "毒火宗師", desc: "打出 3 次毒火引爆（劇毒、灼燒都疊滿）", target: 3, prog: () => s().venomFlames, coins: 500, crystals: 5, tp: 1 },
             { id: "elite_1", icon: "⭐", name: "精英獵人", desc: "擊敗 1 隻精英敵人", target: 1, prog: () => s().elitesKilled, coins: 100 },
             { id: "elite_10", icon: "🌟", name: "精英剋星", desc: "擊敗 10 隻精英敵人", target: 10, prog: () => s().elitesKilled, coins: 400, tp: 1, crystals: 3 },
             { id: "chest_5", icon: "🎁", name: "寶箱獵人", desc: "打開 5 個精英寶箱", target: 5, prog: () => s().chestsOpened, coins: 200 },
@@ -8933,6 +9046,7 @@
         const steps = [];
         const add = (pri, icon, text, nav) => steps.push({ pri, icon, text, nav });
         if (canClaimLogin()) add(100, "🎁", "領取今天的登入獎勵", "hubNavLogin");
+        if (needsBackupReminder()) add(66, "💾", game.lastBackupAt ? "超過 7 天沒備份存檔了" : "備份一下存檔（換手機、清瀏覽器資料會不見）", "hubNavSave");
         const nbClaim = getNewbieClaimableCount();
         const nbNext = getNextNewbieQuest();
         if (nbClaim > 0) add(97, "🔰", "新手任務有 " + nbClaim + " 個獎勵可以領", "hubNavNewbie");
@@ -9448,6 +9562,7 @@
                 ]))
                 + guideSection("⚠️ 小心", guideList([
                     "敵人的元素箭打到你也會疊層：被冰箭疊滿一樣會被冰封",
+                    "第 15 關起敵人也會<b>附魔</b>（腳下出現元素光環），這幾秒盡量閃避",
                     "頭上會顯示目前的層數（🔥3 ❄️2 ☣️3）"
                 ]));
         }
@@ -9497,7 +9612,9 @@
                 "進度<b>自動存在這個瀏覽器</b>；每個網址（itch.io、localhost、192.168.x.x）的進度是分開的",
                 "<b>換電腦／換手機</b>：大廳「💾 存檔匯出／匯入」→ 複製存檔代碼或下載檔案，到新裝置匯入",
                 "<b>主機存檔</b>（用伺服器網址開時）：輸入帳號＋密碼「存到主機」，其他裝置「從主機讀取」",
-                "密碼只在搬存檔時用；每台裝置輸入一次就會記住"
+                "密碼只在搬存檔時用；每台裝置輸入一次就會記住",
+                "<b>記得常備份</b>：清除瀏覽器資料、換手機會讓存檔不見；iPhone 的 Safari 網站 7 天沒開也可能被清掉。超過 7 天沒備份，大廳會提醒你",
+                "更新遊戲<b>不會</b>洗掉存檔（同一個網址就會保留）"
             ]));
     }
 
@@ -9544,6 +9661,7 @@
         venom_flame: "☣️🔥 毒火引爆！劇毒滿層時把灼燒疊滿，會變成最大生命 % 的大爆炸",
         frozen_self: "🧊 你被冰封了！敵人的冰箭疊滿也會凍住你，看到 ❄️ 層數變高就快躲",
         falcon: "🦅 獵鷹騷擾：被啄到的敵人一段時間內射擊會偏掉",
+        enemy_enchant: "⚠️ 敵人附魔了！接下來幾秒他的每一箭都帶元素，腳下有光環提示；小心被疊到冰封或爆燃",
         clash: "⚔️ 箭矢互撞！用箭可以在空中撞掉敵人的箭（多重箭只有中間那支能撞）"
     };
 
@@ -11889,7 +12007,7 @@
         skill: { level: 4, crystals: 10, legendaryCrystals: 15 }
     };
 
-    // ---------- 弓的覺醒（全部 19 把） ----------
+    // ---------- 弓的覺醒（全部 26 把） ----------
     const BOW_AWAKENINGS = {
         starter_bow: { name: "聖光不滅", desc: "拉滿弓的箭撞到敵箭不會消失，繼續往前飛。" },
         swift_shortbow: { name: "連珠", desc: "每第 4 次射擊額外多射 1 支箭。" },
@@ -11909,7 +12027,14 @@
         star_orbit_bow: { name: "流星墜擊", desc: "飛行超過 0.8 秒的箭命中時，會把敵人擊飛並打斷讀條。" },
         archer_god_bow: { name: "神射天罰", desc: "每 10 秒，下一次射擊額外多射 4 支神箭。" },
         arcane_circuit_bow: { name: "迴路超載", desc: "每放 3 個技能，觸發超載：所有技能冷卻再 -3 秒。" },
-        chrono_amp_bow: { name: "時蝕爆裂", desc: "長到 2 倍以上的箭命中時爆開，追加 0.6 倍傷害並震退敵人。" }
+        chrono_amp_bow: { name: "時蝕爆裂", desc: "長到 2 倍以上的箭命中時爆開，追加 0.6 倍傷害並震退敵人。" },
+        hunter_shortbow: { name: "獵手直覺", desc: "每第 5 次射擊必定爆頭。" },
+        venom_fang_bow: { name: "劇毒蔓延", desc: "附帶劇毒的機率 30% → 60%。" },
+        split_bow: { name: "連環分裂", desc: "分裂改成每第 2 次射擊就觸發。" },
+        ember_bow: { name: "烈焰風暴", desc: "爆燃的範圍 +50%、傷害 +30%。" },
+        frost_lance_bow: { name: "永凍之心", desc: "冰封時間 +0.5 秒。" },
+        siege_pierce_bow: { name: "攻城巨矢", desc: "穿過建築的箭，打到人時傷害 +25%。" },
+        prism_bow: { name: "全彩共鳴", desc: "稜鏡共鳴改成追加 1.5 倍傷害，冷卻 3 秒 → 1.8 秒。" }
     };
 
     function isAwakened(type, id) {
@@ -12049,6 +12174,7 @@
             mod.extraArrows += 4;
             addFloatingText(player.x, player.y - 120, "👑 神射天罰!", "#fde047", 16);
         }
+        applyNewBowShotExtras(mod); // 16h：分裂、獵人短弓覺醒
         return mod;
     }
 
@@ -12908,7 +13034,7 @@
     //   hpMult / dmgMult 由 tools/probe-dungeon.js 估算：I ≈ 中期養成、II ≈ 後期養成、III ≈ 滿養成＋覺醒＋遺物
     const DUNGEON_TIERS = [
         { id: 1, label: "試煉 I", baseStage: 30, hpMult: 0.28, dmgMult: 0.4, mythChance: 0.15, crystalMult: 1, recommend: "中期養成（進化約 Lv.10、天賦 15 點以上）" },
-        { id: 2, label: "試煉 II", baseStage: 50, hpMult: 0.2, dmgMult: 0.28, mythChance: 0.25, crystalMult: 5 / 3, recommend: "後期養成（進化 Lv.20、天賦 35 點、高階弓）" },
+        { id: 2, label: "試煉 II", baseStage: 50, hpMult: 0.145, dmgMult: 0.2, /* 平衡：阿奇爾神弓削弱後後期養成打不過 → 0.2/0.28 → 0.145/0.2 */ mythChance: 0.25, crystalMult: 5 / 3, recommend: "後期養成（進化 Lv.20、天賦 35 點、高階弓）" },
         { id: 3, label: "試煉 III", baseStage: 80, hpMult: 0.1, dmgMult: 0.12, mythChance: 0.4, crystalMult: 8 / 3, recommend: "滿養成＋覺醒＋滿級遺物" }
     ];
     const DUNGEON_START_BLESSINGS = 3; // 開打前先選 3 次賜福（不多給，主要還是靠局外養成）
@@ -15224,6 +15350,7 @@
         if (id === "phantom_dash") {
             const dashStartX = player.x;
             if (!triggerPhantomDash("player")) return;
+            onPlayerMobilitySkillUsed(); // 閃避反擊：位移後進入閃避架勢
             onAwakenDash(dashStartX); // 覺醒：殘影誘餌
             slot.cd = slot.maxCd;
             updateSkillDockUI();
@@ -15493,6 +15620,7 @@
 
         const startSlowed = owner === "enemy" && enemy.bossArrowSlowTimer > 0;
         const shotId = nextShotId(); // 同一次射擊的箭共用（多重箭疊層機率遞減，16g）
+        const nbFlags = getNewBowArrowFlags(owner, traits); // 16h：熾焰、毒牙、破城
 
         for (let i = 0; i < count; i++) {
             const offsetAngle = count === 1 ? 0 : (i - (count - 1) * 0.5) * spread;
@@ -15500,6 +15628,7 @@
 
             let arrowFlame = Boolean(traits.flame);
             let arrowFrost = Boolean(traits.frost);
+            let arrowVenom = Boolean(traits.venom);
             if (owner === "player" && !traits.puppet && !isChainBind) {
                 if (!arrowFlame && bowStats.bow.passiveFlameChance > 0 && Math.random() < bowStats.bow.passiveFlameChance) {
                     arrowFlame = true;
@@ -15507,6 +15636,8 @@
                 if (!arrowFrost && bowStats.bow.passiveFrostChance > 0 && Math.random() < bowStats.bow.passiveFrostChance) {
                     arrowFrost = true;
                 }
+                const vChance = getBowVenomChance(bowStats.bow); // 16h：腐蝕毒牙弓
+                if (!arrowVenom && vChance > 0 && Math.random() < vChance) arrowVenom = true;
                 // 賜福：元素親和
                 if (!arrowFlame && !arrowFrost && player.blessElementChance > 0 && Math.random() < player.blessElementChance) {
                     if (Math.random() < 0.5) arrowFlame = true;
@@ -15520,6 +15651,9 @@
                 //   以前每支都能撞，箭越多越像一面盾（箭雨、巨箭流承傷只有別人一半）
                 noClash: owner === "player" && count > 1 && i !== Math.floor((count - 1) / 2),
                 shotId: shotId,
+                burnExtra: nbFlags.burnExtra,
+                venomFang: nbFlags.venomFang,
+                siegePierce: nbFlags.siegePierce,
                 x: originX,
                 y: originY,
                 vx: Math.cos(finalAngle) * finalSpeed,
@@ -15547,7 +15681,7 @@
                 leechRatio: leechRatio,
                 lightning: isLightning,
                 mine: Boolean(traits.mine),
-                venom: Boolean(traits.venom),
+                venom: arrowVenom,
                 pierceGale: isPierce,
                 quakeArrow: isQuake,
                 arcaneSurge: Boolean(traits.arcaneSurge),
@@ -15775,7 +15909,7 @@
             pierceGale: relicMod.pierce || undefined, // 神弓之魂：神弓箭穿透
             // 由毒火雙子弓循環產生的火箭（引爆時金幣減半）
             bowCycleFlame: Boolean(bowMod.traits.flame) && !mods.flame,
-            frost: mods.frost || relicMod.frost,
+            frost: mods.frost || relicMod.frost || Boolean(bowMod.traits.frost),
             vampire: mods.vampire,
             mine: mods.mine,
             volleyBurst: mods.volley_burst,
@@ -15897,7 +16031,7 @@
 // 16b. 特色弓的專屬效果（依 BOW_CATALOG 的 special 欄位）
     // =========================================================================
     const BOW_GROUND_BLAST_RADIUS = 78;
-    const BOW_GROUND_BLAST_MULT = 0.55;
+    const BOW_GROUND_BLAST_MULT = 0.75; // 平衡：0.55 → 0.75（爆裂火藥弓偏弱）
     const BOW_ECHO_EVERY = 3;
     const BOW_ECHO_DELAY = 0.22;
     const BOW_ECHO_DMG = 0.7; // 平衡：0.8 → 0.7（箭雨流的回音會複製整波多重箭）
@@ -15945,14 +16079,16 @@
             mod.traits.arcaneSurge = true;
             player.arcaneCharged = false;
         } else if (special === "tide") {
-            mod.dmgScale = 1 + (player.tideStacks || 0) * 0.08;
+            mod.dmgScale = 1 + (player.tideStacks || 0) * 0.1;
             player.tideShotId = (player.tideShotId || 0) + 1;
             mod.traits.tideShotId = player.tideShotId;
         } else if (special === "orbit") {
             mod.traits.gravityScale = getPlayerShotGravityScale();
-            mod.traits.flightDmgBonus = 0.45;
+            mod.traits.flightDmgBonus = 0.6; // 平衡：每秒 +45% → +60%（機動游擊流偏弱）
         } else if (special === "guardian") {
             mod.dmgScale = 1 + Math.min(0.45, countPlayerSummons() * 0.15); // 平衡：每個 +12% → +15%、上限 36% → 45%
+        } else if (special === "prism") {
+            applyNewBowShotMod(special, mod); // 16h：稜鏡 火→冰→毒 循環
         }
         return mod;
     }
@@ -16054,10 +16190,12 @@
 
     // 巨神重砲弓【處決】：命中被控制的敵人（getPlayerArrowHitMult 呼叫）
     function getBowHitMult(a) {
-        if (getBowSpecial() !== "execute_heavy" || a.owner !== "player") return 1;
+        if (a.owner !== "player") return 1;
+        const extra = getNewBowHitMult(a); // 16h：寒鋒、破城覺醒
+        if (getBowSpecial() !== "execute_heavy") return extra;
         const controlled = enemy.bindTimer > 0 || enemy.frostTimer > 0 || enemy.breakStun > 0 ||
             enemy.zeusStunTimer > 0 || enemy.titanStunTimer > 0 || enemy.voidStunTimer > 0;
-        if (!controlled) return 1;
+        if (!controlled) return extra;
         if (enemy.bindTimer > 0) enemy.bindTimer = Math.min(3, enemy.bindTimer + 0.2);
         addFloatingText(enemy.x, enemy.y - 132, "🔨 處決!", "#fdba74", 13);
         // 平衡：處決命中回復 1.5% 最大生命（控制處決流承傷偏高）
@@ -16113,6 +16251,7 @@
         player.counterReady = false;
         player.counterGuardTimer = 0;
         resetElementState(); // 附魔、元素疊層（16g）
+        resetNewBowState(); // 新弓（16h）
         player.medicUsed = false;
         enemy.weakMarkTimer = 0;
         game.rainZones = [];
@@ -16168,6 +16307,7 @@
                 addFloatingText(player.x, player.y - 100, "⛓️ 鎖鍊束縛中無法使用鉤爪!", "#c084fc", 13);
                 return true; // 不進冷卻
             }
+            onPlayerMobilitySkillUsed();
             const hp = platforms.leftHigh;
             const fromX = player.x;
             const fromY = player.y - 44;
@@ -16278,6 +16418,13 @@
     // =========================================================================
     // 被動技與特色弓的命中 hook
     // =========================================================================
+    // 機動流：用了幻影疾步、鉤爪也會進入閃避架勢（不用真的躲過攻擊）
+    function onPlayerMobilitySkillUsed() {
+        if (!hasEquippedPassive("passive_counter_step")) return;
+        player.counterGuardTimer = Math.max(player.counterGuardTimer || 0, 1.5);
+        addFloatingText(player.x, player.y - 118, "🥷 閃避架勢", "#c4b5fd", 12);
+    }
+
     function markCounterReady() {
         if (!hasEquippedPassive("passive_counter_step")) return;
         player.counterGuardTimer = 1.5; // 平衡：躲過攻擊後 1.5 秒內受到的傷害 -30%（機動游擊、殘血狂戰偏弱）
@@ -16323,7 +16470,7 @@
         mult *= getEclipseArrowMult(a); // 第二章：霜炎雙皇元素相剋
         mult *= getBowHitMult(a); // 巨神重砲弓：處決
         if (a.flightDmgBonus > 0) {
-            mult *= 1 + Math.min(0.9, (a.flightTime || 0) * a.flightDmgBonus); // 星軌曲射弓：最高 +90%
+            mult *= 1 + Math.min(1.2, (a.flightTime || 0) * a.flightDmgBonus); // 星軌曲射弓：最高 +120%（平衡：+90% → +120%）
         }
         if (getBowSpecial() === "shatter" && enemy.frostTimer > 0 && !a.lightning) {
             mult *= 1.6;
@@ -16348,6 +16495,7 @@
             onAwakenCrit(); // 鷹眼本能覺醒、弱點標記覺醒
         }
         onAwakenArrowHit(a, isCrit); // 弓覺醒效果
+        onNewBowArrowHit(a); // 16h：稜鏡共鳴
         onRelicArrowHit(a); // 遺物：雷霆核心
         onTalentArrowHit(); // 連擊手感
 
@@ -16449,6 +16597,7 @@
         if ((player.comboFlowCd || 0) > 0) player.comboFlowCd -= dt;
         if ((player.counterGuardTimer || 0) > 0) player.counterGuardTimer -= dt;
         updateElements(dt); // 附魔倒數、疊層清除（16g）
+        updateNewBows(dt); // 稜鏡共鳴冷卻（16h）
         flushAchievementToasts(dt);
         updateFirePatches(dt);
         updateCombos(dt);
@@ -16655,7 +16804,7 @@
         if (player.chronoFieldTimer > 0) p.push(`<span class="tag-pill" style="color:#c4b5fd;background:rgba(196,181,253,0.22);">⏳ 時緩增幅 ${player.chronoFieldTimer.toFixed(1)}s</span>`);
         if (player.counterReady) p.push(`<span class="tag-pill" style="color:#c4b5fd;">🥷 反擊就緒</span>`);
         if ((player.counterGuardTimer || 0) > 0) p.push(`<span class="tag-pill" style="color:#c4b5fd;background:rgba(196,181,253,0.2);">🥷 閃避架勢 -30% 承傷</span>`);
-        if (getBowSpecial() === "tide") p.push(`<span class="tag-pill" style="color:#67e8f9;">🌊 潮汐 ${player.tideStacks || 0}/5 (+${(player.tideStacks || 0) * 8}%)</span>`);
+        if (getBowSpecial() === "tide") p.push(`<span class="tag-pill" style="color:#67e8f9;">🌊 潮汐 ${player.tideStacks || 0}/5 (+${(player.tideStacks || 0) * 10}%)</span>`);
         if (getBowSpecial() === "guardian") p.push(`<span class="tag-pill" style="color:#a7f3d0;">🕊️ 守護倒數 ${4 - ((player.guardianHits || 0) % 4)}</span>`);
         e.push(...getComboHudTags());
         if (enemy.weakMarkTimer > 0) e.push(`<span class="tag-pill" style="color:#fecaca;background:rgba(248,113,113,0.3);">🎯 弱點 +35%傷 ${enemy.weakMarkTimer.toFixed(1)}s</span>`);
@@ -17166,13 +17315,13 @@
         // ⏳ 時蝕增幅弓
         bowGrowthRate: 1.2,        // 每秒 +1.2 倍
         bowMaxScale: 2.6,          // 上限 2.6 倍
-        bowDmgPerScale: 0.5,       // 每多 1.0 倍大小，傷害 +50%
+        bowDmgPerScale: 0.55,      // 每多 1.0 倍大小，傷害 +55%（平衡：+50% → +70% → +55%；搭時緩增幅會疊太高）
         bowDupMaxScale: 0.1,       // 每重複抽到一次：成長上限 +0.1 倍
         bowDupDmg: 0.03,           //                  傷害係數 +3%
         // ⏳ 時緩增幅（技能）：只讓箭變慢、不放大；價值來自搭配大量箭矢的技能
         fieldDuration: 4.0,
         fieldSpeedMult: 0.45,      // 場上我方箭矢速度 ×0.45
-        curtainClashBonus: 10,     // 箭幕：被時緩的箭互撞範圍 +10，且撞到敵箭不消失
+        curtainClashBonus: 6,      // 箭幕：被時緩的箭互撞範圍 +6（平衡：+10 → +6），且撞到敵箭不消失
         // 共用
         playerHitGrowthRatio: 0.5, // 玩家箭只吃一半的判定成長（避免爆頭太容易）
         clashSurviveScale: 2.0     // 大於這個大小的我方箭互撞後不會消失
@@ -17347,6 +17496,29 @@
         return player.enchant && player.enchant.timer > 0 ? player.enchant.el : null;
     }
 
+    // ---------- 敵人的附魔（第 15 關起；每 12 秒最多一次，冷卻中照舊只強化下一箭）----------
+    const ENEMY_ENCHANT = { fromStage: 15, sec: 4.0, cooldown: 12.0 }; // 平衡：第 6 關起太早，新玩家模擬會卡在第 12 關左右
+
+    function getEnemyEnchant() {
+        return enemy.enchant && enemy.enchant.timer > 0 ? enemy.enchant.el : null;
+    }
+
+    // 敵人 AI 選到烈焰／冰凍／劇毒時呼叫；回傳 true＝已經改成附魔
+    function tryEnemyEnchant(skillId) {
+        const el = ENCHANT_SKILLS[skillId];
+        if (!el || game.pvp) return false;
+        if ((game.stage || 1) < ENEMY_ENCHANT.fromStage && !game.dungeon) return false;
+        if ((enemy.enchantCd || 0) > 0) return false;
+        enemy.enchant = { el: el, timer: ENEMY_ENCHANT.sec, maxTimer: ENEMY_ENCHANT.sec };
+        enemy.enchantCd = ENEMY_ENCHANT.cooldown;
+        const m = ELEM_META[el];
+        sfx.skill();
+        spawnParticles(enemy.x, enemy.y - 50, m.color, 14);
+        addFloatingText(enemy.x, enemy.y - 104, "敵方 " + m.icon + " " + m.name + " " + ENEMY_ENCHANT.sec + " 秒！", m.color, 16);
+        showFirstHint("enemy_enchant");
+        return true;
+    }
+
     function isEnchantActive(id) {
         return getActiveEnchant() === ENCHANT_SKILLS[id];
     }
@@ -17368,8 +17540,8 @@
     //   包含：一般射擊、多重箭、疾風連射、回音箭、箭雨天幕、傀儡雕像的箭
     //   不包含：守護石像的擲石、碎石反擊（不是箭）
     function applyEnchantToTraits(owner, traits) {
-        if (owner !== "player" || (traits.puppet && !traits.puppetArrow)) return traits;
-        const el = getActiveEnchant();
+        if (traits.puppet && !traits.puppetArrow) return traits;
+        const el = owner === "player" ? getActiveEnchant() : owner === "enemy" && !game.pvp ? getEnemyEnchant() : null;
         if (!el || traits[el]) return traits; // 本來就有這個元素（例如毒火雙子弓的循環）就不另外算
         const t = Object.assign({}, traits);
         t[el] = true;
@@ -17379,6 +17551,8 @@
 
     function resetElementState() {
         player.enchant = null;
+        enemy.enchant = null;
+        enemy.enchantCd = 0;
         [player, enemy].forEach((c) => {
             c.burnStacks = 0;
             c.frostStacks = 0;
@@ -17405,6 +17579,11 @@
             if (!(c.frostTimer > 0)) c.frostStacks = 0;
         });
         if (enemy.falconHarassTimer > 0) enemy.falconHarassTimer = Math.max(0, enemy.falconHarassTimer - dt);
+        if (enemy.enchantCd > 0) enemy.enchantCd = Math.max(0, enemy.enchantCd - dt);
+        if (enemy.enchant && enemy.enchant.timer > 0) {
+            enemy.enchant.timer = Math.max(0, enemy.enchant.timer - dt);
+            if (enemy.enchant.timer === 0) enemy.enchant = null;
+        }
     }
 
     // 目標那一側的建築（石牆／雕像／替身）在 radius 內全部炸毀
@@ -17448,7 +17627,7 @@
         target.burnTimer = ELEM.burnSec * getElementDurationMult(a.owner);
         if (!(target.burnTickTimer > 0)) target.burnTickTimer = ELEM.burnTick;
         if (!canStack) { target.burnStacks = Math.max(1, target.burnStacks || 0); return; } // 多重箭的後幾支：只續時間
-        target.burnStacks = Math.min(ELEM.burnMax, (target.burnStacks || 0) + (a.megaFireball ? 3 : 1));
+        target.burnStacks = Math.min(ELEM.burnMax, (target.burnStacks || 0) + getBurnStackGain(a)); // 熾焰連弩多疊 1 層（16h）
         if (target.burnStacks >= ELEM.burnMax) {
             if ((target.venomStacks || 0) >= getVenomStackCap(a.owner) && target.venomTimer > 0) triggerVenomFlameCataclysm(a, target);
             else triggerBurnBurst(a, target);
@@ -17459,16 +17638,21 @@
 
     // 🔥 爆燃：灼燒疊滿
     function triggerBurnBurst(a, target) {
-        const raw = Math.round(target.burnBase * ELEM.burstMult * getElementComboDmgMult(a.owner));
+        const bm = getBurnBurstMods(a); // 熾焰連弩覺醒（16h）
+        const raw = Math.round(target.burnBase * ELEM.burstMult * bm.dmg * getElementComboDmgMult(a.owner));
         const dmg = applyDamageToCharacter(target, raw, "burn_burst");
-        const broken = blastStructuresNear(target, ELEM.burstRadius);
+        const broken = blastStructuresNear(target, ELEM.burstRadius * bm.radius);
         target.burnStacks = 0;
         target.burnTimer = 0;
         sfx.explosion();
         triggerShake(8, 0.2);
         spawnParticles(target.x, target.y - 40, "#f97316", 26);
         game.shockwaves.push({ x: target.x, y: target.y - 40, r: 14, maxR: ELEM.burstRadius, color: "#f97316", alpha: 0.95 });
-        if (a.owner === "player") showFirstHint("burn_burst");
+        if (a.owner === "player") {
+            showFirstHint("burn_burst");
+            recordComboTriggered("burn_burst");
+            getStats().burnBursts += 1;
+        }
         addFloatingText(target.x, target.y - 124, "🔥💥 爆燃! -" + dmg + (broken ? "（炸毀 " + broken + " 個建築）" : ""), "#fdba74", 18);
         if (a.owner === "player") addCoins(10 + broken * 6, target.x, target.y - 146);
     }
@@ -17490,7 +17674,10 @@
         spawnParticles(target.x, target.y - 40, "#fb923c", 26);
         game.shockwaves.push({ x: target.x, y: target.y - 40, r: 18, maxR: 170, color: "#a3e635", alpha: 1 });
         game.shockwaves.push({ x: target.x, y: target.y - 40, r: 10, maxR: 130, color: "#fb923c", alpha: 0.95 });
-        if (a.owner === "player") showFirstHint("venom_flame");
+        if (a.owner === "player") {
+            showFirstHint("venom_flame");
+            getStats().venomFlames += 1;
+        }
         addFloatingText(target.x, target.y - 128, "☣️🔥 毒火引爆! -" + dmg + "（最大生命 " + Math.round(raw / Math.max(1, target.maxHp) * 100) + "%）", "#bef264", 20);
         if (a.owner === "player") {
             recordComboTriggered("venom_flame");
@@ -17509,8 +17696,9 @@
         target.frostStacks = Math.min(ELEM.frostMax, (target.frostStacks || 0) + 1);
         if (target.frostStacks >= ELEM.frostMax) {
             target.frostStacks = 0;
-            target.frostImmuneTimer = ELEM.freezeSec + ELEM.freezeImmuneSec;
-            target.bindTimer = Math.max(target.bindTimer || 0, ELEM.freezeSec);
+            const freezeSec = ELEM.freezeSec + getFreezeBonusSec(a); // 寒鋒冰晶弓覺醒（16h）
+            target.frostImmuneTimer = freezeSec + ELEM.freezeImmuneSec;
+            target.bindTimer = Math.max(target.bindTimer || 0, freezeSec);
             target.vx = 0;
             interruptChannelIfActive(target, "冰封打斷讀條!");
             sfx.shatter();
@@ -17518,6 +17706,10 @@
             spawnParticles(target.x, target.y - 50, "#cffafe", 20);
             addFloatingText(target.x, topY - 40, "🧊 冰封！定身 " + ELEM.freezeSec + "s", "#a5f3fc", 18);
             showFirstHint(target === player ? "frozen_self" : "freeze");
+            if (a.owner === "player" && target === enemy) {
+                recordComboTriggered("deep_freeze");
+                getStats().freezes += 1;
+            }
             if (a.owner === "player") addCoins(8, target.x, target.y - 146);
             return;
         }
@@ -17537,6 +17729,7 @@
     // ☣️ 劇毒：記下基準（疊層本身在命中判定裡處理）
     function noteVenomBase(a, target) {
         target.venomBase = elemBase(a);
+        target.venomFang = Boolean(a.venomFang); // 腐蝕毒牙弓：滿層每跳 +40%（16h）
     }
 
     // updateStatusEffects 呼叫：每跳的灼燒／劇毒傷害
@@ -17551,7 +17744,7 @@
         const base = c.venomBase > 0 ? c.venomBase : 0;
         const normal = base > 0 ? Math.round(base * ELEM.venomPerStack * stacks) : 4 * stacks;
         if (stacks < cap || !(base > 0)) return { dmg: Math.max(1, normal), pct: false };
-        const pct = Math.min(c.maxHp * ELEM.venomMaxPct, base * ELEM.venomMaxCap);
+        const pct = Math.min(c.maxHp * ELEM.venomMaxPct, base * ELEM.venomMaxCap) * (c.venomFang ? 1 + NEW_BOW.fangMaxBonus : 1);
         return { dmg: Math.max(1, Math.round(Math.max(normal, pct))), pct: true };
     }
 
@@ -17573,12 +17766,29 @@
             tags.push(`<span class="tag-pill" style="color:${m.color};background:rgba(255,255,255,0.08);">${m.icon} ${m.name} ${player.enchant.timer.toFixed(1)}s</span>`);
         }
         if (char.frostImmuneTimer > 0) tags.push(`<span class="tag-pill" style="color:#a5f3fc;">🧊 冰封抗性 ${char.frostImmuneTimer.toFixed(1)}s</span>`);
+        if (char === enemy && getEnemyEnchant()) {
+            const m = ELEM_META[enemy.enchant.el];
+            tags.push(`<span class="tag-pill" style="color:${m.color};background:rgba(244,63,94,0.18);">敵方 ${m.icon} ${m.name} ${enemy.enchant.timer.toFixed(1)}s</span>`);
+        }
         if (char === enemy && enemy.falconHarassTimer > 0) tags.push(`<span class="tag-pill" style="color:#fde68a;">🦅 騷擾・射擊偏移 ${enemy.falconHarassTimer.toFixed(1)}s</span>`);
         return tags;
     }
 
     // 頭上的疊層標示
     function renderElementStacks() {
+        // 敵人附魔中：腳下元素光環（不受設定影響，這是重要的危險提示）
+        if (getEnemyEnchant() && enemy.hp > 0) {
+            const m = ELEM_META[enemy.enchant.el];
+            const t = performance.now() / 1000;
+            ctx.save();
+            ctx.strokeStyle = m.color;
+            ctx.lineWidth = 3;
+            ctx.globalAlpha = 0.55 + 0.3 * Math.sin(t * 8);
+            ctx.beginPath();
+            ctx.ellipse(enemy.x, enemy.y - 2, 30, 8, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+        }
         if (!getSetting("stackLabels")) return; // 設定（12j）
         [player, enemy].forEach((c) => {
             const parts = [];
@@ -17600,6 +17810,132 @@
             });
             ctx.restore();
         });
+    }
+
+    // =========================================================================
+
+;
+// ==== js/16h-new-bows.js
+// 16h. 新弓的特色（資料在 03-bow-catalog.js、覺醒文字在 13g）
+//   毒牙（venom_fang）、分裂（split）、熾焰（ember）、寒鋒（frost_lance）、破城（siege_pierce）、稜鏡（prism）、獵人短弓覺醒
+    // =========================================================================
+    const NEW_BOW = {
+        fangMaxBonus: 0.4,       // 毒牙：劇毒滿層每跳 +40%
+        fangChanceAwaken: 0.6,   // 覺醒後附毒率
+        splitEvery: 3, splitEveryAwaken: 2, splitExtra: 2,
+        emberBurstRadius: 1.5, emberBurstDmg: 1.3, // 熾焰覺醒：爆燃範圍、傷害
+        lancePerStack: 0.08, lanceFrozen: 1.4, lanceFreezeBonus: 0.5,
+        siegeStructMult: 2, siegeAwakenMult: 1.25,
+        prismMult: 0.8, prismCd: 3.0, prismMultAwaken: 1.5, prismCdAwaken: 1.8, // 平衡：1.5 倍／2 秒 → 0.8 倍／3 秒
+        hunterCritEvery: 5
+    };
+
+    function resetNewBowState() {
+        player.newBowShots = 0;
+        player.prismCd = 0;
+    }
+
+    function updateNewBows(dt) {
+        if (player.prismCd > 0) player.prismCd = Math.max(0, player.prismCd - dt);
+    }
+
+    // getBowShotModifiers 呼叫：新弓在「這一發」的修正
+    function applyNewBowShotMod(special, mod) {
+        if (special === "prism") {
+            const step = (player.bowShotCount || 0) % 3;
+            if (step === 0) mod.traits.flame = true;
+            else if (step === 1) mod.traits.frost = true;
+            else mod.traits.venom = true;
+        }
+        return mod;
+    }
+
+    // getAwakenShotMods 呼叫：分裂多射的箭、獵人短弓覺醒的必定爆頭
+    function applyNewBowShotExtras(mod) {
+        const special = getBowSpecial();
+        player.newBowShots = (player.newBowShots || 0) + 1;
+        const n = player.newBowShots;
+        if (special === "split") {
+            const every = isEquippedBowAwakened("split_bow") ? NEW_BOW.splitEveryAwaken : NEW_BOW.splitEvery;
+            if (n % every === 0) {
+                mod.extraArrows += NEW_BOW.splitExtra;
+                addFloatingText(player.x, player.y - 112, "🔱 分裂!", "#93c5fd", 13);
+            }
+        }
+        if (isEquippedBowAwakened("hunter_shortbow") && n % NEW_BOW.hunterCritEvery === 0) {
+            mod.forceCrit = true;
+        }
+        return mod;
+    }
+
+    // fireArrows 呼叫：要記在箭上的新弓資訊（連線對戰時會跟著箭傳過去）
+    function getNewBowArrowFlags(owner, traits) {
+        const f = { burnExtra: 0, venomFang: false, siegePierce: false };
+        if (owner !== "player" || traits.puppet) return f;
+        const special = getBowSpecial();
+        if (special === "ember") f.burnExtra = 1;
+        if (special === "venom_fang") f.venomFang = true;
+        if (special === "siege_pierce") f.siegePierce = true;
+        return f;
+    }
+
+    // 弓的被動附毒機率（像 passiveFlameChance）
+    function getBowVenomChance(bow) {
+        const base = bow.passiveVenomChance || 0;
+        if (base > 0 && bow.id === "venom_fang_bow" && isEquippedBowAwakened("venom_fang_bow")) return NEW_BOW.fangChanceAwaken;
+        return base;
+    }
+
+    // getBowHitMult 呼叫：命中時的傷害倍率
+    function getNewBowHitMult(a) {
+        const special = getBowSpecial();
+        let m = 1;
+        if (special === "frost_lance") {
+            const frozen = enemy.bindTimer > 0 && enemy.frostImmuneTimer > 0;
+            m *= frozen ? NEW_BOW.lanceFrozen : 1 + NEW_BOW.lancePerStack * (enemy.frostStacks || 0);
+        }
+        if (special === "siege_pierce" && a.siegePassed && isEquippedBowAwakened("siege_pierce_bow")) m *= NEW_BOW.siegeAwakenMult;
+        return m;
+    }
+
+    // onPlayerArrowHitEnemy 呼叫：稜鏡共鳴
+    function onNewBowArrowHit(a) {
+        if (getBowSpecial() !== "prism" || a.puppet || player.prismCd > 0) return;
+        if (!(enemy.burnTimer > 0 && enemy.frostTimer > 0 && enemy.venomTimer > 0)) return;
+        const aw = isEquippedBowAwakened("prism_bow");
+        player.prismCd = aw ? NEW_BOW.prismCdAwaken : NEW_BOW.prismCd;
+        const raw = Math.round(player.baseDamage * getEquippedBowStats().dmgMult * (aw ? NEW_BOW.prismMultAwaken : NEW_BOW.prismMult) * getElementComboDmgMult("player"));
+        const dmg = applyDamageToCharacter(enemy, raw, "combo");
+        ["#fb923c", "#22d3ee", "#a3e635"].forEach((c) => spawnParticles(enemy.x, enemy.y - 50, c, 8));
+        game.shockwaves.push({ x: enemy.x, y: enemy.y - 46, r: 10, maxR: 90, color: "#f0abfc", alpha: 0.95 });
+        addFloatingText(enemy.x, enemy.y - 130, "🌈 稜鏡共鳴! -" + dmg, "#f0abfc", 18);
+        recordComboTriggered("prism_resonance");
+    }
+
+    // 灼燒每次多疊幾層（熾焰連弩；箭上的 burnExtra 連線也會一起傳）
+    function getBurnStackGain(a) {
+        return (a.megaFireball ? 3 : 1) + (a.burnExtra || 0);
+    }
+
+    // 爆燃的範圍／傷害倍率（熾焰連弩覺醒）
+    function getBurnBurstMods(a) {
+        if (a.owner === "player" && isEquippedBowAwakened("ember_bow")) return { radius: NEW_BOW.emberBurstRadius, dmg: NEW_BOW.emberBurstDmg };
+        return { radius: 1, dmg: 1 };
+    }
+
+    // 冰封時間加成（寒鋒冰晶弓覺醒）
+    function getFreezeBonusSec(a) {
+        return a.owner === "player" && isEquippedBowAwakened("frost_lance_bow") ? NEW_BOW.lanceFreezeBonus : 0;
+    }
+
+    // 破城：箭撞到建築時呼叫；回傳 true＝這支箭穿過去（不消失），並傳回建築要吃的傷害倍率
+    function siegePassThrough(a, key) {
+        if (!a.siegePierce) return false;
+        if (!a.siegeHits) a.siegeHits = new Set();
+        if (a.siegeHits.has(key)) return "skip";
+        a.siegeHits.add(key);
+        a.siegePassed = true;
+        return true;
     }
 
     // =========================================================================
@@ -19259,6 +19595,8 @@
                     applyPurifyToTarget(enemy, "敵方 ");
                 } else if (chosen === "arcane_surge") {
                     triggerArcaneSurge("enemy");
+                } else if (tryEnemyEnchant(chosen)) {
+                    // 第 6 關起：烈焰／冰凍／劇毒改成附魔 4 秒（16g）
                 } else {
                     enemy.nextShotElement[chosen] = true;
                     const meta = SKILL_CATALOG[chosen];
@@ -23048,7 +23386,8 @@
                     const rate = a.growthRate || 1.45;
                     const maxSc = a.maxGrowthScale || 3.2;
                     // 我方箭的成長以真實時間計算（減速中也照樣長大）
-                    const growDt = a.owner === "player" ? dt : stepDt;
+                    // 平衡：被時緩增幅罩住的我方箭只長 4.5 成速度（時蝕增幅弓＋時緩的組合原本傷害疊太高）
+                    const growDt = a.owner === "player" ? (a.chronoFieldTouched && player.chronoFieldTimer > 0 ? dt * 0.45 : dt) : stepDt;
                     a.growScale = Math.min(maxSc, (a.growScale || 1.0) + rate * growDt);
                 }
 
@@ -23130,7 +23469,10 @@
                     const wallLeft = w.x - w.w * 0.5 - 6;
                     const wallRight = w.x + w.w * 0.5 + 6;
                     if (a.x >= wallLeft && a.x <= wallRight && a.y >= wallTop && a.y <= wallBot) {
-                        const wallDmg = Math.max(12, Math.round(a.damage * (a.megaFireball ? 1.8 : 1.0)));
+                        // 破城穿心弓：穿過石牆（每面牆只算一次），對牆雙倍傷害（16h）
+                        const siege = siegePassThrough(a, w);
+                        if (siege === "skip") continue;
+                        const wallDmg = Math.max(12, Math.round(a.damage * (a.megaFireball ? 1.8 : 1.0) * (siege ? NEW_BOW.siegeStructMult : 1)));
                         w.hp = Math.max(0, w.hp - wallDmg);
                         w.hitFlash = 0.16;
                         sfx.clash();
@@ -23141,6 +23483,10 @@
                             spawnParticles(w.x, w.y - 40, "#94a3b8", 18);
                             addFloatingText(w.x, wallTop - 32, "💥 擋彈牆被擊碎!", "#fca5a5", 15);
                             game.stoneWalls.splice(wIdx, 1);
+                        }
+                        if (siege) {
+                            addFloatingText(a.x, a.y - 20, "🏰 穿透!", "#e7e5e4", 13);
+                            break; // 箭繼續飛
                         }
                         game.arrows.splice(i, 1);
                         hitWall = { x: w.x, y: w.y };
@@ -23161,7 +23507,9 @@
                 const dBodyTop = dec.y - 68;
                 const dBodyBot = dec.y;
                 if (Math.abs(a.x - dec.x) <= 24 && a.y >= dBodyTop && a.y <= dBodyBot) {
-                    const absorbedDmg = Math.max(8, Math.round(a.damage));
+                    const siegeD = siegePassThrough(a, dec); // 破城（16h）
+                    if (siegeD === "skip") continue;
+                    const absorbedDmg = Math.max(8, Math.round(a.damage * (siegeD ? NEW_BOW.siegeStructMult : 1)));
                     dec.hp = Math.max(0, dec.hp - absorbedDmg);
                     dec.hitFlash = 0.16;
                     sfx.hit();
@@ -23173,7 +23521,7 @@
                         game.decoys.splice(dIdx, 1);
                     }
                     if (triggerQuakeOnImpact(a, dec.x, dec.y)) { game.arrows.splice(i, 1); return; }
-                    if (!a.pierceGale) {
+                    if (!a.pierceGale && !siegeD) {
                         game.arrows.splice(i, 1);
                         hitDecoy = true;
                     }
@@ -23194,7 +23542,9 @@
                 const totemBot = t.y;
                 if (Math.abs(a.x - t.x) <= (t.hitHalfW || 24) && a.y >= totemTop && a.y <= totemBot) {
                     if (a.hitTotemIds) a.hitTotemIds.add(totemId);
-                    const totemDmg = Math.max(10, Math.round(a.damage * (a.lightning ? 1.5 : 1.0)));
+                    const siegeT = a.siegePierce; // 破城（16h）：穿過雕像、雙倍傷害
+                    if (siegeT) a.siegePassed = true;
+                    const totemDmg = Math.max(10, Math.round(a.damage * (a.lightning ? 1.5 : 1.0) * (siegeT ? NEW_BOW.siegeStructMult : 1)));
                     t.hp = Math.max(0, t.hp - totemDmg);
                     t.hitFlash = 0.18;
                     onSummonTotemHit(t, a); // 守護石像：吸收 3 箭擲石反擊
@@ -23224,7 +23574,7 @@
                         if (triggerQuakeOnImpact(a, t.x, t.y)) return;
                         break;
                     }
-                    if (!a.pierceGale) {
+                    if (!a.pierceGale && !siegeT) {
                         game.arrows.splice(i, 1);
                         consumedByTotem = true;
                         break;
@@ -23239,7 +23589,7 @@
                 sfx.clash();
                 spawnParticles(a.x, a.y, ghostHit.k === "wall" ? "#cbd5e1" : "#f87171", 10);
                 addFloatingText(ghostHit.x, a.y - 16, ghostHit.k === "wall" ? "🧱 擋彈!" : ghostHit.k === "totem" ? "🗿 被雕像擋下" : "🎭 替身吸收!", "#e2e8f0", 12);
-                const consumed = !a.pierceGale || ghostHit.k === "wall";
+                const consumed = a.siegePierce ? false : (!a.pierceGale || ghostHit.k === "wall"); // 破城穿心弓：對手的建築也穿過
                 if (consumed) game.arrows.splice(i, 1);
                 if (triggerQuakeOnImpact(a, ghostHit.x, ghostHit.y)) { if (!consumed) game.arrows.splice(i, 1); return; }
                 if (consumed) continue;
