@@ -3,7 +3,7 @@
 //   所以更新遊戲後，玩家只要有網路，下次開啟就是新版，不用手動清快取
 //   只在 https 或 localhost 生效（瀏覽器規定）；區網的 http://192.168.x.x 不會啟用
 const CACHE = "archer-of-god-v1";
-const CORE = ["./", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
+const CORE = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png", "apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {
     e.waitUntil(
