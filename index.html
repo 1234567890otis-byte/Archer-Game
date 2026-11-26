@@ -4043,6 +4043,110 @@
         .region-tutorial { display: flex; align-items: center; gap: 8px; margin: 2px 0 8px; padding: 8px 12px; border-radius: 10px; border: 1.5px dashed #fbbf24; background: rgba(251, 191, 36, 0.08); color: #fde68a; font-weight: 900; cursor: pointer; text-align: left; font: inherit; width: 100%; }
         .region-tutorial small { color: #cbd5e1; font-weight: 400; }
         .loadout-simple { color: #fde68a; margin: 3px 0; }
+        /* 新手友善：開始畫面、技能頁、遺物 */
+        #btn-open-loadout { display: none !important; } /* 開始畫面只留「遊戲說明」和「開啟戰備大廳」 */
+        #start-modal .version-pill { display: none; }
+        .start-simple p { font-size: 1rem; margin: 6px 0; text-align: center; }
+        #loadout-grid { overflow-x: hidden !important; min-width: 0; }
+        .loadout-body { min-width: 0; overflow: hidden; }
+        #loadout-grid .loadout-head { color: #e2e8f0 !important; } /* 名字統一白色，稀有度看外框顏色 */
+        #loadout-grid .loadout-item.selected .loadout-head { color: #fde68a !important; }
+        .relic-more { border-style: dashed !important; border-color: rgba(148, 163, 184, 0.45) !important; color: #94a3b8; cursor: default; }
+        /* 大廳左欄：功能按鈕放大、左右貼齊、上下填滿（一排 2 個，依數量平均分高度） */
+        .hub-side-nav { display: flex !important; flex-direction: column; min-height: 0; overflow: hidden !important; padding-right: 0 !important; }
+        .hub-side-nav #hub-nav-tabs { flex: 0 0 auto; }
+        .hub-side-nav .hub-tab-panel.active { display: grid !important; flex: 1 1 auto; min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(64px, 1fr); gap: 8px; align-content: stretch; overflow-y: auto; margin: 0 !important; }
+        .hub-side-nav .hub-tab-panel.active .hub-nav-btn { width: 100% !important; height: 100% !important; margin: 0 !important; padding: 8px 6px !important; min-height: 0 !important; display: flex !important; flex-direction: column !important; align-items: center; justify-content: center; gap: 6px; font-size: 1rem !important; border-radius: 14px !important; }
+        .hub-side-nav .hub-tab-panel.active .hub-nav-btn > span:first-child { font-size: 2.1rem !important; line-height: 1; }
+        .hub-side-nav .hub-tab-panel.active .hub-nav-btn.hidden, .hub-side-nav .hub-tab-panel.active .hub-nav-btn[style*="display: none"] { display: none !important; }
+        /* ===== 方塊格子：圖示在上、名字在下（技能、抽獎、遺物、覺醒…共用） ===== */
+        #loadout-grid, .gacha-card > .gacha-grid, .op-list .loadout-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important; gap: 6px !important; align-content: start; }
+        #loadout-grid .loadout-item, .gacha-grid > .loadout-item, .gacha-grid > .bow-card, .op-list .loadout-grid > .loadout-item { min-height: 74px !important; padding: 7px 3px 5px !important; justify-content: center !important; border-width: 2px !important; border-radius: 12px !important; }
+        #loadout-grid .loadout-head, .gacha-grid .loadout-head, .op-list .loadout-grid .loadout-head { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 4px !important; font-size: 0.64rem !important; line-height: 1.15 !important; width: 100%; }
+        #loadout-grid .loadout-head > span:first-child, .gacha-grid .loadout-head > span:first-child, .op-list .loadout-grid .loadout-head > span:first-child { font-size: 1.6rem !important; line-height: 1 !important; }
+        #loadout-grid .loadout-head > span:last-child, .gacha-grid .loadout-head > span:last-child, .op-list .loadout-grid .loadout-head > span:last-child { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: 100%; }
+        .gacha-grid .loadout-head, .gacha-grid > .bow-card .loadout-head { color: #e2e8f0 !important; }
+        .gacha-grid > .locked-skill, .gacha-grid > .bow-card.locked { opacity: 0.45; }
+        .grid-section { grid-column: 1 / -1; font-weight: 900; font-size: 0.72rem; color: #fde68a; padding: 6px 2px 2px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-align: left; letter-spacing: 1px; }
+        .grid-section:first-child { padding-top: 0; }
+        /* ===== 🎴 抽獎特效 ===== */
+        .gacha-reveal { position: fixed; inset: 0; z-index: 9500; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.95)); cursor: pointer; overflow: hidden; }
+        .gacha-reveal.hidden { display: none; }
+        .gr-rays { position: absolute; width: 160vmax; height: 160vmax; opacity: 0; background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--rc) 45%, transparent) 0deg 10deg, transparent 10deg 24deg); transition: opacity 0.4s; animation: grSpin 9s linear infinite; }
+        .gacha-reveal.flipped.rar-EPIC .gr-rays, .gacha-reveal.flipped.rar-LEGENDARY .gr-rays, .gacha-reveal.flipped.rar-MYTHIC .gr-rays { opacity: 0.55; }
+        .gacha-reveal.flipped.rar-RARE .gr-rays { opacity: 0.18; }
+        @keyframes grSpin { to { transform: rotate(360deg); } }
+        .gr-card { position: relative; width: 210px; height: 290px; animation: grIn 0.75s ease-out; }
+        @keyframes grIn { 0% { transform: scale(0.2) rotate(-12deg); opacity: 0; } 55% { transform: scale(1.08) rotate(4deg); opacity: 1; } 70% { transform: rotate(-4deg); } 85% { transform: rotate(3deg); } 100% { transform: none; } }
+        .gr-face { position: absolute; inset: 0; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 3px solid var(--rc); box-shadow: 0 0 30px color-mix(in srgb, var(--rc) 70%, transparent); }
+        .gr-back { font-size: 5rem; background: linear-gradient(135deg, #1e293b, #0f172a); }
+        .gacha-reveal.flipped .gr-back { display: none; }
+        .gr-front { display: none !important; }
+        .gacha-reveal.flipped .gr-front { display: flex !important; animation: grFlipIn 0.42s cubic-bezier(.2, .9, .3, 1.3); }
+        @keyframes grFlipIn { 0% { transform: scaleX(0.05) scale(0.9); } 100% { transform: scaleX(1) scale(1); } }
+        .gr-front { gap: 8px; padding: 14px; text-align: center; background: linear-gradient(160deg, color-mix(in srgb, var(--rc) 30%, #0f172a), #0f172a 70%); }
+        .gr-rarity { font-weight: 900; letter-spacing: 3px; color: var(--rc); font-size: 1rem; }
+        .gr-icon { font-size: 4.6rem; line-height: 1.1; filter: drop-shadow(0 0 14px var(--rc)); }
+        .gr-name { font-size: 1.3rem; font-weight: 900; color: #f8fafc; }
+        .gr-status { font-size: 1rem; font-weight: 900; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); color: #e2e8f0; }
+        .gr-status.new { background: #16a34a; color: #fff; animation: grPop 0.6s 0.5s both; }
+        .gr-status.up { background: #f59e0b; color: #1c1917; animation: grPop 0.6s 0.5s both; }
+        .gr-tag { font-size: 0.85rem; color: #fde68a; font-weight: 900; }
+        @keyframes grPop { 0% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+        .gr-tip { margin-top: 26px; color: #94a3b8; font-size: 0.85rem; opacity: 0; transition: opacity 0.3s 0.6s; position: relative; }
+        .gacha-reveal.flipped .gr-tip { opacity: 1; }
+        .gacha-reveal.flipped.rar-LEGENDARY .gr-card, .gacha-reveal.flipped.rar-MYTHIC .gr-card { animation: grGold 1.2s ease-in-out infinite alternate; }
+        @keyframes grGold { from { filter: drop-shadow(0 0 10px #fde047); } to { filter: drop-shadow(0 0 34px #fde047); } }
+        .gr-spark { position: absolute; top: 105%; font-size: 1.6rem; opacity: 0; }
+        .gacha-reveal.flipped .gr-spark { animation: grFloat 2.4s ease-out infinite; }
+        @keyframes grFloat { 0% { top: 105%; opacity: 0; } 20% { opacity: 1; } 100% { top: -10%; opacity: 0; } }
+        /* ===== 方塊格子：流派、組合技、敵人圖鑑、成就、天賦 ===== */
+        .op-list #build-list, .op-list #combo-list, .op-list #enemy-codex-normal-list, .op-list #enemy-codex-boss-list { grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)) !important; gap: 6px !important; align-content: start; }
+        .op-list .codex-card, .op-list .combo-card { min-height: 78px !important; padding: 7px 3px 5px !important; border-radius: 12px !important; border-width: 2px !important; justify-content: center !important; }
+        .op-list .tile-title { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 4px !important; width: 100%; font-size: 0.64rem !important; line-height: 1.15 !important; color: #e2e8f0 !important; }
+        .op-list .tile-icon { font-size: 1.6rem; line-height: 1; }
+        .op-list .tile-name { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-width: 100%; }
+        .op-list .codex-card.locked { opacity: 0.45; }
+        .op-list .combo-card { border: 2px solid rgba(148, 163, 184, 0.35) !important; background: rgba(15, 23, 42, 0.85) !important; }
+        .op-detail .tile-title, .tile-title { display: flex; align-items: center; gap: 6px; }
+        .op-detail .tile-icon { font-size: 1.3rem; }
+        /* 天賦：每格放大，圖示在上、名字、點數 */
+        .op-list .talent-tree { gap: 6px !important; }
+        .op-list .talent-col-title { font-size: 0.76rem !important; margin-bottom: 4px !important; }
+        .op-list .talent-node { min-height: 60px !important; padding: 6px 4px !important; border-radius: 12px !important; border-width: 2px !important; }
+        .op-list .talent-node-head { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center; gap: 2px !important; text-align: center; font-size: 0.66rem !important; }
+        .op-list .talent-node-head > span:first-child { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; }
+        .op-list .talent-node-head .tile-icon { font-size: 1.35rem; }
+        .op-list .talent-node-head .tile-rank { font-size: 0.6rem; color: #fde68a; }
+        /* ===== 🎁 開寶箱特效 ===== */
+        .chest-mode .cr-chest { position: absolute; font-size: 7.5rem; line-height: 1; animation: crShake 0.95s ease-in-out; filter: drop-shadow(0 0 24px var(--rc)); }
+        @keyframes crShake { 0% { transform: scale(0.3); opacity: 0; } 30% { transform: scale(1.1); opacity: 1; } 42% { transform: rotate(-12deg); } 54% { transform: rotate(12deg); } 66% { transform: rotate(-9deg); } 78% { transform: rotate(9deg); } 90% { transform: rotate(-4deg); } 100% { transform: none; } }
+        .chest-mode.flipped .cr-chest { animation: crPop 0.35s forwards; }
+        @keyframes crPop { to { transform: scale(1.9); opacity: 0; } }
+        .cr-burst { position: absolute; width: 40px; height: 40px; border-radius: 50%; border: 6px solid var(--rc); opacity: 0; }
+        .chest-mode.flipped .cr-burst { animation: crBurst 0.6s ease-out; }
+        @keyframes crBurst { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(14); opacity: 0; } }
+        .cr-items { display: none; position: relative; }
+        .chest-mode.flipped .cr-items { display: grid; grid-template-columns: repeat(auto-fit, 130px); gap: 12px; justify-content: center; width: min(760px, 94vw); }
+        .chest-mode.flipped .cr-items.few { grid-template-columns: repeat(auto-fit, 170px); }
+        .cr-items.few .cr-item { min-height: 210px; }
+        .cr-items.few .cr-icon { font-size: 3.6rem; }
+        .cr-items.few .cr-name { font-size: 1rem; }
+        .cr-items.single { grid-template-columns: 210px !important; }
+        .cr-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 140px; padding: 10px 6px; border-radius: 14px; border: 3px solid var(--rc); background: linear-gradient(160deg, color-mix(in srgb, var(--rc) 28%, #0f172a), #0f172a 72%); box-shadow: 0 0 18px color-mix(in srgb, var(--rc) 55%, transparent); opacity: 0; animation: crItemIn 0.45s cubic-bezier(.2, .9, .3, 1.3) forwards; }
+        .cr-items.single .cr-item { min-height: 260px; }
+        .cr-items.single .cr-icon { font-size: 4.6rem; }
+        .cr-items.single .cr-name { font-size: 1.2rem; }
+        .cr-icon { font-size: 2.6rem; line-height: 1.1; filter: drop-shadow(0 0 10px var(--rc)); }
+        .cr-name { font-size: 0.85rem; font-weight: 900; color: #f8fafc; text-align: center; }
+        .cr-legend { font-size: 0.8rem; font-weight: 900; color: #1c1917; background: #fde047; border-radius: 999px; padding: 1px 10px; }
+        .chest-mode.show-all .cr-item { animation-delay: 0s !important; }
+        .cr-item.rar-LEGENDARY { animation: crItemIn 0.45s cubic-bezier(.2, .9, .3, 1.3) forwards, grGold 1.2s ease-in-out 0.6s infinite alternate; }
+        @keyframes crItemIn { 0% { opacity: 0; transform: scale(0.3) translateY(40px); } 100% { opacity: 1; transform: none; } }
+        @media (max-width: 760px) { .chest-mode.flipped .cr-items, .chest-mode.flipped .cr-items.few { grid-template-columns: repeat(auto-fit, 92px); gap: 6px; } .cr-items.few .cr-item { min-height: 120px; } .cr-items.few .cr-icon { font-size: 2.2rem; } .cr-item { min-height: 100px; } .cr-icon { font-size: 1.8rem; } .cr-name { font-size: 0.66rem; } }
+        #daily-list > .codex-desc, #daily-list > .quest-section { grid-column: 1 / -1; } /* 標題、全部完成那行橫跨整列 */
+        .quest-section { margin: 14px 0 6px; font-weight: 900; color: #c4b5fd; font-size: 0.9rem; text-align: left; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 10px; }
+        .quest-section span { color: #94a3b8; font-weight: 400; font-size: 0.72rem; }
         .feedback-card { max-width: 460px; }
         .feedback-body { display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 0.8rem; color: #e2e8f0; }
         .fb-step { padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); line-height: 1.45; }
@@ -4262,11 +4366,11 @@
         <div class="modal-card">
             <div class="version-pill">STICKMAN ARCHERY DUEL // 火柴人弓箭對決</div>
             <div class="hero-title">ARCHER OF GOD</div>
-            <div class="hero-subtitle">阿齊爾之神 — 拉弓、爆頭、闖關，打造你的流派</div>
-            <div class="guide-panel">
-                <p>🏹 <strong>射箭：</strong>按住往後拖曳拉弓，放開射箭；打中頭是<strong>爆頭</strong>，還能用箭在空中撞掉敵人的箭。</p>
-                <p>⚔️ <strong>闖關：</strong>每過一關選 1 個賜福，每 3 關一隻 Boss；每 6 關是一個區域（1-1 新手草原、1-2 烈焰峽谷…），第一次通過有區域寶箱；2-1 起是更難的第二章。</p>
-                <p>📈 <strong>養成：</strong>回到戰備大廳抽技能和弓、進化、點天賦、裝遺物，搭配出自己的流派再挑戰更高關卡。</p>
+            <div class="hero-subtitle">拉弓、爆頭、打倒敵人！</div>
+            <div class="guide-panel start-simple">
+                <p>🏹 往後拖曳拉弓，放開就射箭</p>
+                <p>🎯 打中頭最痛（爆頭）</p>
+                <p>🎓 第一次玩會先帶你練習</p>
             </div>
             <div class="btn-row">
                 <button id="btn-start-guide" type="button" class="secondary-btn">📜 遊戲說明</button>
@@ -4296,7 +4400,7 @@
                 </div>
             </div>
             <div class="btn-row loadout-btn-row">
-                <button id="btn-loadout-skill-gacha" type="button" class="gold-btn">🎰 技能抽獎 (180 🪙)</button>
+                <button id="btn-loadout-skill-gacha" type="button" class="gold-btn">🎰 技能抽獎</button>
                 <button id="btn-loadout-hub" type="button" class="secondary-btn">🏛️ 戰備大廳</button>
                 <button id="btn-loadout-training" type="button" class="secondary-btn">🎯 訓練模式</button>
                 <button id="btn-enter-arena" type="button" class="primary-btn">⚔️ 進入戰場</button>
@@ -4554,6 +4658,9 @@
             </div>
         </div>
     </div>
+
+    <!-- 🎴 抽獎特效（13s） -->
+    <div id="gacha-reveal" class="gacha-reveal hidden"></div>
 
     <!-- 🎓 第 0 章新手教學：戰鬥畫面上方的提示框（13r） -->
     <div id="tutorial-banner" class="tutorial-banner hidden"></div>
@@ -8578,6 +8685,7 @@
                 touchControl: game.touchControl === "buttons" ? "buttons" : "stick",
                 buildChallenges: game.buildChallenges || {},
                 dailyQuests: game.dailyQuests || null,
+                weeklyQuests: game.weeklyQuests || null,
                 login: game.login || { lastDay: "", count: 0 },
                 selectedSkillIds: mainLo ? mainLo.skills : Array.isArray(game.selectedSkillIds) && game.selectedSkillIds.length === 5
                     ? game.selectedSkillIds
@@ -8775,7 +8883,15 @@
             game.settings = data.settings && typeof data.settings === "object" ? data.settings : {};
             applySettings(); // 設定（12j）：音量、靜音
             game.firstClearPaid = typeof data.firstClearPaid === "number" ? data.firstClearPaid : Math.max(0, game.highestStage - 1);
-            // 每日任務（getDailyQuests 會檢查日期與內容，不對就重抽）、登入獎勵
+            // 週任務（getWeeklyQuests 會檢查週次與內容，不對就重抽）
+        if (data.weeklyQuests && typeof data.weeklyQuests === "object" && Array.isArray(data.weeklyQuests.list)) {
+            game.weeklyQuests = {
+                week: parseInt(data.weeklyQuests.week, 10) || 0,
+                list: data.weeklyQuests.list.slice(0, 8).map((x) => ({ id: String(x.id), progress: Math.max(0, parseInt(x.progress, 10) || 0), done: x.done === true })),
+                bonusDone: data.weeklyQuests.bonusDone === true
+            };
+        } else game.weeklyQuests = null;
+        // 每日任務（getDailyQuests 會檢查日期與內容，不對就重抽）、登入獎勵
             if (data.dailyQuests && typeof data.dailyQuests === "object" && Array.isArray(data.dailyQuests.list)) {
                 game.dailyQuests = {
                     day: String(data.dailyQuests.day || ""),
@@ -8874,6 +8990,7 @@
         game.chapter1Cleared = false;
         game.buildChallenges = {};
         game.dailyQuests = null;
+        game.weeklyQuests = null;
         game.login = { lastDay: "", count: 0 };
         game.selectedSkillIds = ["triple", "fireball_channel", "frost", "shield", "phantom_dash"]; // 新手配置（13r）
         saveGameProgress();
@@ -9755,13 +9872,21 @@
         renderComboCodex();
     }
 
+    // 方塊格子的標題：把「🔥 名字」拆成大圖示＋名字（英文模式先翻好再拆，避免拆開後查不到字典）
+    function tileTitleHtml(title) {
+        const t = typeof trText === "function" ? trText(String(title)) : String(title);
+        const m = t.match(/^([^\p{L}\p{N}]+?)\s+(.+)$/u);
+        const icon = m ? m[1] : "", name = m ? m[2] : t;
+        return `<span class="tile-icon">${icon}</span><span class="tile-name">${name}</span>`;
+    }
+
     function renderComboCodex() {
         dom.comboList.innerHTML = "";
         COMBO_CODEX.forEach((c) => {
             const card = document.createElement("div");
             card.className = "combo-card";
             card.innerHTML = `
-                <div class="combo-title">${c.title}</div>
+                <div class="combo-title tile-title">${tileTitleHtml(c.title)}</div>
                 <div class="combo-pair">${c.pair}</div>
                 <div class="combo-desc">${c.desc}</div>
             `;
@@ -10194,7 +10319,7 @@
         card.style.borderColor = seen ? arch.primaryColor : "rgba(255,255,255,0.1)";
         if (!seen) {
             card.innerHTML = `
-                <div class="codex-title" style="color:#64748b;">❔ ？？？</div>
+                <div class="codex-title tile-title" style="color:#64748b;">${tileTitleHtml("❔ ？？？")}</div>
                 <div class="codex-meta">${appearText}</div>
                 <div class="codex-desc" style="color:#64748b;">尚未遭遇。打倒他之前，先在戰場上見到他吧。</div>
             `;
@@ -10202,7 +10327,7 @@
         }
         const tip = ENEMY_CODEX_TIPS[arch.key] || "";
         card.innerHTML = `
-            <div class="codex-title" style="color:${arch.primaryColor};">${arch.title}</div>
+            <div class="codex-title tile-title" style="color:${arch.primaryColor};">${tileTitleHtml(arch.title)}</div>
             <div class="codex-meta">${arch.badge} ｜ ${appearText}</div>
             <div class="codex-desc">${arch.desc}</div>
             ${tip ? `<div class="codex-tip">💡 應對：${tip}</div>` : ""}
@@ -10222,7 +10347,20 @@
         });
 
         dom.enemyCodexBossList.innerHTML = "";
+        // 依章節分區
+        const bossChapter = (a) => (CHAPTER4_BOSSES.includes(a) ? 4 : CHAPTER3_BOSSES.includes(a) ? 3 : 1);
+        const BOSS_GROUP_TITLE = { 1: "⚔️ 第一～二章 Boss", 3: "🌌 第三章・區域霸主", 4: "🌋 第四章・區域霸主" };
+        let lastCh = null;
         BOSS_ORDER.forEach((a) => {
+            const ch = bossChapter(a);
+            if (ch !== lastCh) {
+                lastCh = ch;
+                const inCh = BOSS_ORDER.filter((x) => bossChapter(x) === ch);
+                const h = document.createElement("div");
+                h.className = "grid-section";
+                h.textContent = BOSS_GROUP_TITLE[ch] + "　" + inCh.filter((x) => game.seenEnemies && game.seenEnemies[x.key]).length + " / " + inCh.length;
+                dom.enemyCodexBossList.appendChild(h);
+            }
             dom.enemyCodexBossList.appendChild(buildEnemyCodexCard(a, "👑 " + getStageLabel(getBossHomeStage(a)) + (a.chapter === 3 ? "・區域霸主" : "")));
         });
     }
@@ -10572,7 +10710,7 @@
             card.className = "codex-card";
             card.style.borderColor = b.color;
             card.innerHTML = `
-                <div class="codex-title" style="color:${b.color};">${b.icon} ${b.name}</div>
+                <div class="codex-title tile-title" style="color:${b.color};">${tileTitleHtml(b.icon + " " + b.name)}</div>
                 <div class="codex-meta">${b.tagline}</div>
                 <div class="codex-desc"><b>🏹 弓：</b><span style="color:${mainBow.color};">${mainBow.icon} ${mainBow.name}${player.bowLevels[b.bow] ? "" : " 🔒"}</span>${altText ? `<span style="color:#94a3b8;">（替代：${altText}）</span>` : ""}</div>
                 <div class="build-chip-row">${skillChips}</div>
@@ -11184,6 +11322,10 @@
         if (r.crystals) parts.push(r.crystals + " 💠");
         if (r.key) parts.push(r.key + " 🗝️");
         if (r.legendary) parts.push("🌟 傳說寶箱");
+        if (r.chestKey) parts.push(r.chestKey + " 🔑");
+        if (r.skillTicket) parts.push("🎟️×" + r.skillTicket);
+        if (r.bowTicket) parts.push("🎫×" + r.bowTicket);
+        if (r.bowSoul) parts.push(r.bowSoul + " 🪶");
         return parts.join("、");
     }
 
@@ -11196,6 +11338,10 @@
             if (s.keys < DUNGEON_KEY_MAX) s.keys += r.key;
             else addCrystals(5); // 鑰匙滿了改給結晶
         }
+        if (r.chestKey) addChestKeys(r.chestKey); // 🔑 寶箱鑰匙（13q）
+        if (r.skillTicket) getTickets().skill += r.skillTicket;
+        if (r.bowTicket) getTickets().bow += r.bowTicket;
+        if (r.bowSoul) addSignatureMaterial(r.bowSoul); // 🪶 弓魂（13m）
     }
 
     // 各系統呼叫：crit／stage／boss／elite／skill／combo／dungeon
@@ -11203,7 +11349,7 @@
         if (game.training) return;
         if (event === "stage" && game.dungeon) return; // 「主線過 N 關」不含聖域
         const d = getDailyQuests();
-        let changed = false;
+        let changed = onWeeklyQuestEvent(event, n); // 🗓️ 週任務（13t）
         d.list.forEach((x) => {
             if (x.done) return;
             const q = DAILY_QUEST_POOL.find((p) => p.id === x.id);
@@ -11223,6 +11369,7 @@
             addArcherXp(ARCHER_XP.dailyAll); // 🎖️ 射手經驗
             addChestKeys(1); // 🔑 寶箱鑰匙（13q）
             queueAchievementToast("🎉 今日任務全部完成！額外 " + rewardText(DAILY_ALL_BONUS), 5);
+            onWeeklyQuestEvent("dailyAll", 1); // 週任務：完成 5 天的每日任務
         }
         if (changed) saveGameProgress();
     }
@@ -11230,7 +11377,7 @@
     function getDailyBadge() {
         const d = getDailyQuests();
         const done = d.list.filter((x) => x.done).length;
-        return done + "/" + d.list.length;
+        return done + "/" + d.list.length + "・週 " + getWeeklyQuestBadge();
     }
 
     function openDailyModal() {
@@ -11257,7 +11404,8 @@
                 <div class="codex-meta">進度 ${x.progress} / ${q.target}｜獎勵 ${rewardText(q.reward)}</div>
                 <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;margin-top:4px;"><div style="width:${pct}%;height:100%;background:${x.done ? "#86efac" : "#fbbf24"};"></div></div>
             </div>`;
-        }).join("") + `<div class="codex-desc" style="text-align:center;margin-top:6px;">${d.bonusDone ? "🎉 今天的額外獎勵已領取" : "🎁 全部完成：" + rewardText(DAILY_ALL_BONUS)}</div>`;
+        }).join("") + `<div class="codex-desc" style="text-align:center;margin-top:6px;">${d.bonusDone ? "🎉 今天的額外獎勵已領取" : "🎁 全部完成：" + rewardText(DAILY_ALL_BONUS)}</div>`
+            + renderWeeklyQuestsHtml(); // 🗓️ 週任務（13t）
     }
 
     // ---------- 登入獎勵 ----------
@@ -14660,10 +14808,19 @@
         "🎓 第 0 章・新手教學": "🎓 Chapter 0 · Tutorial", "跳過": "Skip", "（射箭、爆頭、跳躍和 5 個新手技能，隨時可以重玩）": " (shooting, headshots, jumping and the 5 starter skills — replay anytime)", "先上第 0 章・新手教學": "Tutorial first (Chapter 0)", "👶 簡單說：": "👶 In short: ",
         "第 0 章・新手教學": "Chapter 0 · Tutorial", "：新玩家第一次出發會先實戰學射箭、爆頭、跳躍躲箭和 5 個新手技能（三連散射、讀條火球、冰凍箭、神聖護盾、幻影疾步），完成送 🪙300 和技能券；主線地圖可以重玩": ": new players start with a hands-on tutorial — shooting, headshots, jumping and the 5 starter skills (Triple Shot, Fireball Channel, Frost Arrow, Holy Shield, Phantom Dash), with 🪙300 and a skill ticket for finishing; replay it from the Map",
         "新手區": "Beginner zone", "：第 1～12 關變好打（每關約 30 秒、每過一關回滿血），前幾關不會出現會蓋牆、開盾的敵人": ": stages 1–12 are easier (about 30s each, full heal after every stage), and the first stages have no wall-building or shielding enemies",
+        "拉弓、爆頭、打倒敵人！": "Draw, headshot, defeat the enemy!", "🏹 往後拖曳拉弓，放開就射箭": "🏹 Drag back to draw, release to shoot", "🎯 打中頭最痛（爆頭）": "🎯 Head hits hurt the most (headshots)", "🎓 第一次玩會先帶你練習": "🎓 Your first time starts with practice",
+        "🌟 打倒新的 Boss、過關會拿到天賦點。": "🌟 Defeating new Bosses and clearing stages gives talent points.", "每一排先點滿上面兩格，才能點下面的。": "Max the top two in a column to unlock the ones below.",
+        "打精英和 Boss 會掉遺物，用 💠 可以升級。": "Elites and Bosses drop relics; upgrade them with 💠.", "打精英、Boss 和 🏛️ 遠古聖域會掉": "Dropped by elites, Bosses and the 🏛️ Sanctum",
+        "🆕 新技能！": "🆕 New skill!", "🆕 新弓！": "🆕 New bow!", "點一下繼續": "Tap to continue", "🎯 保底！": "🎯 Pity!", "💫 心願達成！": "💫 Wish granted!",
+        "🏹 本命弓": "🏹 Signature Bow", "🌟 傳說": "🌟 Legendary", "🟣 史詩": "🟣 Epic", "🔵 稀有": "🔵 Rare", "⚪ 普通": "⚪ Common", "♻️ 轉生神弓": "♻️ Rebirth bows",
+        "⚔️ 第一～二章 Boss": "⚔️ Chapter 1–2 Bosses", "🌌 第三章・區域霸主": "🌌 Chapter 3 · Region Overlords", "🌋 第四章・區域霸主": "🌋 Chapter 4 · Region Overlords",
+        "傳說！": "Legendary!", "完成 5 天的每日任務": "Finish all dailies on 5 days", "爆頭 300 次": "Land 300 headshots", "主線過 60 關": "Clear 60 main stages", "打倒 12 隻 Boss": "Defeat 12 Bosses",
+        "打倒 10 隻精英敵人": "Defeat 10 elites", "施放技能 250 次": "Cast skills 250 times", "打出 Combo 50 次": "Trigger 50 Combos", "通關遠古聖域 5 次": "Clear the Sanctum 5 times",
+        "🗓️ 本週任務": "🗓️ Weekly Quests", "🗓️ 週任務完成：": "🗓️ Weekly quest done: ", "🎉 本週任務全部完成！額外": "🎉 All weekly quests done! Bonus ", "🎉 本週的額外獎勵已領取": "🎉 This week's bonus claimed", "🎁 本週全部完成：": "🎁 Finish all this week: ",
         "按 ": "Press ", "：": ": "
     });
     Object.assign(I18N_EN_TPL, {
-        "點技能欄第 {0} 格": "Tap skill slot {0}",
+        "點技能欄第 {0} 格": "Tap skill slot {0}", "（每週一換新・{0}/{1}）": " (new every Monday · {0}/{1})", "{0}/{1}・週 {2}/{3}": "{0}/{1} · week {2}/{3}", "⬆️ 升到 Lv.{0}！": "⬆️ Now Lv.{0}!", "🧩 升等進度 {0}/{1}": "🧩 Level progress {0}/{1}", "💍 點一下就能裝上或卸下（最多 {0} 個）。": "💍 Tap to equip or unequip (up to {0}).", "還有 {0} 個遺物沒拿到": "{0} relics not found yet",
         "🎓 新手教學完成！獲得 {0} 🪙、🎟️ 技能券 ×{1}，接下來按「⚔️ 出發！」開始第 {2} 章": "🎓 Tutorial complete! Got {0} 🪙 and 🎟️ skill ticket ×{1}. Press ⚔️ Go! to start Chapter {2}"
     });
 
@@ -14833,6 +14990,7 @@
         sfx.gachaPull();
         const result = performSkillPull(true);
         dom.skillGachaResultBanner.innerHTML = result.html;
+        showGachaReveal(result.reveal); // 🎴 抽獎特效（13s）
         game.gachaSkillFocus = result.pickedId; // 手機一頁版：右側顯示剛抽到的技能
 
         saveGameProgress();
@@ -14861,6 +15019,7 @@
             const nextNeed = getRequiredCopiesForNextLevel(1);
             html = `<span style="color:${rar.color};">${pityHit ? "🎯 保底觸發！" : "🎉 "}解鎖新技能【${sk.icon} ${sk.name} (${rar.label})】Lv.1！（升 Lv.2 需再抽中 ${nextNeed} 次）</span>`;
             text = "🎉 解鎖新技能 " + sk.icon + sk.name;
+            var reveal = { status: "🆕 新技能！", statusType: "new" };
         } else {
             const nextProg = getSkillGachaProgress(pickedId) + 1;
             const reqCopies = getRequiredCopiesForNextLevel(curLvl);
@@ -14871,10 +15030,12 @@
                 const nextReq = getRequiredCopiesForNextLevel(newLvl);
                 html = `<span style="color:${rar.color};">⬆️ 升等成功！【${sk.icon} ${sk.name}】升至 Lv.${newLvl}！（${sk.gachaStatLabel}；升 Lv.${newLvl + 1} 需 ${nextReq} 次）</span>`;
                 text = "⬆️ " + sk.icon + sk.name + " 升到 Lv." + newLvl;
+                var reveal = { status: "⬆️ 升到 Lv." + newLvl + "！", statusType: "up" };
             } else {
                 game.skillGachaProgress[pickedId] = nextProg;
                 html = `<span style="color:${rar.color};">🧩 抽中重複【${sk.icon} ${sk.name}】Lv.${curLvl}，累積升等進度 ${nextProg} / ${reqCopies}（尚需 ${reqCopies - nextProg} 次升等）</span>`;
                 text = "🧩 " + sk.icon + sk.name + " 升等進度 " + nextProg + "/" + reqCopies;
+                var reveal = { status: "🧩 升等進度 " + nextProg + "/" + reqCopies, statusType: "dup" };
             }
         }
 
@@ -14882,7 +15043,11 @@
         if (countPity) {
             game.pity.skill = curLvl === 0 ? 0 : game.pity.skill + 1;
         }
-        return { html: html, text: text, pickedId: pickedId };
+        reveal.icon = sk.icon;
+        reveal.name = sk.name;
+        reveal.rarity = sk.rarity;
+        if (pityHit) reveal.tag = "🎯 保底！";
+        return { html: html, text: text, pickedId: pickedId, reveal: reveal };
     }
 
     function renderSkillGachaUI() {
@@ -14904,8 +15069,18 @@
         }
 
         dom.skillGachaGrid.innerHTML = "";
-        SKILL_ORDER.forEach((id) => {
+        const catOrder = Object.keys(SKILL_CATEGORIES).filter((c) => c !== "ALL");
+        let lastCat = null;
+        SKILL_ORDER.slice().sort((a, b) => catOrder.indexOf(SKILL_CATALOG[a].category) - catOrder.indexOf(SKILL_CATALOG[b].category)).forEach((id) => {
             const sk = SKILL_CATALOG[id];
+            if (sk.category !== lastCat) { // 依類型分區（標題顯示擁有數）
+                lastCat = sk.category;
+                const inCat = SKILL_ORDER.filter((x) => SKILL_CATALOG[x].category === sk.category);
+                const h = document.createElement("div");
+                h.className = "grid-section";
+                h.textContent = getShortCategoryLabel(sk.category) + "　" + inCat.filter((x) => isSkillUnlocked(x)).length + " / " + inCat.length;
+                dom.skillGachaGrid.appendChild(h);
+            }
             const catInfo = SKILL_CATEGORIES[sk.category] || SKILL_CATEGORIES.OFFENSE;
             const rar = RARITY_META[sk.rarity] || RARITY_META.COMMON;
             const lvl = getSkillGachaLevel(id);
@@ -15032,6 +15207,12 @@
                 `<span style="color:${bow.color};">${wishHit ? "💫 心願達成！" : pityHit ? "🎯 保底觸發！" : "🎉 "}獲得新神弓【${bow.icon} ${bow.name} (${bow.rarity})】${locked ? "（戰鬥中不自動裝備，下局再換）" : "並已自動裝備！"}</span>`;
         }
 
+        showGachaReveal({ // 🎴 抽獎特效（13s）
+            icon: bow.icon, name: bow.name, rarity: bow.rarity,
+            status: isDuplicate ? "⬆️ 升到 Lv." + player.bowLevels[pickedId] + "！" : "🆕 新弓！",
+            statusType: isDuplicate ? "up" : "new",
+            tag: wishHit ? "💫 心願達成！" : pityHit ? "🎯 保底！" : ""
+        });
         saveGameProgress();
         renderGachaUI();
         updateHUD();
@@ -15074,8 +15255,22 @@
         }
 
         dom.bowGrid.innerHTML = "";
-        (getSig() ? [SIGNATURE_BOW_ID] : []).concat(BOW_ORDER, REBIRTH_BOW_ORDER).forEach((id) => { // 本命弓排最前面、轉生神弓排在最後
+        // 依稀有度分區：本命弓 → 傳說 → 史詩 → 稀有 → 普通 → 轉生神弓
+        const bowGroupOf = (id) => id === SIGNATURE_BOW_ID ? "sig" : isRebirthBow(id) ? "rebirth" : BOW_CATALOG[id].rarity;
+        const BOW_GROUPS = [["sig", "🏹 本命弓"], ["LEGENDARY", "🌟 傳說"], ["EPIC", "🟣 史詩"], ["RARE", "🔵 稀有"], ["COMMON", "⚪ 普通"], ["rebirth", "♻️ 轉生神弓"]];
+        const allBows = (getSig() ? [SIGNATURE_BOW_ID] : []).concat(BOW_ORDER, REBIRTH_BOW_ORDER);
+        let lastGroup = null;
+        allBows.slice().sort((a, b) => BOW_GROUPS.findIndex((g) => g[0] === bowGroupOf(a)) - BOW_GROUPS.findIndex((g) => g[0] === bowGroupOf(b))).forEach((id) => {
             const bow = BOW_CATALOG[id];
+            const grp = bowGroupOf(id);
+            if (grp !== lastGroup) {
+                lastGroup = grp;
+                const inGrp = allBows.filter((x) => bowGroupOf(x) === grp);
+                const h = document.createElement("div");
+                h.className = "grid-section";
+                h.textContent = (BOW_GROUPS.find((g) => g[0] === grp) || ["", grp])[1] + "　" + inGrp.filter((x) => (player.bowLevels[x] || 0) > 0).length + " / " + inGrp.length;
+                dom.bowGrid.appendChild(h);
+            }
             const rawLvl = player.bowLevels[id] || 0;
             const isOwned = rawLvl > 0;
             const lvl = Math.min(rawLvl, getArcherLevel()); // 射手等級是上限（13o）
@@ -15292,6 +15487,7 @@
         sfx.gachaPull();
         const result = performSkillPull(true, getTargetSkillIds());
         dom.skillGachaResultBanner.innerHTML = result.html;
+        showGachaReveal(result.reveal); // 🎴 抽獎特效（13s）
         game.gachaSkillFocus = result.pickedId;
         saveGameProgress();
         renderSkillGachaUI();
@@ -17345,21 +17541,26 @@
 //   保底：連續 40 個沒出傳說，下一個必出
 //   （跟 🗝️ 聖域鑰匙是不同的東西）
     // =========================================================================
+    // 一個寶箱開出好幾樣（像荒野亂鬥）：一定有金幣＋精華，再加 1 樣好東西（25% 再多 1 樣），傳說另外算
     const CHEST = {
         legendChance: 0.01,
         comboLegendShare: 0.25,
         pity: 40,
-        // 不是傳說時，各種獎勵的權重
+        base: [
+            { k: "coins", min: 250, max: 450, icon: "🪙", name: "金幣" },
+            { k: "essence", min: 12, max: 25, icon: "🧪", name: "精華" }
+        ],
+        extraChance: 0.25, // 加碼再多 1 樣的機率
+        // 加碼的好東西（權重）
         table: [
-            { k: "coins", w: 30, min: 500, max: 1000, icon: "🪙", name: "金幣" },
-            { k: "essence", w: 18, min: 30, max: 60, icon: "🧪", name: "精華" },
             { k: "skillCopy", w: 15, icon: "✨", name: "稀有／史詩技能" },
-            { k: "crystals", w: 12, min: 3, max: 6, icon: "💠", name: "覺醒結晶" },
-            { k: "bowSoul", w: 10, min: 10, max: 25, icon: "🪶", name: "弓魂" },
+            { k: "crystals", w: 12, min: 2, max: 4, icon: "💠", name: "覺醒結晶" },
+            { k: "bowSoul", w: 10, min: 8, max: 18, icon: "🪶", name: "弓魂" },
             { k: "skillTicket", w: 8, min: 1, max: 1, icon: "🎟️", name: "技能券" },
             { k: "bowTicket", w: 7, min: 1, max: 1, icon: "🎫", name: "弓券" }
         ]
     };
+    const CHEST_RARE_KINDS = ["crystals", "bowSoul", "skillTicket", "bowTicket"]; // 比較珍貴的資源算稀有（藍色）
 
     function getChestSave() {
         if (!game.chests || typeof game.chests !== "object") game.chests = { keys: 0, opened: 0, pity: 0 };
@@ -17414,24 +17615,8 @@
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    // 開一個：回傳 { text, legend }
-    function openOneChest() {
-        const c = getChestSave();
-        if (c.keys <= 0) return null;
-        c.keys -= 1;
-        c.opened += 1;
-        const getStatsObj = getStats();
-        getStatsObj.chestsOpened = (getStatsObj.chestsOpened || 0) + 1;
-        const pityHit = c.pity + 1 >= CHEST.pity;
-        if (pityHit || Math.random() < CHEST.legendChance) {
-            c.pity = 0;
-            const it = rollChestLegend();
-            return { text: "🌟 " + grantLegendItem(it) + (pityHit ? "（保底）" : ""), legend: true };
-        }
-        c.pity += 1;
-        const total = CHEST.table.reduce((s, r) => s + r.w, 0);
-        let roll = Math.random() * total, row = CHEST.table[0];
-        for (const r of CHEST.table) { roll -= r.w; if (roll <= 0) { row = r; break; } }
+    // 給一樣資源，回傳卡片資料 { k, n, icon, name, rarity }
+    function grantChestRow(row) {
         const n = row.min ? randInt(row.min, row.max) : 1;
         const t = getTickets();
         switch (row.k) {
@@ -17443,18 +17628,68 @@
             case "bowTicket": t.bow += n; break;
             case "skillCopy": {
                 const pool = getSkillGachaPool().filter((id) => SKILL_CATALOG[id].rarity === "RARE" || SKILL_CATALOG[id].rarity === "EPIC");
-                return { text: grantSkillCopy(pool[Math.floor(Math.random() * pool.length)]), legend: false };
+                const sid = pool[Math.floor(Math.random() * pool.length)];
+                return { k: "skill:" + sid, n: 1, icon: SKILL_CATALOG[sid].icon, name: SKILL_CATALOG[sid].name, rarity: SKILL_CATALOG[sid].rarity, text: grantSkillCopy(sid) };
             }
         }
-        return { text: row.icon + " " + row.name + " +" + n, legend: false };
+        return { k: row.k, n: n, icon: row.icon, name: row.name, rarity: CHEST_RARE_KINDS.includes(row.k) ? "RARE" : "COMMON" };
+    }
+
+    function pickChestExtraRow() {
+        const total = CHEST.table.reduce((s, r) => s + r.w, 0);
+        let roll = Math.random() * total;
+        for (const r of CHEST.table) { roll -= r.w; if (roll <= 0) return r; }
+        return CHEST.table[0];
+    }
+
+    // 開一個：回傳 { legend, items: [卡片…], text }
+    function openOneChest() {
+        const c = getChestSave();
+        if (c.keys <= 0) return null;
+        c.keys -= 1;
+        c.opened += 1;
+        const getStatsObj = getStats();
+        getStatsObj.chestsOpened = (getStatsObj.chestsOpened || 0) + 1;
+        const items = CHEST.base.map((row) => grantChestRow(row));
+        items.push(grantChestRow(pickChestExtraRow()));
+        if (Math.random() < CHEST.extraChance) items.push(grantChestRow(pickChestExtraRow()));
+        let legend = false;
+        const pityHit = c.pity + 1 >= CHEST.pity;
+        if (pityHit || Math.random() < CHEST.legendChance) {
+            c.pity = 0;
+            legend = true;
+            const it = rollChestLegend();
+            const lm = it.t === "bow" ? BOW_CATALOG[it.id] : SKILL_CATALOG[it.id];
+            const txt = grantLegendItem(it);
+            items.push({ k: "legend:" + it.id, n: 1, icon: lm ? lm.icon : "🌟", name: lm ? lm.name : "", rarity: "LEGENDARY", legend: true, text: "🌟 " + txt + (pityHit ? "（保底）" : "") });
+        } else c.pity += 1;
+        const text = items.map((x) => x.text || (x.icon + " " + x.name + " +" + x.n)).join("、");
+        return { legend: legend, items: items, text: legend ? "🌟 " + text : text };
+    }
+
+    // 把好幾個寶箱的東西合併：同一種資源加總成一張，技能、傳說各自一張；由普通排到傳說（傳說最後出場）
+    function mergeChestItems(results) {
+        const map = new Map();
+        results.forEach((r) => r.items.forEach((x) => {
+            const cur = map.get(x.k);
+            if (cur) cur.n += x.n;
+            else map.set(x.k, Object.assign({}, x));
+        }));
+        const rank = { COMMON: 0, RARE: 1, EPIC: 2, LEGENDARY: 3 };
+        return Array.from(map.values()).map((x) => ({
+            icon: x.icon,
+            name: x.k.indexOf(":") > 0 ? x.name + (x.n > 1 ? " ×" + x.n : "") : x.name + " +" + x.n,
+            rarity: x.rarity, legend: Boolean(x.legend)
+        })).sort((a, b) => (rank[a.rarity] || 0) - (rank[b.rarity] || 0));
     }
 
     function openChests(count) {
         const results = [];
         for (let i = 0; i < count && getChestKeys() > 0; i++) results.push(openOneChest());
         if (!results.length) return results;
-        if (results.some((r) => r.legend)) { sfx.gachaPull(); triggerShake(8, 0.25); } else sfx.skill();
+        if (results.some((r) => r.legend)) sfx.gachaPull(); else sfx.skill();
         saveGameProgress();
+        showChestReveal(mergeChestItems(results)); // 🎁 開寶箱特效（13s）：一張一張彈出，傳說最後
         const legend = results.filter((r) => r.legend).length;
         renderChestModal(`<span style="color:${legend ? "#fde047" : "#86efac"};">🔑 開了 ${results.length} 個寶箱${legend ? "，出了 " + legend + " 個傳說！" : ""}</span>`, results);
         if (typeof checkAchievements === "function") checkAchievements();
@@ -17482,8 +17717,8 @@
         if (!box) return;
         const c = getChestSave();
         const total = CHEST.table.reduce((s, r) => s + r.w, 0);
-        const rates = `🌟 傳說 ${Math.round(CHEST.legendChance * 100)}%（其中 ${Math.round(CHEST.comboLegendShare * 100)}% 是 Combo 專屬傳說）｜` + CHEST.table.map((r) => r.icon + r.name + " " + Math.round(r.w / total * (1 - CHEST.legendChance) * 100) + "%").join("｜");
-        const res = (results || []).map((r) => `<div class="chest-res${r.legend ? " legend" : ""}">${r.text}</div>`).join("");
+        const rates = `每個寶箱：🪙 金幣＋🧪 精華，再加 1 樣好東西（${Math.round(CHEST.extraChance * 100)}% 再多 1 樣）｜🌟 傳說 ${Math.round(CHEST.legendChance * 100)}%（其中 ${Math.round(CHEST.comboLegendShare * 100)}% 是 Combo 專屬傳說）｜好東西：` + CHEST.table.map((r) => r.icon + r.name + " " + Math.round(r.w / total * 100) + "%").join("｜");
+        const res = (results && results.length ? mergeChestItems(results) : []).map((x) => `<div class="chest-res${x.legend ? " legend" : ""}">${x.icon} ${x.name}</div>`).join("");
         box.innerHTML = `
             <div class="chest-head"><span class="chest-icon">🎁</span><div><b>🔑 寶箱鑰匙 ×${c.keys}</b><br><span>保底：再 ${CHEST.pity - c.pity} 個必出傳說｜已開 ${c.opened} 個</span></div></div>
             <div class="btn-row">
@@ -17754,6 +17989,202 @@
             const b = document.getElementById("dock-slot-" + i);
             if (b && b.classList) b.classList.toggle("tut-glow", s && s.slot === i);
         }
+    }
+
+    // =========================================================================
+
+;
+// ==== js/13s-gacha-reveal.js
+// 13s. 🎴 抽獎特效：抽到東西時跳出一張卡，抖一抖再翻開，用顏色和光芒告訴玩家抽到什麼
+//   COMMON 灰、RARE 藍、EPIC 紫（旋轉光芒）、LEGENDARY 金（光芒＋閃光＋星星）
+//   點一下關閉（還沒翻開就直接翻開）；4.5 秒後自動關閉
+    // =========================================================================
+    const GACHA_REVEAL = { flipMs: 750, autoCloseMs: 4500 };
+    const GACHA_RARITY_TEXT = { COMMON: "普通", RARE: "稀有", EPIC: "史詩", LEGENDARY: "傳說", MYTHIC: "神話" };
+    let gachaRevealTimers = [];
+
+    function clearGachaRevealTimers() {
+        gachaRevealTimers.forEach((t) => clearTimeout(t));
+        gachaRevealTimers = [];
+    }
+
+    function gachaRevealLater(fn, ms) {
+        const t = setTimeout(fn, ms);
+        if (t && typeof t.unref === "function") t.unref(); // Node 測試環境不要卡住程式結束
+        gachaRevealTimers.push(t);
+    }
+
+    // o：{ icon, name, rarity, status, statusType: "new"|"up"|"dup", tag }
+    function showGachaReveal(o) {
+        if (typeof document === "undefined" || !document.getElementById) return false;
+        const el = document.getElementById("gacha-reveal");
+        if (!el) return false;
+        clearGachaRevealTimers();
+        const rarity = o.rarity || "COMMON";
+        const meta = RARITY_META[rarity] || RARITY_META.COMMON;
+        const sparkles = rarity === "LEGENDARY" || rarity === "MYTHIC"
+            ? Array.from({ length: 14 }, (_, i) => `<span class="gr-spark" style="left:${(i * 37) % 100}%;animation-delay:${(i % 7) * 0.18}s;">✨</span>`).join("")
+            : "";
+        el.className = "gacha-reveal rar-" + rarity;
+        if (el.style && el.style.setProperty) el.style.setProperty("--rc", meta.color);
+        el.innerHTML = `<div class="gr-rays"></div>${sparkles}
+            <div class="gr-card"><div class="gr-face gr-back">🎴</div>
+                <div class="gr-face gr-front">
+                    <div class="gr-rarity">${GACHA_RARITY_TEXT[rarity] || rarity}</div>
+                    <div class="gr-icon">${o.icon || "❔"}</div>
+                    <div class="gr-name">${o.name || ""}</div>
+                    <div class="gr-status ${o.statusType || "dup"}">${o.status || ""}</div>
+                    ${o.tag ? `<div class="gr-tag">${o.tag}</div>` : ""}
+                </div>
+            </div>
+            <div class="gr-tip">點一下繼續</div>`;
+        el.classList.remove("hidden");
+        el.__flipped = false;
+        el.onclick = () => { if (!el.__flipped) flipGachaReveal(el, rarity); else closeGachaReveal(); };
+        gachaRevealLater(() => flipGachaReveal(el, rarity), GACHA_REVEAL.flipMs);
+        return true;
+    }
+
+    function flipGachaReveal(el, rarity) {
+        if (el.__flipped) return;
+        el.__flipped = true;
+        el.classList.add("flipped");
+        try {
+            if (rarity === "LEGENDARY" || rarity === "MYTHIC") { sfx.crit(); sfx.timeSlow(); }
+            else if (rarity === "EPIC") sfx.crit();
+            else if (rarity === "RARE") sfx.coin();
+            else sfx.skill();
+        } catch (e) { /* 沒有音效也沒關係 */ }
+        gachaRevealLater(closeGachaReveal, GACHA_REVEAL.autoCloseMs);
+    }
+
+    // 🎁 開寶箱：寶箱抖一抖 → 砰一聲打開 → 開到的東西一張一張彈出來
+    //   results：[{ icon, name, rarity, legend }]
+    const GACHA_RARITY_RANK = { COMMON: 0, RARE: 1, EPIC: 2, LEGENDARY: 3, MYTHIC: 4 };
+    function showChestReveal(results) {
+        if (typeof document === "undefined" || !document.getElementById || !results || !results.length) return false;
+        const el = document.getElementById("gacha-reveal");
+        if (!el) return false;
+        clearGachaRevealTimers();
+        const best = results.reduce((b, r) => ((GACHA_RARITY_RANK[r.rarity] || 0) > (GACHA_RARITY_RANK[b] || 0) ? r.rarity : b), "COMMON");
+        const meta = RARITY_META[best] || RARITY_META.COMMON;
+        const sparkles = best === "LEGENDARY" ? Array.from({ length: 14 }, (_, i) => `<span class="gr-spark" style="left:${(i * 37) % 100}%;animation-delay:${(i % 7) * 0.18}s;">✨</span>`).join("") : "";
+        const items = results.map((r, i) => {
+            const m = RARITY_META[r.rarity] || RARITY_META.COMMON;
+            // 一張一張彈出（越多張間隔越短），傳說多等一下再出場
+            const step = results.length > 8 ? 0.18 : 0.38;
+            const delay = 0.2 + i * step + (r.legend ? 0.5 : 0);
+            return `<div class="cr-item rar-${r.rarity}" style="--rc:${m.color};animation-delay:${delay}s;"><span class="cr-icon">${r.icon || "🎁"}</span><span class="cr-name">${r.name || ""}</span>${r.legend ? '<span class="cr-legend">傳說！</span>' : ""}</div>`;
+        }).join("");
+        el.className = "gacha-reveal chest-mode rar-" + best;
+        if (el.style && el.style.setProperty) el.style.setProperty("--rc", meta.color);
+        el.innerHTML = `<div class="gr-rays"></div>${sparkles}<div class="cr-chest">🎁</div><div class="cr-burst"></div>
+            <div class="cr-items${results.length === 1 ? " single" : results.length <= 4 ? " few" : ""}">${items}</div><div class="gr-tip">點一下繼續</div>`;
+        el.classList.remove("hidden");
+        el.__flipped = false;
+        const open = () => {
+            if (el.__flipped) return;
+            el.__flipped = true;
+            el.classList.add("flipped");
+            try { if (best === "LEGENDARY") { sfx.crit(); sfx.timeSlow(); } else if (best === "EPIC") sfx.crit(); else sfx.coin(); } catch (e) { /* 沒有音效也沒關係 */ }
+
+        };
+        // 點一下：還沒打開→打開；打開了但還在一張張出→全部直接顯示；都出完了→關閉
+        el.onclick = () => {
+            if (!el.__flipped) { open(); return; }
+            if (!el.__allShown) { el.__allShown = true; el.classList.add("show-all"); return; }
+            closeGachaReveal();
+        };
+        el.__allShown = false;
+        gachaRevealLater(() => { el.__allShown = true; }, 950 + (200 + results.length * 400 + 600));
+        gachaRevealLater(open, 950);
+        return true;
+    }
+
+    function closeGachaReveal() {
+        clearGachaRevealTimers();
+        const el = typeof document !== "undefined" && document.getElementById ? document.getElementById("gacha-reveal") : null;
+        if (el && el.classList) { el.classList.add("hidden"); el.innerHTML = ""; }
+    }
+
+    // =========================================================================
+
+;
+// ==== js/13t-weekly-quests.js
+// 13t. 🗓️ 週任務：每週一換 5 個（目標比較大、獎勵比較好），全部完成再送額外獎勵
+//   跟每日任務共用事件（onQuestEvent）；「完成 5 天的每日任務」每週一定會出現，鼓勵常回來
+//   訓練模式不算（跟每日任務一樣）
+    // =========================================================================
+    const WEEKLY_QUEST_COUNT = 5;
+    const WEEKLY_ALL_BONUS = { chestKey: 2, crystals: 10, bowSoul: 15 };
+    const WEEKLY_QUEST_POOL = [
+        { id: "w_daily5", group: "daily", icon: "📋", text: "完成 5 天的每日任務", event: "dailyAll", target: 5, reward: { chestKey: 2 } },
+        { id: "w_crit300", group: "crit", icon: "🎯", text: "爆頭 300 次", event: "crit", target: 300, reward: { coins: 800 } },
+        { id: "w_stage60", group: "stage", icon: "⚔️", text: "主線過 60 關", event: "stage", target: 60, reward: { skillTicket: 2 } },
+        { id: "w_boss12", group: "boss", icon: "👑", text: "打倒 12 隻 Boss", event: "boss", target: 12, reward: { chestKey: 1 } },
+        { id: "w_elite10", group: "elite", icon: "⭐", text: "打倒 10 隻精英敵人", event: "elite", target: 10, reward: { essence: 80 } },
+        { id: "w_skill250", group: "skill", icon: "✨", text: "施放技能 250 次", event: "skill", target: 250, reward: { bowTicket: 1 } },
+        { id: "w_combo50", group: "combo", icon: "🔗", text: "打出 Combo 50 次", event: "combo", target: 50, reward: { crystals: 8 } },
+        { id: "w_dungeon5", group: "dungeon", icon: "🏛️", text: "通關遠古聖域 5 次", event: "dungeon", target: 5, reward: { crystals: 12 }, need: () => isDungeonUnlocked() }
+    ];
+
+    function rollWeeklyQuests(week) {
+        const rand = seededRandom("weekly-quests-" + week);
+        const always = WEEKLY_QUEST_POOL[0];
+        const pool = WEEKLY_QUEST_POOL.slice(1).filter((q) => !q.need || q.need()).sort(() => rand() - 0.5);
+        const picked = [{ id: always.id, progress: 0, done: false }];
+        pool.slice(0, WEEKLY_QUEST_COUNT - 1).forEach((q) => picked.push({ id: q.id, progress: 0, done: false }));
+        return { week: week, list: picked, bonusDone: false };
+    }
+
+    function getWeeklyQuests() {
+        const week = getWeekNumber();
+        const w = game.weeklyQuests;
+        const valid = w && w.week === week && Array.isArray(w.list) && w.list.every((x) => WEEKLY_QUEST_POOL.some((q) => q.id === x.id));
+        if (!valid) game.weeklyQuests = rollWeeklyQuests(week);
+        return game.weeklyQuests;
+    }
+
+    // onQuestEvent（12f）呼叫；dailyAll＝今天的每日任務全部完成
+    function onWeeklyQuestEvent(event, n) {
+        const w = getWeeklyQuests();
+        let changed = false;
+        w.list.forEach((x) => {
+            if (x.done) return;
+            const q = WEEKLY_QUEST_POOL.find((p) => p.id === x.id);
+            if (!q || q.event !== event) return;
+            x.progress = Math.min(q.target, x.progress + (n || 1));
+            changed = true;
+            if (x.progress >= q.target) {
+                x.done = true;
+                giveReward(q.reward);
+                queueAchievementToast("🗓️ 週任務完成：" + q.icon + q.text + "（" + rewardText(q.reward) + "）", 5);
+            }
+        });
+        if (changed && !w.bonusDone && w.list.every((x) => x.done)) {
+            w.bonusDone = true;
+            giveReward(WEEKLY_ALL_BONUS);
+            queueAchievementToast("🎉 本週任務全部完成！額外 " + rewardText(WEEKLY_ALL_BONUS), 6);
+        }
+        return changed;
+    }
+
+    function getWeeklyQuestBadge() {
+        const w = getWeeklyQuests();
+        return w.list.filter((x) => x.done).length + "/" + w.list.length;
+    }
+
+    function renderWeeklyQuestsHtml() {
+        const w = getWeeklyQuests();
+        return `<div class="quest-section">🗓️ 本週任務 <span>（每週一換新・${getWeeklyQuestBadge()}）</span></div>` + w.list.map((x) => {
+            const q = WEEKLY_QUEST_POOL.find((p) => p.id === x.id);
+            const pct = Math.round(x.progress / q.target * 100);
+            return `<div class="codex-card" style="border-color:${x.done ? "#86efac" : "rgba(196, 181, 253, 0.35)"};">
+                <div class="codex-title" style="color:${x.done ? "#86efac" : "#e2e8f0"};">${x.done ? "✅" : q.icon} ${q.text}</div>
+                <div class="codex-meta">進度 ${x.progress} / ${q.target}｜獎勵 ${rewardText(q.reward)}</div>
+                <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;margin-top:4px;"><div style="width:${pct}%;height:100%;background:${x.done ? "#86efac" : "#a78bfa"};"></div></div>
+            </div>`;
+        }).join("") + `<div class="codex-desc" style="text-align:center;margin-top:6px;">${w.bonusDone ? "🎉 本週的額外獎勵已領取" : "🎁 本週全部完成：" + rewardText(WEEKLY_ALL_BONUS)}</div>`;
     }
 
     // =========================================================================
@@ -18354,7 +18785,7 @@
         game.state = "TALENTS";
         hideAllModals();
         dom.talentModal.classList.remove("hidden");
-        dom.talentBanner.innerHTML = "天賦點只能從里程碑取得：Boss 首殺 +2、最高關卡每 5 關 +1、部分成就、轉生 +3。點滿前兩格才能點機制，再點終極。";
+        dom.talentBanner.innerHTML = "🌟 打倒新的 Boss、過關會拿到天賦點。<br>每一排先點滿上面兩格，才能點下面的。";
         renderTalentUI();
     }
 
@@ -18381,7 +18812,7 @@
                 node.style.borderColor = r > 0 ? br.color : "rgba(255,255,255,0.15)";
                 node.disabled = !canLearn;
                 node.innerHTML = `
-                    <div class="talent-node-head">${n.icon} ${n.name} <span>${r}/${n.max}</span></div>
+                    <div class="talent-node-head"><span class="tile-icon">${n.icon}</span><span class="tile-name">${n.name}</span><span class="tile-rank">${r}/${n.max}</span></div>
                     <div class="talent-node-desc">${n.desc(Math.max(1, r))}</div>
                     <div class="talent-node-cost">${r >= n.max ? "✅ 已點滿" : !reqOk ? "🔒 先點滿上一層" : "花費 " + n.cost + " 🌟"}</div>
                 `;
@@ -18748,7 +19179,7 @@
         game.state = "RELICS";
         hideAllModals();
         dom.relicModal.classList.remove("hidden");
-        dom.relicBanner.innerHTML = "遺物從精英（20%，只掉 COMMON～EPIC）、Boss（50%）與 Boss 戰利品取得；MYTHIC 只從🏛️遠古聖域掉落。重複取得會依稀有度轉成 💠，升級只能花 💠（最高 Lv." + RELIC_MAX_LEVEL + "，越後面越貴）。一般與神話遺物共用 " + RELIC_SLOTS + " 個裝備欄，神話遺物一次只能裝 1 個。";
+        dom.relicBanner.innerHTML = "💍 點一下就能裝上或卸下（最多 " + RELIC_SLOTS + " 個）。<br>打精英和 Boss 會掉遺物，用 💠 可以升級。";
         renderRelicUI();
     }
 
@@ -18785,9 +19216,12 @@
         const maxed = normal.filter((r) => getRelicLevel(r.id) >= RELIC_MAX_LEVEL).length;
         dom.relicProgress.textContent = "已收集 " + owned + " / " + normal.length + "｜滿級 " + maxed + "｜裝備中 " + (game.equippedRelics || []).length + " / " + RELIC_SLOTS + "｜💠 " + (game.crystals || 0);
         dom.relicGrid.innerHTML = "";
+        // 新手友善：只列出拿到的遺物，沒拿到的收成最後一格
+        const missing = RELIC_CATALOG.filter((r) => getRelicLevel(r.id) <= 0).length;
         RELIC_CATALOG.forEach((r) => {
             const lvl = getRelicLevel(r.id);
             const got = lvl > 0;
+            if (!got) return;
             const eq = hasRelic(r.id);
             const tier = RELIC_TIERS[r.rarity];
             const card = document.createElement("div");
@@ -18823,6 +19257,12 @@
             makeCardCollapsible(card, "relic_" + r.id);
             dom.relicGrid.appendChild(card);
         });
+        if (missing > 0) {
+            const more = document.createElement("div");
+            more.className = "loadout-item relic-more";
+            more.innerHTML = `<div class="loadout-head"><span style="font-size:1.1rem;">❔</span><span>還有 ${missing} 個遺物沒拿到</span></div><div class="loadout-desc">打精英、Boss 和 🏛️ 遠古聖域會掉</div>`;
+            dom.relicGrid.appendChild(more);
+        }
     }
 
     // ---------- 遺物效果 ----------
@@ -20774,8 +21214,21 @@
             return SKILL_CATALOG[id].category === game.activeCategoryFilter;
         }).sort((a, b) => loadoutSortScore(b) - loadoutSortScore(a));
 
+        // 「全部」時依類型分區、加上標題，比較好找
+        if (game.activeCategoryFilter === "ALL") {
+            const order = Object.keys(SKILL_CATEGORIES).filter((c) => c !== "ALL");
+            visibleSkills.sort((a, b) => order.indexOf(SKILL_CATALOG[a].category) - order.indexOf(SKILL_CATALOG[b].category) || loadoutSortScore(b) - loadoutSortScore(a));
+        }
+        let lastCat = null;
         visibleSkills.forEach((id) => {
             const sk = SKILL_CATALOG[id];
+            if (game.activeCategoryFilter === "ALL" && sk.category !== lastCat) {
+                lastCat = sk.category;
+                const h = document.createElement("div");
+                h.className = "grid-section";
+                h.textContent = getShortCategoryLabel(sk.category) + "（" + visibleSkills.filter((x) => SKILL_CATALOG[x].category === sk.category).length + "）";
+                dom.loadoutGrid.appendChild(h);
+            }
             const catInfo = SKILL_CATEGORIES[sk.category] || SKILL_CATEGORIES.OFFENSE;
             const rar = RARITY_META[sk.rarity] || RARITY_META.COMMON;
             const modeInfo = CAST_MODE_META[sk.castMode] || CAST_MODE_META.NEXT_AIM;
@@ -36313,22 +36766,30 @@
             ctx.restore();
         }
 
+        // 粒子：不用每顆都 save／restore（很多顆時省很多）
+        const alpha0 = ctx.globalAlpha;
         for (const p of game.particles) {
             const ratio = Math.max(0, p.life / p.maxLife);
-            ctx.save();
-            ctx.globalAlpha = ratio;
+            ctx.globalAlpha = alpha0 * ratio;
             ctx.fillStyle = p.color;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size * ratio, 0, Math.PI * 2);
             ctx.fill();
-            ctx.restore();
         }
+        ctx.globalAlpha = alpha0;
 
+        // 飄浮文字：每個字只畫一次成小圖，之後每幀貼圖（描邊＋中文＋表情符號每幀重畫非常吃效能，箭多時會卡）
         for (const ft of game.floatingTexts) {
             const ratio = Math.max(0, ft.life / ft.maxLife);
+            const spr = getFloatTextSprite(ft);
+            if (spr) {
+                ctx.globalAlpha = alpha0 * Math.min(1, ratio * 1.3);
+                ctx.drawImage(spr.canvas, ft.x - spr.w / 2, ft.y - spr.base, spr.w, spr.h);
+                continue;
+            }
             ctx.save();
             ctx.globalAlpha = Math.min(1, ratio * 1.3);
-            ctx.font = `900 ${ft.size}px -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif`;
+            ctx.font = floatTextFont(ft.size);
             ctx.textAlign = "center";
             ctx.strokeStyle = "rgba(7, 8, 13, 0.9)";
             ctx.lineWidth = 4;
@@ -36337,6 +36798,48 @@
             ctx.fillText(ft.text, ft.x, ft.y);
             ctx.restore();
         }
+        ctx.globalAlpha = alpha0;
+    }
+
+    function floatTextFont(size) {
+        return `900 ${size}px -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif`;
+    }
+
+    // 飄浮文字的小圖快取（同樣的字、大小、顏色共用；畫面縮放改變就重做）
+    const floatTextCache = new Map();
+    let floatTextCacheScale = 0;
+    function getFloatTextSprite(ft) {
+        if (typeof document === "undefined" || !document.createElement) return null;
+        const scale = Math.max(1, typeof renderScale === "number" ? renderScale : 1); // renderScale 已經包含螢幕倍率（11-canvas）
+        if (scale !== floatTextCacheScale) { floatTextCache.clear(); floatTextCacheScale = scale; }
+        const key = ft.text + "|" + ft.size + "|" + ft.color;
+        let spr = floatTextCache.get(key);
+        if (spr) return spr;
+        const c = document.createElement("canvas");
+        const g = c.getContext && c.getContext("2d");
+        if (!g || typeof g.measureText !== "function") return null;
+        const font = floatTextFont(ft.size);
+        g.font = font;
+        const m = g.measureText(ft.text);
+        const pad = 6;
+        const w = Math.ceil((m && m.width) || ft.text.length * ft.size) + pad * 2;
+        const base = Math.ceil(ft.size * 1.05) + pad;
+        const h = base + Math.ceil(ft.size * 0.45) + pad;
+        c.width = Math.ceil(w * scale);
+        c.height = Math.ceil(h * scale);
+        g.scale(scale, scale);
+        g.font = font;
+        g.textAlign = "center";
+        g.lineJoin = "round";
+        g.strokeStyle = "rgba(7, 8, 13, 0.9)";
+        g.lineWidth = 4;
+        g.strokeText(ft.text, w / 2, base);
+        g.fillStyle = ft.color;
+        g.fillText(ft.text, w / 2, base);
+        spr = { canvas: c, w: w, h: h, base: base };
+        if (floatTextCache.size > 400) floatTextCache.delete(floatTextCache.keys().next().value); // 最舊的先丟
+        floatTextCache.set(key, spr);
+        return spr;
     }
 
     function renderScene() {
