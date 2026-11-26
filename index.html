@@ -4147,6 +4147,29 @@
         #daily-list > .codex-desc, #daily-list > .quest-section { grid-column: 1 / -1; } /* 標題、全部完成那行橫跨整列 */
         .quest-section { margin: 14px 0 6px; font-weight: 900; color: #c4b5fd; font-size: 0.9rem; text-align: left; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 10px; }
         .quest-section span { color: #94a3b8; font-weight: 400; font-size: 0.72rem; }
+        /* ===== 🎨 新美術風格樣品（body.art2，網址加 ?art=2）===== */
+        body.art2 .hud-top { align-items: flex-start; padding-top: 6px; }
+        body.art2 .status-card { position: relative; background: transparent !important; border: none !important; box-shadow: none !important; padding: 6px 10px 6px 78px !important; min-width: 300px; }
+        body.art2 .status-card.enemy { padding: 6px 78px 6px 10px !important; }
+        body.art2 .status-card::before { content: "🏹"; position: absolute; left: 0; top: 0; width: 66px; height: 66px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border-radius: 50%; background: radial-gradient(circle, #2a1f3a 55%, #120c1c 100%); border: 3px solid #fbbf24; box-shadow: 0 0 0 3px #3b2a16, 0 0 16px rgba(251, 191, 36, 0.55), inset 0 0 10px rgba(0, 0, 0, 0.7); z-index: 2; }
+        body.art2 .status-card.enemy::before { content: attr(data-icon); left: auto; right: 0; border-color: #f87171; box-shadow: 0 0 0 3px #3b1616, 0 0 16px rgba(248, 113, 113, 0.55), inset 0 0 10px rgba(0, 0, 0, 0.7); }
+        body.art2 .hp-bar-bg { height: 26px !important; border-radius: 4px !important; background: #1a0d14 !important; border: 2px solid #f8fafc; box-shadow: 0 2px 0 #000, inset 0 0 6px rgba(0, 0, 0, 0.8); overflow: hidden; }
+        body.art2 .hp-bar-fill { background: linear-gradient(180deg, #ff5a5a, #d81f2c 55%, #a3101c) !important; box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.35); }
+        body.art2 .status-card.player .hp-bar-fill { background: linear-gradient(180deg, #ff6b5a, #e3262f 55%, #ad131f) !important; }
+        body.art2 .status-header { position: absolute; left: 78px; right: 10px; top: 8px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 1; pointer-events: none; }
+        body.art2 .status-card.enemy .status-header { left: 10px; right: 78px; }
+        body.art2 .status-header > span:first-child { position: absolute; left: 0; top: 30px; font-size: 0.85rem; font-weight: 900; color: #f8fafc !important; text-shadow: 0 2px 0 #000; white-space: nowrap; }
+        body.art2 .status-card.enemy .status-header > span:first-child { left: auto; right: 0; }
+        body.art2 .status-header > span:last-child { font-size: 1.05rem; font-weight: 900; color: #fff; text-shadow: 0 2px 0 #000, 0 0 4px #000; }
+        body.art2 .status-tags { margin-top: 24px; }
+        body.art2 .wave-badge { font-size: 1.15rem !important; font-weight: 900; padding: 8px 22px !important; border-radius: 10px !important; background: linear-gradient(180deg, #2b1a2e, #140b16) !important; border: 2px solid #fbbf24 !important; box-shadow: 0 0 0 3px #3b2a16, 0 6px 18px rgba(0, 0, 0, 0.6) !important; color: #fde68a !important; text-shadow: 0 2px 0 #000; letter-spacing: 1px; }
+        body.art2 .skill-dock { gap: 10px !important; }
+        body.art2 .skill-slot { width: 78px !important; height: 96px !important; border-radius: 12px !important; border-width: 3px !important; background: linear-gradient(180deg, #2c2233, #120c16) !important; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08), inset 0 -10px 18px rgba(0, 0, 0, 0.6), 0 4px 0 #000, 0 0 12px rgba(0, 0, 0, 0.5) !important; display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
+        body.art2 .skill-slot .slot-icon { font-size: 2.1rem !important; filter: drop-shadow(0 2px 2px #000); }
+        body.art2 .skill-slot .slot-name { font-size: 0.6rem !important; color: #e2e8f0; text-shadow: 0 1px 0 #000; }
+        body.art2 .skill-slot .slot-cast-badge { display: none !important; }
+        body.art2 .slot-cd-overlay { font-size: 2.2rem !important; font-weight: 900 !important; color: #fff !important; text-shadow: 0 3px 0 #000, 0 0 6px #000; background: rgba(10, 6, 14, 0.72) !important; border-radius: 9px !important; display: flex; align-items: center; justify-content: center; }
+        body.art2 .ctrl-btn { background: linear-gradient(180deg, #2c2233, #120c16) !important; border: 3px solid #cbd5e1 !important; box-shadow: 0 0 0 2px #1e1b2a, 0 4px 0 #000 !important; color: #f8fafc !important; font-size: 1.4rem !important; font-weight: 900; }
         .feedback-card { max-width: 460px; }
         .feedback-body { display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 0.8rem; color: #e2e8f0; }
         .fb-step { padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); line-height: 1.45; }
@@ -12470,6 +12493,7 @@
         dmgNumbers: true,  // 傷害數字（一般的小字；大招、Combo 的大字一律顯示）
         lootText: true,    // 金幣／精華／結晶跳字
         stackLabels: true, // 頭上的元素疊層標示
+        fancyBg: true,     // 精美背景（四章場景；舊手機可以關）
         hints: true        // 第一次觸發機制時的提示
     };
     const QUALITY_META = {
@@ -12571,6 +12595,7 @@
                     ${settingsToggle("shake", "📳", "畫面震動")}
                     ${settingsToggle("critZoom", "🎯", "爆頭定格放大")}
                     ${settingsToggle("hitFlash", "⚡", "受擊閃白")}
+                    ${settingsToggle("fancyBg", "🏞️", "精美背景", "舊手機卡的話可以關掉")}
                 </div>
                 <div class="set-sec"><div class="set-title">📲 安裝成 App</div><div id="set-install"></div></div>
                 <div class="set-sec"><div class="set-title">🌐 語言 Language</div>
@@ -12955,6 +12980,7 @@
                 "🏹 <b>本命弓</b>（通過 1-1 解鎖）：每個人一把專屬的弓，出生隨機一個<b>弓靈</b>（🔥烈 ❄️寒 🌿毒 ⚡迅 🌑影 ⏳時，可花 💠 重塑）；從普通開始用 🪶 弓魂淬鍊（每顆 ★ 不同屬性），升階還要 🧩 本命碎片（每隻 Boss 第一次打倒才給，不能刷）：數值詞條 → 被動能力 → 第二能力或強化 → 弓靈專屬神話特性＋光環，名字和顏色自己決定",
                 "🌌 <b>第三章「神域戰場」</b>（第 73～108 關）：6 個新區域、6 隻新的區域霸主（風暴熾天使、熔岩龍后、織命蛛后、不死鳳凰、亡骨君王、星界神王）",
                 "⚔️ <b>Boss 試煉</b>（通過 1-4 解鎖）：遇過的 Boss 可以用 ★1～★3 難度單挑，第一次通過給 🧩 本命碎片；📖 碎片圖鑑列出所有碎片的來源",
+                "🏞️ <b>全新場景</b>：四章各有自己的背景——黎明的弓手石像、月下古城堡、雲上的天空神殿、熔岩中的混沌王座（設定 → 精美背景可以關）",
                 "🎓 <b>第 0 章・新手教學</b>：新玩家第一次出發會先實戰學射箭、爆頭、跳躍躲箭和 5 個新手技能（三連散射、讀條火球、冰凍箭、神聖護盾、幻影疾步），完成送 🪙300 和技能券；主線地圖可以重玩",
                 "🌱 <b>新手區</b>：第 1～12 關變好打（每關約 30 秒、每過一關回滿血），前幾關不會出現會蓋牆、開盾的敵人",
                 "⚔️ <b>一鍵出發</b>：大廳的「出發！」直接從你推進到的區域開打；想打以前的區域，到「🗺️ 主線地圖」點那一區。點大廳的弓就能換弓",
@@ -14817,6 +14843,8 @@
         "傳說！": "Legendary!", "完成 5 天的每日任務": "Finish all dailies on 5 days", "爆頭 300 次": "Land 300 headshots", "主線過 60 關": "Clear 60 main stages", "打倒 12 隻 Boss": "Defeat 12 Bosses",
         "打倒 10 隻精英敵人": "Defeat 10 elites", "施放技能 250 次": "Cast skills 250 times", "打出 Combo 50 次": "Trigger 50 Combos", "通關遠古聖域 5 次": "Clear the Sanctum 5 times",
         "🗓️ 本週任務": "🗓️ Weekly Quests", "🗓️ 週任務完成：": "🗓️ Weekly quest done: ", "🎉 本週任務全部完成！額外": "🎉 All weekly quests done! Bonus ", "🎉 本週的額外獎勵已領取": "🎉 This week's bonus claimed", "🎁 本週全部完成：": "🎁 Finish all this week: ",
+        "精美背景": "Detailed backgrounds", "舊手機卡的話可以關掉": "Turn off if an older phone lags",
+        "全新場景": "New scenery", "：四章各有自己的背景——黎明的弓手石像、月下古城堡、雲上的天空神殿、熔岩中的混沌王座（設定 → 精美背景可以關）": ": each chapter has its own backdrop — a dawn archer statue, a moonlit castle, a temple above the clouds and a chaos throne in lava (toggle in Settings → Detailed backgrounds)",
         "按 ": "Press ", "：": ": "
     });
     Object.assign(I18N_EN_TPL, {
@@ -36069,6 +36097,7 @@
 // 22. 2D 畫面渲染（單向穿透高台、擋彈牆、引力黑洞、強化幻影雙身、火柴人）
     // =========================================================================
     function renderBackground() {
+        if (renderArt2Background()) return; // 🎨 新美術風格樣品（22e，?art=2）
         const grad = ctx.createLinearGradient(0, 0, 0, LOGICAL_H);
         const isBoss = Boolean(enemy.archetype.bossType);
         if (enemy.gravityModeTimer <= 0 && game.dungeon) {
@@ -36188,8 +36217,9 @@
     }
 
     function renderPlatforms() {
-        drawSinglePlatform(platforms.left, "#38bdf8");
-        drawSinglePlatform(platforms.right, enemy.archetype.primaryColor);
+        const drawPlat = hasArt2Background() ? drawArt2Platform : drawSinglePlatform; // 🎨 精美背景配石磚平台（22e）
+        drawPlat(platforms.left, "#38bdf8");
+        drawPlat(platforms.right, enemy.archetype.primaryColor);
         drawHighOneWayPlatform(platforms.leftHigh, "rgba(56, 189, 248, 0.65)");
         drawHighOneWayPlatform(platforms.rightHigh, "rgba(244, 63, 94, 0.55)");
     }
@@ -36896,6 +36926,7 @@
         renderWorldTree();
         renderNewSkillsOverlay();
         renderParticlesAndTexts();
+        updateArt2Hud(); // 🎨 新美術風格的介面（22e）
         renderBossIntro();
         renderKnockoutBanner();
 
@@ -38060,6 +38091,496 @@
     // =========================================================================
 
 ;
+// ==== js/22e-art-style.js
+// 22e. 🎨 場景美術：四章的精美背景（預設開啟，設定「精美背景」可以關）
+//   第一章黎明石像、第二章月下古堡、第三章雲上神殿、第四章熔岩王座；火柴人維持原版
+//   戰鬥介面的新樣式還是樣品：網址加 ?art=2（或 localStorage aog_art2=1）才會套用
+//   靜態的部分畫一次存成小圖，之後每幀只貼圖＋畫火花（不影響效能）
+//   介面：CSS（body.art2）＋ 少量程式（敵人頭像圖示、技能冷卻顯示整數）
+    // =========================================================================
+    function isArt2() {
+        try {
+            if (typeof location !== "undefined" && /[?&]art=2\b/.test(location.search || "")) return true;
+            return localStorage.getItem("aog_art2") === "1";
+        } catch (e) { return false; }
+    }
+
+    function applyArt2Body() {
+        if (typeof document === "undefined" || !document.body || !document.body.classList) return;
+        document.body.classList.toggle("art2", isArt2());
+    }
+
+    // 精美背景（設定可以關，舊手機用）
+    function isFancyBackground() {
+        return typeof getSetting === "function" ? getSetting("fancyBg") !== false : true;
+    }
+
+    // 這個場景用哪一章的新背景（0＝沒有；聖域、失重領域維持原本）
+    function getArt2Chapter() {
+        if (!isFancyBackground() || game.dungeon || enemy.gravityModeTimer > 0) return 0;
+        return isChapter4Stage(game.stage) ? 4 : isChapter3Stage(game.stage) ? 3 : isChapter2Stage(game.stage) ? 2 : 1;
+    }
+
+    function hasArt2Background() {
+        return getArt2Chapter() > 0;
+    }
+
+    // 固定的亂數（每次畫出來的山形一樣）
+    function art2Rand(seed) {
+        let s = seed;
+        return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+    }
+
+    let art2BgCache = null;
+    function getArt2BgCanvas(isBoss, ch) {
+        const scale = Math.max(1, typeof renderScale === "number" ? renderScale : 1);
+        const key = scale + "|" + (isBoss ? 1 : 0) + "|" + ch;
+        if (art2BgCache && art2BgCache.key === key) return art2BgCache.canvas;
+        if (typeof document === "undefined" || !document.createElement) return null;
+        const c = document.createElement("canvas");
+        const g = c.getContext && c.getContext("2d");
+        if (!g || typeof g.createLinearGradient !== "function") return null;
+        c.width = Math.ceil(LOGICAL_W * scale);
+        c.height = Math.ceil(LOGICAL_H * scale);
+        g.scale(scale, scale);
+        if (ch === 2) drawArt2Ch2(g, isBoss);
+        else if (ch === 3) drawArt2Ch3(g, isBoss);
+        else if (ch === 4) drawArt2Ch4(g, isBoss);
+        else drawArt2Static(g, isBoss);
+        art2BgCache = { key: key, canvas: c };
+        return c;
+    }
+
+    function drawArt2Static(g, isBoss) {
+        const W = LOGICAL_W, H = LOGICAL_H, cx = W * 0.5;
+        // 天空：靛藍 → 紫紅 → 亮橘的地平線（Boss 關偏血紅）
+        const sky = g.createLinearGradient(0, 0, 0, PLATFORM_Y);
+        sky.addColorStop(0, isBoss ? "#1c0a24" : "#1a1442");
+        sky.addColorStop(0.32, isBoss ? "#5e1636" : "#5b2a5e");
+        sky.addColorStop(0.6, isBoss ? "#c8382a" : "#d4603d");
+        sky.addColorStop(0.82, isBoss ? "#f07a3a" : "#f6b26b");
+        sky.addColorStop(1, isBoss ? "#f6a25a" : "#fbd08f");
+        g.fillStyle = sky;
+        g.fillRect(0, 0, W, H);
+        // 太陽：在石像頭部後方，做出逆光光環
+        const sunY = PLATFORM_Y - 250;
+        const halo = g.createRadialGradient(cx, sunY, 20, cx, sunY, 420);
+        halo.addColorStop(0, "rgba(255, 244, 200, 1)");
+        halo.addColorStop(0.16, "rgba(255, 214, 140, 0.75)");
+        halo.addColorStop(0.42, "rgba(255, 160, 100, 0.28)");
+        halo.addColorStop(1, "rgba(255, 130, 90, 0)");
+        g.fillStyle = halo;
+        g.fillRect(0, 0, W, H);
+        g.fillStyle = "#fff6d8";
+        g.beginPath(); g.arc(cx, sunY, 58, 0, Math.PI * 2); g.fill();
+        // 淡淡的雲帶
+        g.save();
+        g.fillStyle = isBoss ? "rgba(255, 150, 130, 0.16)" : "rgba(255, 190, 200, 0.18)";
+        [[140, 120, 260], [720, 90, 300], [420, 180, 220], [860, 210, 180], [60, 230, 200]].forEach(([x, y, w]) => {
+            g.beginPath(); g.ellipse(x, y, w * 0.5, 10, 0, 0, Math.PI * 2); g.fill();
+            g.beginPath(); g.ellipse(x + w * 0.15, y - 8, w * 0.3, 8, 0, 0, Math.PI * 2); g.fill();
+        });
+        g.restore();
+        // 光芒（淡淡的放射線）
+        g.save();
+        g.globalAlpha = 0.06;
+        g.fillStyle = "#fff4d6";
+        for (let i = 0; i < 16; i++) {
+            const ang = (i / 16) * Math.PI * 2;
+            g.beginPath();
+            g.moveTo(cx, sunY);
+            g.lineTo(cx + Math.cos(ang - 0.05) * 900, sunY + Math.sin(ang - 0.05) * 900);
+            g.lineTo(cx + Math.cos(ang + 0.05) * 900, sunY + Math.sin(ang + 0.05) * 900);
+            g.closePath();
+            g.fill();
+        }
+        g.restore();
+        // 三層遠山（越近越暗），壓低一點讓地平線的光露出來
+        const ridge = (baseY, amp, color, seed, step) => {
+            const r = art2Rand(seed);
+            g.fillStyle = color;
+            g.beginPath();
+            g.moveTo(0, H);
+            let y = baseY;
+            for (let x = 0; x <= W + step; x += step) {
+                y = Math.max(baseY - amp, Math.min(baseY + amp * 0.35, y + (r() - 0.5) * amp * 0.9));
+                g.lineTo(x, y);
+            }
+            g.lineTo(W, H);
+            g.closePath();
+            g.fill();
+        };
+        ridge(PLATFORM_Y - 95, 55, isBoss ? "rgba(150, 60, 80, 0.45)" : "rgba(170, 90, 120, 0.42)", 11, 40);
+        ridge(PLATFORM_Y - 55, 45, isBoss ? "rgba(90, 30, 50, 0.75)" : "rgba(96, 44, 86, 0.72)", 27, 34);
+        drawArt2Statue(g, cx, PLATFORM_Y + 18, isBoss);
+        ridge(PLATFORM_Y - 18, 26, "#2a1530", 53, 26);
+        // 左右兩側的斷柱（前景剪影）
+        g.fillStyle = "#1c1026";
+        [[38, 200], [118, 135], [W - 70, 220], [W - 150, 130]].forEach(([x, h]) => {
+            g.fillRect(x, PLATFORM_Y - h, 26, h);
+            g.fillRect(x - 6, PLATFORM_Y - h - 10, 38, 12);
+            g.beginPath(); g.moveTo(x - 6, PLATFORM_Y - h - 10); g.lineTo(x + 8, PLATFORM_Y - h - 24); g.lineTo(x + 20, PLATFORM_Y - h - 10); g.fill();
+        });
+        // 地面霧氣
+        const fog = g.createLinearGradient(0, PLATFORM_Y - 60, 0, H);
+        fog.addColorStop(0, "rgba(255, 200, 150, 0)");
+        fog.addColorStop(0.4, "rgba(255, 190, 140, 0.25)");
+        fog.addColorStop(1, "rgba(40, 18, 40, 0.92)");
+        g.fillStyle = fog;
+        g.fillRect(0, PLATFORM_Y - 60, W, H - PLATFORM_Y + 60);
+    }
+
+    // 原創造型：披斗篷、戴兜帽的古代弓手石像，左手持長弓、右手拉弦（逆光剪影＋邊光＋眼睛微光）
+    function drawArt2Statue(g, cx, baseY, isBoss) {
+        const dark = isBoss ? "#2b1020" : "#2a1636";
+        g.save();
+        g.translate(cx, baseY);
+        g.scale(0.9, 0.9);
+        g.fillStyle = dark;
+        g.strokeStyle = dark;
+        g.lineJoin = "round";
+        g.lineCap = "round";
+        // 台座
+        g.fillRect(-70, -36, 140, 36);
+        g.fillRect(-56, -54, 112, 20);
+        // 披風（從肩膀往後下方飄）
+        g.beginPath();
+        g.moveTo(-26, -226); g.quadraticCurveTo(-70, -150, -92, -60);
+        g.lineTo(52, -60); g.quadraticCurveTo(46, -150, 30, -226);
+        g.closePath(); g.fill();
+        // 雙腿（弓步）
+        g.beginPath(); g.moveTo(-30, -54); g.lineTo(-14, -150); g.lineTo(4, -150); g.lineTo(-10, -54); g.closePath(); g.fill();
+        g.beginPath(); g.moveTo(10, -54); g.lineTo(6, -150); g.lineTo(24, -150); g.lineTo(34, -54); g.closePath(); g.fill();
+        // 身體
+        g.beginPath(); g.moveTo(-22, -148); g.lineTo(-30, -228); g.lineTo(30, -228); g.lineTo(24, -148); g.closePath(); g.fill();
+        // 背上的箭筒
+        g.save(); g.translate(26, -222); g.rotate(0.35);
+        g.fillRect(-6, -44, 14, 52);
+        g.fillRect(-4, -54, 3, 12); g.fillRect(2, -58, 3, 14);
+        g.restore();
+        // 兜帽頭部
+        g.beginPath();
+        g.moveTo(-20, -232); g.quadraticCurveTo(-26, -268, -4, -290);
+        g.quadraticCurveTo(22, -270, 18, -232); g.closePath(); g.fill();
+        // 左手持弓（往左伸直）
+        g.lineWidth = 13;
+        g.beginPath(); g.moveTo(-24, -218); g.lineTo(-84, -214); g.stroke();
+        // 長弓（直立、往左彎）
+        g.lineWidth = 8;
+        g.beginPath(); g.moveTo(-82, -318); g.quadraticCurveTo(-140, -214, -82, -110); g.stroke();
+        // 弓弦被拉到臉旁
+        g.lineWidth = 2;
+        g.strokeStyle = "rgba(255, 220, 170, 0.55)";
+        g.beginPath(); g.moveTo(-82, -318); g.lineTo(-2, -222); g.lineTo(-82, -110); g.stroke();
+        // 右手拉弦
+        g.strokeStyle = dark;
+        g.lineWidth = 11;
+        g.beginPath(); g.moveTo(22, -220); g.lineTo(-2, -222); g.stroke();
+        // 搭在弦上的箭
+        g.lineWidth = 3;
+        g.strokeStyle = "rgba(255, 220, 170, 0.5)";
+        g.beginPath(); g.moveTo(-2, -222); g.lineTo(-128, -216); g.stroke();
+        // 輪廓的暖色邊光（右側、迎著太陽）
+        g.strokeStyle = "rgba(255, 196, 130, 0.45)";
+        g.lineWidth = 2.5;
+        g.beginPath(); g.moveTo(30, -226); g.quadraticCurveTo(46, -150, 52, -60); g.stroke();
+        g.beginPath(); g.moveTo(-4, -290); g.quadraticCurveTo(22, -270, 18, -232); g.stroke();
+        // 眼睛的微光
+        g.fillStyle = isBoss ? "rgba(255, 90, 70, 0.95)" : "rgba(255, 226, 160, 0.9)";
+        g.fillRect(-9, -258, 5, 3);
+        g.fillRect(2, -258, 5, 3);
+        g.restore();
+    }
+
+    // 共用：起伏的山脊
+    function art2Ridge(g, baseY, amp, color, seed, step, jag) {
+        const r = art2Rand(seed);
+        g.fillStyle = color;
+        g.beginPath();
+        g.moveTo(0, LOGICAL_H);
+        let y = baseY;
+        for (let x = 0; x <= LOGICAL_W + step; x += step) {
+            y = Math.max(baseY - amp, Math.min(baseY + amp * 0.35, y + (r() - 0.5) * amp * (jag || 0.9)));
+            g.lineTo(x, y);
+        }
+        g.lineTo(LOGICAL_W, LOGICAL_H);
+        g.closePath();
+        g.fill();
+    }
+
+    function art2GroundFog(g, top, mid, bottom) {
+        const fog = g.createLinearGradient(0, PLATFORM_Y - 60, 0, LOGICAL_H);
+        fog.addColorStop(0, top); fog.addColorStop(0.4, mid); fog.addColorStop(1, bottom);
+        g.fillStyle = fog;
+        g.fillRect(0, PLATFORM_Y - 60, LOGICAL_W, LOGICAL_H - PLATFORM_Y + 60);
+    }
+
+    // ---------- 第二章：月下的古城堡 ----------
+    function drawArt2Ch2(g, isBoss) {
+        const W = LOGICAL_W, H = LOGICAL_H, cx = W * 0.5;
+        const sky = g.createLinearGradient(0, 0, 0, PLATFORM_Y);
+        sky.addColorStop(0, isBoss ? "#160620" : "#0b0a24");
+        sky.addColorStop(0.5, isBoss ? "#3a1240" : "#241a4a");
+        sky.addColorStop(1, isBoss ? "#7a2f5c" : "#5a4a86");
+        g.fillStyle = sky; g.fillRect(0, 0, W, H);
+        // 星星
+        const r = art2Rand(77);
+        g.fillStyle = "rgba(230, 230, 255, 0.8)";
+        for (let i = 0; i < 70; i++) { const s = r() * 1.6 + 0.4; g.fillRect(r() * W, r() * PLATFORM_Y * 0.7, s, s); }
+        // 滿月＋光暈
+        const my = 150, mx = cx + 140;
+        const halo = g.createRadialGradient(mx, my, 30, mx, my, 300);
+        halo.addColorStop(0, "rgba(255, 245, 230, 0.55)"); halo.addColorStop(0.3, isBoss ? "rgba(240, 140, 170, 0.22)" : "rgba(190, 180, 255, 0.2)"); halo.addColorStop(1, "rgba(0, 0, 0, 0)");
+        g.fillStyle = halo; g.fillRect(0, 0, W, H);
+        g.fillStyle = isBoss ? "#ffd9df" : "#f3f0ff";
+        g.beginPath(); g.arc(mx, my, 56, 0, Math.PI * 2); g.fill();
+        g.fillStyle = "rgba(170, 160, 210, 0.35)";
+        [[-14, -10, 12], [16, 8, 9], [-4, 20, 7], [20, -18, 6]].forEach(([dx, dy, rr]) => { g.beginPath(); g.arc(mx + dx, my + dy, rr, 0, Math.PI * 2); g.fill(); });
+        // 薄雲橫過月亮
+        g.fillStyle = "rgba(120, 110, 170, 0.35)";
+        [[mx - 60, my + 30, 220], [mx + 90, my - 20, 160], [200, 210, 260]].forEach(([x, y, w]) => { g.beginPath(); g.ellipse(x, y, w * 0.5, 9, 0, 0, Math.PI * 2); g.fill(); });
+        art2Ridge(g, PLATFORM_Y - 90, 50, "rgba(70, 56, 120, 0.6)", 101, 38);
+        // 半毀的城堡（中央）
+        g.fillStyle = isBoss ? "#1e0c22" : "#17122e";
+        const base = PLATFORM_Y - 30;
+        g.fillRect(cx - 170, base - 120, 340, 150); // 城牆
+        for (let x = cx - 170; x < cx + 170; x += 24) g.fillRect(x, base - 136, 14, 18); // 城垛
+        const tower = (x, w, h, roof) => {
+            g.fillRect(x - w / 2, base - h, w, h + 30);
+            for (let k = 0; k < 3; k++) g.fillRect(x - w / 2 + k * (w / 3) + 2, base - h - 12, w / 3 - 5, 14);
+            if (roof) { g.beginPath(); g.moveTo(x - w / 2 - 6, base - h - 10); g.lineTo(x, base - h - 10 - roof); g.lineTo(x + w / 2 + 6, base - h - 10); g.closePath(); g.fill(); }
+        };
+        tower(cx - 150, 54, 210, 70);
+        tower(cx + 150, 50, 180, 0); // 斷掉的塔（沒有屋頂）
+        tower(cx, 70, 260, 110);
+        tower(cx - 70, 40, 170, 50);
+        // 斷塔的缺口
+        g.fillStyle = isBoss ? "#7a2f5c" : "#5a4a86";
+        g.beginPath(); g.moveTo(cx + 125, base - 192); g.lineTo(cx + 140, base - 170); g.lineTo(cx + 152, base - 186); g.lineTo(cx + 166, base - 165); g.lineTo(cx + 176, base - 192); g.closePath(); g.fill();
+        // 亮著的窗
+        g.fillStyle = isBoss ? "rgba(255, 110, 120, 0.85)" : "rgba(255, 214, 140, 0.85)";
+        [[cx - 4, base - 210], [cx + 6, base - 210], [cx - 152, base - 160], [cx - 72, base - 120], [cx + 40, base - 70], [cx - 110, base - 60]].forEach(([x, y]) => g.fillRect(x, y, 6, 12));
+        // 月光邊光
+        g.strokeStyle = "rgba(220, 210, 255, 0.35)"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(cx + 35, base - 260); g.lineTo(cx + 35, base - 120); g.stroke();
+        art2Ridge(g, PLATFORM_Y - 16, 22, "#120d22", 131, 26);
+        // 枯樹（前景）
+        g.strokeStyle = "#0e0a1a"; g.lineCap = "round";
+        const tree = (x, h, dir) => { g.lineWidth = 9; g.beginPath(); g.moveTo(x, PLATFORM_Y); g.lineTo(x + dir * 10, PLATFORM_Y - h); g.stroke(); g.lineWidth = 4; [[0.6, 40], [0.8, -34], [0.95, 28]].forEach(([k, len]) => { const yy = PLATFORM_Y - h * k; g.beginPath(); g.moveTo(x + dir * 10 * k, yy); g.lineTo(x + dir * 10 * k + len * dir, yy - 30); g.stroke(); }); };
+        tree(70, 200, 1); tree(W - 80, 230, -1);
+        art2GroundFog(g, "rgba(150, 140, 220, 0)", "rgba(150, 140, 220, 0.2)", "rgba(10, 8, 24, 0.92)");
+    }
+
+    // ---------- 第三章：雲上的天空神殿 ----------
+    function drawArt2Ch3(g, isBoss) {
+        const W = LOGICAL_W, H = LOGICAL_H, cx = W * 0.5;
+        const sky = g.createLinearGradient(0, 0, 0, PLATFORM_Y);
+        sky.addColorStop(0, isBoss ? "#0a0620" : "#050a24");
+        sky.addColorStop(0.55, isBoss ? "#2a1450" : "#122a5a");
+        sky.addColorStop(1, isBoss ? "#6a3a8a" : "#3a6aa0");
+        g.fillStyle = sky; g.fillRect(0, 0, W, H);
+        // 星雲帶
+        g.save(); g.translate(cx, 160); g.rotate(-0.25);
+        const neb = g.createRadialGradient(0, 0, 10, 0, 0, 420);
+        neb.addColorStop(0, isBoss ? "rgba(255, 150, 220, 0.35)" : "rgba(160, 200, 255, 0.35)"); neb.addColorStop(0.5, isBoss ? "rgba(160, 80, 200, 0.15)" : "rgba(120, 100, 220, 0.14)"); neb.addColorStop(1, "rgba(0, 0, 0, 0)");
+        g.fillStyle = neb; g.scale(1, 0.32); g.beginPath(); g.arc(0, 0, 420, 0, Math.PI * 2); g.fill();
+        g.restore();
+        const r = art2Rand(303);
+        for (let i = 0; i < 130; i++) { const s = r() * 1.8 + 0.3; g.fillStyle = r() < 0.15 ? "rgba(255, 230, 170, 0.9)" : "rgba(220, 235, 255, 0.85)"; g.fillRect(r() * W, r() * PLATFORM_Y * 0.85, s, s); }
+        // 雲海
+        const cloud = (y, color, seed) => { const rr = art2Rand(seed); g.fillStyle = color; for (let x = -40; x < W + 40; x += 46) { g.beginPath(); g.arc(x + rr() * 20, y + rr() * 14, 34 + rr() * 26, 0, Math.PI * 2); g.fill(); } g.fillRect(0, y + 10, W, LOGICAL_H); };
+        cloud(PLATFORM_Y - 70, isBoss ? "rgba(150, 110, 190, 0.5)" : "rgba(150, 180, 230, 0.45)", 311);
+        // 天空神殿（浮在雲上）
+        const base = PLATFORM_Y - 95;
+        // 光柱
+        const beam = g.createLinearGradient(cx, 0, cx, base);
+        beam.addColorStop(0, "rgba(255, 240, 200, 0)"); beam.addColorStop(1, "rgba(255, 240, 200, 0.28)");
+        g.fillStyle = beam; g.beginPath(); g.moveTo(cx - 30, 0); g.lineTo(cx + 30, 0); g.lineTo(cx + 120, base); g.lineTo(cx - 120, base); g.closePath(); g.fill();
+        const stone = isBoss ? "#2a1844" : "#1a2a4e";
+        g.fillStyle = stone;
+        g.fillRect(cx - 150, base - 6, 300, 22); // 基座
+        g.fillRect(cx - 132, base - 18, 264, 14);
+        for (let i = 0; i < 6; i++) g.fillRect(cx - 120 + i * 46, base - 128, 16, 112); // 石柱
+        g.fillRect(cx - 140, base - 142, 280, 16); // 橫樑
+        g.beginPath(); g.moveTo(cx - 150, base - 142); g.lineTo(cx, base - 196); g.lineTo(cx + 150, base - 142); g.closePath(); g.fill(); // 三角楣
+        g.beginPath(); g.arc(cx, base - 196, 46, Math.PI, 0); g.fill(); // 圓頂
+        g.fillRect(cx - 3, base - 262, 6, 22); // 尖頂
+        // 金色邊光、殿內的光
+        g.strokeStyle = "rgba(255, 222, 150, 0.5)"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(cx - 150, base - 142); g.lineTo(cx, base - 196); g.lineTo(cx + 150, base - 142); g.stroke();
+        g.beginPath(); g.arc(cx, base - 196, 46, Math.PI, 0); g.stroke();
+        g.fillStyle = "rgba(255, 230, 170, 0.35)";
+        for (let i = 0; i < 5; i++) g.fillRect(cx - 104 + i * 46, base - 124, 30, 104);
+        g.fillStyle = "#fff3c4"; g.beginPath(); g.arc(cx, base - 270, 6, 0, Math.PI * 2); g.fill();
+        // 兩側漂浮的碎石島
+        const isle = (x, y, w) => { g.fillStyle = stone; g.beginPath(); g.moveTo(x - w, y); g.lineTo(x + w, y); g.lineTo(x + w * 0.4, y + w * 0.8); g.lineTo(x - w * 0.3, y + w * 0.9); g.closePath(); g.fill(); g.fillRect(x - 4, y - 50, 8, 50); };
+        isle(140, 200, 34); isle(W - 150, 170, 40); isle(260, 290, 22); isle(W - 260, 300, 26);
+        cloud(PLATFORM_Y - 30, isBoss ? "rgba(110, 70, 150, 0.75)" : "rgba(90, 120, 180, 0.7)", 337);
+        art2GroundFog(g, "rgba(200, 220, 255, 0)", "rgba(200, 220, 255, 0.18)", "rgba(6, 10, 30, 0.92)");
+    }
+
+    // ---------- 第四章：熔岩中的混沌王座 ----------
+    function drawArt2Ch4(g, isBoss) {
+        const W = LOGICAL_W, H = LOGICAL_H, cx = W * 0.5;
+        const sky = g.createLinearGradient(0, 0, 0, PLATFORM_Y);
+        sky.addColorStop(0, "#120406");
+        sky.addColorStop(0.5, isBoss ? "#4a0a0c" : "#3a0c10");
+        sky.addColorStop(1, isBoss ? "#c2361a" : "#a3301c");
+        g.fillStyle = sky; g.fillRect(0, 0, W, H);
+        // 天空的裂痕閃電
+        g.strokeStyle = "rgba(255, 140, 90, 0.35)"; g.lineWidth = 2;
+        [[180, 30], [760, 50], [520, 10]].forEach(([x0, y0], i) => { const r = art2Rand(400 + i); let x = x0, y = y0; g.beginPath(); g.moveTo(x, y); for (let k = 0; k < 6; k++) { x += (r() - 0.5) * 60; y += 20 + r() * 20; g.lineTo(x, y); } g.stroke(); });
+        // 熔岩的光從下往上
+        const glow = g.createRadialGradient(cx, PLATFORM_Y, 30, cx, PLATFORM_Y, 520);
+        glow.addColorStop(0, "rgba(255, 150, 60, 0.6)"); glow.addColorStop(0.4, "rgba(220, 70, 30, 0.25)"); glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+        g.fillStyle = glow; g.fillRect(0, 0, W, H);
+        // 尖銳的火山岩
+        art2Ridge(g, PLATFORM_Y - 110, 80, "rgba(60, 14, 16, 0.75)", 451, 30, 1.6);
+        // 碎裂的巨大王座
+        const base = PLATFORM_Y - 24, dark = "#1a0507";
+        g.fillStyle = dark;
+        g.fillRect(cx - 150, base - 30, 300, 40); // 台階
+        g.fillRect(cx - 120, base - 56, 240, 30);
+        g.fillRect(cx - 95, base - 150, 190, 98); // 座位
+        g.beginPath(); g.moveTo(cx - 95, base - 150); g.lineTo(cx - 80, base - 330); g.lineTo(cx - 40, base - 300); g.lineTo(cx, base - 360); g.lineTo(cx + 40, base - 300); g.lineTo(cx + 80, base - 330); g.lineTo(cx + 95, base - 150); g.closePath(); g.fill(); // 尖刺椅背
+        g.fillRect(cx - 132, base - 170, 40, 120); g.fillRect(cx + 92, base - 170, 40, 120); // 扶手
+        // 椅背的裂縫（透出熔岩光）
+        g.strokeStyle = "rgba(255, 120, 50, 0.85)"; g.lineWidth = 3;
+        g.beginPath(); g.moveTo(cx + 6, base - 340); g.lineTo(cx - 10, base - 280); g.lineTo(cx + 14, base - 230); g.lineTo(cx - 4, base - 170); g.stroke();
+        // 斷掉的王冠（放在座位上）
+        g.fillStyle = "#3a1208";
+        g.beginPath(); g.moveTo(cx - 40, base - 150); g.lineTo(cx - 36, base - 182); g.lineTo(cx - 20, base - 166); g.lineTo(cx - 4, base - 190); g.lineTo(cx + 8, base - 168); g.lineTo(cx + 30, base - 176); g.lineTo(cx + 34, base - 150); g.closePath(); g.fill();
+        g.strokeStyle = "rgba(255, 180, 90, 0.6)"; g.lineWidth = 1.5; g.stroke();
+        // 鎖鏈（從兩側垂下）
+        g.strokeStyle = "#2a0a0a"; g.lineWidth = 4;
+        [[cx - 132, base - 170, 60, 20], [cx + 132, base - 170, W - 60, 30]].forEach(([x1, y1, x2, y2]) => { const n = 10; for (let k = 0; k < n; k++) { const a = k / n, b = (k + 1) / n; const sag = Math.sin(a * Math.PI) * 60; g.beginPath(); g.ellipse(x1 + (x2 - x1) * a, y1 + (y2 - y1) * a + sag, 7, 4, 0.3, 0, Math.PI * 2); g.stroke(); } });
+        // 邊光
+        g.strokeStyle = "rgba(255, 130, 60, 0.45)"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(cx - 95, base - 150); g.lineTo(cx - 80, base - 330); g.lineTo(cx - 40, base - 300); g.lineTo(cx, base - 360); g.lineTo(cx + 40, base - 300); g.lineTo(cx + 80, base - 330); g.lineTo(cx + 95, base - 150); g.stroke();
+        art2Ridge(g, PLATFORM_Y - 18, 30, "#160406", 479, 22, 1.8);
+        // 熔岩河（平台中間的缺口下方）
+        const lava = g.createLinearGradient(0, PLATFORM_Y + 20, 0, H);
+        lava.addColorStop(0, "#ffb347"); lava.addColorStop(0.3, "#ff6a1a"); lava.addColorStop(1, "#7a1206");
+        g.fillStyle = lava; g.fillRect(0, PLATFORM_Y + 30, W, H);
+        art2GroundFog(g, "rgba(255, 120, 60, 0)", "rgba(255, 110, 50, 0.22)", "rgba(40, 6, 6, 0.6)");
+    }
+
+    // ---------- 各章的粒子 ----------
+    const art2Particles = [];
+    let art2ParticleCh = 0;
+    function updateDrawArt2Particles(ch) {
+        if (ch === 1) { updateDrawArt2Embers(); return; }
+        const now = typeof performance !== "undefined" ? performance.now() : Date.now();
+        const dt = Math.min(0.05, art2LastT ? (now - art2LastT) / 1000 : 0.016);
+        art2LastT = now;
+        if (art2ParticleCh !== ch) { art2Particles.length = 0; art2ParticleCh = ch; }
+        const target = ch === 4 ? 46 : 34;
+        while (art2Particles.length < target) {
+            if (ch === 2) art2Particles.push({ x: Math.random() * LOGICAL_W, y: 120 + Math.random() * (PLATFORM_Y - 100), vx: (Math.random() - 0.5) * 14, vy: (Math.random() - 0.5) * 10, ph: Math.random() * 6.28, r: 1.6 + Math.random() * 1.4, k: "fly" });
+            else if (ch === 3) art2Particles.push({ x: Math.random() * LOGICAL_W, y: LOGICAL_H + Math.random() * 100, vx: 0, vy: -(12 + Math.random() * 18), ph: Math.random() * 6.28, r: 1 + Math.random() * 2, k: "mote" });
+            else art2Particles.push(Math.random() < 0.55
+                ? { x: Math.random() * LOGICAL_W, y: -Math.random() * 100, vx: 6 + Math.random() * 10, vy: 14 + Math.random() * 18, ph: Math.random() * 6.28, r: 1 + Math.random() * 1.8, k: "ash" }
+                : { x: Math.random() * LOGICAL_W, y: LOGICAL_H + Math.random() * 60, vx: (Math.random() - 0.5) * 10, vy: -(30 + Math.random() * 40), ph: Math.random() * 6.28, r: 1 + Math.random() * 1.6, k: "spark" });
+        }
+        ctx.save();
+        for (let i = art2Particles.length - 1; i >= 0; i--) {
+            const p = art2Particles[i];
+            p.ph += dt * 2;
+            p.x += (p.vx + (p.k === "fly" ? Math.sin(p.ph) * 12 : 0)) * dt;
+            p.y += (p.vy + (p.k === "fly" ? Math.cos(p.ph * 0.7) * 8 : 0)) * dt;
+            if (p.y < -20 || p.y > LOGICAL_H + 120 || p.x < -30 || p.x > LOGICAL_W + 30) { art2Particles.splice(i, 1); continue; }
+            if (p.k === "fly") { ctx.globalAlpha = 0.45 + 0.45 * Math.sin(p.ph * 2); ctx.fillStyle = "#b8ffcf"; }
+            else if (p.k === "mote") { ctx.globalAlpha = 0.6 * Math.min(1, (LOGICAL_H - p.y) / 150); ctx.fillStyle = "#ffe7a3"; }
+            else if (p.k === "ash") { ctx.globalAlpha = 0.5; ctx.fillStyle = "#9a8a86"; }
+            else { ctx.globalAlpha = 0.8; ctx.fillStyle = "#ff9a3c"; }
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    // 飄浮的火花（每幀更新）
+    const art2Embers = [];
+    let art2LastT = 0;
+    function updateDrawArt2Embers() {
+        const now = typeof performance !== "undefined" ? performance.now() : Date.now();
+        const dt = Math.min(0.05, art2LastT ? (now - art2LastT) / 1000 : 0.016);
+        art2LastT = now;
+        while (art2Embers.length < 38) {
+            art2Embers.push({ x: Math.random() * LOGICAL_W, y: LOGICAL_H + Math.random() * 120, vy: 18 + Math.random() * 30, sway: Math.random() * 6.28, r: 1 + Math.random() * 2.2, life: 1 });
+        }
+        ctx.save();
+        for (const e of art2Embers) {
+            e.y -= e.vy * dt;
+            e.sway += dt * 1.6;
+            e.x += Math.sin(e.sway) * 10 * dt;
+            if (e.y < 40) { e.y = LOGICAL_H + 20; e.x = Math.random() * LOGICAL_W; }
+            const a = Math.min(1, (LOGICAL_H - e.y) / 160) * Math.min(1, e.y / 160);
+            ctx.globalAlpha = 0.75 * Math.max(0, a);
+            ctx.fillStyle = e.r > 2 ? "#ffd59a" : "#ff9a5c";
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    // renderBackground（22）呼叫：回傳 true＝已經畫好新背景
+    function renderArt2Background() {
+        if (!hasArt2Background()) return false;
+        const isBoss = Boolean(enemy.archetype && enemy.archetype.bossType);
+        const ch = getArt2Chapter();
+        const bg = getArt2BgCanvas(isBoss, ch);
+        if (!bg) return false;
+        ctx.drawImage(bg, 0, 0, LOGICAL_W, LOGICAL_H);
+        updateDrawArt2Particles(ch);
+        return true;
+    }
+
+    // 平台：深色石頭＋暖色上緣光（新風格才換）
+    function drawArt2Platform(plat, accentColor) {
+        ctx.save();
+        const pGrad = ctx.createLinearGradient(0, plat.y, 0, plat.y + plat.h);
+        pGrad.addColorStop(0, "#3a2433");
+        pGrad.addColorStop(0.3, "#22141f");
+        pGrad.addColorStop(1, "#0d070c");
+        ctx.fillStyle = pGrad;
+        ctx.beginPath();
+        ctx.roundRect(plat.x, plat.y, plat.w, plat.h, 6);
+        ctx.fill();
+        // 石磚縫
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.35)";
+        ctx.lineWidth = 2;
+        for (let x = plat.x + 46; x < plat.x + plat.w - 10; x += 58) {
+            ctx.beginPath(); ctx.moveTo(x, plat.y + 6); ctx.lineTo(x - 6, plat.y + plat.h); ctx.stroke();
+        }
+        // 上緣：暖色光＋陣營色細線
+        ctx.fillStyle = "rgba(255, 196, 140, 0.55)";
+        ctx.fillRect(plat.x + 4, plat.y, plat.w - 8, 3);
+        ctx.strokeStyle = accentColor;
+        ctx.globalAlpha = 0.6;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(plat.x + 12, plat.y + 5); ctx.lineTo(plat.x + plat.w - 12, plat.y + 5); ctx.stroke();
+        ctx.restore();
+    }
+
+    // 介面：敵人頭像圖示、技能冷卻顯示整數（每幀，便宜）
+    let art2HudTick = 0;
+    function updateArt2Hud() {
+        if (!isArt2() || typeof document === "undefined" || !document.getElementById) return;
+        if (++art2HudTick % 20 === 1) { // 第一幀就填好敵人頭像
+            const card = document.getElementById("enemy-status-card");
+            const m = enemy.archetype && String(enemy.archetype.title).match(/^(\S+)\s/);
+            if (card && card.setAttribute && m) card.setAttribute("data-icon", m[1]);
+        }
+        (player.equippedSkills || []).forEach((s, i) => {
+            const mask = document.getElementById("dock-cd-" + i);
+            if (mask && s.cd > 0) mask.textContent = String(Math.ceil(s.cd));
+        });
+    }
+
+    // =========================================================================
+
+;
 // ==== js/23-bootstrap.js
     // 23. 啟動初始化（先載入存檔再更新 HUD 與大廳）
     // =========================================================================
@@ -38079,6 +38600,7 @@
     setupStage(1);
     renderHubUI();
     updateHUD();
+    applyArt2Body(); // 🎨 新美術風格樣品（22e，網址加 ?art=2）
     startI18n(); // 🌐 英文模式：畫面文字自動翻譯（12o）
     requestAnimationFrame(gameLoop);
 
