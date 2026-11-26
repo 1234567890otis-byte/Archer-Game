@@ -3522,6 +3522,121 @@
         .sig-spirit-desc { flex: 1; color: #cbd5e1; font-size: 0.66rem; min-width: 140px; }
         .sig-reroll { font: inherit; font-size: 0.66rem; font-weight: 900; padding: 3px 9px; border-radius: 999px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.12); color: #7dd3fc; cursor: pointer; }
         .sig-reroll:disabled { opacity: 0.4; cursor: not-allowed; }
+        /* 🔗 Combo 難度等級（13p） */
+        .combo-lv { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+        .combo-lv b { color: #f0abfc; }
+        .combo-lv span { font-size: 0.72rem; color: #cbd5e1; }
+        .combo-lv .combo-lv-reward { color: #fde68a; }
+        .shard-trial-btn.on { background: #f0abfc; color: #1e1b4b; border-color: #f0abfc; }
+        /* 🎒 裝備（13v） */
+        .gear-card { max-width: 1000px; }
+        #gear-body { display: flex; flex-direction: column; gap: 8px; }
+        .gr-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.8rem; }
+        .gr-sum { color: #e2e8f0; } .gr-sum b { color: #fde68a; }
+        .gr-mats { color: #cbd5e1; } .gr-mats b { color: #fde68a; }
+        .gr-slots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+        .gr-slot { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border-radius: 12px; border: 2px solid var(--gq); background: rgba(15, 23, 42, 0.7); color: #e2e8f0; font-size: 0.72rem; cursor: pointer; text-align: center; }
+        .gr-slot.on { box-shadow: 0 0 0 2px #fde68a; }
+        .gr-slot.locked { opacity: 0.55; }
+        .gr-slot-icon { font-size: 1.5rem; }
+        .gr-slot b { font-size: 0.85rem; }
+        .gr-slot-main { color: #fde68a; }
+        .gr-main { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 8px; align-items: start; }
+        .gr-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+        .gr-tab, .gr-auto { padding: 4px 8px; border-radius: 999px; border: 1px solid #475569; background: rgba(30, 41, 59, 0.8); color: #cbd5e1; font-size: 0.72rem; cursor: pointer; }
+        .gr-tab.on, .gr-auto.on { background: #fde68a; color: #1e293b; border-color: #fde68a; font-weight: 800; }
+        .gr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; max-height: 300px; overflow-y: auto; padding-right: 2px; }
+        .gr-item { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto auto; column-gap: 6px; align-items: center; padding: 6px 8px; border-radius: 10px; border: 2px solid var(--gq); background: rgba(15, 23, 42, 0.75); color: #e2e8f0; text-align: left; cursor: pointer; font-size: 0.72rem; }
+        .gr-item.on { box-shadow: 0 0 0 2px #fde68a; background: rgba(51, 65, 85, 0.9); }
+        .gr-item-icon { grid-row: 1 / span 3; font-size: 1.4rem; }
+        .gr-item-name { font-weight: 800; color: var(--gq); }
+        .gr-item-main { color: #cbd5e1; }
+        .gr-item-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+        .gr-item-tags i { font-style: normal; font-size: 0.62rem; padding: 0 4px; border-radius: 6px; background: rgba(100, 116, 139, 0.4); }
+        .gr-item-tags i.eq { background: rgba(34, 197, 94, 0.35); color: #bbf7d0; }
+        .gr-item-tags i.new { background: #f43f5e; color: #fff; }
+        .gr-item-tags i.up { background: rgba(250, 204, 21, 0.3); color: #fde68a; }
+        .gr-empty { grid-column: 1 / -1; color: #94a3b8; font-size: 0.8rem; padding: 16px; text-align: center; }
+        .gr-detail { padding: 10px; border-radius: 12px; border: 2px solid var(--gq, #475569); background: rgba(15, 23, 42, 0.8); display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; color: #e2e8f0; }
+        .gr-detail.empty { color: #94a3b8; text-align: center; padding: 30px 10px; }
+        .gr-detail-head { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+        .gr-detail-head b { font-size: 1rem; color: var(--gq); }
+        .gr-q { font-weight: 800; color: var(--gq); }
+        .gr-floor { margin-left: auto; color: #94a3b8; font-size: 0.7rem; }
+        .gr-lines div { padding: 2px 0; border-bottom: 1px dashed rgba(148, 163, 184, 0.25); }
+        .gr-lines .main { color: #fde68a; font-weight: 800; }
+        .gr-compare { display: flex; flex-wrap: wrap; gap: 4px 8px; font-size: 0.74rem; }
+        .gr-compare .plus { color: #86efac; } .gr-compare .minus { color: #fca5a5; }
+        .gr-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+        .gr-actions button { flex: 1 1 auto; min-width: 84px; }
+        .gr-bulk { display: flex; flex-direction: column; gap: 6px; font-size: 0.76rem; color: #cbd5e1; }
+        .gr-bulk > div { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+        .gr-bulk-btn { padding: 4px 10px; font-size: 0.72rem; }
+        .gr-note { font-size: 0.68rem; color: #94a3b8; }
+        .tw-gear-btn { padding: 4px 12px; font-size: 0.8rem; width: auto !important; flex: 0 0 auto; margin: 0 !important; }
+        .tw-gear-drop { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+        .tw-gear-drop span { padding: 2px 8px; border-radius: 8px; border: 1px solid var(--gq); color: var(--gq); background: rgba(15, 23, 42, 0.7); font-size: 0.78rem; font-weight: 800; }
+        @media (max-width: 700px) {
+            .gr-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .gr-main { grid-template-columns: 1fr; }
+            .gr-list { max-height: 220px; }
+        }
+        /* 🗼 天弓塔（13u） */
+        .tower-card { max-width: 980px; }
+        #tower-body { display: flex; flex-direction: column; gap: 8px; }
+        .tw-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .tw-stamina { font-size: 1rem; color: #fde68a; font-weight: 900; }
+        .tw-stamina b { font-size: 1.25rem; }
+        .tw-stamina span { font-size: 0.68rem; color: #94a3b8; font-weight: 400; margin-left: 4px; }
+        .tw-total { color: #fde68a; font-weight: 900; font-size: 0.85rem; }
+        .tw-stars i { font-style: normal; color: #475569; letter-spacing: 1px; }
+        .tw-stars i.on { color: #fde047; text-shadow: 0 0 6px rgba(253, 224, 71, 0.6); }
+        .tw-stars.big { font-size: 2.4rem; line-height: 1; }
+        .tw-stars.big i { display: inline-block; animation: twStarPop 0.5s ease-out both; }
+        .tw-stars.big i:nth-child(2) { animation-delay: 0.25s; }
+        .tw-stars.big i:nth-child(3) { animation-delay: 0.5s; }
+        @keyframes twStarPop { 0% { transform: scale(0.2); opacity: 0; } 70% { transform: scale(1.35); opacity: 1; } 100% { transform: scale(1); } }
+        .tw-result { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px; border-radius: 12px; text-align: center; }
+        .tw-result.win { border: 1px solid rgba(253, 224, 71, 0.6); background: linear-gradient(135deg, rgba(253, 224, 71, 0.12), rgba(15, 23, 42, 0.6)); }
+        .tw-result.lose { border: 1px solid rgba(248, 113, 113, 0.5); background: rgba(127, 29, 29, 0.2); }
+        .tw-result-title { font-weight: 900; font-size: 1.05rem; color: #f8fafc; }
+        .tw-result-sub, .tw-miss { font-size: 0.74rem; color: #cbd5e1; }
+        .tw-miss.ok { color: #86efac; font-weight: 900; }
+        .tw-reward { font-size: 0.85rem; color: #fde68a; font-weight: 900; }
+        .tw-result .btn-row button { min-width: 150px; white-space: nowrap; }
+        .tw-floors { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; }
+        .tw-floor, .tw-stage { font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 2px; border-radius: 10px; color: #e2e8f0; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(148, 163, 184, 0.3); }
+        .tw-floor b { font-size: 0.95rem; }
+        .tw-floor span { font-size: 0.6rem; color: #fde68a; }
+        .tw-floor.on, .tw-stage.on { border-color: #fde047; box-shadow: 0 0 10px rgba(253, 224, 71, 0.4); background: rgba(253, 224, 71, 0.1); }
+        .tw-floor.locked, .tw-stage.locked { opacity: 0.45; cursor: not-allowed; }
+        .tw-stages { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+        .tw-stage em { font-style: normal; font-size: 1.3rem; }
+        .tw-stage b { font-size: 0.8rem; }
+        .tw-stage .tw-stars { font-size: 0.75rem; }
+        .tw-detail { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(148, 163, 184, 0.3); background: rgba(15, 23, 42, 0.55); }
+        .tw-detail-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .tw-detail-head b { font-size: 1.1rem; color: #f8fafc; }
+        .tw-kind { font-weight: 900; color: #fde68a; }
+        .tw-best { font-size: 0.68rem; color: #94a3b8; }
+        .tw-desc, .tw-foes { font-size: 0.76rem; color: #cbd5e1; }
+        .tw-rules { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tw-rules span { font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; background: rgba(253, 224, 71, 0.1); color: #fde68a; border: 1px solid rgba(253, 224, 71, 0.35); }
+        .tw-actions { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 6px; }
+        .tw-actions .gold-btn { padding: 12px; font-size: 1rem; }
+        .tw-note { font-size: 0.66rem; color: #94a3b8; }
+        .tw-chests { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.72rem; color: #cbd5e1; }
+        .tw-chest { font: inherit; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.7); color: #94a3b8; cursor: pointer; }
+        .tw-chest.ready { color: #1f2937; background: linear-gradient(90deg, #f59e0b, #fde047); border-color: #fde047; animation: twPulse 1.2s ease-in-out infinite; }
+        .tw-chest.got { color: #86efac; }
+        .tw-chest:disabled { cursor: default; }
+        @keyframes twPulse { 50% { box-shadow: 0 0 12px rgba(253, 224, 71, 0.7); } }
+        .tw-locked { padding: 20px; text-align: center; color: #cbd5e1; }
+        @media (max-width: 640px) {
+            .tw-floors { grid-template-columns: repeat(5, 1fr); }
+            .tw-actions { grid-template-columns: 1fr 1fr; }
+            .tw-actions .gold-btn { grid-column: 1 / -1; }
+        }
         /* 本命弓：簡潔版（大數字、下一步卡片、格子、⚙️ 更多收起來） */
         .sig-mat { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 1rem; }
         .sig-equipped { font-size: 0.66rem; font-weight: 900; color: #86efac; }
@@ -4085,9 +4200,13 @@
         .region-tutorial small { color: #cbd5e1; font-weight: 400; }
         .loadout-simple { color: #fde68a; margin: 3px 0; }
         /* 新手友善：開始畫面、技能頁、遺物 */
+        .start-lang { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.95rem; }
+        .start-lang-btn { padding: 6px 16px; border-radius: 999px; border: 1px solid #475569; background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 800; font-size: 0.85rem; cursor: pointer; }
+        .start-lang-btn.on { background: #fde68a; color: #1e293b; border-color: #fde68a; }
         #btn-open-loadout { display: none !important; } /* 開始畫面只留「遊戲說明」和「開啟戰備大廳」 */
         #start-modal .version-pill { display: none; }
         .start-simple p { font-size: 1rem; margin: 6px 0; text-align: center; }
+        @media (max-width: 400px) { .hero-title { font-size: 1.3rem; letter-spacing: 1px; white-space: nowrap; } }
         #loadout-grid { overflow-x: hidden !important; min-width: 0; }
         .loadout-body { min-width: 0; overflow: hidden; }
         #loadout-grid .loadout-head { color: #e2e8f0 !important; } /* 名字統一白色，稀有度看外框顏色 */
@@ -4351,6 +4470,7 @@
                         <button id="hub-nav-talents" type="button" class="hub-nav-btn gacha-tab"><span>🌟</span><span>天賦樹</span><span id="hub-badge-talents" class="nav-badge hidden"></span></button>
                         <button id="hub-nav-relics" type="button" class="hub-nav-btn combo-tab"><span>💍</span><span>遺物</span><span id="hub-badge-relics" class="nav-badge hidden"></span></button>
                         <button id="hub-nav-awaken" type="button" class="hub-nav-btn gacha-tab"><span>✨</span><span>覺醒</span><span id="hub-badge-awaken" class="nav-badge hidden"></span></button>
+                            <button id="hub-nav-gear" type="button" class="hub-nav-btn gacha-tab"><span>🎒</span><span>裝備</span><span id="hub-badge-gear" class="nav-badge hidden"></span></button>
                         <button id="hub-nav-signature" type="button" class="hub-nav-btn skill-gacha-tab"><span>🏹</span><span>本命弓</span><span id="hub-badge-signature" class="nav-badge hidden"></span></button>
                     </div>
                     <div class="hub-nav-group hub-tab-panel" data-tab="collect" data-label="📖 收藏">
@@ -4412,6 +4532,7 @@
                         <div class="hub-mode-title hub-more-title">🎮 更多玩法</div>
                         <div class="hub-mode-row">
                             <button id="hub-nav-map" type="button" class="hub-nav-btn gacha-tab"><span>🗺️</span><span>主線地圖</span><span id="hub-badge-map" class="nav-hint"></span></button>
+                            <button id="hub-nav-tower" type="button" class="hub-nav-btn gacha-tab"><span>🗼</span><span>天弓塔</span></button>
                             <button id="hub-nav-pvp" type="button" class="hub-nav-btn combo-tab"><span>🤺</span><span>連線對戰</span></button>
                             <button id="hub-nav-training" type="button" class="hub-nav-btn"><span>🎯</span><span>訓練模式</span></button>
                             <button id="hub-nav-dungeon" type="button" class="hub-nav-btn combo-tab"><span>🏛️</span><span>遠古聖域</span></button>
@@ -4441,6 +4562,7 @@
                 <button id="btn-open-hub" type="button" class="gold-btn">🏛️ 開啟戰備大廳</button>
                 <button id="btn-open-loadout" type="button" class="primary-btn">START BATTLE // 配置 5 技能</button>
             </div>
+            <div class="start-lang">🌐 <button type="button" class="start-lang-btn" data-lang="zh">繁體中文</button><button type="button" class="start-lang-btn" data-lang="en">English</button></div>
         </div>
     </div>
 
@@ -4838,6 +4960,30 @@
             <div class="btn-row">
                 <button id="btn-equip-signature" type="button" class="primary-btn">🏹 裝備本命弓</button>
                 <button id="btn-close-signature" type="button" class="secondary-btn">返回戰備大廳</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2U. 🎒 裝備（13v） -->
+    <div id="gear-modal" class="modal-overlay hidden">
+        <div class="modal-card gear-card">
+            <div class="version-pill">GEAR // 裝備</div>
+            <div id="gear-banner" class="gacha-result-banner"></div>
+            <div id="gear-body"></div>
+            <div class="btn-row">
+                <button id="btn-close-gear" type="button" class="secondary-btn">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2T. 🗼 天弓塔（13u） -->
+    <div id="tower-modal" class="modal-overlay hidden">
+        <div class="modal-card tower-card">
+            <div class="version-pill">SKY TOWER // 天弓塔</div>
+            <div id="tower-banner" class="gacha-result-banner"></div>
+            <div id="tower-body"></div>
+            <div class="btn-row">
+                <button id="btn-close-tower" type="button" class="secondary-btn">返回戰備大廳</button>
             </div>
         </div>
     </div>
@@ -7272,7 +7418,7 @@
         },
         {
             key: "demo_sapper",
-            title: "💣 爆破工兵",
+            title: "⏰ 定時炸彈兵",
             badge: "DELAYED BOMB + PICK-5",
             primaryColor: "#fdba74",
             glowColor: "#ea580c",
@@ -7286,6 +7432,145 @@
             elementMode: "flame",
             bulwarkInterval: 999,
             desc: "【炸彈】每第 3 箭改成在你腳下埋炸彈，1.5 秒後爆炸並留下火焰；其他箭有機率是火箭。"
+        },
+        // ---- 第二批特色普通敵人（行為寫在 19l-enemy-traits2.js）----
+        {
+            key: "hook_hunter",
+            title: "🪝 鉤索獵人",
+            badge: "GRAPPLE HOOK + PICK-5",
+            primaryColor: "#fcd34d",
+            glowColor: "#d97706",
+            hornColor: "#78350f",
+            bossType: null,
+            trait: "hook",
+            minStage: 8,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【鉤索】每第 4 箭是鉤索：打中會把你往前拉，拉過去馬上再補一箭。看到黃色繩子就跳開，或用箭把鉤子撞掉。"
+        },
+        {
+            key: "swarm_tamer",
+            title: "🐝 蜂群馴師",
+            badge: "BEE SWARM + PICK-5",
+            primaryColor: "#fde047",
+            glowColor: "#ca8a04",
+            hornColor: "#422006",
+            bossType: null,
+            trait: "swarm",
+            minStage: 10,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【蜂群】每 8 秒放出 2 隻毒蜂（最多 3 隻）飛過來咬你；毒蜂會擋住你射向他的箭。先清蟲再打本體。"
+        },
+        {
+            key: "magnet_archer",
+            title: "🧲 磁力射手",
+            badge: "MAGNET FIELD + PICK-5",
+            primaryColor: "#93c5fd",
+            glowColor: "#2563eb",
+            hornColor: "#1e3a8a",
+            bossType: null,
+            trait: "magnet",
+            minStage: 13,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "frost",
+            bulwarkInterval: 999,
+            desc: "【磁場】每隔 4.5 秒開啟 3 秒磁場：平射進去的箭會被往上彈開。從上方往下掉的拋物線箭不受影響。"
+        },
+        {
+            key: "thorn_druid",
+            title: "🌿 荊棘德魯伊",
+            badge: "THORN SEED + PICK-5",
+            primaryColor: "#86efac",
+            glowColor: "#16a34a",
+            hornColor: "#14532d",
+            bossType: null,
+            trait: "thorn",
+            minStage: 16,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【荊棘】每第 3 箭是種子，落地長出 5 秒荊棘（最多 3 叢）：踩到會變慢又被刺。跳起來或站高台就不會被刺。"
+        },
+        {
+            key: "boomerang_thrower",
+            title: "🪃 回力鏢手",
+            badge: "BOOMERANG + PICK-5",
+            primaryColor: "#f9a8d4",
+            glowColor: "#db2777",
+            hornColor: "#831843",
+            bossType: null,
+            trait: "boomer",
+            minStage: 19,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【回力鏢】每第 2 箭是回力鏢：飛過你身後會折返，同一支可能打你兩次。閃過第一次後別馬上走回原位。"
+        },
+        {
+            key: "shell_guard",
+            title: "🐢 龜甲兵",
+            badge: "SHELL GUARD + PICK-5",
+            primaryColor: "#6ee7b7",
+            glowColor: "#059669",
+            hornColor: "#064e3b",
+            bossType: null,
+            trait: "shell",
+            minStage: 22,
+            hpMult: 1.2,
+            speedMult: 0.85,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "frost",
+            bulwarkInterval: 999,
+            desc: "【龜殼】血較厚；每 6.5 秒縮進殼裡 2.2 秒（完全無敵、不射箭），出殼後 1.6 秒承受傷害 ×1.5。抓出殼的時機爆發。"
+        },
+        {
+            key: "portal_mage",
+            title: "🌀 傳送門術士",
+            badge: "PORTAL DROP + PICK-5",
+            primaryColor: "#67e8f9",
+            glowColor: "#0891b2",
+            hornColor: "#164e63",
+            bossType: null,
+            trait: "portal",
+            minStage: 25,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【傳送門】每第 3 箭改成在你頭上開 2 道傳送門，0.85 秒後箭從上面直直掉下來。看地上的藍色落點閃開。"
+        },
+        {
+            key: "war_drummer",
+            title: "🥁 戰鼓手",
+            badge: "WAR DRUM + PICK-5",
+            primaryColor: "#fbbf24",
+            glowColor: "#b45309",
+            hornColor: "#451a03",
+            bossType: null,
+            trait: "drum",
+            minStage: 28,
+            isArchitect: false,
+            isBulwark: false,
+            isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【戰鼓】每 3 拍一次重擊（一次 3 支箭），每次重擊後節奏變快（最多射速 +24%）。第 3 拍前打出他 4% 生命就能打斷，節奏也會變慢。"
         }
     ];
 
@@ -8183,6 +8468,17 @@
         shardBanner: document.getElementById("shard-banner"),
         shardBody: document.getElementById("shard-body"),
         btnCloseShard: document.getElementById("btn-close-shard"),
+        towerModal: document.getElementById("tower-modal"),
+        towerBanner: document.getElementById("tower-banner"),
+        towerBody: document.getElementById("tower-body"),
+        btnCloseTower: document.getElementById("btn-close-tower"),
+        hubNavTower: document.getElementById("hub-nav-tower"),
+        gearModal: document.getElementById("gear-modal"), // 🎒 裝備（13v）
+        gearBanner: document.getElementById("gear-banner"),
+        gearBody: document.getElementById("gear-body"),
+        btnCloseGear: document.getElementById("btn-close-gear"),
+        hubNavGear: document.getElementById("hub-nav-gear"),
+        hubBadgeGear: document.getElementById("hub-badge-gear"),
         hubNavSignature: document.getElementById("hub-nav-signature"),
         hubBadgeSignature: document.getElementById("hub-badge-signature"),
         signatureModal: document.getElementById("signature-modal"),
@@ -8738,6 +9034,8 @@
                 settings: getSettings(),
                 firstClearPaid: game.firstClearPaid || 0,
                 dungeon: game.dungeonSave || {},
+                tower: game.towerSave || null, // 🗼 天弓塔（13u）
+                gear: game.gearSave || null, // 🎒 裝備（13v）
                 rebirths: game.rebirths || 0,
                 keyBindings: Array.isArray(game.keyBindings) ? game.keyBindings : null,
                 awakened: game.awakened || {},
@@ -8890,6 +9188,8 @@
                 game.relics = rl;
             }
             game.dungeonSave = sanitizeDungeonSave(data.dungeon);
+            game.towerSave = sanitizeTowerSave(data.tower); // 🗼 天弓塔（13u）
+            game.gearSave = sanitizeGearSave(data.gear); // 🎒 裝備（13v）
             if (Array.isArray(data.equippedRelics)) {
                 game.equippedRelics = sanitizeEquippedRelics(data.equippedRelics);
             }
@@ -9025,6 +9325,8 @@
         game.relics = {};
         game.equippedRelics = [];
         game.dungeonSave = sanitizeDungeonSave(null);
+        game.towerSave = sanitizeTowerSave(null);
+        game.gearSave = sanitizeGearSave(null);
         game.rebirths = 0;
         game.awakened = {};
         game.unlockedFeatures = {};
@@ -9088,13 +9390,14 @@
         const stats = getEquippedBowStats();
         // 疾風加速雕像：存在期間射箭冷卻 -35%（原本完全取消冷卻 → -50% → -35%；多箭流派加了命中率模擬後仍偏強）
         const hasteMult = hasActiveHasteTotem("player") ? 0.65 : 1;
-        return Math.max(0.18, BASE_SHOT_COOLDOWN * stats.cdMult * (player.shotCdMult || 1) * getRelicShotCdMult() * hasteMult);
+        const runMult = Math.max(RUN_BALANCE.runShotCdMin, player.shotCdMult || 1); // 局內加成最多 -40%
+        return Math.max(RUN_BALANCE.shotCdFloor, BASE_SHOT_COOLDOWN * stats.cdMult * runMult * getRelicShotCdMult() * hasteMult);
     }
 
     function addCoins(amount, popupX, popupY, labelPrefix = "") {
         if (amount <= 0) return;
         // 角色進化：局內金幣獲取加成
-        amount = Math.round(amount * getEvoCoinMult() * getTrainingCoinMult() * getTalentCoinMult() * getRelicCoinMult() * getStageCoinMult()); // 關卡中 ×0.75（13o）
+        amount = Math.round(amount * getEvoCoinMult() * getTrainingCoinMult() * getTalentCoinMult() * getRelicCoinMult() * getStageCoinMult() * getGearCoinMult()); // 關卡中 ×0.75（13o）、裝備詞條（13v）
         if (amount <= 0) return;
         if (game.training) game.training.coinsEarned = (game.training.coinsEarned || 0) + amount;
         game.coins += amount;
@@ -9112,6 +9415,8 @@
 
     function applyDamageToCharacter(target, rawDmg, reasonLabel = "") {
         let dmg = rawDmg;
+        // 🗼 天弓塔：小怪還沒清光，隊長有護盾（16m）
+        if (target === enemy && isTowerLeaderShielded()) { target.hitFlash = 0.08; return 0; }
         if (target === player && game.tutorial) onTutorialPlayerHit(); // 13r：新手教學（躲箭判定）
         // 區網對戰：傷害倍率＋驟死（對手送來的傷害 "pvp" 已經在對手那邊乘過，不再乘）
         // 週挑戰：狂暴對決（敵我傷害 +35%）
@@ -9121,9 +9426,10 @@
             // 對手掛在我身上的減益（咒印、弱點標記）：只有「我這邊算的傷害」要套（對手那邊算的已經套過）
             if (target === player) dmg *= getPvpIncomingAmp();
         }
-        // 賜福：堅韌之軀（玩家承傷）、處決者（敵人低血時增傷）
-        if (target === player && (player.damageTakenMult || 1) < 1) {
-            dmg = Math.max(1, Math.round(dmg * player.damageTakenMult));
+        const incomingDmg = dmg; // 減傷前的傷害（最後的承傷下限用）
+        // 賜福：堅韌之軀（玩家承傷）、處決者（敵人低血時增傷）；承傷倍率最低 ×0.45（13i）
+        if (target === player && getPlayerDamageTakenMult() < 1) {
+            dmg = Math.max(1, Math.round(dmg * getPlayerDamageTakenMult()));
         }
         // 平衡（拉抬弱勢流派）：
         //   🌫️ 煙霧彈：站在自己的煙霧裡，受到的傷害 -25%（機動游擊、蒸汽控場）
@@ -9191,6 +9497,10 @@
         // 聖域守護 Boss（樹根減傷、硬直增傷）／王冠審判的受擊記錄
         if (target === enemy) dmg = Math.max(1, Math.round(applyGuardianDamageToEnemy(dmg, reasonLabel)));
         if (target === enemy) dmg = Math.max(1, Math.round(applyChapter2DamageToEnemy(dmg, reasonLabel))); // 第二章：祈禱打斷、回溯打斷、硬直增傷
+        if (target === enemy) {
+            dmg = Math.round(applyTrait2DamageToEnemy(dmg, reasonLabel)); // 龜甲兵縮殼無敵／出殼增傷、打斷戰鼓手（19l）
+            if (dmg <= 0) { target.hitFlash = 0.18; return 0; }
+        }
         else if (target === player) dmg = Math.round(applyGuardianDamageToPlayer(dmg));
         // 賜福（巨人殺手、元素專精、先發制人、閃避、鋼鐵意志）
         dmg = applyBlessingDamageMods(target, dmg);
@@ -9200,6 +9510,8 @@
         }
         // 遺物（鏡面徽章、貪婪錢袋、鳳凰灰燼、對敵增傷）與天賦「不屈」
         dmg = applyRelicDamageMods(target, dmg);
+        // 承傷下限：所有減傷疊起來，最後至少要吃 30%（閃避、護盾這種「完全擋掉」不算）
+        if (target === player && dmg > 0) dmg = Math.max(dmg, Math.round(incomingDmg * RUN_BALANCE.dmgTakenTotalMin));
         if (target === player) dmg = applyUndying(dmg);
         if (dmg <= 0) {
             target.hitFlash = 0.18;
@@ -9872,6 +10184,8 @@
         if (dom.whatsNewModal) dom.whatsNewModal.classList.add("hidden");
         if (dom.signatureModal) dom.signatureModal.classList.add("hidden");
         if (dom.shardModal) dom.shardModal.classList.add("hidden");
+        if (dom.towerModal) dom.towerModal.classList.add("hidden");
+        if (dom.gearModal) dom.gearModal.classList.add("hidden"); // 🎒 裝備（13v）
         if (dom.comboBossModal) dom.comboBossModal.classList.add("hidden");
         if (dom.treasureModal) dom.treasureModal.classList.add("hidden");
         if (dom.featureGuide) dom.featureGuide.classList.add("hidden");
@@ -10213,6 +10527,7 @@
         setBadge(dom.hubBadgeAwaken, BOW_ORDER.some((id) => canAwaken("bow", id)) || SKILL_ORDER.some((id) => canAwaken("skill", id)) ? "可覺醒" : "");
         // 本命弓：弓魂夠淬鍊／升階，或有能力還沒選
         if (dom.hubBadgeSignature) setBadge(dom.hubBadgeSignature, getSignatureBadge()); // 13m：要選能力／弓魂和碎片夠了
+        if (dom.hubBadgeGear) setBadge(dom.hubBadgeGear, getGearBadge()); // 13v：天弓塔掉的新裝備
         if (dom.hubBadgeChest) setBadge(dom.hubBadgeChest, getChestKeys() > 0 ? "🔑" + getChestKeys() : ""); // 13q：有鑰匙
         const achList = getAchievements();
         const achDone = achList.filter((a) => game.achievements && game.achievements[a.id]).length;
@@ -10346,6 +10661,15 @@
         shade_stalker: "看狀態列的影步倒數，歸零前先橫移或跳起來，他現身後的 2 連射是瞄準你原本的位置。",
         holy_warden: "他停下祈禱（頭上金光）時是最好的輸出時機：承傷 +30%，打出 8% 生命就能打斷回血。把爆發技能留到這時候。",
         demo_sapper: "數他的箭：第 3 箭是炸彈，圈出現後 1.5 秒爆炸，還會留火。看到圈就離開，別站在火上。",
+        // 第二批特色敵人（19l）
+        hook_hunter: "看狀態列的鉤索倒數，倒數 1 箭時準備跳。被拉過去後他會馬上補一箭，先開護盾或往回跳。用箭把鉤子撞掉也可以。",
+        swarm_tamer: "毒蜂血很少，一箭一隻。先把蜂清光再打本體，不然你的箭都被蜂擋掉。箭雨、地雷這種範圍技可以一次清好幾隻。",
+        magnet_archer: "磁場開著的時候別平射，把弓往上拉高，讓箭從上面掉進去；或等磁場關掉的 4.5 秒再全力輸出。",
+        thorn_druid: "種子落地才會長荊棘，別站在落點上。被刺到就跳起來或站上高台，荊棘 5 秒後會消失。",
+        boomerang_thrower: "回力鏢會飛過你身後再折返。閃過第一次後往前走或跳起來，別退回原本的位置。",
+        shell_guard: "縮殼的 2.2 秒完全打不動，先停手、把技能留著；出殼後的 1.6 秒承傷 ×1.5，一口氣把爆發全丟出去。",
+        portal_mage: "看地上的藍色圈：箭會從正上方掉下來。兩個圈一個在你腳下、一個在你移動的方向，往反方向閃最安全。",
+        war_drummer: "數狀態列的鼓點：亮兩顆時是打斷時機，打出他 4% 生命就能打斷重擊，節奏也會變慢。拖越久他射越快。",
         boss_eclipse_twin: "冰打炎皇、火打霜皇，同時帶冰火技能最好打。看狀態列的「受庇護」：血量差太多時血少的那位回血又減傷，要換打另一位。第二階段看平台顏色站位，別站在火上。",
         boss_rift_lord: "殘影開啟的 5 秒少射箭（射越多被射回來越多）；時間凍結時馬上停手。回溯蓄力時交爆發打斷。第二階段看到「時序即將錯亂」就先停下來，別在顛倒時亂跑。",
         boss_tyrant: "爆頭能消狂怒也能破解處刑宣告，帶必爆頭或爆頭倍率高的配置最好打。巨石牆擋路就從上方拋射。怒吼前先下高台。",
@@ -11172,25 +11496,31 @@
                 }
             },
             {
-                icon: "💖", title: "生命之泉", desc: "本局最大生命 +6%，並回復 40% 生命。",
+                id: "hp", icon: "💖", title: "生命之泉", desc: "本局最大生命 +6%（每局最多 " + RUN_BALANCE.eliteRunPickMax + " 次），並回復 40% 生命。",
                 apply: () => {
                     addRunMaxHpBonus(0.06);
                     player.hp = Math.min(player.maxHp, player.hp + Math.round(player.maxHp * 0.4 * getPlayerHealMult()));
                     return "💖 最大生命 +6%、回復 40% 生命";
                 }
             },
-            { icon: "⚔️", title: "戰意高昂", desc: "本局攻擊 +10%（加算）。", apply: () => { addRunAttackBonus(0.1); return "⚔️ 本局攻擊 +10%"; } },
+            { id: "atk", icon: "⚔️", title: "戰意高昂", desc: "本局攻擊 +10%（加算，每局最多 " + RUN_BALANCE.eliteRunPickMax + " 次）。", apply: () => { addRunAttackBonus(0.1); return "⚔️ 本局攻擊 +10%"; } },
             {
                 icon: "⏱️", title: "時間加速", desc: "所有技能冷卻立刻重置，本局技能冷卻 -6%。",
                 apply: () => {
-                    player.cdMultiplier = Math.max(0.45, +(player.cdMultiplier * 0.94).toFixed(3));
-                    player.equippedSkills.forEach((s) => { s.cd = 0; s.maxCd = Math.max(2.0, +(s.maxCd * 0.94).toFixed(2)); });
+                    applyRunSkillCdMult(0.94); // 最低 ×0.5（13i）
+                    player.equippedSkills.forEach((s) => { s.cd = 0; s.refunded = 0; });
                     if (typeof updateSkillDockUI === "function") updateSkillDockUI();
                     return "⏱️ 技能冷卻重置、本局冷卻 -6%";
                 }
             }
         ];
-        return { resource, run };
+        // 有上限的本局強化：選滿就不再出現；選了記一次
+        const runOk = run.filter((o) => !o.id || getEliteRunPicks(o.id) < RUN_BALANCE.eliteRunPickMax).map((o) => {
+            if (!o.id) return o;
+            const apply = o.apply;
+            return Object.assign({}, o, { apply: () => { if (!player.eliteChestPicks) player.eliteChestPicks = {}; player.eliteChestPicks[o.id] = getEliteRunPicks(o.id) + 1; return apply(); } });
+        });
+        return { resource, run: runOk };
     }
 
     function pickRandom(list) {
@@ -11233,6 +11563,8 @@
         { id: "trial", nav: "hubNavTrial", name: "Boss 試煉", group: "右邊「更多玩法」", need: "通過 1-4 毒霧沼澤解鎖", check: () => game.highestStage >= BOSS_TRIAL_UNLOCK_STAGE },
         { id: "combo_boss", nav: "hubNavComboBoss", name: "Combo 挑戰", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= COMBO_CHALLENGE.unlockStage },
         { id: "chests", nav: "hubNavChest", name: "寶箱", group: "⭐ 每日", need: "拿到第一把 🔑 寶箱鑰匙解鎖", check: () => getChestKeys() > 0 || getChestSave().opened > 0 },
+        { id: "tower", nav: "hubNavTower", name: "天弓塔", group: "右邊「更多玩法」", need: "通過第 12 關解鎖", check: () => game.highestStage >= TOWER.unlockStage },
+        { id: "gear", nav: "hubNavGear", name: "裝備", group: "🧬 養成", need: "通過第 12 關解鎖（天弓塔會掉裝備）", check: () => game.highestStage >= TOWER.unlockStage },
         { id: "dungeon", nav: "hubNavDungeon", name: "遠古聖域", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= DUNGEON_UNLOCK_STAGE },
         { id: "awaken", nav: "hubNavAwaken", name: "覺醒", group: "🧬 養成", need: "取得第一個 💠 覺醒結晶解鎖", check: () => (game.crystals || 0) > 0 || Object.keys(game.awakened || {}).length > 0 }
     ];
@@ -11390,6 +11722,7 @@
         if (r.skillTicket) parts.push("🎟️×" + r.skillTicket);
         if (r.bowTicket) parts.push("🎫×" + r.bowTicket);
         if (r.bowSoul) parts.push(r.bowSoul + " 🪶");
+        if (r.gear && r.gear.length) parts.push(gearRewardText(r.gear)); // 🎒 天弓塔的裝備（已經放進背包，13v）
         return parts.join("、");
     }
 
@@ -13021,6 +13354,12 @@
                 "🏹 <b>本命弓</b>（通過 1-1 解鎖）：每個人一把專屬的弓，出生隨機一個<b>弓靈</b>（🔥烈 ❄️寒 🌿毒 ⚡迅 🌑影 ⏳時，可花 💠 重塑）；從普通開始用 🪶 弓魂淬鍊（每顆 ★ 不同屬性），升階還要 🧩 本命碎片（每隻 Boss 第一次打倒才給，不能刷）：數值詞條 → 被動能力 → 第二能力或強化 → 弓靈專屬神話特性＋光環，名字和顏色自己決定",
                 "🌌 <b>第三章「神域戰場」</b>（第 73～108 關）：6 個新區域、6 隻新的區域霸主（風暴熾天使、熔岩龍后、織命蛛后、不死鳳凰、亡骨君王、星界神王）",
                 "⚔️ <b>Boss 試煉</b>（通過 1-4 解鎖）：遇過的 Boss 可以用 ★1～★3 難度單挑，第一次通過給 🧩 本命碎片；📖 碎片圖鑑列出所有碎片的來源",
+                "🗼 <b>天弓塔</b>：一層 7 關往上爬，有飛蝠、小弓兵、炸彈蟲、盾兵、史萊姆、跳跳兵一大群小怪；打完拿 ★～★★★，三星就能用 ⚡ 體力掃蕩（通過第 12 關解鎖）",
+                "📦 <b>區域開局補給加強</b>：從後面區域直接開局時，賜福、Boss 戰利品變多，還多給 1 支箭和技能冷卻 -20%（第二章開局：12 次賜福、6 次戰利品），不用每次都從 1-1 打上來",
+                "🔗 <b>Combo Boss 難度等級</b>：每隻每打倒 5 次升 1 級（最多 Lv.10，每級生命／攻擊 +12%），越難傳說機率越高（5% → 15%）、殘片和金幣越多；每週一歸零，開「📌 保留難度」就不會歸零，也可以自己降一級",
+                "🎒 <b>裝備</b>：打天弓塔會掉 🎀弓飾、🪶箭羽、🧤護手（10F 守護者再開 🔮護符），品質 ⚪普通～🔴神話，越上層越容易掉好的；穿著在主線、訓練、聖域都有效。不要的拆成 🔩 鍛造石，可以開自動拆解",
+                "👾 <b>8 種新敵人</b>（主線第 8～28 關陸續出現，天弓塔 7～10 層當隊長）：會把你拉過去的🪝鉤索獵人、放毒蜂的🐝蜂群馴師、把平射彈開的🧲磁力射手、種荊棘的🌿荊棘德魯伊、會飛回來的🪃回力鏢手、縮殼無敵的🐢龜甲兵、從頭上掉箭的🌀傳送門術士、越打越快的🥁戰鼓手；第二章的爆破工兵改名「⏰ 定時炸彈兵」",
+                "⚖️ <b>平衡</b>：減傷、射速、技能冷卻、吸血都有上限；「放技能減其他冷卻」不會再無限連鎖",
                 "🏞️ <b>全新場景</b>：四章各有自己的背景——黎明的弓手石像、月下古城堡、雲上的天空神殿、熔岩中的混沌王座（設定 → 精美背景可以關）",
                 "🎓 <b>第 0 章・新手教學</b>：新玩家第一次出發會先實戰學射箭、爆頭、跳躍躲箭和 5 個新手技能（三連散射、讀條火球、冰凍箭、神聖護盾、幻影疾步），完成送 🪙300 和技能券；主線地圖可以重玩",
                 "🌱 <b>新手區</b>：第 1～12 關變好打（每關約 30 秒、每過一關回滿血），前幾關不會出現會蓋牆、開盾的敵人",
@@ -13103,6 +13442,18 @@
             "🔑 寶箱鑰匙從 Boss 首殺、射手升級、每日任務、每週挑戰拿到（跟 🗝️ 聖域鑰匙不一樣）",
             "開出金幣、精華、💠、抽獎券、弓魂、技能；有 1% 機率開出<b>傳說</b>（也可能是 Combo 專屬傳說）",
             "連續 40 個沒出傳說，下一個必出（保底）；用不完的 💠 也可以換鑰匙（每週 5 把）"
+        ] },
+        tower: { icon: "🗼", title: "天弓塔", lines: [
+            "一層 7 關，一關一關往上爬：野外、迷宮，最後是<b>樓層守護者</b>",
+            "打完會拿 ★～★★★：<b>過關</b>、<b>剩一半以上的血</b>、<b>60 秒內打完</b>",
+            "拿到 ⭐⭐⭐ 就能花 ⚡ 體力<b>掃蕩</b>（直接拿獎勵、不用打）",
+            "第一次通關不花體力；打輸會退一半；🎯 練習不花體力但沒有獎勵"
+        ] },
+        gear: { icon: "🎒", title: "裝備", lines: [
+            "打 🗼 天弓塔（過關或掃蕩）會掉裝備，有 🎀弓飾、🪶箭羽、🧤護手，打倒 10F 守護者再開 🔮護符",
+            "品質越高越強：⚪普通 🟢精良 🔵稀有 🟣史詩 🟠極品 🔴神話，越上層越容易掉好的",
+            "穿著的裝備在主線、訓練、聖域、天弓塔都有效（連線對戰不算）",
+            "不要的拆掉換 🔩 鍛造石；可以開「自動拆解」，好的記得 🔒 鎖起來"
         ] },
         boss_trial: { icon: "⚔️", title: "Boss 試煉", lines: [
             "挑一隻<b>遇過的 Boss</b> 單挑，有 ★1～★3 三種難度",
@@ -13216,6 +13567,24 @@
         try { localStorage.setItem(LANG_KEY, lang === "en" ? "en" : "zh"); } catch (e) { /* 無痕模式 */ }
         try { saveGameProgress(); } catch (e) { /* 測試環境 */ }
         if (typeof location !== "undefined" && location.reload) location.reload();
+    }
+
+    function hasChosenLang() {
+        try { return localStorage.getItem(LANG_KEY) !== null; } catch (e) { return true; }
+    }
+
+    // 🌐 開始畫面的語言按鈕（第一次玩一打開就看得到；目前的語言亮起來，按另一個就切換並重新載入）
+    function setupStartLangButtons() {
+        if (typeof document === "undefined" || !document.querySelectorAll) return;
+        const cur = getLang();
+        document.querySelectorAll(".start-lang-btn").forEach((b) => {
+            const lang = b.getAttribute("data-lang");
+            b.classList.toggle("on", lang === cur);
+            b.addEventListener("click", () => {
+                if (lang === getLang()) { if (!hasChosenLang()) { try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* 無痕模式 */ } } return; }
+                setLang(lang);
+            });
+        });
     }
 
     // ---------- 字典：整段對照 ----------
@@ -13615,7 +13984,15 @@
         storm_caller: ["🌩️ Storm Caller", "【Thunderstorm】Every 3rd arrow becomes a lightning warning circle under you that strikes 0.9s later; get on the high platform or leave the circle."],
         shade_stalker: ["🌑 Shade Stalker", "【Shadow Step】Every 6s it teleports elsewhere on its platform and instantly fires 2 arrows. Purple smoke means get ready to dodge."],
         holy_warden: ["⛪ Holy Warden", "【Prayer】Every 9s it stops to pray for 1.4s (takes +30% damage), then heals 10% HP and gains a shield; deal 8% of its HP during the prayer to interrupt it."],
-        demo_sapper: ["💣 Demolition Sapper", "【Bombs】Every 3rd arrow plants a bomb under you that explodes after 1.5s and leaves fire; other arrows may be fire arrows."],
+        hook_hunter: ["🪝 Hook Hunter", "【Grapple】Every 4th arrow is a hook: if it hits, you get pulled forward and it fires again right away. See the yellow rope? Jump away, or shoot the hook down."],
+        swarm_tamer: ["🐝 Swarm Tamer", "【Swarm】Every 8s it releases 2 bees (up to 3) that fly over and sting you; bees block arrows aimed at it. Clear the bees first."],
+        magnet_archer: ["🧲 Magnet Archer", "【Magnet Field】Every 4.5s it turns on a 3s magnetic field: flat shots get knocked upward. Arrows dropping from above aren't affected."],
+        thorn_druid: ["🌿 Thorn Druid", "【Thorns】Every 3rd arrow is a seed that grows 5s of thorns where it lands (up to 3): stepping on them slows and hurts you. Jump or stand on the high platform."],
+        boomerang_thrower: ["🪃 Boomerang Thrower", "【Boomerang】Every 2nd shot is a boomerang that flies past you and comes back, so it can hit you twice. Don't step straight back after dodging."],
+        shell_guard: ["🐢 Shell Guard", "【Shell】Tankier; every 6.5s it hides in its shell for 2.2s (fully invincible, no shots), then takes ×1.5 damage for 1.6s. Burst it when it comes out."],
+        portal_mage: ["🌀 Portal Mage", "【Portals】Every 3rd shot opens 2 portals above you; 0.85s later arrows drop straight down. Dodge the blue marks on the ground."],
+        war_drummer: ["🥁 War Drummer", "【War Drum】Every 3rd beat is a heavy hit (3 arrows at once), and each one speeds up its rhythm (up to +24% fire rate). Deal 4% of its HP before the 3rd beat to interrupt it and slow it down."],
+        demo_sapper: ["⏰ Time Bomber", "【Bombs】Every 3rd arrow plants a bomb under you that explodes after 1.5s and leaves fire; other arrows may be fire arrows."],
         boss_chrono_colossus: ["⏳ Chrono Colossus · Kronos", "【Combo】① Chrono giant arrow (grows the longer it flies) → ② slows and enlarges its own arrows in mid-air → ③ blazing piercing giant arrow."],
         boss_twin_mirage: ["🪞 Twin Mirage · Charon", "【Empowered Twins】① A real clone shoots while the main body takes 25% less damage → ② swap places with crossing fire/ice resonance + clone shots → ③ twin execution volley!"],
         boss_gravity_warlock: ["🌌 Gravity Warlock · Omega", "【Combo】① Hovering singularity arrow array → ② forced zero-gravity field + hovering arrows plunge straight down → ③ black hole pulls you toward heavy arrows!"],
@@ -14879,7 +15256,7 @@
         "🌟 打倒新的 Boss、過關會拿到天賦點。": "🌟 Defeating new Bosses and clearing stages gives talent points.", "每一排先點滿上面兩格，才能點下面的。": "Max the top two in a column to unlock the ones below.",
         "打精英和 Boss 會掉遺物，用 💠 可以升級。": "Elites and Bosses drop relics; upgrade them with 💠.", "打精英、Boss 和 🏛️ 遠古聖域會掉": "Dropped by elites, Bosses and the 🏛️ Sanctum",
         "🆕 新技能！": "🆕 New skill!", "🆕 新弓！": "🆕 New bow!", "點一下繼續": "Tap to continue", "🎯 保底！": "🎯 Pity!", "💫 心願達成！": "💫 Wish granted!",
-        "🏹 本命弓": "🏹 Signature Bow", "🌟 傳說": "🌟 Legendary", "🟣 史詩": "🟣 Epic", "🔵 稀有": "🔵 Rare", "⚪ 普通": "⚪ Common", "♻️ 轉生神弓": "♻️ Rebirth bows",
+        "🏹 本命弓": "🏹 Signature Bow", "🌟 傳說": "🌟 Legendary", "🟣 史詩": "🟣 Epic", "🔵 稀有": "🔵 Rare", "不拆": "Off", "⚪ 普通": "⚪ Common", "♻️ 轉生神弓": "♻️ Rebirth bows",
         "⚔️ 第一～二章 Boss": "⚔️ Chapter 1–2 Bosses", "🌌 第三章・區域霸主": "🌌 Chapter 3 · Region Overlords", "🌋 第四章・區域霸主": "🌋 Chapter 4 · Region Overlords",
         "傳說！": "Legendary!", "完成 5 天的每日任務": "Finish all dailies on 5 days", "爆頭 300 次": "Land 300 headshots", "主線過 60 關": "Clear 60 main stages", "打倒 12 隻 Boss": "Defeat 12 Bosses",
         "打倒 10 隻精英敵人": "Defeat 10 elites", "施放技能 250 次": "Cast skills 250 times", "打出 Combo 50 次": "Trigger 50 Combos", "通關遠古聖域 5 次": "Clear the Sanctum 5 times",
@@ -14892,14 +15269,104 @@
         "🧩 碎片：第一次打倒 Boss 就會拿到（主線、聖域、Boss 試煉）": "🧩 Shards: earned the first time you defeat a Boss (main stages, Sanctum, Boss Trials)", "🪶 弓魂：打 Boss、精英、開區域寶箱、聖域通關都會拿到": "🪶 Bow Soul: from Bosses, elites, region chests and Sanctum clears",
         "⭐ 星星（每顆都會加能力，升階後保留）": "⭐ Stars (each one adds stats, kept after tiering up)", "✨ 特殊能力": "✨ Special abilities", "⚙️ 更多（弓靈、顏色、碎片）": "⚙️ More (spirit, color, shards)", "🎨 顏色": "🎨 Color",
         "數值詞條": "Stat affix", "被動能力": "Passive ability", "第二個被動能力或強化": "2nd passive or empower", "神話特性": "Mythic trait",
+        "額外賞金": "Extra bounty", "休整": "Rest", "立刻回復 35% 生命。": "Restore 35% HP right away.", " 冷卻減半": " cooldown halved",
+        "天弓塔": "Sky Tower", "：一層 7 關往上爬，有飛蝠、小弓兵、炸彈蟲、盾兵、史萊姆、跳跳兵一大群小怪；打完拿 ★～★★★，三星就能用 ⚡ 體力掃蕩（通過第 12 關解鎖）": ": climb 7 stages per floor against swarms of bats, archers, bomb bugs, shieldbearers, slimes and hoppers; earn ★ to ★★★, and 3 stars lets you sweep with ⚡ stamina (unlocks at stage 12)",
+        "平衡": "Balance", "：減傷、射速、技能冷卻、吸血都有上限；「放技能減其他冷卻」不會再無限連鎖": ": damage reduction, fire rate, skill cooldown and lifesteal now have caps; 'casting reduces other cooldowns' no longer chains forever", "SKY TOWER // 天弓塔": "SKY TOWER", "🗼 一關一關往上爬！拿到 ⭐⭐⭐ 就能用 ⚡ 體力掃蕩": "🗼 Climb stage by stage! Get ⭐⭐⭐ to sweep with ⚡ stamina",
+        "野外": "Field", "迷宮": "Maze", "樓層守護者": "Floor Guardian",
+        "3 波小怪：前兩波打完，隊長的護盾才會破": "3 waves of minions: clear the first two to break the leader's shield",
+        "小怪會一直冒出來：打倒一定數量，精英的護盾就會破，打倒精英過關": "Minions keep coming: defeat enough of them to break the elite's shield, then defeat the elite",
+        "Boss 每掉 1/3 血會叫一波小怪": "The Boss calls minions every time it loses 1/3 of its HP",
+        "隊長 ": "Leader ", "⭐ 精英 ": "⭐ Elite ", "　小怪：": "  Minions: ",
+        "飛蝠": "Bat", "小弓兵": "Archer", "炸彈蟲": "Bomb Bug", "盾兵": "Shieldbearer", "史萊姆": "Slime", "小史萊姆": "Mini Slime", "跳跳兵": "Hopper",
+        "★ 過關": "★ Clear", "🎯 練習": "🎯 Practice", "⚔️ 挑戰（第一次免費）": "⚔️ Challenge (first time free)",
+        "✅ 已經三星，可以掃蕩（直接拿獎勵、不用打）": "✅ 3 stars — you can sweep (get rewards without fighting)", "⭐⭐⭐ 拿到三星後就能掃蕩": "⭐⭐⭐ Get 3 stars to unlock sweeping",
+        "｜練習不花體力、也沒有獎勵": " | Practice is free but gives no rewards", "（滿了）": " (full)",
+        "🔁 再打一次": "🔁 Play again", "🔁 再試一次": "🔁 Try again", "➡️ 下一關": "➡️ Next stage", "⭐⭐⭐ 完美！這關可以掃蕩了": "⭐⭐⭐ Perfect! You can sweep this stage now",
+        "（第一次通關）": " (first clear)", "（練習）": " (practice)", "練習模式": "Practice mode", "　小提示：先清掉飛過來的小怪，跳起來躲箭": "  Tip: take out flying minions first and jump to dodge arrows",
+        "🛡️ 先打倒小怪，護盾才會破！": "🛡️ Defeat the minions to break the shield!", "⚔️ 最後一波！隊長的護盾破了": "⚔️ Final wave! The leader's shield is down", "⚔️ 精英的護盾破了！": "⚔️ The elite's shield is down!",
+        "🛡️ 擋住了！": "🛡️ Blocked!", "🛡️ 擋住！拋高射頭": "🛡️ Blocked! Lob it at the head", "📯 ": "📯 ", " 叫來了援軍！": " called reinforcements!",
+        "一層 7 關，一關一關往上爬：野外、迷宮，最後是": "7 stages per floor, climb one by one: field, maze, and finally the ", "打完會拿 ★～★★★：": "Earn ★ to ★★★: ",
+        "過關": "clear", "剩一半以上的血": "keep half your HP", "60 秒內打完": "finish within 60s", "拿到 ⭐⭐⭐ 就能花 ⚡ 體力": "With ⭐⭐⭐ you can spend ⚡ stamina to ", "掃蕩": "sweep",
+        "（直接拿獎勵、不用打）": " (rewards without fighting)", "第一次通關不花體力；打輸會退一半；🎯 練習不花體力但沒有獎勵": "First clears are free; losing refunds half; 🎯 practice is free but gives no rewards",
+        "🧹 掃蕩": "🧹 Sweep",
         "按 ": "Press ", "：": ": "
     });
     Object.assign(I18N_EN_TPL, {
-        "點技能欄第 {0} 格": "Tap skill slot {0}", "⚒️ 淬鍊第 {0} 顆星：{1}": "⚒️ Refine star {0}: {1}", "還差 {0} 🪶 弓魂": "{0} 🪶 Bow Soul to go", "還差 {0} 🧩 碎片": "{0} 🧩 shards to go", "每隻 Boss 第一次打倒才給，不能刷。升階要：稀有 {0}、史詩 {1}、傳說 {2}、神話 {3}": "Only from each Boss's first defeat — can't be farmed. Tier-up needs: Rare {0}, Epic {1}, Legendary {2}, Mythic {3}", "已收集 {0} / {1}": "Collected {0} / {1}", "（每週一換新・{0}/{1}）": " (new every Monday · {0}/{1})", "{0}/{1}・週 {2}/{3}": "{0}/{1} · week {2}/{3}", "⬆️ 升到 Lv.{0}！": "⬆️ Now Lv.{0}!", "🧩 升等進度 {0}/{1}": "🧩 Level progress {0}/{1}", "💍 點一下就能裝上或卸下（最多 {0} 個）。": "💍 Tap to equip or unequip (up to {0}).", "還有 {0} 個遺物沒拿到": "{0} relics not found yet",
+        "點技能欄第 {0} 格": "Tap skill slot {0}", "🗼 天弓塔 {0}-{1}": "🗼 Sky Tower {0}-{1}", "⚡ 體力不夠（要 {0}，現在 {1}）": "⚡ Not enough stamina (need {0}, have {1})", "⚡ 體力不夠（掃蕩一次要 {0}）": "⚡ Not enough stamina (a sweep costs {0})",
+        "⏱️ 要在 {0} 秒內打完（這次 {1} 秒，差 {2} 秒）": "⏱️ Finish within {0}s (took {1}s, {2}s short)", "💔 血量要剩 {0}% 以上（這次剩 {1}%）": "💔 Keep at least {0}% HP (had {1}%)", "🏆 {0}-{1} 過關！": "🏆 {0}-{1} cleared!", "💀 {0}-{1} 沒打過": "💀 {0}-{1} failed",
+        "⚡ 退還 {0} 體力": "⚡ {0} stamina refunded", "⭐ 總星數 {0} / {1}": "⭐ Total stars {0} / {1}", "第 {0} 層星星寶箱": "Floor {0} star chests", "最快 {0}s": "Best {0}s", "★★ 剩 {0}% 血": "★★ {0}% HP left", "★★★ 再加 {0} 秒內": "★★★ also within {0}s",
+        "⚔️ 挑戰（⚡{0}）": "⚔️ Challenge (⚡{0})", "🧹 掃蕩 ×{0}": "🧹 Sweep ×{0}", "（{0}:{1} 後 +1）": " (+1 in {0}:{1})", "🌊 第 {0} / {1} 波": "🌊 Wave {0} / {1}", "🔥 ×{0} 連殺！": "🔥 ×{0} streak!",
+        "🔒 通過第 {0} 關解鎖": "🔒 Clear stage {0} to unlock", "🔒 通過主線第 {0} 關就能挑戰天弓塔": "🔒 Clear main stage {0} to challenge the Sky Tower", "通過第 {0} 關解鎖": "Clear stage {0} to unlock", "立刻獲得 {0} 金幣。": "Get {0} coins right away.", "本局攻擊 +10%（加算，每局最多 {0} 次）。": "+10% attack this run (additive, up to {0} times per run).", "本局最大生命 +6%（每局最多 {0} 次），並回復 40% 生命。": "+6% max HP this run (up to {0} times per run) and restore 40% HP.", "額外賞金 {0}": "Extra bounty {0}", "⚒️ 淬鍊第 {0} 顆星：{1}": "⚒️ Refine star {0}: {1}", "還差 {0} 🪶 弓魂": "{0} 🪶 Bow Soul to go", "還差 {0} 🧩 碎片": "{0} 🧩 shards to go", "每隻 Boss 第一次打倒才給，不能刷。升階要：稀有 {0}、史詩 {1}、傳說 {2}、神話 {3}": "Only from each Boss's first defeat — can't be farmed. Tier-up needs: Rare {0}, Epic {1}, Legendary {2}, Mythic {3}", "已收集 {0} / {1}": "Collected {0} / {1}", "（每週一換新・{0}/{1}）": " (new every Monday · {0}/{1})", "{0}/{1}・週 {2}/{3}": "{0}/{1} · week {2}/{3}", "⬆️ 升到 Lv.{0}！": "⬆️ Now Lv.{0}!", "🧩 升等進度 {0}/{1}": "🧩 Level progress {0}/{1}", "💍 點一下就能裝上或卸下（最多 {0} 個）。": "💍 Tap to equip or unequip (up to {0}).", "還有 {0} 個遺物沒拿到": "{0} relics not found yet",
         "🎓 新手教學完成！獲得 {0} 🪙、🎟️ 技能券 ×{1}，接下來按「⚔️ 出發！」開始第 {2} 章": "🎓 Tutorial complete! Got {0} 🪙 and 🎟️ skill ticket ×{1}. Press ⚔️ Go! to start Chapter {2}"
     });
 
     // =========================================================================
+
+    // 第二批特色敵人（19l）
+    Object.assign(I18N_EN, {
+        "🪝 鉤索！跳開": "🪝 Hook! Jump away", "🪝 被拉過去了！": "🪝 Pulled in!", "🌿 荊棘種子！": "🌿 Thorn seed!", "🪃 回力鏢！會飛回來": "🪃 Boomerang! It comes back",
+        "🌀 傳送門！看地上的落點": "🌀 Portals! Watch the marks", "🥁 第三拍：重擊！節奏加快": "🥁 Third beat: heavy hit! Tempo up", "🥁 下一拍是重擊！快打斷他": "🥁 Heavy hit next! Interrupt it",
+        "🐝 放出毒蜂！先清掉": "🐝 Bees released! Clear them", "🐢 縮進殼裡！等他出來": "🐢 Hiding in its shell! Wait", "🐢 出殼了！現在最脆（×1.5）": "🐢 Out of the shell! Weak now (×1.5)",
+        "🧲 磁場開啟！平射會被彈開": "🧲 Magnet on! Flat shots get pushed", "🐢 打不動！等他出殼": "🐢 Can't hurt it! Wait for it to come out", "💥 打斷節奏！": "💥 Rhythm broken!", "🧲 彈開了！拋高射": "🧲 Knocked away! Lob it",
+        "🧲 磁場中！拋高射": "🧲 Magnet on! Lob your shots", "🐢 縮殼中！打不動": "🐢 In shell! Invincible", "🐢 出殼！傷害 ×1.5": "🐢 Out! Damage ×1.5",
+        "⏰ 定時炸彈兵": "⏰ Time Bomber", "🐝 毒蜂": "🐝 Bee", "毒蜂": "Bee", "🪝 鉤索獵人": "🪝 Hook Hunter", "🐝 蜂群馴師": "🐝 Swarm Tamer", "🧲 磁力射手": "🧲 Magnet Archer",
+        "🌿 荊棘德魯伊": "🌿 Thorn Druid", "🪃 回力鏢手": "🪃 Boomerang Thrower", "🐢 龜甲兵": "🐢 Shell Guard", "🌀 傳送門術士": "🌀 Portal Mage", "🥁 戰鼓手": "🥁 War Drummer"
+    });
+    Object.assign(I18N_EN_TPL, {
+        "🪝 鉤索倒數 {0} 箭": "🪝 Hook in {0}", "🌿 種子倒數 {0} 箭": "🌿 Seed in {0}", "🪃 回力鏢倒數 {0} 箭": "🪃 Boomerang in {0}", "🌀 傳送門倒數 {0} 箭": "🌀 Portals in {0}",
+        "🐝 毒蜂 {0} 隻｜下一批 {1}s": "🐝 Bees {0} | next {1}s", "🧲 磁場 {0}s": "🧲 Magnet {0}s", "🐢 縮殼 {0}s": "🐢 Shell {0}s", "🌿 -{0}": "🌿 -{0}",
+        "{0} 種新敵人": "{0} new enemies",
+        "（主線第 {0}～{1} 關陸續出現，天弓塔 {2}～{3} 層當隊長）：會把你拉過去的🪝鉤索獵人、放毒蜂的🐝蜂群馴師、把平射彈開的🧲磁力射手、種荊棘的🌿荊棘德魯伊、會飛回來的🪃回力鏢手、縮殼無敵的🐢龜甲兵、從頭上掉箭的🌀傳送門術士、越打越快的🥁戰鼓手；第二章的爆破工兵改名「⏰ 定時炸彈兵」": " (appearing from main stages {0}–{1}, and as leaders on Sky Tower floors {2}–{3}): the 🪝Hook Hunter that pulls you in, the bee-releasing 🐝Swarm Tamer, the 🧲Magnet Archer that knocks flat shots away, the thorn-planting 🌿Thorn Druid, the 🪃Boomerang Thrower whose shots come back, the shell-hiding 🐢Shell Guard, the 🌀Portal Mage that drops arrows from above, and the ever-faster 🥁War Drummer. The Chapter 2 Demolition Sapper is now the ⏰ Time Bomber",
+        "🥁 ○○○｜節奏 ×{0}": "🥁 ○○○ | tempo ×{0}", "🥁 ●○○｜節奏 ×{0}": "🥁 ●○○ | tempo ×{0}", "🥁 ●●○ 打斷他！｜節奏 ×{0}": "🥁 ●●○ Interrupt! | tempo ×{0}", "🧲 彈開了！拋高射": "🧲 Knocked away! Lob it"
+    });
+
+    // 🎒 裝備（13v）
+    Object.assign(I18N_EN, {
+        "裝備": "Gear", "弓飾": "Bow Charm", "箭羽": "Fletching", "護手": "Bracer", "護符": "Amulet",
+        "普通": "Common", "精良": "Fine", "稀有": "Rare", "史詩": "Epic", "極品": "Legendary", "神話": "Mythic",
+        "爆頭傷害": "Headshot damage", "技能冷卻": "Skill cooldown", "減傷": "Damage reduction", "移動速度": "Move speed", "戰鬥金幣": "Battle coins",
+        "木雕弓飾": "Carved Charm", "銅紋弓飾": "Bronze Charm", "銀羽弓飾": "Silverwing Charm", "星紋弓飾": "Starmark Charm", "天穹弓飾": "Skyvault Charm", "神諭弓飾": "Oracle Charm",
+        "雞毛箭羽": "Plain Fletching", "鷹羽箭羽": "Hawk Fletching", "風隼箭羽": "Gale Fletching", "雷鵬箭羽": "Thunderbird Fletching", "鳳凰箭羽": "Phoenix Fletching", "天弓神羽": "Sky Bow Plume",
+        "皮革護手": "Leather Bracer", "鐵環護手": "Ironring Bracer", "秘銀護手": "Mithril Bracer", "龍鱗護手": "Dragonscale Bracer", "泰坦護手": "Titan Bracer", "神鑄護手": "Godforged Bracer",
+        "石刻護符": "Stone Amulet", "琥珀護符": "Amber Amulet", "月光護符": "Moonlight Amulet", "星辰護符": "Starlight Amulet", "日冕護符": "Corona Amulet", "命運護符": "Fate Amulet",
+        "目前加成": "Current bonus", "還沒有加成，先去天弓塔刷裝備": "No bonus yet — farm gear in the Sky Tower", "還沒穿": "Empty", "📦 全部": "📦 All",
+        "這裡還沒有裝備。去 🗼 天弓塔過關或掃蕩就會掉！": "No gear here yet. Clear or sweep 🗼 Sky Tower stages to get some!", "點一件裝備看詳細": "Tap an item to see details",
+        "換上之後：": "If equipped: ", "差不多": "About the same", "主屬性　": "Main　", "詞條　": "Affix　", "穿上": "Equip", "脫下": "Unequip", "🔒 鎖定": "🔒 Lock", "🔓 解鎖": "🔓 Unlock",
+        "✅ 穿著": "✅ Equipped", "⬆️ 更強": "⬆️ Better", "♻️ 一鍵拆解": "♻️ Bulk salvage", "（穿著、鎖定的不會拆）": " (equipped and locked items are kept)", "🤖 自動拆解": "🤖 Auto-salvage", "（新掉的直接變 🔩）": " (new drops turn straight into 🔩)",
+        "⚪ 普通": "⚪ Common", "🟢 精良以下": "🟢 Fine & below", "🔵 稀有以下": "🔵 Rare & below", "沒有可以拆的裝備": "Nothing to salvage",
+        "⚠️ 這一局還在進行中，打完或放棄這局才能換裝備": "⚠️ A run is in progress — finish or forfeit it to change gear",
+        "🔩 鍛造石之後用來強化、重洗詞條（鍛造台即將開放）。品質：⚪普通 🟢精良 🔵稀有（5F 起）🟣史詩（10F 迷宮、守護者）🟠極品 🔴神話（更高層才有）": "🔩 Forge Stones will be used to enhance and reroll gear (Forge coming soon). Quality: ⚪Common 🟢Fine 🔵Rare (from 5F) 🟣Epic (10F maze & guardian) 🟠Legendary 🔴Mythic (higher floors)",
+        "🎒 天弓塔掉的裝備在這裡穿；拆掉不要的換 🔩 鍛造石": "🎒 Equip gear from the Sky Tower here; salvage what you don't need for 🔩 Forge Stones",
+        "（已穿上）": " (equipped)", "🎒 裝備": "🎒 Gear", "鍛造石": "Forge Stones", "背包": "Bag",
+        "打 🗼 天弓塔（過關或掃蕩）會掉裝備，有 🎀弓飾、🪶箭羽、🧤護手，打倒 10F 守護者再開 🔮護符": "Sky Tower clears and sweeps drop gear: 🎀Bow Charm, 🪶Fletching, 🧤Bracer — defeat the 10F guardian to open the 🔮Amulet slot",
+        "品質越高越強：⚪普通 🟢精良 🔵稀有 🟣史詩 🟠極品 🔴神話，越上層越容易掉好的": "Higher quality is stronger: ⚪Common 🟢Fine 🔵Rare 🟣Epic 🟠Legendary 🔴Mythic — higher floors drop better gear",
+        "穿著的裝備在主線、訓練、聖域、天弓塔都有效（連線對戰不算）": "Equipped gear works in the main story, training, the Sanctum and the Sky Tower (not in online PvP)",
+        "不要的拆掉換 🔩 鍛造石；可以開「自動拆解」，好的記得 🔒 鎖起來": "Salvage what you don't need for 🔩 Forge Stones; turn on auto-salvage and 🔒 lock the good stuff",
+        "：打天弓塔會掉 🎀弓飾、🪶箭羽、🧤護手（10F 守護者再開 🔮護符），品質 ⚪普通～🔴神話，越上層越容易掉好的；穿著在主線、訓練、聖域都有效。不要的拆成 🔩 鍛造石，可以開自動拆解": ": the Sky Tower drops 🎀Bow Charms, 🪶Fletchings and 🧤Bracers (the 10F guardian opens the 🔮Amulet), from ⚪Common to 🔴Mythic — higher floors drop better. Gear works in the main story, training and the Sanctum. Salvage spares into 🔩 Forge Stones, or turn on auto-salvage",
+        "通過第 12 關解鎖（天弓塔會掉裝備）": "Clear stage 12 to unlock (the Sky Tower drops gear)"
+    });
+    Object.assign(I18N_EN_TPL, {
+        "天弓塔 {0}F": "Sky Tower {0}F", "♻️ 拆解 → 🔩{0}": "♻️ Salvage → 🔩{0}", "🔩 鍛造石 {0}　🎒 背包 {1} / {2}": "🔩 Forge Stones {0}　🎒 Bag {1} / {2}",
+        "打倒天弓塔 {0}F 守護者解鎖": "Defeat the {0}F guardian to unlock", "{0} 件新": "{0} new", "🎒 裝備（{0} 件新）": "🎒 Gear ({0} new)",
+        "♻️ 自動拆解 {0} 件 → 🔩{1}": "♻️ Auto-salvaged {0} → 🔩{1}", "♻️ 拆了 {0} 件 → 🔩 +{1}": "♻️ Salvaged {0} → 🔩 +{1}", "♻️ 拆解 → 🔩 +{0}": "♻️ Salvaged → 🔩 +{0}",
+        "要拆掉 {0} 件裝備嗎？（穿著、鎖定的不會拆）": "Salvage {0} items? (equipped and locked items are kept)", "🔒 通過主線第 {0} 關解鎖天弓塔，打塔就會掉裝備": "🔒 Clear main stage {0} to unlock the Sky Tower — it drops gear",
+        "🔒 通過主線第 {0} 關、打天弓塔就會掉裝備": "🔒 Clear main stage {0}, then the Sky Tower drops gear"
+    });
+
+    // 🔗 Combo 難度等級（13p）
+    Object.assign(I18N_EN, {
+        "（基本難度）": " (base difficulty)", "已經最高級": "Max level", "⬇️ 降一級": "⬇️ Lower 1 level", "📌 保留難度：開": "📌 Keep level: On", "📌 保留難度：關": "📌 Keep level: Off",
+        "📌 這隻的難度下週不會歸零": "📌 This Boss's level won't reset next week", "這隻的難度下週一會歸零": "This Boss's level resets next Monday", "⬇️ 難度降一級（這一級的進度從 0 開始）": "⬇️ Lowered 1 level (progress starts from 0)",
+        "Combo Boss 難度等級": "Combo Boss difficulty levels", "區域開局補給加強": "Stronger region-start supplies",
+        "：從後面區域直接開局時，賜福、Boss 戰利品變多，還多給 1 支箭和技能冷卻 -20%（第二章開局：12 次賜福、6 次戰利品），不用每次都從 1-1 打上來": ": starting from a later region now gives more blessings and Boss loot, plus 1 extra arrow and -20% skill cooldown (Chapter 2 start: 12 blessings, 6 loot picks) — no need to climb from 1-1 every time",
+        "🔗 Combo Boss 會用自己的技能組打你。打倒他：一定給金幣＋傳說殘片；5% 掉專屬傳說（難度越高越多，Lv.10 有 15%），沒掉就給他技能組裡的稀有／史詩技能。殘片 20 個可以換傳說（保底）。": "🔗 Combo Bosses fight with their own skill sets. Defeat one for guaranteed coins + legendary fragments; 5% chance of an exclusive legendary (more at higher difficulty — 15% at Lv.10), otherwise a rare/epic skill from its set. 20 fragments can be exchanged for a legendary (pity).",
+        "：每隻每打倒 5 次升 1 級（最多 Lv.10，每級生命／攻擊 +12%），越難傳說機率越高（5% → 15%）、殘片和金幣越多；每週一歸零，開「📌 保留難度」就不會歸零，也可以自己降一級": ": each Boss levels up every 5 wins (up to Lv.10, +12% HP/attack per level). Higher levels raise the legendary chance (5% → 15%) and give more fragments and coins. Levels reset every Monday unless you turn on 📌 Keep level, and you can lower a level yourself"
+    });
+    Object.assign(I18N_EN_TPL, {
+        "難度 Lv.{0}": "Difficulty Lv.{0}", "（生命／攻擊 ×{0}）": " (HP/attack ×{0})", "再打倒 {0} 次升 Lv.{1}": "{0} more wins to Lv.{1}",
+        "🌟 傳說 {0}%｜🔸 殘片 +{1}｜🪙 ×{2}": "🌟 Legendary {0}% | 🔸 Fragments +{1} | 🪙 ×{2}", "⬆️ 難度升到 Lv.{0}（傳說機率 {1}%）": "⬆️ Difficulty up to Lv.{0} (legendary chance {1}%)",
+        "🔸 傳說殘片 +{0}（{1} / {2}）": "🔸 Legendary fragments +{0} ({1} / {2})", "（難度 Lv.{0}）": " (Lv.{0})"
+    });
 
 ;
 // ==== js/12g-onepage.js
@@ -16488,7 +16955,7 @@
                 if (sigEquipped()) {
                     if (sigHas("surge")) player.sigSurge = true;
                     const cut = sigVal("circuit");
-                    if (cut > 0) player.equippedSkills.forEach((o, j) => { if (j !== i && o.cd > 0 && !isEnchantSkill(o.id)) o.cd = Math.max(0, o.cd - cut); });
+                    if (cut > 0) refundAllSkillCds(cut, slot); // 共用規則（13i）
                 }
             }
             prev[i] = slot.cd;
@@ -17051,9 +17518,10 @@
         const cb = game.training && game.training.combo;
         if (!tr && !cb) return;
         const st = tr ? getTrialStar(tr.star) : COMBO_CHALLENGE;
-        enemy.maxHp = Math.max(1, Math.round(enemy.maxHp * st.hpMult));
+        const lvMult = cb ? getComboRunStatMult() : 1; // 🔗 Combo 難度等級（13p）
+        enemy.maxHp = Math.max(1, Math.round(enemy.maxHp * st.hpMult * lvMult));
         enemy.hp = enemy.maxHp;
-        enemy.baseDamage = Math.max(1, Math.round(enemy.baseDamage * st.dmgMult));
+        enemy.baseDamage = Math.max(1, Math.round(enemy.baseDamage * st.dmgMult * lvMult));
     }
 
     // Boss 試煉、Combo 挑戰（都不吃章節加強，有自己的難度）
@@ -17378,6 +17846,8 @@
 //   • 每天 5 次；打倒 Boss：一定給金幣＋1 個傳說殘片；5% 掉專屬傳說，沒掉就給一個他技能組裡的稀有／史詩技能
 //   • 保底：同一隻 Boss 的殘片集滿 20 個（平衡：12 → 20），可以從他的 2 個傳說裡選 1 個換
 //   • 每隻第一次打倒：🧩 本命碎片 +2、🔑 寶箱鑰匙 +1
+//   • 難度等級：每隻 Boss 每打倒 5 次升 1 級（最多 Lv.10，每級生命／攻擊 +12%）；等級越高，傳說機率、殘片、金幣越多
+//     每週一歸零；開了「📌 保留難度」就不會歸零；也可以自己降一級
     // =========================================================================
     const COMBO_CHALLENGE = {
         unlockStage: 31, dailyTries: 5,
@@ -17395,6 +17865,13 @@
         shadow_judge: { drops: [{ t: "skill", id: "shadow_legion" }, { t: "skill", id: "judgment" }], skills: ["shadow_legion", "judgment", "curse_arrow", "evil_gaze", "decoy_dummy"] }
     };
     const COMBO_BOSS_IDS = Object.keys(COMBO_DEFS);
+    const COMBO_LEVEL = {
+        winsPerLevel: 5, max: 10,
+        statStep: 0.12,      // 每級生命、攻擊 +12%（Lv.10 = ×2.2）
+        legendStep: 0.01,    // 每級傳說機率 +1%（Lv.10 = 15%）
+        coinStep: 0.1,       // 每級金幣 +10%
+        fragEvery: 5         // 每 5 級多 1 個殘片（Lv.5 = 2 個、Lv.10 = 3 個；稀缺性：別讓保底太快）
+    };
     const COMBO_EXCLUSIVE = { bow: [], skill: [] };
     COMBO_BOSS_IDS.forEach((k) => COMBO_DEFS[k].drops.forEach((d) => COMBO_EXCLUSIVE[d.t].push(d.id)));
 
@@ -17470,7 +17947,70 @@
         if (s.day !== today) { s.day = today; s.tries = 0; s.extra = 0; }
         if (!s.frags || typeof s.frags !== "object") s.frags = {};
         if (!s.wins || typeof s.wins !== "object") s.wins = {};
+        if (!s.lv || typeof s.lv !== "object") s.lv = {};
+        // 每週一：難度歸零（開了保留的不歸零）
+        const week = typeof getWeekNumber === "function" ? getWeekNumber() : 0;
+        if (s.week !== week) {
+            if (typeof s.week === "number") Object.keys(s.lv).forEach((bt) => { const L = s.lv[bt]; if (L && !L.keep) { L.lv = 0; L.prog = 0; } });
+            s.week = week;
+        }
         return s;
+    }
+
+    // ---------- 難度等級 ----------
+    function getComboLevelState(bt) {
+        const s = getComboSave();
+        let L = s.lv[bt];
+        if (!L || typeof L !== "object") L = s.lv[bt] = { lv: 0, prog: 0, keep: false };
+        L.lv = Math.max(0, Math.min(COMBO_LEVEL.max, Math.floor(+L.lv || 0)));
+        L.prog = Math.max(0, Math.min(COMBO_LEVEL.winsPerLevel - 1, Math.floor(+L.prog || 0)));
+        L.keep = Boolean(L.keep);
+        return L;
+    }
+
+    function getComboLevelInfo(lv) {
+        return {
+            lv: lv,
+            statMult: +(1 + lv * COMBO_LEVEL.statStep).toFixed(2),
+            legendChance: +(COMBO_CHALLENGE.legendChance + lv * COMBO_LEVEL.legendStep).toFixed(3),
+            coinMult: +(1 + lv * COMBO_LEVEL.coinStep).toFixed(2),
+            frags: 1 + Math.floor(lv / COMBO_LEVEL.fragEvery)
+        };
+    }
+
+    function toggleComboKeep(bt) {
+        const L = getComboLevelState(bt);
+        L.keep = !L.keep;
+        saveGameProgress();
+        return L.keep;
+    }
+
+    function lowerComboLevel(bt) {
+        const L = getComboLevelState(bt);
+        if (L.lv <= 0) return false;
+        L.lv -= 1;
+        L.prog = 0;
+        saveGameProgress();
+        return true;
+    }
+
+    // 打倒一次：進度 +1，滿 5 次升 1 級；回傳升到的等級（沒升級回傳 0）
+    function addComboLevelWin(bt) {
+        const L = getComboLevelState(bt);
+        if (L.lv >= COMBO_LEVEL.max) return 0;
+        L.prog += 1;
+        if (L.prog >= COMBO_LEVEL.winsPerLevel) {
+            L.lv += 1;
+            L.prog = 0;
+            return L.lv;
+        }
+        return 0;
+    }
+
+    // Boss 的生命／攻擊倍率（13n applyBossTrialMods 用；用開打時的等級）
+    function getComboRunStatMult() {
+        const cb = game.training && game.training.combo;
+        return cb ? getComboLevelInfo(cb.lv || 0).statMult : 1;
     }
 
     function getComboTriesLeft() {
@@ -17522,8 +18062,9 @@
         getComboSave().tries += 1; // 開打就算一次（避免打輸就退出重來）
         saveGameProgress();
         closeComboModal(true);
-        enterArena({ archKey: arch.key, aiMode: "normal", stage: COMBO_CHALLENGE.baseStage, coinsEarned: 0, combo: { bossType } });
-        if (game.state === "PLAYING") addFloatingText(LOGICAL_W * 0.5, 134, "🔗 Combo 挑戰：" + arch.title, "#f0abfc", 18);
+        const lv = getComboLevelState(bossType).lv;
+        enterArena({ archKey: arch.key, aiMode: "normal", stage: COMBO_CHALLENGE.baseStage, coinsEarned: 0, combo: { bossType, lv } });
+        if (game.state === "PLAYING") addFloatingText(LOGICAL_W * 0.5, 134, "🔗 Combo 挑戰：" + arch.title + (lv > 0 ? "（難度 Lv." + lv + "）" : ""), "#f0abfc", 18);
         return true;
     }
 
@@ -17536,14 +18077,17 @@
         game.runInProgress = false;
         player.equippedSkills = [];
         const lines = [];
+        const info = getComboLevelInfo(game.training.combo.lv || 0); // 獎勵照開打時的難度給
         if (won) {
             const first = !(s.wins[bt] > 0);
             s.wins[bt] = (s.wins[bt] || 0) + 1;
-            const coins = Math.round(COMBO_CHALLENGE.coinsMin + Math.random() * (COMBO_CHALLENGE.coinsMax - COMBO_CHALLENGE.coinsMin));
+            const coins = Math.round((COMBO_CHALLENGE.coinsMin + Math.random() * (COMBO_CHALLENGE.coinsMax - COMBO_CHALLENGE.coinsMin)) * info.coinMult);
             game.coins = (game.coins || 0) + coins;
-            s.frags[bt] = (s.frags[bt] || 0) + 1;
-            lines.push("🪙 +" + coins, "🔸 傳說殘片 +1（" + s.frags[bt] + " / " + COMBO_CHALLENGE.fragNeed + "）");
-            if (Math.random() < COMBO_CHALLENGE.legendChance) {
+            s.frags[bt] = (s.frags[bt] || 0) + info.frags;
+            lines.push("🪙 +" + coins, "🔸 傳說殘片 +" + info.frags + "（" + s.frags[bt] + " / " + COMBO_CHALLENGE.fragNeed + "）");
+            const up = addComboLevelWin(bt);
+            if (up) lines.push("⬆️ 難度升到 Lv." + up + "（傳說機率 " + Math.round(getComboLevelInfo(up).legendChance * 100) + "%）");
+            if (Math.random() < info.legendChance) {
                 const fresh = def.drops.filter((d) => !ownsItem(d));
                 const it = (fresh.length ? fresh : def.drops)[Math.floor(Math.random() * (fresh.length ? fresh.length : def.drops.length))];
                 lines.unshift("🌟 <b style=\"color:#fde047;\">掉落傳說！</b>" + grantLegendItem(it));
@@ -17590,7 +18134,7 @@
         game.state = "COMBO_BOSS";
         hideAllModals();
         dom.comboBossModal.classList.remove("hidden");
-        if (dom.comboBossBanner) dom.comboBossBanner.innerHTML = bannerHtml || "🔗 Combo Boss 會用自己的技能組打你。打倒他：一定給金幣＋傳說殘片；5% 掉專屬傳說，沒掉就給他技能組裡的稀有／史詩技能。殘片 20 個可以換傳說（保底）。";
+        if (dom.comboBossBanner) dom.comboBossBanner.innerHTML = bannerHtml || "🔗 Combo Boss 會用自己的技能組打你。打倒他：一定給金幣＋傳說殘片；5% 掉專屬傳說（難度越高越多，Lv.10 有 15%），沒掉就給他技能組裡的稀有／史詩技能。殘片 20 個可以換傳說（保底）。";
         renderComboModal();
         showFeatureGuide("combo_boss");
     }
@@ -17601,13 +18145,26 @@
         openHubModal("COMBO_BOSS");
     }
 
+    function comboLevelRowHtml(bt) {
+        const L = getComboLevelState(bt);
+        const cur = getComboLevelInfo(L.lv);
+        const maxed = L.lv >= COMBO_LEVEL.max;
+        return `<div class="combo-row combo-lv">
+            <b>難度 Lv.${L.lv}</b>${L.lv > 0 ? `（生命／攻擊 ×${cur.statMult}）` : "（基本難度）"}
+            <span>${maxed ? "已經最高級" : "再打倒 " + (COMBO_LEVEL.winsPerLevel - L.prog) + " 次升 Lv." + (L.lv + 1)}</span>
+            <span class="combo-lv-reward">🌟 傳說 ${Math.round(cur.legendChance * 100)}%｜🔸 殘片 +${cur.frags}｜🪙 ×${cur.coinMult}</span>
+            <button type="button" class="shard-trial-btn${L.keep ? " on" : ""}" data-keep="${bt}">📌 保留難度：${L.keep ? "開" : "關"}</button>
+            ${L.lv > 0 ? `<button type="button" class="shard-trial-btn" data-lower="${bt}">⬇️ 降一級</button>` : ""}
+        </div>`;
+    }
+
     function renderComboModal() {
         const box = dom.comboBossBody;
         if (!box) return;
         const s = getComboSave();
         const left = getComboTriesLeft();
         const ready = game.selectedSkillIds.length === 5;
-        const head = `<div class="shard-head">🔗 今天還能挑戰 <b>${left}</b> 次（每天 ${COMBO_CHALLENGE.dailyTries} 次，0 點重置）<button type="button" class="shard-trial-btn" data-buytry="1"${getComboExtraLeft() > 0 && (game.crystals || 0) >= COMBO_EXTRA.price ? "" : " disabled"}>💠 ${COMBO_EXTRA.price} 加 1 次（今天還能加 ${getComboExtraLeft()}）</button><span>專屬傳說只能從 Combo Boss、🔑 寶箱拿到；抽獎池只剩 ${getBaseLegendaries().map(itemName).join("、")}${ready ? "" : "｜⚠️ 請先到技能配置選滿 5 個技能"}</span></div>`;
+        const head = `<div class="shard-head">🔗 今天還能挑戰 <b>${left}</b> 次（每天 ${COMBO_CHALLENGE.dailyTries} 次，0 點重置）<button type="button" class="shard-trial-btn" data-buytry="1"${getComboExtraLeft() > 0 && (game.crystals || 0) >= COMBO_EXTRA.price ? "" : " disabled"}>💠 ${COMBO_EXTRA.price} 加 1 次（今天還能加 ${getComboExtraLeft()}）</button><span>每打倒 5 次難度升 1 級（越難傳說機率越高），每週一歸零，可以開「📌 保留難度」；專屬傳說只能從 Combo Boss、🔑 寶箱拿到；抽獎池只剩 ${getBaseLegendaries().map(itemName).join("、")}${ready ? "" : "｜⚠️ 請先到技能配置選滿 5 個技能"}</span></div>`;
         const cards = COMBO_BOSSES.map((a) => {
             const bt = a.bossType;
             const def = COMBO_DEFS[bt];
@@ -17619,6 +18176,7 @@
                 <div class="combo-desc">${a.desc}</div>
                 <div class="combo-row">掉落：${drops}</div>
                 <div class="combo-row">技能組：${skills}</div>
+                ${comboLevelRowHtml(bt)}
                 <div class="combo-row">🔸 殘片 ${frags} / ${COMBO_CHALLENGE.fragNeed}<div class="combo-bar"><div style="width:${Math.min(100, frags / COMBO_CHALLENGE.fragNeed * 100)}%"></div></div>
                 <button type="button" class="gold-btn combo-go" data-go="${bt}"${left > 0 && ready ? "" : " disabled"}>⚔️ 挑戰</button></div>
             </div>`;
@@ -17628,6 +18186,8 @@
             box.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => startComboChallenge(b.getAttribute("data-go"))));
             const bt2 = box.querySelector("[data-buytry]");
             if (bt2) bt2.addEventListener("click", () => { if (buyComboTry()) { sfx.skill(); openComboModal(`<span style="color:#7dd3fc;">💠 加買 1 次挑戰（今天還能加 ${getComboExtraLeft()} 次）</span>`); } });
+            box.querySelectorAll("[data-keep]").forEach((b) => b.addEventListener("click", () => { const k = toggleComboKeep(b.getAttribute("data-keep")); openComboModal(k ? "📌 這隻的難度下週不會歸零" : "這隻的難度下週一會歸零"); }));
+            box.querySelectorAll("[data-lower]").forEach((b) => b.addEventListener("click", () => { if (lowerComboLevel(b.getAttribute("data-lower"))) openComboModal("⬇️ 難度降一級（這一級的進度從 0 開始）"); }));
             box.querySelectorAll("[data-ex]").forEach((b) => b.addEventListener("click", () => { const [bt, i] = b.getAttribute("data-ex").split(":"); exchangeComboFrags(bt, +i); }));
         }
     }
@@ -18290,6 +18850,1012 @@
     // =========================================================================
 
 ;
+// ==== js/13u-tower.js
+// 13u. 🗼 天弓塔：一關一關獨立打的爬塔模式（刷裝備的主要地方，裝備在第 2 步加入）
+//   每層 7 關：第 1～5 關野外（3 波小怪、隊長有護盾）、第 6 關迷宮（小怪一直來＋精英）、第 7 關樓層守護者
+//   星星：★ 過關、★★ 剩一半以上的血、★★★ 再加 60 秒內打完 → 三星才能花 ⚡ 體力掃蕩
+//   ⚡ 體力：上限 120、6 分鐘回 1 點；第一次通關免費、打輸退一半；練習不花體力也沒有獎勵
+//   戰鬥本身走訓練模式的戰場（game.training.tower），小怪在 16m
+    // =========================================================================
+    const TOWER = {
+        floors: 10,
+        stagesPerFloor: 7,
+        unlockStage: 12,          // 通過新手區（第 12 關）解鎖
+        staminaMax: 120,
+        staminaRegenSec: 360,     // 6 分鐘 1 點
+        cost: { field: 6, maze: 9, boss: 12 },
+        failRefund: 0.5,
+        starTime: 60,             // ★★★：60 秒內
+        starHp: 0.5,              // ★★ 以上：剩一半以上的血
+        sweepMax: 10,
+        starChests: [7, 14, 21]
+    };
+    // 每層出現的小怪（越上面越多種）
+    const TOWER_MOB_UNLOCK = [["bat", "archer"], ["slime"], ["bomber"], ["shield"], ["hopper"]];
+    // 野外關的隊長（每層兩種輪流）
+    const TOWER_LEADERS = [
+        ["balanced", "flame_lord"], ["frost_wraith", "blood_berserker"], ["gale_ranger", "illusion_trickster"],
+        ["deadeye_sniper", "lava_brute"], ["plague_alchemist", "blast_sapper"], ["mirror_warden", "storm_caller"],
+        ["hook_hunter", "magnet_archer"], ["thorn_druid", "boomerang_thrower"], ["shell_guard", "portal_mage"], ["war_drummer", "hook_hunter"]
+    ];
+    const TOWER_KIND_META = {
+        field: { icon: "🌿", name: "野外", desc: "3 波小怪：前兩波打完，隊長的護盾才會破" },
+        maze: { icon: "🌀", name: "迷宮", desc: "小怪會一直冒出來：打倒一定數量，精英的護盾就會破，打倒精英過關" },
+        boss: { icon: "👑", name: "樓層守護者", desc: "Boss 每掉 1/3 血會叫一波小怪" }
+    };
+
+    let towerSelected = { floor: 1, idx: 0 };
+    let towerResult = null;
+    let towerTick = null;
+
+    // ---------- 存檔 ----------
+    function sanitizeTowerSave(s) {
+        const o = s && typeof s === "object" ? s : {};
+        const stars = {};
+        if (o.stars && typeof o.stars === "object") Object.keys(o.stars).forEach((k) => { const n = parseInt(o.stars[k], 10); if (/^\d+-\d+$/.test(k) && n >= 1 && n <= 3) stars[k] = n; });
+        const best = {};
+        if (o.best && typeof o.best === "object") Object.keys(o.best).forEach((k) => { const n = +o.best[k]; if (/^\d+-\d+$/.test(k) && n > 0) best[k] = n; });
+        const chests = {};
+        if (o.chests && typeof o.chests === "object") Object.keys(o.chests).forEach((k) => { if (o.chests[k]) chests[k] = true; });
+        const stamina = Number.isFinite(+o.stamina) ? Math.max(0, Math.min(999, Math.floor(+o.stamina))) : TOWER.staminaMax;
+        const at = Number.isFinite(+o.staminaAt) && +o.staminaAt > 0 ? +o.staminaAt : Date.now();
+        return { stars: stars, best: best, chests: chests, stamina: stamina, staminaAt: at, plays: Math.max(0, parseInt(o.plays, 10) || 0) };
+    }
+
+    function getTowerSave() {
+        if (!game.towerSave || typeof game.towerSave !== "object" || !game.towerSave.stars) game.towerSave = sanitizeTowerSave(game.towerSave);
+        return game.towerSave;
+    }
+
+    function towerKey(floor, idx) {
+        return floor + "-" + idx;
+    }
+
+    function getTowerStars(floor, idx) {
+        return getTowerSave().stars[towerKey(floor, idx)] || 0;
+    }
+
+    function getTowerFloorStars(floor) {
+        let n = 0;
+        for (let i = 0; i < TOWER.stagesPerFloor; i++) n += getTowerStars(floor, i);
+        return n;
+    }
+
+    function getTowerTotalStars() {
+        let n = 0;
+        for (let f = 1; f <= TOWER.floors; f++) n += getTowerFloorStars(f);
+        return n;
+    }
+
+    function isTowerUnlocked() {
+        return (game.highestStage || 1) >= TOWER.unlockStage;
+    }
+
+    function isTowerStageOpen(floor, idx) {
+        if (floor < 1 || floor > TOWER.floors || idx < 0 || idx >= TOWER.stagesPerFloor) return false;
+        if (idx > 0) return getTowerStars(floor, idx - 1) > 0;
+        return floor === 1 || getTowerStars(floor - 1, TOWER.stagesPerFloor - 1) > 0;
+    }
+
+    function isTowerFloorOpen(floor) {
+        return isTowerStageOpen(floor, 0);
+    }
+
+    // ---------- ⚡ 體力 ----------
+    function getTowerStamina() {
+        const s = getTowerSave();
+        const now = Date.now();
+        const per = TOWER.staminaRegenSec * 1000;
+        if (s.stamina >= TOWER.staminaMax) { s.staminaAt = now; return s.stamina; }
+        const gained = Math.floor(Math.max(0, now - s.staminaAt) / per);
+        if (gained > 0) {
+            s.stamina = Math.min(TOWER.staminaMax, s.stamina + gained);
+            s.staminaAt = s.stamina >= TOWER.staminaMax ? now : s.staminaAt + gained * per;
+        }
+        return s.stamina;
+    }
+
+    // 下一點體力還要幾秒（滿了回傳 0）
+    function getTowerStaminaNextSec() {
+        const s = getTowerSave();
+        if (getTowerStamina() >= TOWER.staminaMax) return 0;
+        return Math.max(0, Math.ceil((s.staminaAt + TOWER.staminaRegenSec * 1000 - Date.now()) / 1000));
+    }
+
+    function spendTowerStamina(n) {
+        if (getTowerStamina() < n) return false;
+        const s = getTowerSave();
+        const wasFull = s.stamina >= TOWER.staminaMax;
+        s.stamina -= n;
+        if (wasFull) s.staminaAt = Date.now(); // 從滿的開始用：從現在開始算回復
+        return true;
+    }
+
+    function addTowerStamina(n) {
+        const s = getTowerSave();
+        getTowerStamina();
+        s.stamina = Math.min(999, s.stamina + Math.max(0, Math.floor(n))); // 獎勵給的可以超過上限
+    }
+
+    // ---------- 關卡內容 ----------
+    function getTowerStageKind(idx) {
+        return idx < 5 ? "field" : idx === 5 ? "maze" : "boss";
+    }
+
+    function getTowerMobPool(floor) {
+        const pool = [];
+        TOWER_MOB_UNLOCK.slice(0, Math.min(TOWER_MOB_UNLOCK.length, floor)).forEach((list) => pool.push.apply(pool, list));
+        return pool;
+    }
+
+    function getTowerStageCost(floor, idx) {
+        return TOWER.cost[getTowerStageKind(idx)];
+    }
+
+    // 一關的完整設定（每次開打重新產生；小怪組合用種子固定，同一關每次一樣）
+    function getTowerStageDef(floor, idx) {
+        const kind = getTowerStageKind(idx);
+        const rand = seededRandom("tower-" + floor + "-" + idx);
+        const pool = getTowerMobPool(floor);
+        const pick = () => pool[Math.floor(rand() * pool.length)];
+        const step = idx * 0.04;
+        const unitHp = Math.round(TOWER_BAL.unitHp * Math.pow(TOWER_BAL.hpGrowth, floor - 1) * (1 + step));
+        const unitDmg = Math.round(TOWER_BAL.unitDmg * Math.pow(TOWER_BAL.dmgGrowth, floor - 1) * (1 + step * 0.75));
+        const leaders = TOWER_LEADERS[(floor - 1) % TOWER_LEADERS.length];
+        const def = {
+            floor: floor, idx: idx, kind: kind, pool: pool, unitHp: unitHp, unitDmg: unitDmg,
+            sEq: Math.min(36, Math.round(3 + (floor - 1) * 3 + idx * 0.4))
+        };
+        if (kind === "field") {
+            const n1 = 3 + Math.min(3, Math.floor(floor / 2));
+            const sizes = [n1, Math.min(6, n1 + 1), 2 + (floor >= 4 ? 1 : 0)];
+            def.waves = sizes.map((n) => Array.from({ length: n }, pick));
+            def.leaderKey = leaders[idx % 2];
+            def.leaderHp = unitHp * TOWER_BAL.leaderHp;
+            def.leaderDmg = unitDmg * TOWER_BAL.leaderDmg;
+        } else if (kind === "maze") {
+            def.leaderKey = leaders[(idx + 1) % 2];
+            def.leaderHp = unitHp * TOWER_BAL.mazeHp;
+            def.leaderDmg = unitDmg * TOWER_BAL.mazeDmg;
+            def.mazeMax = Math.min(6, 3 + Math.floor(floor / 4));
+            def.mazeEvery = Math.max(1.6, 2.4 - floor * 0.06);
+            def.mazeKills = 8 + Math.floor(floor / 2);
+        } else {
+            const boss = BOSS_ORDER[(floor - 1) % BOSS_ORDER.length];
+            def.leaderKey = boss.key;
+            def.leaderHp = unitHp * TOWER_BAL.bossHp;
+            def.leaderDmg = unitDmg * TOWER_BAL.bossDmg;
+            def.summonWaves = [Array.from({ length: 2 + Math.floor(floor / 4) }, pick), Array.from({ length: 3 + Math.floor(floor / 4) }, pick)];
+        }
+        def.leaderHp = Math.round(def.leaderHp);
+        def.leaderDmg = Math.max(1, Math.round(def.leaderDmg));
+        return def;
+    }
+
+    // 難度（tools/probe-tower.js 用模擬調過）
+    const TOWER_BAL = {
+        unitHp: 55, hpGrowth: 1.3, unitDmg: 8, dmgGrowth: 1.18,
+        leaderHp: 7, leaderDmg: 1.0, mazeHp: 8, mazeDmg: 1.1, bossHp: 18, bossDmg: 1.25
+    };
+
+    function getTowerLeaderTitle(def) {
+        const a = findArchetypeByKey(def.leaderKey);
+        return a ? a.title : "";
+    }
+
+    // setupStage 決定敵人數值之後（applyBossTrialMods 旁邊）
+    function applyTowerStageMods() {
+        const b = getTowerBattle();
+        if (!b) return;
+        enemy.maxHp = b.leaderHp;
+        enemy.hp = enemy.maxHp;
+        enemy.baseDamage = b.leaderDmg;
+    }
+
+    // ---------- 獎勵 ----------
+    function getTowerPlayReward(def) {
+        const m = def.kind === "boss" ? 2.5 : def.kind === "maze" ? 1.5 : 1;
+        return { coins: Math.round((50 + def.floor * 20) * m), essence: Math.round((6 + def.floor * 2) * m) };
+    }
+
+    function getTowerFirstReward(def) {
+        const r = { coins: 200 + def.floor * 60, essence: 20 + def.floor * 5 };
+        if (def.kind === "boss") { r.skillTicket = 1; r.bowSoul = 3; }
+        return r;
+    }
+
+    function getTowerChestReward(floor, need) {
+        if (need === 7) return { coins: 300 + floor * 80 };
+        if (need === 14) return { skillTicket: 1, essence: 40 + floor * 10 };
+        return { chestKey: 1 };
+    }
+
+    // 掃蕩／一般過關的額外機率掉落：技能券、🎒 裝備（13v；掉的當下就放進背包或自動拆解）
+    function rollTowerBonus(def, out) {
+        const ticketChance = def.kind === "boss" ? 0.08 : def.kind === "maze" ? 0.03 : 0.01;
+        if (Math.random() < ticketChance) out.skillTicket = (out.skillTicket || 0) + 1;
+        const gear = rollTowerGear(def);
+        if (gear.length) out.gear = (out.gear || []).concat(gear);
+        return out;
+    }
+
+    function mergeReward(a, b) {
+        Object.keys(b).forEach((k) => { a[k] = Array.isArray(b[k]) ? (a[k] || []).concat(b[k]) : (a[k] || 0) + b[k]; });
+        return a;
+    }
+
+    // ---------- 星星 ----------
+    function getTowerStarsFor(hpPct, secs) {
+        let n = 1;
+        if (hpPct >= TOWER.starHp) n = 2;
+        if (n === 2 && secs <= TOWER.starTime) n = 3;
+        return n;
+    }
+
+    // 沒拿到的星星：告訴玩家差在哪
+    function getTowerStarMiss(hpPct, secs) {
+        const miss = [];
+        if (hpPct < TOWER.starHp) miss.push("💔 血量要剩 " + Math.round(TOWER.starHp * 100) + "% 以上（這次剩 " + Math.round(hpPct * 100) + "%）");
+        if (secs > TOWER.starTime) miss.push("⏱️ 要在 " + TOWER.starTime + " 秒內打完（這次 " + Math.ceil(secs) + " 秒，差 " + Math.ceil(secs - TOWER.starTime) + " 秒）");
+        return miss;
+    }
+
+    // ---------- 開打／結束 ----------
+    function startTowerStage(floor, idx, practice) {
+        if (!isTowerUnlocked() || !isTowerStageOpen(floor, idx) || game.selectedSkillIds.length !== 5) return false;
+        const first = getTowerStars(floor, idx) === 0;
+        const cost = practice || first ? 0 : getTowerStageCost(floor, idx);
+        if (cost > 0 && getTowerStamina() < cost) {
+            towerBanner(`<span style="color:#fca5a5;">⚡ 體力不夠（要 ${cost}，現在 ${getTowerStamina()}）</span>`);
+            return false;
+        }
+        const def = getTowerStageDef(floor, idx);
+        def.practice = Boolean(practice);
+        def.cost = cost;
+        towerResult = null;
+        enterArena({ archKey: def.leaderKey, aiMode: "normal", stage: def.sEq, coinsEarned: 0, tower: def });
+        if (game.state !== "PLAYING" || !isTowerBattle()) return false; // 取消了（例如不想放棄主線這局）
+        if (cost > 0) spendTowerStamina(cost);
+        getTowerSave().plays += 1;
+        startTowerBattle();
+        // 開場文字換成塔自己的（拿掉「STAGE N」「敵方隨機 5 技」那些，畫面乾淨一點；Boss 登場演出照常）
+        if (def.kind !== "boss") game.floatingTexts = [];
+        addFloatingText(LOGICAL_W * 0.5, 150, "🗼 天弓塔 " + floor + "-" + (idx + 1) + (practice ? "（練習）" : ""), "#fde68a", 20);
+        if (def.kind !== "boss") addFloatingText(LOGICAL_W * 0.5, 180, TOWER_KIND_META[def.kind].desc, "#e2e8f0", 14);
+        saveGameProgress();
+        return true;
+    }
+
+    // finishTraining 呼叫
+    function finishTowerStage(won) {
+        const b = game.training.tower;
+        const hpPct = Math.max(0, player.hp / Math.max(1, player.maxHp));
+        const secs = b.elapsed || 0;
+        const key = towerKey(b.floor, b.idx);
+        const s = getTowerSave();
+        const res = { floor: b.floor, idx: b.idx, won: won, practice: b.practice, secs: secs, hpPct: hpPct, stars: 0, miss: [], reward: null, first: false, refund: 0 };
+        if (won) {
+            res.stars = getTowerStarsFor(hpPct, secs);
+            res.miss = getTowerStarMiss(hpPct, secs);
+            if (!b.practice) {
+                const old = s.stars[key] || 0;
+                res.first = old === 0;
+                res.newBest = res.stars > old;
+                s.stars[key] = Math.max(old, res.stars);
+                if (!s.best[key] || secs < s.best[key]) s.best[key] = Math.round(secs * 10) / 10;
+                const reward = rollTowerBonus(b, getTowerPlayReward(b));
+                if (res.first) mergeReward(reward, getTowerFirstReward(b));
+                giveReward(reward);
+                res.reward = reward;
+                if (res.first && b.idx === TOWER.stagesPerFloor - 1) addArcherXp(ARCHER_XP.trialFirst); // 🎖️ 第一次打倒樓層守護者
+            }
+        } else if (!b.practice && b.cost > 0) {
+            res.refund = Math.floor(b.cost * TOWER.failRefund);
+            addTowerStamina(res.refund);
+        }
+        game.runInProgress = false;
+        player.equippedSkills = [];
+        clearTowerMobs();
+        game.training = null;
+        towerResult = res;
+        towerSelected = { floor: b.floor, idx: b.idx };
+        saveGameProgress();
+        openTowerModal();
+    }
+
+    // 掃蕩：三星的關卡花體力直接拿獎勵
+    function sweepTowerStage(floor, idx, times) {
+        if (getTowerStars(floor, idx) < 3) return null;
+        const cost = getTowerStageCost(floor, idx);
+        const n = Math.min(times || 1, TOWER.sweepMax, Math.floor(getTowerStamina() / cost));
+        if (n <= 0) {
+            towerBanner(`<span style="color:#fca5a5;">⚡ 體力不夠（掃蕩一次要 ${cost}）</span>`);
+            return null;
+        }
+        spendTowerStamina(cost * n);
+        const def = getTowerStageDef(floor, idx);
+        const total = {};
+        for (let i = 0; i < n; i++) mergeReward(total, rollTowerBonus(def, getTowerPlayReward(def)));
+        giveReward(total);
+        getTowerSave().plays += n;
+        saveGameProgress();
+        try { sfx.coin(); } catch (e) { /* 沒有音效也沒關係 */ }
+        towerResult = null;
+        towerBanner(`<span style="color:#86efac;">🧹 掃蕩 ${floor}-${idx + 1} ×${n}：${rewardText(total)}</span>`);
+        renderTowerUI();
+        return { times: n, reward: total };
+    }
+
+    function claimTowerChest(floor, need) {
+        const k = floor + "@" + need;
+        const s = getTowerSave();
+        if (s.chests[k] || getTowerFloorStars(floor) < need) return null;
+        s.chests[k] = true;
+        const r = getTowerChestReward(floor, need);
+        giveReward(r);
+        saveGameProgress();
+        try { sfx.gachaPull(); } catch (e) { /* 沒有音效也沒關係 */ }
+        towerBanner(`<span style="color:#fde68a;">🎁 第 ${floor} 層 ⭐${need} 寶箱：${rewardText(r)}</span>`);
+        renderTowerUI();
+        return r;
+    }
+
+    // ---------- 畫面 ----------
+    function towerBanner(html) {
+        if (dom.towerBanner) dom.towerBanner.innerHTML = html;
+    }
+
+    function openTowerModal() {
+        try { sfx.unlock(); } catch (e) { /* 沒有音效也沒關係 */ }
+        game.state = "TOWER";
+        hideAllModals();
+        if (dom.towerModal) dom.towerModal.classList.remove("hidden");
+        towerBanner(isTowerUnlocked() ? "🗼 一關一關往上爬！拿到 ⭐⭐⭐ 就能用 ⚡ 體力掃蕩" : "🔒 通過第 " + TOWER.unlockStage + " 關解鎖");
+        // 預設選到「下一個還沒三星」的關
+        if (!towerResult) {
+            const next = getTowerNextStage();
+            if (next) towerSelected = next;
+        }
+        renderTowerUI();
+        if (!towerTick && typeof setInterval === "function") {
+            towerTick = setInterval(updateTowerStaminaText, 1000);
+            if (towerTick && typeof towerTick.unref === "function") towerTick.unref();
+        }
+        if (typeof showFeatureGuide === "function") showFeatureGuide("tower");
+    }
+
+    function closeTowerModal() {
+        if (dom.towerModal) dom.towerModal.classList.add("hidden");
+        towerResult = null;
+        openHubModal("START");
+    }
+
+    function getTowerNextStage() {
+        for (let f = 1; f <= TOWER.floors; f++) for (let i = 0; i < TOWER.stagesPerFloor; i++) {
+            if (isTowerStageOpen(f, i) && getTowerStars(f, i) === 0) return { floor: f, idx: i };
+        }
+        return { floor: 1, idx: 0 };
+    }
+
+    function updateTowerStaminaText() {
+        if (!dom.towerModal || dom.towerModal.classList.contains("hidden")) return;
+        const el = document.getElementById && document.getElementById("tower-stamina");
+        if (el) el.innerHTML = towerStaminaHtml();
+    }
+
+    function towerStaminaHtml() {
+        const st = getTowerStamina();
+        const sec = getTowerStaminaNextSec();
+        return `⚡ <b>${st}</b> / ${TOWER.staminaMax}` + (sec > 0 ? `<span>（${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")} 後 +1）</span>` : "<span>（滿了）</span>");
+    }
+
+    function starsHtml(n, big) {
+        return `<span class="tw-stars${big ? " big" : ""}">` + [1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}">★</i>`).join("") + "</span>";
+    }
+
+    function renderTowerResultHtml() {
+        const r = towerResult;
+        if (!r) return "";
+        const label = r.floor + "-" + (r.idx + 1);
+        if (!r.won) {
+            return `<div class="tw-result lose"><div class="tw-result-title">💀 ${label} 沒打過</div>
+                <div class="tw-result-sub">${r.practice ? "練習模式" : r.refund ? "⚡ 退還 " + r.refund + " 體力" : ""}　小提示：先清掉飛過來的小怪，跳起來躲箭</div>
+                <div class="btn-row"><button type="button" class="gold-btn tw-retry">🔁 再試一次</button></div></div>`;
+        }
+        const nextOpen = isTowerStageOpen(r.floor, r.idx + 1) || (r.idx === TOWER.stagesPerFloor - 1 && isTowerStageOpen(r.floor + 1, 0));
+        return `<div class="tw-result win"><div class="tw-result-title">🏆 ${label} 過關！${r.practice ? "（練習）" : r.first ? "（第一次通關）" : ""}</div>
+            ${starsHtml(r.stars, true)}
+            ${r.miss.length ? `<div class="tw-miss">${r.miss.map((x) => "<div>" + x + "</div>").join("")}</div>` : `<div class="tw-miss ok">⭐⭐⭐ 完美！這關可以掃蕩了</div>`}
+            ${r.reward ? `<div class="tw-reward">🎁 ${rewardText(Object.assign({}, r.reward, { gear: (r.reward.gear || []).filter((g) => !g.kept) }))}</div>` : ""}
+            ${r.reward && r.reward.gear ? towerGearDropHtml(r.reward.gear) : ""}
+            <div class="btn-row"><button type="button" class="secondary-btn tw-retry">🔁 再打一次</button>${nextOpen ? '<button type="button" class="gold-btn tw-next">➡️ 下一關</button>' : ""}</div></div>`;
+    }
+
+    // 結算畫面：掉到的裝備用品質顏色列出來
+    function towerGearDropHtml(list) {
+        const kept = list.filter((g) => g.kept);
+        if (!kept.length) return "";
+        return `<div class="tw-gear-drop">${kept.map((g) => `<span style="--gq:${GEAR_QUALITY[g.q].color}">${GEAR_QUALITY[g.q].icon} ${g.name}${g.equipped ? "（已穿上）" : ""}</span>`).join("")}</div>`;
+    }
+
+    function renderTowerUI() {
+        const box = dom.towerBody;
+        if (!box) return;
+        if (!isTowerUnlocked()) { box.innerHTML = `<div class="tw-locked">🔒 通過主線第 ${TOWER.unlockStage} 關就能挑戰天弓塔</div>`; return; }
+        const sel = towerSelected;
+        const floorTiles = Array.from({ length: TOWER.floors }, (_, i) => {
+            const f = i + 1, open = isTowerFloorOpen(f);
+            return `<button type="button" class="tw-floor${f === sel.floor ? " on" : ""}${open ? "" : " locked"}" data-floor="${f}"${open ? "" : " disabled"}><b>${open ? f + "F" : "🔒"}</b><span>⭐${getTowerFloorStars(f)}/21</span></button>`;
+        }).join("");
+        const stageTiles = Array.from({ length: TOWER.stagesPerFloor }, (_, i) => {
+            const open = isTowerStageOpen(sel.floor, i), meta = TOWER_KIND_META[getTowerStageKind(i)];
+            return `<button type="button" class="tw-stage${i === sel.idx ? " on" : ""}${open ? "" : " locked"}" data-stage="${i}"${open ? "" : " disabled"}><em>${open ? meta.icon : "🔒"}</em><b>${sel.floor}-${i + 1}</b>${starsHtml(getTowerStars(sel.floor, i))}</button>`;
+        }).join("");
+        const def = getTowerStageDef(sel.floor, sel.idx);
+        const meta = TOWER_KIND_META[def.kind];
+        const stars = getTowerStars(sel.floor, sel.idx);
+        const cost = getTowerStageCost(sel.floor, sel.idx);
+        const first = stars === 0;
+        const st = getTowerStamina();
+        const mobs = Array.from(new Set(def.kind === "field" ? [].concat.apply([], def.waves) : def.kind === "boss" ? [].concat.apply([], def.summonWaves) : def.pool));
+        const best = getTowerSave().best[towerKey(sel.floor, sel.idx)];
+        const canSweep = stars >= 3;
+        const sweepN = Math.min(TOWER.sweepMax, Math.floor(st / cost));
+        const chests = TOWER.starChests.map((need) => {
+            const k = sel.floor + "@" + need, got = getTowerSave().chests[k], ok = getTowerFloorStars(sel.floor) >= need;
+            return `<button type="button" class="tw-chest${got ? " got" : ok ? " ready" : ""}" data-chest="${need}"${got || !ok ? " disabled" : ""}>${got ? "✅" : "🎁"} ⭐${need}</button>`;
+        }).join("");
+        box.innerHTML = `
+            <div class="tw-top"><div id="tower-stamina" class="tw-stamina">${towerStaminaHtml()}</div><div class="tw-total">⭐ 總星數 ${getTowerTotalStars()} / ${TOWER.floors * 21}</div><button type="button" class="secondary-btn tw-gear-btn">🎒 裝備${getGearNewCount() ? "（" + getGearNewCount() + " 件新）" : ""}</button></div>
+            ${renderTowerResultHtml()}
+            <div class="tw-floors">${floorTiles}</div>
+            <div class="tw-stages">${stageTiles}</div>
+            <div class="tw-detail">
+                <div class="tw-detail-head"><span class="tw-kind">${meta.icon} ${meta.name}</span><b>${sel.floor}-${sel.idx + 1}</b>${starsHtml(stars)}${best ? `<span class="tw-best">最快 ${best}s</span>` : ""}</div>
+                <div class="tw-desc">${meta.desc}</div>
+                <div class="tw-foes">${def.kind === "boss" ? "👑 " : def.kind === "maze" ? "⭐ 精英 " : "隊長 "}${getTowerLeaderTitle(def)}　小怪：${mobs.map((t) => MOB_TYPES[t].icon + MOB_TYPES[t].name).join("、")}</div>
+                <div class="tw-rules"><span>★ 過關</span><span>★★ 剩 ${Math.round(TOWER.starHp * 100)}% 血</span><span>★★★ 再加 ${TOWER.starTime} 秒內</span></div>
+                <div class="tw-actions">
+                    <button type="button" class="gold-btn tw-go">⚔️ 挑戰（${first ? "第一次免費" : "⚡" + cost}）</button>
+                    <button type="button" class="secondary-btn tw-sweep" data-n="1"${canSweep && sweepN >= 1 ? "" : " disabled"}>🧹 掃蕩 ×1</button>
+                    <button type="button" class="secondary-btn tw-sweep" data-n="10"${canSweep && sweepN >= 2 ? "" : " disabled"}>🧹 掃蕩 ×${canSweep ? Math.max(2, sweepN) : 10}</button>
+                    <button type="button" class="secondary-btn tw-practice">🎯 練習</button>
+                </div>
+                <div class="tw-note">${canSweep ? "✅ 已經三星，可以掃蕩（直接拿獎勵、不用打）" : "⭐⭐⭐ 拿到三星後就能掃蕩"}｜練習不花體力、也沒有獎勵</div>
+            </div>
+            <div class="tw-chests"><span>第 ${sel.floor} 層星星寶箱</span>${chests}</div>`;
+        if (!box.querySelectorAll) return;
+        box.querySelectorAll("[data-floor]").forEach((el) => el.addEventListener("click", () => { towerSelected = { floor: +el.getAttribute("data-floor"), idx: 0 }; towerResult = null; const nx = getTowerNextInFloor(towerSelected.floor); if (nx >= 0) towerSelected.idx = nx; renderTowerUI(); }));
+        box.querySelectorAll("[data-stage]").forEach((el) => el.addEventListener("click", () => { towerSelected = { floor: sel.floor, idx: +el.getAttribute("data-stage") }; towerResult = null; renderTowerUI(); }));
+        box.querySelectorAll("[data-chest]").forEach((el) => el.addEventListener("click", () => claimTowerChest(sel.floor, +el.getAttribute("data-chest"))));
+        box.querySelectorAll(".tw-sweep").forEach((el) => el.addEventListener("click", () => sweepTowerStage(sel.floor, sel.idx, +el.getAttribute("data-n"))));
+        const gb = box.querySelector(".tw-gear-btn");
+        if (gb) gb.addEventListener("click", () => openGearModal("tower"));
+        const go = box.querySelector(".tw-go");
+        if (go) go.addEventListener("click", () => startTowerStage(sel.floor, sel.idx, false));
+        const pr = box.querySelector(".tw-practice");
+        if (pr) pr.addEventListener("click", () => startTowerStage(sel.floor, sel.idx, true));
+        const rt = box.querySelector(".tw-retry");
+        if (rt && towerResult) { const r = towerResult; rt.addEventListener("click", () => startTowerStage(r.floor, r.idx, r.practice)); }
+        const nx = box.querySelector(".tw-next");
+        if (nx && towerResult) {
+            const r = towerResult;
+            nx.addEventListener("click", () => {
+                const f = r.idx === TOWER.stagesPerFloor - 1 ? r.floor + 1 : r.floor;
+                const i = r.idx === TOWER.stagesPerFloor - 1 ? 0 : r.idx + 1;
+                towerSelected = { floor: f, idx: i };
+                towerResult = null;
+                renderTowerUI();
+            });
+        }
+    }
+
+    function getTowerNextInFloor(floor) {
+        let last = 0;
+        for (let i = 0; i < TOWER.stagesPerFloor; i++) {
+            if (!isTowerStageOpen(floor, i)) break;
+            last = i;
+            if (getTowerStars(floor, i) < 3) return i;
+        }
+        return last;
+    }
+
+    // =========================================================================
+
+;
+// ==== js/13v-gear.js
+// 13v. 🎒 裝備（天弓塔第 2 步）：掉落、品質、詞條、穿戴、拆解、自動拆解
+//   • 部位：🎀 弓飾（主：攻擊）、🪶 箭羽（主：爆頭傷害）、🧤 護手（主：生命）、🔮 護符（主：技能冷卻；打倒天弓塔 10F 守護者解鎖）
+//   • 品質：⚪普通 → 🟢精良 → 🔵稀有 → 🟣史詩 → 🟠極品 → 🔴神話（越高主屬性越強、詞條越多）
+//   • 強度上限：全身神話＋詞條完美 ≈ 攻擊 +9%、生命 +9%、爆頭 +18%、減傷 3%（約 +15～20% 戰力）
+//   • 掉落只來自天弓塔（過關、掃蕩）；稀有 5F 起、史詩 10F 迷宮／守護者起、極品 20F、神話 30F（之後加層數才拿得到）
+//   • 拆解得到 🔩 鍛造石（第 3 步鍛造台用）；可以設定自動拆解
+//   • 主線、訓練、聖域、天弓塔都有效；連線對戰不算（公平）
+    // =========================================================================
+    const GEAR = {
+        invMax: 60,
+        amuletFloor: 10,              // 打倒這層的守護者解鎖護符欄
+        dropChance: { field: 0.15, maze: 0.3, boss: 0.6 }, // 調低：以前 35%／60%／100%
+        bossExtra: 0.1,               // 守護者再多掉一件的機率（以前 25%）
+        uncommon: 0.32,
+        rare: { floor: 5, chance: 0.08 },
+        epic: { floor: 10, maze: 0.015, boss: 0.03 },
+        legendary: { floor: 20, boss: 0.003 },
+        mythic: { floor: 30, boss: 0.0005 },
+        mainRoll: [0.85, 1.0],
+        affixRoll: [0.6, 1.0]
+    };
+
+    const GEAR_SLOTS = [
+        { id: "charm", icon: "🎀", name: "弓飾", main: "atk", names: ["木雕弓飾", "銅紋弓飾", "銀羽弓飾", "星紋弓飾", "天穹弓飾", "神諭弓飾"] },
+        { id: "fletch", icon: "🪶", name: "箭羽", main: "crit", names: ["雞毛箭羽", "鷹羽箭羽", "風隼箭羽", "雷鵬箭羽", "鳳凰箭羽", "天弓神羽"] },
+        { id: "bracer", icon: "🧤", name: "護手", main: "hp", names: ["皮革護手", "鐵環護手", "秘銀護手", "龍鱗護手", "泰坦護手", "神鑄護手"] },
+        { id: "amulet", icon: "🔮", name: "護符", main: "cd", names: ["石刻護符", "琥珀護符", "月光護符", "星辰護符", "日冕護符", "命運護符"] }
+    ];
+
+    const GEAR_QUALITY = [
+        { name: "普通", icon: "⚪", color: "#cbd5e1", mult: 0.25, affixes: 1, stone: 1 },
+        { name: "精良", icon: "🟢", color: "#4ade80", mult: 0.4, affixes: 2, stone: 2 },
+        { name: "稀有", icon: "🔵", color: "#60a5fa", mult: 0.55, affixes: 2, stone: 5 },
+        { name: "史詩", icon: "🟣", color: "#c084fc", mult: 0.7, affixes: 3, stone: 15 },
+        { name: "極品", icon: "🟠", color: "#fb923c", mult: 0.85, affixes: 4, stone: 40 },
+        { name: "神話", icon: "🔴", color: "#f87171", mult: 1.0, affixes: 4, stone: 120 }
+    ];
+
+    // main：當主屬性時的滿值；affix：當詞條時的滿值（都是神話品質、滿 roll 的數字）
+    const GEAR_STATS = {
+        atk: { icon: "⚔️", name: "攻擊", main: 0.04, affix: 0.012 },
+        hp: { icon: "❤️", name: "生命", main: 0.04, affix: 0.012 },
+        crit: { icon: "🎯", name: "爆頭傷害", main: 0.08, affix: 0.025 },
+        cd: { icon: "⏱️", name: "技能冷卻", main: 0.04, affix: 0.01 },
+        dr: { icon: "🛡️", name: "減傷", affix: 0.008 },
+        move: { icon: "👟", name: "移動速度", affix: 0.015 },
+        coin: { icon: "🪙", name: "戰鬥金幣", affix: 0.03 }
+    };
+    const GEAR_STAT_ORDER = ["atk", "hp", "crit", "cd", "dr", "move", "coin"];
+
+    let gearSel = { id: 0, slot: "all" };
+    let gearReturnTo = "hub";
+
+    // ---------- 存檔 ----------
+    function sanitizeGearSave(s) {
+        const out = { items: [], eq: {}, stone: 0, auto: -1, nextId: 1 };
+        if (!s || typeof s !== "object") return out;
+        const slotIds = GEAR_SLOTS.map((x) => x.id);
+        const okStat = (k, v) => GEAR_STATS[k] && Number.isFinite(v) && v > 0 && v <= 0.2;
+        (Array.isArray(s.items) ? s.items : []).forEach((it) => {
+            if (!it || slotIds.indexOf(it.slot) < 0 || !(it.q >= 0 && it.q < GEAR_QUALITY.length) || !it.main || !okStat(it.main.k, it.main.v)) return;
+            const id = Math.max(1, Math.floor(+it.id || 0));
+            if (out.items.some((x) => x.id === id)) return;
+            out.items.push({
+                id: id, slot: it.slot, q: Math.floor(it.q), floor: Math.max(1, Math.floor(+it.floor || 1)),
+                main: { k: it.main.k, v: +it.main.v },
+                affixes: (Array.isArray(it.affixes) ? it.affixes : []).filter((a) => a && okStat(a.k, a.v)).slice(0, 4).map((a) => ({ k: a.k, v: +a.v })),
+                lock: Boolean(it.lock), n: Boolean(it.n)
+            });
+        });
+        out.items = out.items.slice(0, GEAR.invMax + 10);
+        if (s.eq && typeof s.eq === "object") slotIds.forEach((sl) => {
+            const id = +s.eq[sl];
+            const it = out.items.find((x) => x.id === id);
+            if (it && it.slot === sl) out.eq[sl] = id;
+        });
+        out.stone = Math.max(0, Math.floor(+s.stone || 0));
+        out.auto = [-1, 0, 1, 2].indexOf(+s.auto) >= 0 ? +s.auto : -1;
+        out.nextId = Math.max(Math.floor(+s.nextId || 1), out.items.reduce((m, x) => Math.max(m, x.id + 1), 1));
+        return out;
+    }
+
+    function getGearSave() {
+        if (!game.gearSave || typeof game.gearSave !== "object" || !Array.isArray(game.gearSave.items)) game.gearSave = sanitizeGearSave(game.gearSave);
+        return game.gearSave;
+    }
+
+    function isGearUnlocked() {
+        return typeof isTowerUnlocked === "function" && isTowerUnlocked();
+    }
+
+    function isGearSlotOpen(slot) {
+        if (slot !== "amulet") return true;
+        return typeof getTowerStars === "function" && getTowerStars(GEAR.amuletFloor, TOWER.stagesPerFloor - 1) > 0;
+    }
+
+    function getOpenGearSlots() {
+        return GEAR_SLOTS.filter((s) => isGearSlotOpen(s.id));
+    }
+
+    function getGearSlotMeta(id) {
+        return GEAR_SLOTS.find((s) => s.id === id) || GEAR_SLOTS[0];
+    }
+
+    function getGearItem(id) {
+        return getGearSave().items.find((x) => x.id === id) || null;
+    }
+
+    function getEquippedGear(slot) {
+        const id = getGearSave().eq[slot];
+        return id ? getGearItem(id) : null;
+    }
+
+    function isGearEquipped(it) {
+        return Boolean(it && getGearSave().eq[it.slot] === it.id);
+    }
+
+    // ---------- 產生裝備 ----------
+    function gearRand(a, b) {
+        return a + Math.random() * (b - a);
+    }
+
+    function roundGearVal(v) {
+        return Math.round(v * 10000) / 10000;
+    }
+
+    function makeGearItem(q, slot, floor) {
+        const meta = getGearSlotMeta(slot);
+        const qm = GEAR_QUALITY[q].mult;
+        const mainStat = GEAR_STATS[meta.main];
+        const item = {
+            id: 0, slot: meta.id, q: q, floor: floor || 1,
+            main: { k: meta.main, v: roundGearVal(mainStat.main * qm * gearRand(GEAR.mainRoll[0], GEAR.mainRoll[1])) },
+            affixes: [], lock: false, n: true
+        };
+        const pool = GEAR_STAT_ORDER.filter((k) => k !== meta.main);
+        for (let i = 0; i < GEAR_QUALITY[q].affixes && pool.length; i++) {
+            const k = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+            item.affixes.push({ k: k, v: roundGearVal(GEAR_STATS[k].affix * qm * gearRand(GEAR.affixRoll[0], GEAR.affixRoll[1])) });
+        }
+        return item;
+    }
+
+    // 品質：越上層、迷宮／守護者越好
+    function rollGearQuality(floor, kind) {
+        const r = Math.random();
+        let acc = 0;
+        if (floor >= GEAR.mythic.floor && kind === "boss") { acc += GEAR.mythic.boss; if (r < acc) return 5; }
+        if (floor >= GEAR.legendary.floor && kind === "boss") { acc += GEAR.legendary.boss; if (r < acc) return 4; }
+        if (floor >= GEAR.epic.floor && (kind === "boss" || kind === "maze")) { acc += GEAR.epic[kind]; if (r < acc) return 3; }
+        if (floor >= GEAR.rare.floor) { acc += GEAR.rare.chance; if (r < acc) return 2; }
+        acc += GEAR.uncommon;
+        if (r < acc) return 1;
+        return 0;
+    }
+
+    function rollGearSlot() {
+        const open = getOpenGearSlots();
+        return open[Math.floor(Math.random() * open.length)].id;
+    }
+
+    // 天弓塔過關／掃蕩一次：回傳這次掉的裝備（已經放進背包或自動拆解）
+    function rollTowerGear(def) {
+        if (!isGearUnlocked()) return [];
+        let n = Math.random() < (GEAR.dropChance[def.kind] || 0) ? 1 : 0;
+        if (def.kind === "boss" && Math.random() < GEAR.bossExtra) n += 1;
+        const out = [];
+        for (let i = 0; i < n; i++) {
+            const item = makeGearItem(rollGearQuality(def.floor, def.kind), rollGearSlot(), def.floor);
+            out.push(addGearItem(item));
+        }
+        return out;
+    }
+
+    function gearScore(it) {
+        if (!it) return 0;
+        let s = it.main.v / GEAR_STATS[it.main.k].affix;
+        it.affixes.forEach((a) => { s += a.v / GEAR_STATS[a.k].affix; });
+        return s;
+    }
+
+    // 放進背包：自動拆解、背包滿了、空的部位自動穿上
+    // 回傳 { item, kept, stone, auto }
+    function addGearItem(item) {
+        const s = getGearSave();
+        const res = { q: item.q, slot: item.slot, name: getGearName(item), kept: false, stone: 0, auto: false, equipped: false };
+        if (s.auto >= item.q && getEquippedGear(item.slot)) {
+            res.stone = GEAR_QUALITY[item.q].stone;
+            s.stone += res.stone;
+            res.auto = true;
+            return res;
+        }
+        if (s.items.length >= GEAR.invMax) {
+            // 背包滿了：拆掉最差的（沒穿、沒鎖、品質比新的低）；沒有就拆新的
+            const cands = s.items.filter((x) => !isGearEquipped(x) && !x.lock && x.q < item.q).sort((a, b) => a.q - b.q || gearScore(a) - gearScore(b));
+            if (!cands.length) {
+                res.stone = GEAR_QUALITY[item.q].stone;
+                s.stone += res.stone;
+                res.auto = true;
+                return res;
+            }
+            salvageGearItems([cands[0].id]);
+        }
+        item.id = s.nextId++;
+        s.items.push(item);
+        res.kept = true;
+        res.id = item.id;
+        if (!getEquippedGear(item.slot)) {
+            s.eq[item.slot] = item.id;
+            item.n = false;
+            res.equipped = true;
+        }
+        return res;
+    }
+
+    // ---------- 穿戴、拆解、鎖定 ----------
+    function equipGear(id) {
+        const it = getGearItem(id);
+        if (!it || !isGearSlotOpen(it.slot) || isRunLocked()) return false;
+        getGearSave().eq[it.slot] = it.id;
+        it.n = false;
+        saveGameProgress();
+        return true;
+    }
+
+    function unequipGear(slot) {
+        if (isRunLocked()) return false;
+        delete getGearSave().eq[slot];
+        saveGameProgress();
+        return true;
+    }
+
+    function toggleGearLock(id) {
+        const it = getGearItem(id);
+        if (!it) return false;
+        it.lock = !it.lock;
+        saveGameProgress();
+        return it.lock;
+    }
+
+    function salvageGearItems(ids) {
+        const s = getGearSave();
+        let stone = 0, n = 0;
+        ids.forEach((id) => {
+            const i = s.items.findIndex((x) => x.id === id);
+            if (i < 0) return;
+            const it = s.items[i];
+            if (isGearEquipped(it) || it.lock) return;
+            stone += GEAR_QUALITY[it.q].stone;
+            s.items.splice(i, 1);
+            n++;
+        });
+        s.stone += stone;
+        if (n) saveGameProgress();
+        return { n: n, stone: stone };
+    }
+
+    // 一鍵拆解：品質 ≤ maxQ、沒穿、沒鎖
+    function salvageGearBelow(maxQ) {
+        const ids = getGearSave().items.filter((x) => x.q <= maxQ && !isGearEquipped(x) && !x.lock).map((x) => x.id);
+        return salvageGearItems(ids);
+    }
+
+    function setGearAutoSalvage(q) {
+        getGearSave().auto = [-1, 0, 1, 2].indexOf(q) >= 0 ? q : -1;
+        saveGameProgress();
+    }
+
+    // ---------- 戰鬥加成 ----------
+    function getGearBonus() {
+        const b = {};
+        GEAR_STAT_ORDER.forEach((k) => { b[k] = 0; });
+        GEAR_SLOTS.forEach((sl) => {
+            if (!isGearSlotOpen(sl.id)) return;
+            const it = getEquippedGear(sl.id);
+            if (!it) return;
+            b[it.main.k] += it.main.v;
+            it.affixes.forEach((a) => { b[a.k] += a.v; });
+        });
+        GEAR_STAT_ORDER.forEach((k) => { b[k] = roundGearVal(b[k]); });
+        return b;
+    }
+
+    // enterArena 呼叫（遺物之後、記下這局基準之前）
+    function applyGearToRun() {
+        player.gearCoinMult = 1;
+        if (game.pvp) return; // 連線對戰不吃裝備
+        const b = getGearBonus();
+        if (b.atk) player.baseDamage = Math.round(player.baseDamage * (1 + b.atk));
+        if (b.hp) { player.maxHp = Math.round(player.maxHp * (1 + b.hp)); player.hp = player.maxHp; }
+        if (b.crit) player.critMultiplier += b.crit;
+        if (b.dr) player.damageTakenMult = (player.damageTakenMult || 1) * (1 - b.dr);
+        if (b.cd) player.cdMultiplier = +((player.cdMultiplier || 1) * (1 - b.cd)).toFixed(3);
+        if (b.move) player.speed = Math.round(player.speed * (1 + b.move));
+        player.gearCoinMult = 1 + (b.coin || 0);
+    }
+
+    function getGearCoinMult() {
+        return player.gearCoinMult || 1;
+    }
+
+    // ---------- 文字 ----------
+    function getGearName(it) {
+        return getGearSlotMeta(it.slot).names[it.q];
+    }
+
+    function fmtGearStat(k, v) {
+        return GEAR_STATS[k].icon + " " + GEAR_STATS[k].name + " " + (k === "cd" || k === "dr" ? "-" : "+") + (Math.round(v * 1000) / 10) + "%";
+    }
+
+    function gearBonusText(b) {
+        const parts = GEAR_STAT_ORDER.filter((k) => b[k] > 0).map((k) => fmtGearStat(k, b[k]));
+        return parts.length ? parts.join("｜") : "還沒有加成，先去天弓塔刷裝備";
+    }
+
+    // 獎勵文字（12f rewardText 用）
+    function gearRewardText(list) {
+        const kept = list.filter((g) => g.kept);
+        const auto = list.filter((g) => g.auto);
+        const tr = (s) => (typeof trText === "function" ? trText(s) : s); // 英文模式：每段先翻好再串起來
+        const en = typeof isEnglish === "function" && isEnglish();
+        const parts = [];
+        if (kept.length) parts.push("🎒 " + kept.map((g) => GEAR_QUALITY[g.q].icon + tr(g.name)).join(en ? ", " : "、"));
+        if (auto.length) parts.push(tr("♻️ 自動拆解 " + auto.length + " 件 → 🔩" + auto.reduce((s, g) => s + g.stone, 0)));
+        return parts.join(en ? ", " : "、");
+    }
+
+    function getGearNewCount() {
+        return getGearSave().items.filter((x) => x.n).length;
+    }
+
+    function getGearBadge() {
+        if (!isGearUnlocked()) return "";
+        const n = getGearNewCount();
+        return n > 0 ? n + " 件新" : "";
+    }
+
+    // =========================================================================
+    // 畫面
+    // =========================================================================
+    function openGearModal(from) {
+        gearReturnTo = from || "hub";
+        try { sfx.unlock(); } catch (e) { /* 沒有音效也沒關係 */ }
+        hideAllModals();
+        game.state = "GEAR";
+        if (dom.gearModal) dom.gearModal.classList.remove("hidden");
+        gearBanner(isGearUnlocked() ? "🎒 天弓塔掉的裝備在這裡穿；拆掉不要的換 🔩 鍛造石" : "🔒 通過主線第 " + TOWER.unlockStage + " 關、打天弓塔就會掉裝備");
+        const best = getGearSave().items.slice().sort((a, b) => b.q - a.q || gearScore(b) - gearScore(a))[0];
+        if (!getGearItem(gearSel.id)) gearSel.id = best ? best.id : 0;
+        renderGearUI();
+        if (typeof showFeatureGuide === "function") showFeatureGuide("gear");
+    }
+
+    function closeGearModal() {
+        if (dom.gearModal) dom.gearModal.classList.add("hidden");
+        // 看過的就不算新的
+        getGearSave().items.forEach((x) => { x.n = false; });
+        saveGameProgress();
+        if (gearReturnTo === "tower" && typeof openTowerModal === "function") openTowerModal();
+        else openHubModal("START");
+    }
+
+    function gearBanner(html) {
+        if (dom.gearBanner) dom.gearBanner.innerHTML = html;
+    }
+
+    function gearCardHtml(it, small) {
+        const q = GEAR_QUALITY[it.q];
+        const meta = getGearSlotMeta(it.slot);
+        const eq = isGearEquipped(it);
+        const cur = getEquippedGear(it.slot);
+        const up = !eq && (!cur || gearScore(it) > gearScore(cur) + 0.05);
+        return `<button type="button" class="gr-item${it.id === gearSel.id ? " on" : ""}${small ? " small" : ""}" data-gear="${it.id}" style="--gq:${q.color}">
+            <span class="gr-item-icon">${meta.icon}</span>
+            <span class="gr-item-name">${q.icon} ${getGearName(it)}</span>
+            <span class="gr-item-main">${fmtGearStat(it.main.k, it.main.v)}</span>
+            <span class="gr-item-tags">${eq ? "<i class=\"eq\">✅ 穿著</i>" : ""}${it.lock ? "<i>🔒</i>" : ""}${it.n ? "<i class=\"new\">NEW</i>" : ""}${up ? "<i class=\"up\">⬆️ 更強</i>" : ""}</span>
+        </button>`;
+    }
+
+    function gearDetailHtml(it) {
+        if (!it) return `<div class="gr-detail empty">點一件裝備看詳細</div>`;
+        const q = GEAR_QUALITY[it.q];
+        const eq = isGearEquipped(it);
+        const cur = getEquippedGear(it.slot);
+        const lines = [it.main].concat(it.affixes);
+        // 和身上穿的比：每個屬性差多少
+        let compare = "";
+        if (!eq && cur) {
+            const sum = (x) => { const o = {}; [x.main].concat(x.affixes).forEach((a) => { o[a.k] = (o[a.k] || 0) + a.v; }); return o; };
+            const a = sum(it), c = sum(cur);
+            const diff = GEAR_STAT_ORDER.filter((k) => (a[k] || 0) !== (c[k] || 0)).map((k) => {
+                const d = (a[k] || 0) - (c[k] || 0);
+                return `<span class="${d > 0 ? "plus" : "minus"}">${GEAR_STATS[k].icon} ${GEAR_STATS[k].name} ${d > 0 ? "▲" : "▼"}${Math.round(Math.abs(d) * 1000) / 10}%</span>`;
+            });
+            compare = `<div class="gr-compare"><b>換上之後：</b>${diff.length ? diff.join("") : "差不多"}</div>`;
+        }
+        const locked = isRunLocked();
+        return `<div class="gr-detail" style="--gq:${q.color}">
+            <div class="gr-detail-head"><span class="gr-q">${q.icon} ${q.name}</span><b>${getGearSlotMeta(it.slot).icon} ${getGearName(it)}</b><span class="gr-floor">天弓塔 ${it.floor}F</span></div>
+            <div class="gr-lines">${lines.map((l, i) => `<div class="${i === 0 ? "main" : ""}">${i === 0 ? "主屬性　" : "詞條　"}${fmtGearStat(l.k, l.v)}</div>`).join("")}</div>
+            ${compare}
+            <div class="gr-actions">
+                ${eq ? `<button type="button" class="secondary-btn gr-unequip"${locked ? " disabled" : ""}>脫下</button>` : `<button type="button" class="gold-btn gr-equip"${locked || !isGearSlotOpen(it.slot) ? " disabled" : ""}>穿上</button>`}
+                <button type="button" class="secondary-btn gr-lock">${it.lock ? "🔓 解鎖" : "🔒 鎖定"}</button>
+                <button type="button" class="secondary-btn danger-btn gr-salvage"${eq || it.lock ? " disabled" : ""}>♻️ 拆解 → 🔩${q.stone}</button>
+            </div>
+            ${locked ? `<div class="gr-note">⚠️ 這一局還在進行中，打完或放棄這局才能換裝備</div>` : ""}
+        </div>`;
+    }
+
+    function renderGearUI() {
+        const box = dom.gearBody;
+        if (!box) return;
+        if (!isGearUnlocked()) { box.innerHTML = `<div class="tw-locked">🔒 通過主線第 ${TOWER.unlockStage} 關解鎖天弓塔，打塔就會掉裝備</div>`; return; }
+        const s = getGearSave();
+        const slots = GEAR_SLOTS.map((sl) => {
+            const open = isGearSlotOpen(sl.id);
+            const it = open ? getEquippedGear(sl.id) : null;
+            const q = it ? GEAR_QUALITY[it.q] : null;
+            return `<button type="button" class="gr-slot${gearSel.slot === sl.id ? " on" : ""}${open ? "" : " locked"}" data-slot="${sl.id}" style="--gq:${q ? q.color : "#475569"}">
+                <span class="gr-slot-icon">${open ? sl.icon : "🔒"}</span>
+                <b>${sl.name}</b>
+                <span>${!open ? "打倒天弓塔 " + GEAR.amuletFloor + "F 守護者解鎖" : it ? q.icon + " " + getGearName(it) : "還沒穿"}</span>
+                ${it ? `<span class="gr-slot-main">${fmtGearStat(it.main.k, it.main.v)}</span>` : ""}
+            </button>`;
+        }).join("");
+        const list = s.items.filter((x) => gearSel.slot === "all" || x.slot === gearSel.slot)
+            .sort((a, b) => (isGearEquipped(b) - isGearEquipped(a)) || b.q - a.q || gearScore(b) - gearScore(a));
+        const tabs = [{ id: "all", icon: "📦", name: "全部" }].concat(GEAR_SLOTS).map((t) =>
+            `<button type="button" class="gr-tab${gearSel.slot === t.id ? " on" : ""}" data-tab="${t.id}">${t.icon} ${t.name}</button>`).join("");
+        const autoOpts = [[-1, "不拆"], [0, "⚪ 普通"], [1, "🟢 精良以下"], [2, "🔵 稀有以下"]].map((o) =>
+            `<button type="button" class="gr-auto${s.auto === o[0] ? " on" : ""}" data-auto="${o[0]}">${o[1]}</button>`).join("");
+        box.innerHTML = `
+            <div class="gr-top">
+                <div class="gr-sum"><b>目前加成</b>　${gearBonusText(getGearBonus())}</div>
+                <div class="gr-mats">🔩 鍛造石 <b>${s.stone}</b>　🎒 背包 <b>${s.items.length}</b> / ${GEAR.invMax}</div>
+            </div>
+            <div class="gr-slots">${slots}</div>
+            <div class="gr-main">
+                <div class="gr-left">
+                    <div class="gr-tabs">${tabs}</div>
+                    <div class="gr-list">${list.length ? list.map((it) => gearCardHtml(it)).join("") : `<div class="gr-empty">這裡還沒有裝備。去 🗼 天弓塔過關或掃蕩就會掉！</div>`}</div>
+                </div>
+                ${gearDetailHtml(getGearItem(gearSel.id))}
+            </div>
+            <div class="gr-bulk">
+                <div><b>♻️ 一鍵拆解</b>（穿著、鎖定的不會拆）
+                    <button type="button" class="secondary-btn gr-bulk-btn" data-bulk="0">⚪ 普通</button>
+                    <button type="button" class="secondary-btn gr-bulk-btn" data-bulk="1">🟢 精良以下</button>
+                    <button type="button" class="secondary-btn gr-bulk-btn" data-bulk="2">🔵 稀有以下</button>
+                </div>
+                <div><b>🤖 自動拆解</b>（新掉的直接變 🔩）${autoOpts}</div>
+                <div class="gr-note">🔩 鍛造石之後用來強化、重洗詞條（鍛造台即將開放）。品質：⚪普通 🟢精良 🔵稀有（5F 起）🟣史詩（10F 迷宮、守護者）🟠極品 🔴神話（更高層才有）</div>
+            </div>`;
+        if (!box.querySelectorAll) return;
+        box.querySelectorAll("[data-gear]").forEach((el) => el.addEventListener("click", () => { gearSel.id = +el.getAttribute("data-gear"); const it = getGearItem(gearSel.id); if (it) it.n = false; renderGearUI(); }));
+        box.querySelectorAll("[data-slot]").forEach((el) => el.addEventListener("click", () => {
+            const sl = el.getAttribute("data-slot");
+            gearSel.slot = sl;
+            const it = getEquippedGear(sl);
+            if (it) gearSel.id = it.id;
+            renderGearUI();
+        }));
+        box.querySelectorAll("[data-tab]").forEach((el) => el.addEventListener("click", () => { gearSel.slot = el.getAttribute("data-tab"); renderGearUI(); }));
+        box.querySelectorAll("[data-auto]").forEach((el) => el.addEventListener("click", () => { setGearAutoSalvage(+el.getAttribute("data-auto")); renderGearUI(); }));
+        box.querySelectorAll("[data-bulk]").forEach((el) => el.addEventListener("click", () => {
+            const q = +el.getAttribute("data-bulk");
+            const n = s.items.filter((x) => x.q <= q && !isGearEquipped(x) && !x.lock).length;
+            if (!n) { gearBanner("沒有可以拆的裝備"); return; }
+            if (typeof window !== "undefined" && window.confirm && !window.confirm("要拆掉 " + n + " 件裝備嗎？（穿著、鎖定的不會拆）")) return;
+            const r = salvageGearBelow(q);
+            gearBanner(`<span style="color:#86efac;">♻️ 拆了 ${r.n} 件 → 🔩 +${r.stone}</span>`);
+            if (!getGearItem(gearSel.id)) gearSel.id = 0;
+            renderGearUI();
+        }));
+        const sel = getGearItem(gearSel.id);
+        const on = (cls, fn) => { const el = box.querySelector(cls); if (el && sel) el.addEventListener("click", fn); };
+        on(".gr-equip", () => { if (equipGear(sel.id)) { gearBanner(`<span style="color:#86efac;">✅ 穿上 ${GEAR_QUALITY[sel.q].icon} ${getGearName(sel)}</span>`); try { sfx.skill(); } catch (e) { /* 沒有音效也沒關係 */ } } renderGearUI(); });
+        on(".gr-unequip", () => { unequipGear(sel.slot); renderGearUI(); });
+        on(".gr-lock", () => { toggleGearLock(sel.id); renderGearUI(); });
+        on(".gr-salvage", () => {
+            const r = salvageGearItems([sel.id]);
+            if (r.n) gearBanner(`<span style="color:#86efac;">♻️ 拆解 → 🔩 +${r.stone}</span>`);
+            gearSel.id = 0;
+            renderGearUI();
+        });
+    }
+
+    // =========================================================================
+
+;
 // ==== js/13c-evolution.js
 // 13C. 角色進化抽取：永久成長（存檔），每抽一次費用 +10 金幣
     // =========================================================================
@@ -18708,6 +20274,7 @@
         if (t.tutorial) { finishTutorialFight(won); return; } // 🎓 新手教學（13r）
         if (t.trial) { finishBossTrial(won); return; } // ⚔️ Boss 試煉（13n）
         if (t.combo) { finishComboChallenge(won); return; } // 🔗 Combo 挑戰（13p）
+        if (t.tower) { finishTowerStage(won); return; } // 🗼 天弓塔（13u）
         game.runInProgress = false; // 訓練結束：解除配置鎖定
         if (won) {
             const bonus = (enemy.archetype.bossType ? 65 : 35) + game.stage * 10;
@@ -19515,12 +21082,14 @@
     }
 
     function onRelicCrit() {
-        if (!hasRelic("lucky_coin") || Math.random() >= relicV("lucky_coin")) return;
-        const onCd = player.equippedSkills.filter((s) => s.cd > 0);
+        if (!hasRelic("lucky_coin") || (player.luckyCoinCd || 0) > 0 || Math.random() >= relicV("lucky_coin")) return;
+        // 平衡：以前直接清零、沒有間隔 → 箭多爆頭多的配置技能幾乎沒冷卻；現在 2 秒最多一次、走共用的縮短規則（13i）
+        const onCd = player.equippedSkills.filter((s) => s.cd > 0 && !isEnchantSkill(s.id) && (s.refunded || 0) < s.maxCd * RUN_BALANCE.refundMaxFrac);
         if (onCd.length === 0) return;
         const s = onCd[Math.floor(Math.random() * onCd.length)];
-        s.cd = 0;
-        addFloatingText(player.x, player.y - 124, "🍀 幸運！" + SKILL_CATALOG[s.id].name + " 就緒", "#86efac", 14);
+        refundSkillCd(s, Infinity);
+        player.luckyCoinCd = 2;
+        addFloatingText(player.x, player.y - 124, "🍀 幸運！" + SKILL_CATALOG[s.id].name + (s.cd <= 0 ? " 就緒" : " 冷卻減半"), "#86efac", 14);
         updateSkillDockUI();
     }
 
@@ -19708,7 +21277,7 @@
         { id: "might", icon: "💪", title: "巨力", desc: "本局攻擊 +20%（加算，每局最多 3 次）", apply: () => { addRunAttackBonus(0.2); return "💪 巨力：攻擊 +20%"; } },
         { id: "steel", icon: "🛡️", title: "鋼軀", desc: "本局最大生命 +20%（以開局生命為基準），並回復等量生命（每局最多 3 次）", apply: () => { const g = addRunMaxHpBonus(0.2); return "🛡️ 鋼軀：最大生命 +" + g; } },
         { id: "rapid", icon: "🪶", title: "迅射", desc: "本局射箭冷卻 -12%", apply: () => { player.shotCdMult = +((player.shotCdMult || 1) * 0.88).toFixed(3); return "🪶 迅射：射箭冷卻 -12%"; } },
-        { id: "arcana", icon: "🔮", title: "法源", desc: "本局技能冷卻 -12%", apply: () => { player.cdMultiplier = +(player.cdMultiplier * 0.88).toFixed(3); player.equippedSkills.forEach((s) => { s.maxCd = Math.max(2.0, +(s.maxCd * 0.88).toFixed(2)); }); return "🔮 法源：技能冷卻 -12%"; } },
+        { id: "arcana", icon: "🔮", title: "法源", desc: "本局技能冷卻 -12%", apply: () => { applyRunSkillCdMult(0.88); return "🔮 法源：技能冷卻 -12%"; } },
         { id: "eagle", icon: "🎯", title: "鷹眼", desc: "本局爆頭倍率 +0.4", apply: () => { player.critMultiplier = +(player.critMultiplier + 0.4).toFixed(2); return "🎯 鷹眼：爆頭倍率 +0.4"; } },
         { id: "vamp", icon: "🩸", title: "血宴", desc: "本局所有箭吸血 +8%", apply: () => { player.blessLeech = (player.blessLeech || 0) + 0.08; return "🩸 血宴：吸血 +8%"; } },
         // 「遺物」選項已移除（保持遺物稀有，只能靠 Boss／精英掉落與聖域）
@@ -19717,7 +21286,6 @@
         { id: "bulwark", icon: "🧱", title: "磐石", desc: "本局受到的傷害 -12%（每局最多 2 次）", maxPicks: 2, apply: () => { player.damageTakenMult = +((player.damageTakenMult || 1) * 0.88).toFixed(3); return "🧱 磐石：承傷 -12%"; } },
         { id: "renewal", icon: "💖", title: "重生之泉", desc: "立刻回滿生命，最大生命 +8%（每局最多 2 次）", maxPicks: 2, apply: () => { addRunMaxHpBonus(0.08); player.hp = player.maxHp; return "💖 重生之泉：回滿生命"; } },
         { id: "elements", icon: "🌈", title: "元素洪流", desc: "本局每支箭 +20% 機率附帶烈焰或冰凍（每局 1 次）", maxPicks: 1, apply: () => { player.blessElementChance = (player.blessElementChance || 0) + 0.2; return "🌈 元素洪流：元素機率 +20%"; } },
-        { id: "crystal", icon: "💠", title: "覺醒結晶", desc: "獲得 5 個覺醒結晶（永久）", unlimited: true, apply: () => { addCrystals(5); return "💠 覺醒結晶 +5"; } }, // 平衡：8 → 5
         { id: "essence", icon: "🧪", title: "進化精華", desc: "獲得 25 個進化精華（永久）", unlimited: true, apply: () => { addEssence(25); return "🧪 進化精華 +25"; } },
         { id: "treasure", icon: "🪙", title: "寶藏", desc: "獲得 150 + 關卡 × 10 金幣（永久）", unlimited: true, apply: () => { const c = 150 + game.stage * 10; addCoins(c); return "🪙 金幣 +" + c; } }
     ];
@@ -19983,9 +21551,7 @@
     // 碎冰時（getPlayerArrowHitMult 呼叫）
     function onAwakenShatter() {
         if (!isEquippedBowAwakened("shatter_ice_bow")) return;
-        player.equippedSkills.forEach((s) => {
-            if (s.cd > 0) s.cd = Math.max(0, s.cd - 1.5);
-        });
+        refundAllSkillCds(1.5); // 共用規則（13i）
         addFloatingText(player.x, player.y - 120, "🧊 碎冰回饋：技能 -1.5s", "#bae6fd", 13);
         updateSkillDockUI();
     }
@@ -20045,9 +21611,7 @@
         if (!isEquippedBowAwakened("arcane_circuit_bow")) return;
         player.awakenCastCount = (player.awakenCastCount || 0) + 1;
         if (player.awakenCastCount % 3 !== 0) return;
-        player.equippedSkills.forEach((s) => {
-            if (s.cd > 0) s.cd = Math.max(0, s.cd - 3);
-        });
+        refundAllSkillCds(3); // 共用規則（13i）
         addFloatingText(player.x, player.y - 134, "🔮 迴路超載！技能 -3s", "#f0abfc", 15);
         updateSkillDockUI();
     }
@@ -20493,8 +22057,9 @@
 
     // 被動：鷹眼本能（爆頭時）
     function onAwakenCrit() {
-        if (skAwEq("passive_eagle_eye") && Math.random() < 0.25) {
+        if (skAwEq("passive_eagle_eye") && !((player.eagleEyeCd || 0) > 0) && Math.random() < 0.25) {
             player.shootCooldown = 0;
+            player.eagleEyeCd = 1.5; // 平衡：以前沒有間隔，箭多的時候幾乎沒有射箭冷卻
             addFloatingText(player.x, player.y - 104, "👁️ 連珠!", "#fde68a", 12);
         }
         if (skAw("weak_mark") && enemy.weakMarkTimer > 0) {
@@ -20649,8 +22214,57 @@
         bossBoonMaxPicks: 3,      // Boss 戰利品中「數值類」每種每局上限
         passiveLeechCap: 0.3,     // 被動吸血（弓、賜福、戰利品、覺醒）合計上限
         totalLeechCap: 0.6,       // 含吸血箭在內的總上限
-        leechHealPerSec: 0.12     // 吸血每秒最多回復 12% 最大生命
+        leechHealPerSec: 0.06,    // 吸血每秒最多回復 6% 最大生命（平衡：12% → 6%，中期吸血回得比敵人打得快＝站著不會死）
+        // 2026-11-26 數值疊加檢查（tools/audit-stacking.js、tools/audit-cooldown.js）
+        dmgTakenMin: 0.45,        // 承傷倍率（進化、天賦、賜福、戰利品、戰鬥經驗互乘）最低 ×0.45
+        dmgTakenTotalMin: 0.3,    // 再加上低血、煙霧、定身等情況減傷，最後最低也要吃 30% 傷害
+        eliteRunPickMax: 3,       // 精英寶箱「攻擊 +10%」「生命 +6%」每局各最多 3 次（以前沒有上限）
+        runShotCdMin: 0.6,        // 局內射箭冷卻加成（賜福、戰利品、補給包）最多 -40%
+        shotCdFloor: 0.25,        // 射箭冷卻絕對最低（0.18 → 0.25：每秒 20 支以上的箭會卡、也太強）
+        skillCdMultMin: 0.5,      // 技能冷卻倍率（天賦、遺物、賜福、戰利品、寶箱）統一最低 ×0.5
+        refundMaxFrac: 0.5        // 「縮短冷卻」類效果：每次冷卻最多被縮短一半（以前會連鎖到幾乎沒有冷卻）
     };
+
+    function getPlayerDamageTakenMult() {
+        return Math.max(RUN_BALANCE.dmgTakenMin, player.damageTakenMult || 1);
+    }
+
+    function getSkillCdMult() {
+        return Math.max(RUN_BALANCE.skillCdMultMin, player.cdMultiplier || 1);
+    }
+
+    // 局內的技能冷卻加成（賜福、Boss 戰利品、精英寶箱）：倍率不會低於下限，技能欄的冷卻跟著等比例縮短
+    function applyRunSkillCdMult(f) {
+        const old = player.cdMultiplier || 1;
+        const next = Math.min(old, Math.max(RUN_BALANCE.skillCdMultMin, +(old * f).toFixed(3)));
+        const ratio = Math.max(RUN_BALANCE.skillCdMultMin, next) / Math.max(RUN_BALANCE.skillCdMultMin, old);
+        player.cdMultiplier = next;
+        player.equippedSkills.forEach((s) => { s.maxCd = Math.max(2.0, +(s.maxCd * ratio).toFixed(2)); });
+    }
+
+    // 「縮短冷卻」類效果都走這裡：附魔技能不吃；一次冷卻最多被縮短 maxCd 的一半；回傳實際縮短的秒數
+    function refundSkillCd(s, sec) {
+        if (!s || !(s.cd > 0) || !(sec > 0)) return 0;
+        if (typeof isEnchantSkill === "function" && isEnchantSkill(s.id)) return 0;
+        const room = Math.max(0, (s.maxCd || 0) * RUN_BALANCE.refundMaxFrac - (s.refunded || 0));
+        const cut = Math.min(sec, room, s.cd);
+        if (cut <= 0) return 0;
+        s.cd = Math.max(0, s.cd - cut);
+        s.refunded = (s.refunded || 0) + cut;
+        if (s.cd <= 0) s.refunded = 0;
+        return cut;
+    }
+
+    function refundAllSkillCds(sec, except) {
+        let n = 0;
+        player.equippedSkills.forEach((s) => { if (s !== except && refundSkillCd(s, sec) > 0) n++; });
+        return n;
+    }
+
+    // 精英寶箱：這一局某個本局強化選了幾次
+    function getEliteRunPicks(id) {
+        return (player.eliteChestPicks || {})[id] || 0;
+    }
 
     // 開新局時呼叫（永久成長都套完之後）：記下這局的攻擊基準
     function initRunBalance() {
@@ -20658,6 +22272,7 @@
         player.runAtkBonus = 0;
         player.runStartMaxHp = player.maxHp;
         player.bossBoonPicks = {};
+        player.eliteChestPicks = {};
         player.leechBudget = player.maxHp * RUN_BALANCE.leechHealPerSec;
     }
 
@@ -21505,7 +23120,7 @@
             return {
                 id: id,
                 cd: 0,
-                maxCd: reducedCd * player.cdMultiplier
+                maxCd: reducedCd * getSkillCdMult()
             };
         });
 
@@ -21627,6 +23242,7 @@
         // 天賦樹與遺物（永久成長）
         applyTalentsToRun();
         applyRelicsToRun();
+        applyGearToRun(); // 🎒 裝備（13v）
         resetAwakenRunState();
         // 記下這局的攻擊／生命基準（之後的局內加成都以它加算）
         initRunBalance();
@@ -21673,6 +23289,8 @@
         game.titanWaves = [];
         game.titanMeteors = [];
         game.titanCrack = null;
+        game.mobs = []; // 🗼 天弓塔的小怪（16m）
+        game.mobBombs = [];
         game.hitstopTimer = 0;
         game.shakeTimer = 0;
 
@@ -21737,8 +23355,9 @@
         player.equippedSkills.forEach((s) => {
             const bonus = getSkillStatBonus(s.id);
             const reducedCd = Math.max(2.5, SKILL_CATALOG[s.id].maxCd - bonus.cdReductionSec);
-            s.maxCd = reducedCd * player.cdMultiplier;
+            s.maxCd = reducedCd * getSkillCdMult(); // 技能冷卻倍率最低 ×0.5（13i）
             s.cd = 0;
+            s.refunded = 0;
         });
 
         const arch = pickEnemyArchetypeForStage(stageNum);
@@ -21761,6 +23380,7 @@
         applyChapterScaling(stageNum); // 第二章（第 37 關起）敵人大幅加強
         applyDungeonStageMods(); // 聖域詛咒：敵人生命／攻擊／移速
         applyBossTrialMods(); // Boss 試煉的難度（13n）
+        applyTowerStageMods(); // 🗼 天弓塔的難度（13u）
         enemy.bossEnraged = false;
         enemy.bossCycleIndex = 0;
         enemy.bossSkillTimer = 4.2;
@@ -21908,7 +23528,7 @@
         dom.waveBadge.textContent = isPvp()
             ? getPvpBadgeText()
             : game.training
-            ? (game.training.tutorial ? "🎓 第 0 章・新手教學" : "🎯 訓練模式 · STAGE " + game.stage)
+            ? (game.training.tutorial ? "🎓 第 0 章・新手教學" : game.training.tower ? "🗼 天弓塔 " + game.training.tower.floor + "-" + (game.training.tower.idx + 1) : "🎯 訓練模式 · STAGE " + game.stage)
             : game.dungeon ? "🏛️ 聖域 " + game.dungeon.floor + "/" + DUNGEON_FLOORS + (isBoss ? " 👑 守護者" : "")
             : game.weeklyRun ? getWeeklyBadgeText(game.stage, isBoss)
             : getRegionBadgeText(game.stage, isBoss); // 主線：區域・第幾關（12l）
@@ -23242,11 +24862,7 @@
 
         if (owner === "player") {
             player.nextShotModifiers.arcane_surge = true;
-            player.equippedSkills.forEach((s) => {
-                if (s.id !== "arcane_surge" && s.cd > 0) {
-                    s.cd = Math.max(0, s.cd - 1.2);
-                }
-            });
+            player.equippedSkills.forEach((s) => { if (s.id !== "arcane_surge") refundSkillCd(s, 1.2); }); // 共用規則（13i）
             addFloatingText(caster.x, caster.y - 102, "🔮 奧術共鳴! 縮減技能CD 1.2s", "#e879f9", 15);
             updateSkillDockUI();
         } else {
@@ -23949,6 +25565,7 @@
     }
 
     function detonateLandmine(triggerX, triggerY, isAutoFuse = false, owner = "player", isComboMine = false) {
+        if (owner === "player") damageMobsInRadius(triggerX, triggerY, 90, Math.round(player.baseDamage * 1.2)); // 🗼 天弓塔的小怪（16m）
         sfx.explosion();
         game.hitstopTimer = 0.05;
         triggerShake(11, 0.26);
@@ -24143,9 +25760,7 @@
 
         if (castSlot && special === "arcane_circuit") {
             onAwakenArcaneCast(); // 覺醒：迴路超載
-            slots.forEach((s) => {
-                if (s !== castSlot && s.cd > 0) s.cd = Math.max(0, s.cd - BOW_ARCANE_CD_REFUND);
-            });
+            refundAllSkillCds(BOW_ARCANE_CD_REFUND, castSlot); // 共用規則（13i）
             player.arcaneCharged = true;
             spawnParticles(player.x, player.y - 50, "#e879f9", 10);
             addFloatingText(player.x, player.y - 120, "🔮 迴路充能：其他技能 -0.8s・下一箭奧術共鳴", "#f0abfc", 13);
@@ -24515,9 +26130,7 @@
                 player.comboFlowCd = COMBO_FLOW_ICD;
                 const refund = 1.5 + skillSteps("passive_combo_flow") * 0.2;
                 // 附魔技能不吃（平衡：射速快的流派會讓附魔幾乎永遠開著）
-                player.equippedSkills.forEach((s) => {
-                    if (s.cd > 0 && !isEnchantSkill(s.id)) s.cd = Math.max(0, s.cd - refund);
-                });
+                refundAllSkillCds(refund); // 共用規則（13i）
                 addFloatingText(player.x, player.y - 120, "🌊 連擊心流：技能冷卻 -" + refund.toFixed(1) + "s", "#67e8f9", 13);
                 updateSkillDockUI();
             }
@@ -26456,7 +28069,7 @@
         let n = 0;
         player.equippedSkills.forEach((s) => {
             const meta = SKILL_CATALOG[s.id];
-            if (meta && meta.category === "SUMMON" && s.cd > 0) { s.cd = Math.max(0, s.cd - BUILDING.engineerCdRefund); n++; }
+            if (meta && meta.category === "SUMMON" && refundSkillCd(s, BUILDING.engineerCdRefund) > 0) n++;
         });
         if (skAwEq("passive_engineer")) {
             const heal = Math.max(1, Math.round(player.maxHp * BUILDING.engineerAwakenHeal * getPlayerHealMult()));
@@ -26923,7 +28536,7 @@
     function nbRefundCds(sec, label) {
         let n = 0;
         player.equippedSkills.forEach((s) => {
-            if (s.cd > 0 && !isEnchantSkill(s.id)) { s.cd = Math.max(0, s.cd - sec); n++; }
+            if (refundSkillCd(s, sec) > 0) n++; // 共用規則（13i）
         });
         if (n && label) addFloatingText(player.x, player.y - 120, label, "#c4b5fd", 12);
         if (n) updateSkillDockUI();
@@ -27585,6 +29198,559 @@
     // =========================================================================
 
 ;
+// ==== js/16m-tower-mobs.js
+// 16m. 🗼 天弓塔的小怪：同時好幾隻敵人、波次、連殺
+//   小怪是獨立的實體（game.mobs），不是 enemy：
+//     • 玩家的箭打得到（20-combat-physics 的 hitTowerMob）
+//     • 小弓兵、盾兵的箭直接用敵人的箭（fireArrows "enemy" ＋ dmgScale），護盾、反射、互撞全部照常
+//     • 飛蝠、史萊姆、跳跳兵用碰撞造成傷害；炸彈蟲丟自己的炸彈（game.mobBombs）
+//   野外關：小隊長（enemy）先有護盾，前兩波小怪清光才會破盾；迷宮關：小怪一直來、打倒精英過關；守護者：每掉 1/3 血叫一波
+    // =========================================================================
+    const MOB_MAX_ALIVE = 8;
+    const MOB_TYPES = {
+        bat: { icon: "🦇", name: "飛蝠", hp: 0.6, dmg: 0.8, r: 15, fly: true, color: "#a78bfa" },
+        archer: { icon: "🏹", name: "小弓兵", hp: 1.0, dmg: 0.6, r: 16, color: "#fb7185" },
+        bomber: { icon: "💣", name: "炸彈蟲", hp: 0.9, dmg: 1.0, r: 17, color: "#fbbf24" },
+        shield: { icon: "🛡️", name: "盾兵", hp: 1.6, dmg: 0.8, r: 18, color: "#94a3b8" },
+        slime: { icon: "🟢", name: "史萊姆", hp: 1.2, dmg: 0.7, r: 18, color: "#4ade80" },
+        mini: { icon: "🟢", name: "小史萊姆", hp: 0.4, dmg: 0.5, r: 11, color: "#86efac" },
+        hopper: { icon: "🦘", name: "跳跳兵", hp: 1.0, dmg: 1.0, r: 16, color: "#f97316" },
+        // 主線：蜂群馴師放出來的毒蜂（19l；血量、攻擊由呼叫端給）
+        bee: { icon: "🐝", name: "毒蜂", hp: 0.5, dmg: 0.6, r: 12, fly: true, color: "#facc15" }
+    };
+
+    // 有小怪要跑：天弓塔，或主線有被召喚出來的小怪（毒蜂）
+    function hasActiveMobs() {
+        return isTowerBattle() || Boolean(game.mobs && game.mobs.length);
+    }
+
+    function isTowerBattle() {
+        return Boolean(game.training && game.training.tower);
+    }
+
+    function getTowerBattle() {
+        return isTowerBattle() ? game.training.tower : null;
+    }
+
+    function towerRand(a, b) {
+        return a + Math.random() * (b - a);
+    }
+
+    // ---------- 開場 ----------
+    // setupStage 之後呼叫：b＝{ floor, idx, kind, waves, unitHp, unitDmg, ... }（13u 的 getTowerStageDef 產生）
+    function startTowerBattle() {
+        const b = getTowerBattle();
+        game.mobs = [];
+        game.mobBombs = [];
+        if (!b) return;
+        b.elapsed = 0;
+        b.wave = 0;
+        b.waveTimer = 0.6;
+        b.spawnTimer = 1.2;
+        b.summonsDone = 0;
+        b.kills = 0;
+        b.streak = 0;
+        b.streakTimer = 0;
+        b.leaderShield = b.kind === "field" || b.kind === "maze"; // 迷宮：打倒一定數量的小怪，精英才會破盾
+        if (b.kind === "maze") enemy.isElite = true; // 精英標記（血量已經算在 mazeHp 裡；要在 setupStage 的 rollEliteEnemy 之後設）
+        b.shieldHintCd = 0;
+        if (b.leaderShield) {
+            // 有護盾時隊長比較少出手（主要壓力來自小怪）
+            enemy.shootInterval *= 1.6;
+            enemy.skillCooldown += 4;
+        }
+    }
+
+    function getTowerWaveTotal() {
+        const b = getTowerBattle();
+        return b && b.kind === "field" ? b.waves.length : 0;
+    }
+
+    function spawnMob(type, opts) {
+        const t = MOB_TYPES[type];
+        const b = getTowerBattle();
+        const o = opts || {};
+        if (!t || (!b && !(o.hp > 0))) return null;
+        const R = platforms.right;
+        const m = {
+            type: type,
+            x: typeof o.x === "number" ? o.x : towerRand(R.x + 50, R.x + R.w - 40),
+            y: t.fly ? towerRand(150, 260) : PLATFORM_Y,
+            vx: 0, vy: 0,
+            hp: o.hp > 0 ? Math.round(o.hp) : Math.max(1, Math.round(b.unitHp * t.hp)),
+            dmg: o.dmg > 0 ? Math.round(o.dmg) : Math.max(1, Math.round(b.unitDmg * t.dmg)),
+            summoned: Boolean(o.summoned),
+            r: t.r,
+            timer: towerRand(1.2, 2.4),
+            state: "idle",
+            hitFlash: 0,
+            spawnAnim: 0.35,
+            homeX: 0,
+            grounded: !t.fly,
+            wing: Math.random() * 6
+        };
+        if (typeof o.y === "number") m.y = o.y;
+        m.maxHp = m.hp;
+        m.homeX = m.x;
+        if (type === "bee") m.state = "enter";
+        if (type === "bat") { m.x = LOGICAL_W + 20; m.y = towerRand(120, 230); m.state = "enter"; }
+        game.mobs.push(m);
+        spawnParticles(m.x, m.y - m.r, t.color, 8);
+        return m;
+    }
+
+    function spawnTowerWave(list) {
+        list.forEach((type, i) => {
+            const R = platforms.right;
+            const x = R.x + 60 + ((i * 97) % (R.w - 110));
+            spawnMob(type, { x: x });
+        });
+    }
+
+    function getAliveMobs() {
+        return (game.mobs || []).filter((m) => m.hp > 0);
+    }
+
+    // ---------- 每幀 ----------
+    function updateTowerMobs(dt) {
+        const b = getTowerBattle();
+        if (game.state !== "PLAYING" || !hasActiveMobs()) return;
+        if (!game.mobBombs) game.mobBombs = [];
+        if (b) {
+            b.elapsed += dt;
+            if (b.shieldHintCd > 0) b.shieldHintCd -= dt;
+            if (b.streakTimer > 0) { b.streakTimer -= dt; if (b.streakTimer <= 0) b.streak = 0; }
+            updateTowerWaves(b, dt);
+        }
+        for (let i = game.mobs.length - 1; i >= 0; i--) {
+            const m = game.mobs[i];
+            if (m.hp <= 0) { game.mobs.splice(i, 1); continue; }
+            if (m.spawnAnim > 0) m.spawnAnim -= dt;
+            if (m.hitFlash > 0) m.hitFlash -= dt;
+            const slow = enemyIsFrozenBy(m) ? 0.4 : 1;
+            updateMobAI(m, dt * slow);
+        }
+        updateMobBombs(dt);
+    }
+
+    function enemyIsFrozenBy(m) {
+        return (m.frostTimer || 0) > 0;
+    }
+
+    function updateTowerWaves(b, dt) {
+        const alive = getAliveMobs().filter((m) => !m.summoned).length;
+        if (b.kind === "field") {
+            if (b.wave < b.waves.length) {
+                if (alive === 0) {
+                    b.waveTimer -= dt;
+                    if (b.waveTimer <= 0) {
+                        spawnTowerWave(b.waves[b.wave]);
+                        b.wave += 1;
+                        b.waveTimer = 1.0;
+                        addFloatingText(LOGICAL_W * 0.5, 170, b.wave === b.waves.length ? "⚔️ 最後一波！隊長的護盾破了" : "🌊 第 " + b.wave + " / " + b.waves.length + " 波", "#fde68a", 18);
+                        if (b.wave === b.waves.length) dropLeaderShield(b);
+                    }
+                }
+            }
+        } else if (b.kind === "maze") {
+            b.spawnTimer -= dt;
+            if (b.spawnTimer <= 0 && alive < Math.min(MOB_MAX_ALIVE, b.mazeMax || 5)) {
+                b.spawnTimer = b.mazeEvery || 2.4;
+                const pool = b.pool;
+                spawnMob(pool[Math.floor(Math.random() * pool.length)]);
+            }
+        } else if (b.kind === "boss") {
+            // 守護者每掉 1/3 血叫一波小怪
+            const lost = 1 - enemy.hp / Math.max(1, enemy.maxHp);
+            const want = lost >= 2 / 3 ? 2 : lost >= 1 / 3 ? 1 : 0;
+            if (want > b.summonsDone && b.summonWaves && b.summonWaves[b.summonsDone]) {
+                spawnTowerWave(b.summonWaves[b.summonsDone]);
+                b.summonsDone += 1;
+                addFloatingText(enemy.x, enemy.y - 150, "📯 " + enemy.archetype.title.replace(/^\S+\s/, "") + " 叫來了援軍！", "#fca5a5", 16);
+            }
+        }
+    }
+
+    function dropLeaderShield(b) {
+        if (!b.leaderShield) return;
+        b.leaderShield = false;
+        enemy.shootInterval /= 1.6;
+        enemy.shootTimer = Math.min(enemy.shootTimer, 1.2);
+        spawnParticles(enemy.x, enemy.y - 50, "#7dd3fc", 18);
+        game.shockwaves.push({ x: enemy.x, y: enemy.y - 50, r: 20, maxR: 90, color: "#7dd3fc", alpha: 0.9 });
+    }
+
+    // 隊長有護盾：applyDamageToCharacter 呼叫（回傳 true＝這下被擋掉）
+    function isTowerLeaderShielded() {
+        const b = getTowerBattle();
+        if (!b || !b.leaderShield) return false;
+        if (b.shieldHintCd <= 0) {
+            b.shieldHintCd = 1.2;
+            addFloatingText(enemy.x, enemy.y - 130, "🛡️ 先打倒小怪，護盾才會破！", "#7dd3fc", 14);
+        }
+        return true;
+    }
+
+    function mobHitPlayer(m, dmg, label) {
+        if (player.hp <= 0 || game.state !== "PLAYING") return false;
+        if (player.invulnTimer > 0 || player.dashTimer > 0) return false;
+        if (player.shieldTimer > 0 && player.shieldTriggersLeft > 0) {
+            player.shieldTriggersLeft -= 1;
+            sfx.shieldAbsorb();
+            spawnParticles(player.x, player.y - 44, "#10b981", 10);
+            addFloatingText(player.x, player.y - 110, "🛡️ 擋住了！", "#34d399", 14);
+            return false;
+        }
+        const d = applyDamageToCharacter(player, dmg, label || "mob");
+        if (d > 0) {
+            sfx.hit();
+            triggerShake(4, 0.1);
+            addFloatingText(player.x, player.y - 104, "-" + d, "#f87171", 14);
+            updateHUD();
+            if (player.hp <= 0) handleGameOver();
+        }
+        return d > 0;
+    }
+
+    function updateMobAI(m, dt) {
+        const t = MOB_TYPES[m.type];
+        m.timer -= dt;
+        m.wing += dt * 14;
+        if (m.type === "bat" || m.type === "bee") return updateBat(m, dt);
+        if (m.type === "hopper" || m.type === "slime" || m.type === "mini") return updateJumper(m, dt);
+        // 站在對面平台的：小弓兵、盾兵、炸彈蟲（慢慢左右走）
+        m.x += Math.sin(m.wing * 0.12) * 12 * dt;
+        if (m.timer > 0) return;
+        if (m.type === "archer" || m.type === "shield") {
+            m.timer = m.type === "archer" ? towerRand(2.4, 3.4) : towerRand(3.6, 4.6);
+            const bx = m.x - 10, by = m.y - 44;
+            const spd = m.type === "shield" ? 560 : 520;
+            const ang = computeArcAimAngle(bx, by, player.x + player.vx * 0.2, player.y - 50, spd, 1.0, false);
+            const angle = (Number.isFinite(ang) ? ang : -Math.PI + 0.5) + towerRand(-0.06, 0.06);
+            const scale = m.dmg / Math.max(1, enemy.baseDamage);
+            fireArrows("enemy", bx, by, angle, spd, { count: 1, dmgScale: scale, unclashable: m.type === "shield" }, false);
+            m.bowRecoil = 0.3;
+        } else if (m.type === "bomber") {
+            m.timer = towerRand(3.6, 4.6);
+            const tx = player.x + towerRand(-40, 40);
+            const flight = 1.15;
+            game.mobBombs.push({ x: m.x, y: m.y - 30, vx: (tx - m.x) / flight, vy: -(GRAVITY * 0.9 * flight) / 2 - ((PLATFORM_Y - (m.y - 30)) / flight), dmg: m.dmg, life: 3 });
+        }
+    }
+
+    function updateBat(m, dt) {
+        if (m.state === "enter") {
+            m.x -= 160 * dt;
+            if (m.x < platforms.right.x + platforms.right.w * 0.6) { m.state = "hover"; m.timer = towerRand(0.8, 1.6); }
+            m.y += Math.sin(m.wing * 0.3) * 30 * dt;
+            return;
+        }
+        if (m.state === "hover") {
+            m.y += Math.sin(m.wing * 0.3) * 40 * dt;
+            if (m.timer <= 0) { m.state = "dive"; m.tx = player.x; m.ty = player.y - 50; }
+            return;
+        }
+        if (m.state === "dive") {
+            const dx = player.x - m.x, dy = (player.y - 50) - m.y;
+            const d = Math.hypot(dx, dy) || 1;
+            m.x += dx / d * 300 * dt;
+            m.y += dy / d * 300 * dt;
+            if (d < 30) {
+                mobHitPlayer(m, m.dmg, "mob");
+                m.state = "back";
+                m.timer = towerRand(1.6, 2.4);
+            }
+            return;
+        }
+        // 飛回對面上空
+        const hx = platforms.right.x + platforms.right.w * 0.5, hy = 180;
+        const dx = hx - m.x, dy = hy - m.y, d = Math.hypot(dx, dy) || 1;
+        m.x += dx / d * 220 * dt;
+        m.y += dy / d * 220 * dt;
+        if (d < 20 || m.timer <= 0) { m.state = "hover"; m.timer = towerRand(1.2, 2.2); }
+    }
+
+    // 跳跳兵、史萊姆：在平台上跳，時間到就跳過空隙撲向玩家，再跳回去
+    function updateJumper(m, dt) {
+        if (!m.grounded) {
+            m.vy += GRAVITY * dt;
+            m.x += m.vx * dt;
+            m.y += m.vy * dt;
+            // 落在平台上
+            const onLeft = m.x >= platforms.left.x && m.x <= platforms.left.x + platforms.left.w;
+            const onRight = m.x >= platforms.right.x && m.x <= platforms.right.x + platforms.right.w;
+            if (m.vy > 0 && m.y >= PLATFORM_Y && (onLeft || onRight)) {
+                m.y = PLATFORM_Y;
+                m.vy = 0; m.vx = 0;
+                m.grounded = true;
+                m.squash = 0.25;
+                if (onLeft && Math.abs(m.x - player.x) < 46 + m.r && player.y > PLATFORM_Y - 90) mobHitPlayer(m, m.dmg, "mob");
+                m.timer = onLeft ? towerRand(0.7, 1.1) : towerRand(1.6, 2.8);
+            } else if (m.y > LOGICAL_H + 40) {
+                // 掉下去了：回到對面重生
+                m.x = platforms.right.x + towerRand(60, platforms.right.w - 40);
+                m.y = PLATFORM_Y; m.vx = 0; m.vy = 0; m.grounded = true;
+            }
+            return;
+        }
+        if (m.squash > 0) m.squash -= dt;
+        if (m.timer > 0) {
+            // 在玩家旁邊：貼著玩家撞
+            if (m.x < platforms.left.x + platforms.left.w + 10 && Math.abs(m.x - player.x) < 30 + m.r && player.y > PLATFORM_Y - 70 && !(m.touchCd > 0)) {
+                if (mobHitPlayer(m, Math.round(m.dmg * 0.6), "mob")) m.touchCd = 0.9;
+            }
+            if (m.touchCd > 0) m.touchCd -= dt;
+            return;
+        }
+        const onLeftSide = m.x < LOGICAL_W * 0.5;
+        const tx = onLeftSide ? platforms.right.x + towerRand(60, platforms.right.w - 40) : player.x + towerRand(-30, 30);
+        const flight = m.type === "mini" ? 0.9 : 1.05;
+        m.vx = (tx - m.x) / flight;
+        m.vy = -(GRAVITY * flight) / 2;
+        m.grounded = false;
+    }
+
+    function updateMobBombs(dt) {
+        for (let i = game.mobBombs.length - 1; i >= 0; i--) {
+            const bomb = game.mobBombs[i];
+            bomb.life -= dt;
+            bomb.vy += GRAVITY * 0.9 * dt;
+            bomb.x += bomb.vx * dt;
+            bomb.y += bomb.vy * dt;
+            if (bomb.y >= PLATFORM_Y || bomb.life <= 0) {
+                game.mobBombs.splice(i, 1);
+                sfx.explosion();
+                spawnParticles(bomb.x, PLATFORM_Y - 10, "#fbbf24", 16);
+                game.shockwaves.push({ x: bomb.x, y: PLATFORM_Y - 10, r: 10, maxR: 70, color: "#fbbf24", alpha: 0.9 });
+                if (Math.abs(player.x - bomb.x) < 70 && player.y > PLATFORM_Y - 80) mobHitPlayer(null, bomb.dmg, "mob");
+            }
+        }
+    }
+
+    // ---------- 被打到 ----------
+    // 20-combat-physics 呼叫：玩家的箭碰到小怪就打；回傳 true＝箭要消失（穿透箭不消失）
+    function hitTowerMob(a) {
+        if (!game.mobs || !game.mobs.length) return false;
+        if (!a.hitMobs) a.hitMobs = [];
+        for (const m of game.mobs) {
+            if (m.hp <= 0 || a.hitMobs.indexOf(m) >= 0) continue;
+            const headY = m.y - (MOB_TYPES[m.type].fly ? 0 : m.r * 2.6);
+            const isFlyer = MOB_TYPES[m.type].fly;
+            const hitHead = !isFlyer && m.type !== "slime" && m.type !== "mini" && m.type !== "bomber" && Math.hypot(a.x - m.x, a.y - headY) <= 11;
+            const bodyTop = isFlyer ? m.y - m.r : m.y - m.r * 2.4;
+            const bodyBot = isFlyer ? m.y + m.r : m.y;
+            const hitBody = !hitHead && Math.abs(a.x - m.x) <= m.r && a.y >= bodyTop && a.y <= bodyBot;
+            if (!hitHead && !hitBody) continue;
+            a.hitMobs.push(m);
+            // 盾兵：正面平射的箭被盾擋掉（往下掉的拋物線、或打頭才打得到）
+            if (m.type === "shield" && hitBody && a.vx > 0 && a.vy < Math.abs(a.vx) * 0.55 && !a.pierceGale) {
+                sfx.clash();
+                spawnParticles(a.x, a.y, "#cbd5e1", 8);
+                if (!(m.blockHintCd > 0)) { addFloatingText(m.x, m.y - 70, "🛡️ 擋住！拋高射頭", "#e2e8f0", 13); m.blockHintCd = 1.5; }
+                return true;
+            }
+            const crit = hitHead || Boolean(a.forceCrit);
+            let dmg = a.damage * (crit ? player.critMultiplier + getPassiveCritBonus() : 1);
+            if (a.megaFireball) dmg *= 1.2;
+            damageMob(m, Math.max(1, Math.round(dmg)), crit, a.x, a.y);
+            if (a.frost) m.frostTimer = 2;
+            if (a.megaFireball || a.mine) damageMobsInRadius(a.x, a.y, 70, Math.round(a.damage * 0.5), m);
+            return !a.pierceGale;
+        }
+        return false;
+    }
+
+    function damageMob(m, dmg, crit, x, y) {
+        if (m.hp <= 0) return;
+        m.hp = Math.max(0, m.hp - dmg);
+        m.hitFlash = 0.15;
+        if (crit) { game.crits += 1; sfx.crit(); } else sfx.hit();
+        addFloatingText(m.x, m.y - (MOB_TYPES[m.type].fly ? 30 : 64), (crit ? "爆頭 -" : "-") + dmg, crit ? "#fbbf24" : "#fda4af", crit ? 15 : 12);
+        spawnParticles(x, y, crit ? "#fbbf24" : MOB_TYPES[m.type].color, crit ? 12 : 6);
+        if (m.hp <= 0) onMobKilled(m);
+    }
+
+    // 範圍傷害（地雷、火球）：打到附近的小怪
+    function damageMobsInRadius(x, y, r, dmg, except) {
+        if (!game.mobs || !game.mobs.length) return 0;
+        let n = 0;
+        game.mobs.forEach((m) => {
+            if (m === except || m.hp <= 0) return;
+            if (Math.hypot(m.x - x, (m.y - m.r) - y) <= r + m.r) { damageMob(m, Math.max(1, dmg), false, m.x, m.y - m.r); n++; }
+        });
+        return n;
+    }
+
+    function onMobKilled(m) {
+        const b = getTowerBattle();
+        const t = MOB_TYPES[m.type];
+        spawnParticles(m.x, m.y - m.r, t.color, 16);
+        addCoins(b ? 4 : 2, m.x, m.y - 80);
+        if (b) {
+            b.kills += 1;
+            b.streak = b.streakTimer > 0 ? b.streak + 1 : 1;
+            b.streakTimer = 2.5;
+            if (b.kind === "maze" && b.leaderShield && b.kills >= b.mazeKills) {
+                dropLeaderShield(b);
+                b.mazeEvery *= 1.6; // 破盾之後小怪來得慢一點
+                addFloatingText(LOGICAL_W * 0.5, 170, "⚔️ 精英的護盾破了！", "#fde68a", 18);
+            }
+            if (b.streak >= 3) addFloatingText(LOGICAL_W * 0.5, 205, "🔥 ×" + b.streak + " 連殺！", b.streak >= 5 ? "#f97316" : "#fde047", 16 + Math.min(8, b.streak));
+        }
+        // 炸彈蟲：死掉時爆炸，炸到旁邊的小怪
+        if (m.type === "bomber") {
+            sfx.explosion();
+            game.shockwaves.push({ x: m.x, y: m.y - 20, r: 10, maxR: 90, color: "#fbbf24", alpha: 0.9 });
+            damageMobsInRadius(m.x, m.y - 20, 90, Math.round(m.maxHp * 1.5), m);
+        }
+        // 史萊姆：分裂成兩隻小的
+        if (m.type === "slime" && (game.mobs || []).length < MOB_MAX_ALIVE + 2) {
+            [-1, 1].forEach((d) => {
+                const s = spawnMob("mini", { x: m.x + d * 18, y: m.y });
+                if (s) { s.grounded = false; s.vx = d * 90; s.vy = -320; s.timer = 1.2; }
+            });
+        }
+    }
+
+    // 守護者／隊長倒下：剩下的小怪一起消失
+    function clearTowerMobs() {
+        (game.mobs || []).forEach((m) => { if (m.hp > 0) spawnParticles(m.x, m.y - m.r, MOB_TYPES[m.type].color, 8); });
+        game.mobs = [];
+        game.mobBombs = [];
+    }
+
+    // ---------- 畫面 ----------
+    function renderTowerMobs() {
+        if (!hasActiveMobs()) return;
+        // 隊長／精英的護盾泡泡
+        const tb = getTowerBattle();
+        if (tb && tb.leaderShield && enemy.hp > 0) {
+            const pulse = 1 + Math.sin(performance.now() / 260) * 0.04;
+            ctx.save();
+            ctx.globalAlpha = 0.9;
+            ctx.strokeStyle = "#7dd3fc";
+            ctx.fillStyle = "rgba(125, 211, 252, 0.12)";
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.arc(enemy.x, enemy.y - 52, 64 * pulse, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.font = "900 20px sans-serif"; ctx.textAlign = "center";
+            ctx.fillStyle = "#e0f2fe";
+            ctx.fillText("🛡️", enemy.x, enemy.y - 126);
+            ctx.restore();
+        }
+        (game.mobs || []).forEach(drawMob);
+        (game.mobBombs || []).forEach((bomb) => {
+            ctx.fillStyle = "#1f2937";
+            ctx.beginPath(); ctx.arc(bomb.x, bomb.y, 8, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillStyle = "#f97316";
+            ctx.beginPath(); ctx.arc(bomb.x + 5, bomb.y - 8, 3, 0, Math.PI * 2); ctx.fill();
+        });
+        renderTowerHud();
+    }
+
+    function drawMob(m) {
+        const t = MOB_TYPES[m.type];
+        const flash = m.hitFlash > 0;
+        const col = flash ? "#ffffff" : (m.frostTimer > 0 ? "#a5f3fc" : t.color);
+        const sc = m.spawnAnim > 0 ? 1 - m.spawnAnim / 0.35 * 0.6 : 1;
+        ctx.save();
+        ctx.translate(m.x, m.y);
+        ctx.scale(sc, sc);
+        ctx.strokeStyle = col;
+        ctx.fillStyle = col;
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+        if (m.type === "bee") {
+            const flap = Math.sin(m.wing * 1.6) * 6;
+            ctx.fillStyle = "rgba(224, 242, 254, 0.8)";
+            ctx.beginPath(); ctx.ellipse(-4, -9 - flap * 0.3, 6, 9, -0.4, 0, Math.PI * 2); ctx.ellipse(5, -9 - flap * 0.3, 6, 9, 0.4, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = col;
+            ctx.beginPath(); ctx.ellipse(0, 0, 11, 8, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#1f2937";
+            ctx.fillRect(-3, -8, 3, 16); ctx.fillRect(4, -7, 3, 14);
+            ctx.beginPath(); ctx.moveTo(-11, 0); ctx.lineTo(-17, 0); ctx.stroke();
+        } else if (m.type === "bat") {
+            const flap = Math.sin(m.wing) * 10;
+            ctx.beginPath(); ctx.arc(0, 0, 9, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(-6, 0); ctx.lineTo(-22, -6 - flap); ctx.lineTo(-14, 4); ctx.moveTo(6, 0); ctx.lineTo(22, -6 - flap); ctx.lineTo(14, 4); ctx.stroke();
+            ctx.fillStyle = "#fef08a";
+            ctx.fillRect(-4, -3, 2, 2); ctx.fillRect(2, -3, 2, 2);
+        } else if (m.type === "slime" || m.type === "mini") {
+            const sq = m.squash > 0 ? 1 + m.squash : (m.grounded ? 1 : 0.85);
+            const w = m.r * sq, h = m.r / sq;
+            ctx.globalAlpha = 0.85;
+            ctx.beginPath(); ctx.ellipse(0, -h, w, h, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = "#052e16";
+            ctx.fillRect(-w * 0.4, -h * 1.2, 3, 3); ctx.fillRect(w * 0.15, -h * 1.2, 3, 3);
+        } else if (m.type === "bomber") {
+            ctx.fillStyle = "#1f2937";
+            ctx.beginPath(); ctx.ellipse(0, -14, 17, 13, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(4, -26); ctx.quadraticCurveTo(10, -36, 16, -34); ctx.stroke();
+            ctx.fillStyle = Math.sin(m.wing) > 0 ? "#f97316" : "#fde047";
+            ctx.beginPath(); ctx.arc(16, -34, 3, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(-12, 0); ctx.lineTo(-16, 4); ctx.moveTo(0, 0); ctx.lineTo(0, 5); ctx.moveTo(12, 0); ctx.lineTo(16, 4); ctx.stroke();
+        } else {
+            // 小火柴人：小弓兵、盾兵、跳跳兵（面向左）
+            const crouch = m.type === "hopper" && m.grounded && m.timer < 0.4 ? 6 : 0;
+            ctx.beginPath(); ctx.arc(0, -40 + crouch, 7, 0, Math.PI * 2); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, -33 + crouch); ctx.lineTo(0, -16 + crouch);
+            ctx.lineTo(-7, 0); ctx.moveTo(0, -16 + crouch); ctx.lineTo(7, 0);
+            ctx.moveTo(0, -28 + crouch); ctx.lineTo(-10, -22 + crouch);
+            ctx.stroke();
+            if (m.type === "archer") {
+                ctx.beginPath(); ctx.arc(-12, -24, 10, Math.PI * 0.55, Math.PI * 1.45); ctx.stroke();
+            } else if (m.type === "shield") {
+                ctx.fillStyle = flash ? "#ffffff" : "#475569";
+                ctx.fillRect(-18, -34, 7, 30);
+                ctx.strokeRect(-18, -34, 7, 30);
+            } else if (m.type === "hopper") {
+                ctx.beginPath(); ctx.moveTo(-10, -22 + crouch); ctx.lineTo(-18, -30 + crouch); ctx.stroke();
+            }
+        }
+        ctx.restore();
+        // 血條（被打過才顯示）
+        if (m.hp < m.maxHp) {
+            const w = 30, y = m.y - (t.fly ? 22 : m.type === "slime" || m.type === "mini" || m.type === "bomber" ? m.r * 2 + 12 : 56);
+            ctx.fillStyle = "rgba(15,23,42,0.85)";
+            ctx.fillRect(m.x - w / 2, y, w, 4);
+            ctx.fillStyle = "#f87171";
+            ctx.fillRect(m.x - w / 2, y, w * m.hp / m.maxHp, 4);
+        }
+    }
+
+    // 畫面上方：第幾波、剩幾隻、時間（三星要多快）
+    function renderTowerHud() {
+        const b = getTowerBattle();
+        if (!b) return;
+        const alive = getAliveMobs().length;
+        const en = typeof isEnglish === "function" && isEnglish();
+        let wave = "";
+        if (b.kind === "field") wave = en ? "Wave " + Math.max(1, b.wave) + "/" + b.waves.length + " | " : "第 " + Math.max(1, b.wave) + " / " + b.waves.length + " 波｜";
+        else if (b.kind === "maze") wave = b.leaderShield ? (en ? "Maze: defeat " + Math.max(0, b.mazeKills - b.kills) + " more to break the elite's shield | " : "迷宮：再打倒 " + Math.max(0, b.mazeKills - b.kills) + " 隻小怪，精英就破盾｜") : (en ? "Maze: defeat the elite | " : "迷宮：打倒精英過關｜");
+        else wave = en ? "Floor Guardian | " : "樓層守護者｜";
+        const secs = Math.floor(b.elapsed);
+        const star3 = secs <= TOWER.starTime;
+        const text = en
+            ? "🗼 " + b.floor + "-" + (b.idx + 1) + " | " + wave + "Minions " + alive + " | ⏱️ " + secs + "s" + (star3 ? " (3★ within " + TOWER.starTime + "s)" : "")
+            : "🗼 " + b.floor + "-" + (b.idx + 1) + "｜" + wave + "小怪 " + alive + " 隻｜⏱️ " + secs + "s" + (star3 ? "（三星 " + TOWER.starTime + "s 內）" : "");
+        ctx.save();
+        ctx.font = "800 15px -apple-system, BlinkMacSystemFont, \"Noto Sans TC\", sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        const w = ctx.measureText(text).width + 24;
+        ctx.fillStyle = "rgba(15, 23, 42, 0.72)";
+        ctx.fillRect(LOGICAL_W * 0.5 - w / 2, 84, w, 26);
+        ctx.fillStyle = star3 ? "#fde68a" : "#cbd5e1";
+        ctx.fillText(text, LOGICAL_W * 0.5, 97);
+        ctx.restore();
+    }
+
+    // =========================================================================
+
+;
 // ==== js/17b-keybinds.js
 // 17b. 技能按鍵設定：預設 Q E R F C（左手不離 WASD），1～5 永遠可用；可自訂並存檔
     // =========================================================================
@@ -27914,6 +30080,10 @@
     dom.hubNavWeekly.addEventListener("click", () => openFeature("weekly", () => openWeeklyModal()));
     dom.hubNavTrial.addEventListener("click", () => openFeature("trial", () => openShardModal("trial"))); // ⚔️ Boss 試煉（13n）
     dom.btnCloseShard.addEventListener("click", () => closeShardModal());
+    dom.hubNavTower.addEventListener("click", () => openFeature("tower", () => openTowerModal())); // 🗼 天弓塔（13u）
+    dom.btnCloseTower.addEventListener("click", () => closeTowerModal());
+    if (dom.hubNavGear) dom.hubNavGear.addEventListener("click", () => openFeature("gear", () => openGearModal("hub"))); // 🎒 裝備（13v）
+    if (dom.btnCloseGear) dom.btnCloseGear.addEventListener("click", () => closeGearModal());
     dom.hubNavFeedback.addEventListener("click", () => openFeedbackModal()); // 💬 試玩回饋＋填完領獎勵（12-hub-combo）
     { const b = document.getElementById("btn-feedback-open"); if (b) b.addEventListener("click", () => openFeedbackForm()); }
     { const b = document.getElementById("btn-feedback-close"); if (b) b.addEventListener("click", () => closeFeedbackModal()); }
@@ -28234,10 +30404,7 @@
             desc: "所有技能冷卻時間縮短 15%（每局最多選 2 次）。",
             maxPicks: 2,
             apply: () => {
-                player.cdMultiplier = Math.max(0.45, +(player.cdMultiplier * 0.85).toFixed(3));
-                player.equippedSkills.forEach((s) => {
-                    s.maxCd = Math.max(2.0, +(s.maxCd * 0.85).toFixed(2));
-                });
+                applyRunSkillCdMult(0.85); // 最低 ×0.5（13i）
             }
         },
         {
@@ -28565,6 +30732,12 @@
             .filter(isBlessingAvailable)
             .sort(() => Math.random() - 0.5)
             .slice(0, 3);
+        // 能選的賜福快選完了（大約第 50 關後）：補上金幣、回血，畫面不會只剩一張卡
+        const fillers = [
+            { id: "_bounty", icon: "💰", title: "額外賞金", desc: "立刻獲得 " + (100 + game.stage * 6) + " 金幣。", apply: () => { addCoins(100 + game.stage * 6, player.x, player.y - 100, "額外賞金 "); } },
+            { id: "_mend", icon: "💚", title: "休整", desc: "立刻回復 35% 生命。", apply: () => { player.hp = Math.min(player.maxHp, player.hp + Math.round(player.maxHp * 0.35 * getPlayerHealMult())); } }
+        ];
+        while (shuffled.length < 3 && fillers.length) shuffled.push(fillers.shift());
         dom.blessingOptions.innerHTML = "";
         dom.upgradeSubtitle.textContent =
             "擊敗 " + enemy.archetype.title + "！獲得 +" + clearBonus + " 🪙，請選擇一項關內賜福";
@@ -28794,6 +30967,8 @@
     // 每幀（updateBlessingRegen 呼叫）
     function updateExtraBlessings(dt) {
         player.blessStageTimer = (player.blessStageTimer || 0) + dt;
+        if (player.luckyCoinCd > 0) player.luckyCoinCd -= dt; // 幸運幣間隔（13f）
+        if (player.eagleEyeCd > 0) player.eagleEyeCd -= dt;   // 鷹眼本能間隔（13h）
     }
 
     // releasePlayerShot 呼叫：滿弓加成
@@ -29204,7 +31379,7 @@
             return;
         }
 
-        if (enemy.voidStunTimer > 0 || enemy.zeusStunTimer > 0 || enemy.titanStunTimer > 0 || isBossBroken() || isChapter2Stunned() || isChapter3Busy() || isComboBossBusy()) {
+        if (enemy.voidStunTimer > 0 || enemy.zeusStunTimer > 0 || enemy.titanStunTimer > 0 || isBossBroken() || isChapter2Stunned() || isTrait2Busy() || isChapter3Busy() || isComboBossBusy()) {
             enemy.vx = 0;
             return;
         }
@@ -30223,7 +32398,7 @@
     }
 
     function getEnemyTraitShotRateMult() {
-        return getEnemyTrait() === "berserker" && enemy.berserkActive ? 1.4 : 1.0;
+        return (getEnemyTrait() === "berserker" && enemy.berserkActive ? 1.4 : 1.0) * getTrait2ShotRateMult(); // 戰鼓手（19l）
     }
 
     function getEnemyTraitIntervalMult() {
@@ -30279,6 +32454,7 @@
         enemy.mirrorTimer = 5.0;
         enemy.mirrorState = null;   // null / "charge" / "active"
         enemy.mirrorStateTimer = 0;
+        resetTrait2State(); // 19l
     }
 
     const MIRROR_CHARGE_SEC = 0.6;
@@ -30323,6 +32499,7 @@
         const trait = getEnemyTrait();
         if (!trait) return;
         updateChapter2Traits(dt);
+        updateTrait2(dt); // 19l
 
         if (trait === "berserker" && !enemy.berserkActive && enemy.hp <= enemy.maxHp * 0.5) {
             enemy.berserkActive = true;
@@ -30388,6 +32565,8 @@
         // 第二章特色敵人（19f-chapter2.js）
         const c2 = applyChapter2TraitToShot(shot);
         if (c2 !== undefined) return c2 === null ? undefined : c2;
+        const t2 = applyTrait2ToShot(shot); // 第二批特色敵人（19l）
+        if (t2 !== undefined) return t2 === null ? undefined : t2;
         const t = shot.traits;
 
         if (trait === "ranger") {
@@ -30478,6 +32657,7 @@
             tags.push(`<span class="tag-pill" style="color:#fde047;">🎭 替身 ${Math.max(0, enemy.trickTimer).toFixed(1)}s</span>`);
         }
         tags.push(...getChapter2TraitHudTags());
+        tags.push(...getTrait2HudTags()); // 19l
         if (trait === "sniper" && enemy.isCharging) {
             tags.push(`<span class="tag-pill" style="color:#fecaca;background:rgba(239,68,68,0.35);">🎯 ${enemy.sniperLocked ? "已鎖定！快移動" : "瞄準中"}</span>`);
         }
@@ -30486,6 +32666,7 @@
 
     // ---------- 繪製（畫在角色與箭矢上方）----------
     function renderEnemyTraitOverlay() {
+        renderTrait2Overlay(); // 19l（荊棘、傳送門、鉤索、回力鏢也要在敵人倒下後收掉）
         const trait = getEnemyTrait();
         if (!trait) return;
 
@@ -31391,8 +33572,9 @@
     const CHAPTER2_SCALING = { hp: 1.5, dmg: 1.25 };
     // 從第二章直接開始時的開局補給（補回跳過的 36 關成長）
     const CHAPTER2_SUPPLY = {
-        growthStages: 36, blessings: 8, bossBoons: 4,
-        pack: { atk: 1.6, shotCd: 0.8, arrows: 1, dmgTaken: 0.8, maxHp: 0.15 } // 固定補給包（約等於完整打完第一章的 70% 強度）
+        growthStages: 36, blessings: 12, bossBoons: 6,
+        // 固定補給包（2026-11-27 加強：tools/probe-region-start.js 量到第二章開局只有打上來的 84% 輸出、技能冷卻幾乎沒減、少 1 支箭）
+        pack: { atk: 1.6, shotCd: 0.8, arrows: 2, dmgTaken: 0.8, maxHp: 0.15, skillCd: 0.8 }
     };
     // 打完第 36 關的獎勵（first：第一次；repeat：之後每次）
     const CHAPTER1_REWARD = {
@@ -31493,12 +33675,13 @@
         const p = CHAPTER2_SUPPLY.pack;
         return {
             growthStages: skipped,
-            blessings: Math.min(16, Math.round(CHAPTER2_SUPPLY.blessings * f)),
-            bossBoons: Math.min(8, Math.round(CHAPTER2_SUPPLY.bossBoons * f)),
+            blessings: Math.min(20, Math.round(CHAPTER2_SUPPLY.blessings * f)),
+            bossBoons: Math.min(10, Math.round(CHAPTER2_SUPPLY.bossBoons * f)),
             pack: {
                 atk: +(p.atk * f).toFixed(3),
                 shotCd: +Math.pow(p.shotCd, f).toFixed(3),
-                arrows: skipped >= CHAPTER1_END ? p.arrows : 0,
+                arrows: skipped >= CHAPTER1_END ? p.arrows : skipped >= CHAPTER1_END / 2 ? 1 : 0,
+                skillCd: +Math.pow(p.skillCd, Math.min(1.5, f)).toFixed(3),
                 dmgTaken: +Math.pow(p.dmgTaken, f).toFixed(3),
                 maxHp: +(p.maxHp * f).toFixed(3)
             }
@@ -31511,6 +33694,7 @@
         player.blessingVolleyStacks = Math.min(MAX_BLESSING_VOLLEY_STACKS, (player.blessingVolleyStacks || 0) + p.arrows);
         player.damageTakenMult = +((player.damageTakenMult || 1) * p.dmgTaken).toFixed(3);
         addRunMaxHpBonus(p.maxHp);
+        if (p.skillCd && p.skillCd < 1) applyRunSkillCdMult(p.skillCd); // 技能冷卻（走 13i 的下限）
     }
 
     function regionSupplyText(s) {
@@ -31518,6 +33702,7 @@
         const parts = ["戰鬥經驗 Lv." + s.growthStages, "攻擊 +" + Math.round(p.atk * 100) + "%", "射箭冷卻 -" + Math.round((1 - p.shotCd) * 100) + "%"];
         if (p.arrows) parts.push("+" + p.arrows + " 箭");
         parts.push("承傷 -" + Math.round((1 - p.dmgTaken) * 100) + "%", "生命 +" + Math.round(p.maxHp * 100) + "%");
+        if (p.skillCd && p.skillCd < 1) parts.push("技能冷卻 -" + Math.round((1 - p.skillCd) * 100) + "%");
         const picks = [];
         if (s.bossBoons) picks.push(s.bossBoons + " 次 Boss 戰利品");
         if (s.blessings) picks.push(s.blessings + " 次賜福");
@@ -34676,6 +36861,572 @@
     // =========================================================================
 
 ;
+// ==== js/19l-enemy-traits2.js
+// 19l. 新的特色普通敵人（第二批，8 種）：鉤索獵人／蜂群馴師／磁力射手／荊棘德魯伊／回力鏢手／龜甲兵／傳送門術士／戰鼓手
+//   跟 19c 一樣只透過 hook 影響一般射擊流程：
+//     • applyTrait2ToShot（19c applyEnemyTraitToShot 呼叫）：改這一箭、或用特殊招式取代（"skip"）
+//     • updateTrait2（19c updateEnemyTraits 呼叫，敵人 AI 每幀）
+//     • updateTrait2World（21-effects 每幀，箭矢、荊棘、傳送門、鉤索拉人；敵人被控也照跑）
+//     • onTrait2ArrowHitPlayer／onTrait2ArrowLanded（20-combat-physics）
+//     • applyTrait2DamageToEnemy（10-storage，龜殼無敵、出殼增傷、打斷戰鼓）
+//     • isTrait2Busy（19-enemy-ai：龜殼中不動不射）
+//   蜂群馴師的毒蜂用天弓塔的小怪系統（16m 的 game.mobs，type "bee"）
+    // =========================================================================
+    const TRAIT2 = {
+        hookEvery: 4, hookPullSec: 0.32, hookPullSpeed: 640, hookDmg: 0.7,
+        beeEvery: 8.0, beeFirst: 3.0, beePerCast: 2, beeMax: 3, beeHp: 0.015, beeDmg: 0.45,
+        magnetOff: 4.5, magnetOn: 3.0, magnetR: 150, magnetDeflect: 0.9,
+        thornEvery: 3, thornLife: 5.0, thornW: 74, thornMax: 3, thornTick: 0.5, thornDmg: 0.22, thornSlow: 0.6,
+        boomEvery: 2, boomSpeed: 640, boomGrav: 0.25, boomBack: 120,
+        shellEvery: 6.5, shellSec: 2.2, shellOutSec: 1.6, shellOutMult: 1.5,
+        portalEvery: 3, portalDelay: 0.85, portalDmg: 0.7,
+        drumBeats: 3, drumPowerDmg: 0.75, drumTempoMax: 3, drumTempoStep: 0.08, drumBreak: 0.04
+    };
+    const TRAIT2_LIST = ["hook", "swarm", "magnet", "thorn", "boomer", "shell", "portal", "drum"];
+
+    function getTrait2() {
+        const t = getEnemyTrait();
+        return TRAIT2_LIST.indexOf(t) >= 0 ? t : null;
+    }
+
+    function resetTrait2State() {
+        enemy.beeTimer = TRAIT2.beeFirst;
+        enemy.magnetTimer = TRAIT2.magnetOff;
+        enemy.magnetOn = false;
+        enemy.shellTimer = TRAIT2.shellEvery;
+        enemy.shellState = null;   // null / "in" / "out"
+        enemy.shellStateTimer = 0;
+        enemy.shellHintCd = 0;
+        enemy.drumTempo = 0;
+        enemy.drumDmg = 0;
+        game.thorns = [];
+        game.portals = [];
+        player.hookPull = 0;
+        player.thornTick = 0;
+    }
+
+    // 龜殼中：不動、不射、不放招（19-enemy-ai 的暈眩判斷用）
+    function isTrait2Busy() {
+        return getTrait2() === "shell" && enemy.shellState === "in";
+    }
+
+    // 戰鼓手：節奏越來越快（19c getEnemyTraitShotRateMult 用）
+    function getTrait2ShotRateMult() {
+        return getTrait2() === "drum" ? 1 + (enemy.drumTempo || 0) * TRAIT2.drumTempoStep : 1;
+    }
+
+    // 荊棘：踩在上面移動變慢（21-effects 玩家移動用）
+    function getTrait2PlayerMoveMult() {
+        return isPlayerOnThorns() ? TRAIT2.thornSlow : 1;
+    }
+
+    function isPlayerOnThorns() {
+        if (!game.thorns || !game.thorns.length) return false;
+        if (player.y < PLATFORM_Y - 6) return false; // 跳起來、站在高台上不會被刺
+        return game.thorns.some((t) => Math.abs(player.x - t.x) <= t.w / 2);
+    }
+
+    function trait2BowPos() {
+        return { x: enemy.x + ENEMY_DIR * 14, y: enemy.y - 50 };
+    }
+
+    // 自己射這一箭，並幫新射出的箭加上標記（回傳射出的箭）
+    function fireTrait2Shot(shot, tag) {
+        applyAffixesToShot(shot);
+        const bow = trait2BowPos();
+        const n0 = game.arrows.length;
+        fireArrows("enemy", bow.x, bow.y, shot.angle, shot.speed, shot.traits, false);
+        const list = game.arrows.slice(n0);
+        list.forEach((a) => Object.assign(a, tag));
+        enemy.squashX = 1.14;
+        enemy.squashY = 0.88;
+        return list;
+    }
+
+    // =========================================================================
+    // 射擊（回傳 undefined＝不是這批 trait；null＝照常射；"skip"／"defer"）
+    // =========================================================================
+    function applyTrait2ToShot(shot) {
+        const trait = getTrait2();
+        if (!trait) return undefined;
+        const t = shot.traits;
+
+        if (trait === "hook") {
+            enemy.traitShotCount += 1;
+            if (enemy.traitShotCount % TRAIT2.hookEvery === 0) {
+                shot.speed *= 1.12;
+                t.dmgScale = (t.dmgScale || 1) * TRAIT2.hookDmg;
+                fireTrait2Shot(shot, { hookArrow: true });
+                sfx.chainBind();
+                addFloatingText(enemy.x, enemy.y - 104, "🪝 鉤索！跳開", "#fcd34d", 15);
+                return "skip";
+            }
+            return null;
+        }
+
+        if (trait === "thorn") {
+            enemy.traitShotCount += 1;
+            if (enemy.traitShotCount % TRAIT2.thornEvery === 0) {
+                fireTrait2Shot(shot, { thornSeed: true });
+                addFloatingText(enemy.x, enemy.y - 104, "🌿 荊棘種子！", "#86efac", 15);
+                return "skip";
+            }
+            return null;
+        }
+
+        if (trait === "boomer") {
+            enemy.traitShotCount += 1;
+            if (enemy.traitShotCount % TRAIT2.boomEvery === 0) {
+                const bow = trait2BowPos();
+                const ang = computeArcAimAngle(bow.x, bow.y, player.x, player.y - 46, TRAIT2.boomSpeed, TRAIT2.boomGrav, false);
+                shot.angle = Number.isFinite(ang) ? ang : shot.angle;
+                shot.speed = TRAIT2.boomSpeed;
+                t.gravityScale = TRAIT2.boomGrav;
+                t.count = 1;
+                const turnX = Math.max(platforms.left.x + 24, player.x - TRAIT2.boomBack);
+                fireTrait2Shot(shot, { boomerangE: true, boomTurnX: turnX, boomBack: false });
+                addFloatingText(enemy.x, enemy.y - 104, "🪃 回力鏢！會飛回來", "#f9a8d4", 15);
+                return "skip";
+            }
+            return null;
+        }
+
+        if (trait === "portal") {
+            enemy.traitShotCount += 1;
+            if (enemy.traitShotCount % TRAIT2.portalEvery === 0) {
+                const side = player.vx > 1 ? 1 : player.vx < -1 ? -1 : (Math.random() < 0.5 ? -1 : 1);
+                openTrait2Portal(clampToPlayerPlatform(player.x, 24), 0);
+                openTrait2Portal(clampToPlayerPlatform(player.x + side * 90, 24), 0.18);
+                sfx.mirrorSwap();
+                addFloatingText(enemy.x, enemy.y - 104, "🌀 傳送門！看地上的落點", "#67e8f9", 15);
+                return "skip";
+            }
+            return null;
+        }
+
+        if (trait === "drum") {
+            enemy.traitShotCount += 1;
+            if (enemy.traitShotCount % TRAIT2.drumBeats === 0) {
+                t.count = Math.max(t.count || 1, 3);
+                t.dmgScale = (t.dmgScale || 1) * TRAIT2.drumPowerDmg;
+                shot.speed *= 1.1;
+                enemy.drumTempo = Math.min(TRAIT2.drumTempoMax, (enemy.drumTempo || 0) + 1);
+                enemy.drumDmg = 0;
+                triggerShake(5, 0.15);
+                game.shockwaves.push({ x: enemy.x, y: enemy.y - 46, r: 14, maxR: 80, color: "#fbbf24", alpha: 0.9 });
+                addFloatingText(enemy.x, enemy.y - 108, "🥁 第三拍：重擊！節奏加快", "#fcd34d", 16);
+            } else {
+                sfx.clash();
+                if (enemy.traitShotCount % TRAIT2.drumBeats === TRAIT2.drumBeats - 1) {
+                    enemy.drumDmg = 0;
+                    addFloatingText(enemy.x, enemy.y - 108, "🥁 下一拍是重擊！快打斷他", "#fca5a5", 14);
+                }
+            }
+            return null;
+        }
+        return null; // swarm／magnet／shell：一般的箭照常射
+    }
+
+    function openTrait2Portal(x, extraDelay) {
+        if (!game.portals) game.portals = [];
+        const d = TRAIT2.portalDelay + (extraDelay || 0);
+        game.portals.push({ x: x, timer: d, total: d });
+    }
+
+    // =========================================================================
+    // 每幀（敵人 AI 裡；被控時不會跑）
+    // =========================================================================
+    function updateTrait2(dt) {
+        const trait = getTrait2();
+        if (!trait) return;
+
+        if (trait === "swarm") {
+            enemy.beeTimer -= dt;
+            if (enemy.beeTimer <= 0) {
+                enemy.beeTimer = TRAIT2.beeEvery;
+                const alive = (game.mobs || []).filter((m) => m.hp > 0 && m.type === "bee").length;
+                const n = Math.min(TRAIT2.beePerCast, TRAIT2.beeMax - alive);
+                for (let k = 0; k < n; k++) {
+                    spawnMob("bee", {
+                        x: enemy.x - 10 - k * 16, y: enemy.y - 70 - k * 14,
+                        hp: Math.max(1, Math.round(enemy.maxHp * TRAIT2.beeHp)),
+                        dmg: Math.max(1, Math.round(enemy.baseDamage * TRAIT2.beeDmg)),
+                        summoned: true
+                    });
+                }
+                if (n > 0) {
+                    sfx.skill();
+                    addFloatingText(enemy.x, enemy.y - 112, "🐝 放出毒蜂！先清掉", "#fde047", 15);
+                }
+            }
+        }
+
+        if (trait === "shell") {
+            if (enemy.shellHintCd > 0) enemy.shellHintCd -= dt;
+            if (enemy.shellState === "out") {
+                enemy.shellStateTimer -= dt;
+                if (enemy.shellStateTimer <= 0) enemy.shellState = null;
+            }
+            if (!enemy.shellState) {
+                enemy.shellTimer -= dt;
+                if (enemy.shellTimer <= 0) enterShell();
+            }
+        }
+    }
+
+    function enterShell() {
+        enemy.shellState = "in";
+        enemy.shellStateTimer = TRAIT2.shellSec;
+        enemy.isCharging = false;
+        enemy.chargeAnim = 0;
+        sfx.shieldAbsorb();
+        addFloatingText(enemy.x, enemy.y - 112, "🐢 縮進殼裡！等他出來", "#6ee7b7", 15);
+    }
+
+    // =========================================================================
+    // 每幀（21-effects；敵人被控也照跑）
+    // =========================================================================
+    function updateTrait2World(dt) {
+        if (game.state !== "PLAYING") return;
+        const trait = getTrait2();
+
+        // 🐢 龜殼的計時要在這裡跑（縮殼中敵人 AI 會提早 return）
+        if (trait === "shell" && enemy.shellState === "in") {
+            enemy.shellStateTimer -= dt;
+            if (enemy.shellStateTimer <= 0) {
+                enemy.shellState = "out";
+                enemy.shellStateTimer = TRAIT2.shellOutSec;
+                enemy.shellTimer = TRAIT2.shellEvery;
+                enemy.shootTimer = Math.min(enemy.shootTimer, 0.9);
+                spawnParticles(enemy.x, enemy.y - 46, "#6ee7b7", 14);
+                addFloatingText(enemy.x, enemy.y - 112, "🐢 出殼了！現在最脆（×1.5）", "#bbf7d0", 16);
+            }
+        }
+
+        // 🧲 磁場：開 3.5 秒、關 4 秒
+        if (trait === "magnet") {
+            if (enemy.magnetHintCd > 0) enemy.magnetHintCd -= dt;
+            enemy.magnetTimer -= dt;
+            if (enemy.magnetTimer <= 0) {
+                enemy.magnetOn = !enemy.magnetOn;
+                enemy.magnetTimer = enemy.magnetOn ? TRAIT2.magnetOn : TRAIT2.magnetOff;
+                if (enemy.magnetOn) {
+                    sfx.channelStart();
+                    addFloatingText(enemy.x, enemy.y - 112, "🧲 磁場開啟！平射會被彈開", "#93c5fd", 15);
+                }
+            }
+            if (enemy.magnetOn && enemy.hp > 0) {
+                const cx = enemy.x, cy = enemy.y - 50;
+                for (const a of game.arrows) {
+                    if (a.owner !== "player" || a.skyLockMode || a.magnetHit) continue;
+                    const d = Math.hypot(a.x - cx, a.y - cy);
+                    if (d > TRAIT2.magnetR) continue;
+                    // 從上方往下掉的箭（拋物線）不受影響
+                    if (a.vy > Math.abs(a.vx) * 0.9) continue;
+                    // 平射進來的箭：一進磁場就被往上彈開（飛過他頭頂）
+                    a.magnetHit = true;
+                    const sp = Math.hypot(a.vx, a.vy) * 0.85;
+                    const ang = Math.atan2(a.vy, a.vx) - TRAIT2.magnetDeflect;
+                    a.vx = Math.cos(ang) * sp;
+                    a.vy = Math.sin(ang) * sp;
+                    spawnParticles(a.x, a.y, "#93c5fd", 6);
+                    if (!(enemy.magnetHintCd > 0)) {
+                        enemy.magnetHintCd = 1.5;
+                        addFloatingText(enemy.x, enemy.y - 120, "🧲 彈開了！拋高射", "#bfdbfe", 13);
+                    }
+                }
+            }
+        }
+
+        // 🪃 回力鏢：飛過頭就折返
+        for (const a of game.arrows) {
+            if (!a.boomerangE || a.boomBack) continue;
+            if (a.x <= a.boomTurnX || a.vx > 0) {
+                a.boomBack = true;
+                a.vx = Math.abs(a.vx) * 0.95;
+                a.vy = -40;
+                a.flightTime = 0;
+                spawnParticles(a.x, a.y, "#f9a8d4", 6);
+            }
+        }
+
+        // 🪝 被鉤索拉向前
+        if (player.hookPull > 0) {
+            player.hookPull -= dt;
+            const maxX = platforms.left.x + platforms.left.w - 22;
+            player.x = Math.min(maxX, player.x + TRAIT2.hookPullSpeed * dt);
+        }
+
+        // 🌿 荊棘
+        if (game.thorns && game.thorns.length) {
+            for (let i = game.thorns.length - 1; i >= 0; i--) {
+                game.thorns[i].life -= dt;
+                if (game.thorns[i].life <= 0) game.thorns.splice(i, 1);
+            }
+            if (player.thornTick > 0) player.thornTick -= dt;
+            if (isPlayerOnThorns() && player.thornTick <= 0 && player.hp > 0) {
+                player.thornTick = TRAIT2.thornTick;
+                if (!(player.invulnTimer > 0)) {
+                    const d = applyDamageToCharacter(player, Math.max(1, Math.round(enemy.baseDamage * TRAIT2.thornDmg)), "thorn");
+                    if (d > 0) {
+                        addFloatingText(player.x, player.y - 104, "🌿 -" + d, "#86efac", 13);
+                        updateHUD();
+                        if (player.hp <= 0) { handleGameOver(); return; }
+                    }
+                }
+            }
+        }
+
+        // 🌀 傳送門：時間到箭從頭上掉下來
+        if (game.portals && game.portals.length) {
+            for (let i = game.portals.length - 1; i >= 0; i--) {
+                const p = game.portals[i];
+                p.timer -= dt;
+                if (p.timer <= 0) {
+                    game.portals.splice(i, 1);
+                    if (enemy.hp <= 0) continue;
+                    fireArrows("enemy", p.x, 46, Math.PI / 2, 560, { count: 1, dmgScale: TRAIT2.portalDmg }, false);
+                    spawnParticles(p.x, 46, "#67e8f9", 10);
+                }
+            }
+        }
+    }
+
+    // =========================================================================
+    // 命中／落地（20-combat-physics）
+    // =========================================================================
+    function onTrait2ArrowHitPlayer(a) {
+        if (a.hookArrow) {
+            player.hookPull = TRAIT2.hookPullSec;
+            enemy.shootTimer = Math.min(enemy.shootTimer, 0.6); // 拉過來馬上補一箭
+            sfx.chainBind();
+            addFloatingText(player.x, player.y - 120, "🪝 被拉過去了！", "#fcd34d", 15);
+        }
+        if (a.thornSeed) spawnThornPatch(player.x);
+    }
+
+    function onTrait2ArrowLanded(a, x) {
+        if (a.thornSeed) spawnThornPatch(x);
+    }
+
+    function spawnThornPatch(x) {
+        const L = platforms.left;
+        if (x < L.x - 10 || x > L.x + L.w + 10) return; // 掉進空隙就不長
+        if (!game.thorns) game.thorns = [];
+        if (game.thorns.length >= TRAIT2.thornMax) game.thorns.shift();
+        game.thorns.push({ x: clampToPlayerPlatform(x, TRAIT2.thornW / 2), w: TRAIT2.thornW, life: TRAIT2.thornLife, total: TRAIT2.thornLife });
+        spawnParticles(x, PLATFORM_Y - 6, "#4ade80", 10);
+    }
+
+    // =========================================================================
+    // 受傷（10-storage applyDamageToCharacter）
+    // =========================================================================
+    function applyTrait2DamageToEnemy(dmg, reasonLabel) {
+        const trait = getTrait2();
+        if (trait === "shell") {
+            if (enemy.shellState === "in") {
+                if (!(enemy.shellHintCd > 0)) {
+                    enemy.shellHintCd = 1.0;
+                    sfx.clash();
+                    addFloatingText(enemy.x, enemy.y - 120, "🐢 打不動！等他出殼", "#d1fae5", 14);
+                }
+                return 0;
+            }
+            if (enemy.shellState === "out") return dmg * TRAIT2.shellOutMult;
+        }
+        if (trait === "drum" && enemy.traitShotCount % TRAIT2.drumBeats === TRAIT2.drumBeats - 1) {
+            enemy.drumDmg = (enemy.drumDmg || 0) + dmg;
+            if (enemy.drumDmg >= enemy.maxHp * TRAIT2.drumBreak) {
+                enemy.traitShotCount = 0;
+                enemy.drumDmg = 0;
+                enemy.drumTempo = Math.max(0, (enemy.drumTempo || 0) - 1);
+                enemy.shootTimer += 0.6;
+                spawnParticles(enemy.x, enemy.y - 50, "#fde68a", 12);
+                addFloatingText(enemy.x, enemy.y - 122, "💥 打斷節奏！", "#bbf7d0", 16);
+            }
+        }
+        return dmg;
+    }
+
+    // =========================================================================
+    // 狀態列
+    // =========================================================================
+    function getTrait2HudTags() {
+        const trait = getTrait2();
+        if (!trait) return [];
+        const pill = (color, text, bg) => `<span class="tag-pill" style="color:${color};${bg ? "background:" + bg + ";" : ""}">${text}</span>`;
+        const left = (n) => n - (enemy.traitShotCount % n);
+        if (trait === "hook") return [pill("#fcd34d", "🪝 鉤索倒數 " + left(TRAIT2.hookEvery) + " 箭")];
+        if (trait === "thorn") return [pill("#86efac", "🌿 種子倒數 " + left(TRAIT2.thornEvery) + " 箭")];
+        if (trait === "boomer") return [pill("#f9a8d4", "🪃 回力鏢倒數 " + left(TRAIT2.boomEvery) + " 箭")];
+        if (trait === "portal") return [pill("#67e8f9", "🌀 傳送門倒數 " + left(TRAIT2.portalEvery) + " 箭")];
+        if (trait === "swarm") {
+            const n = (game.mobs || []).filter((m) => m.hp > 0 && m.type === "bee").length;
+            return [pill("#fde047", "🐝 毒蜂 " + n + " 隻｜下一批 " + Math.max(0, enemy.beeTimer).toFixed(1) + "s")];
+        }
+        if (trait === "magnet") return [enemy.magnetOn
+            ? pill("#bfdbfe", "🧲 磁場中！拋高射", "rgba(59,130,246,0.35)")
+            : pill("#93c5fd", "🧲 磁場 " + Math.max(0, enemy.magnetTimer).toFixed(1) + "s")];
+        if (trait === "shell") {
+            if (enemy.shellState === "in") return [pill("#d1fae5", "🐢 縮殼中！打不動", "rgba(16,185,129,0.35)")];
+            if (enemy.shellState === "out") return [pill("#bbf7d0", "🐢 出殼！傷害 ×1.5", "rgba(22,163,74,0.45)")];
+            return [pill("#6ee7b7", "🐢 縮殼 " + Math.max(0, enemy.shellTimer).toFixed(1) + "s")];
+        }
+        if (trait === "drum") {
+            const beat = enemy.traitShotCount % TRAIT2.drumBeats;
+            const dots = "●".repeat(beat) + "○".repeat(TRAIT2.drumBeats - beat);
+            const warn = beat === TRAIT2.drumBeats - 1;
+            return [pill(warn ? "#fecaca" : "#fcd34d", "🥁 " + dots + (warn ? " 打斷他！" : "") + "｜節奏 ×" + getTrait2ShotRateMult().toFixed(1), warn ? "rgba(239,68,68,0.35)" : "")];
+        }
+        return [];
+    }
+
+    // =========================================================================
+    // 畫面（19c renderEnemyTraitOverlay 呼叫）
+    // =========================================================================
+    function renderTrait2Overlay() {
+        // 主線的毒蜂：敵人倒下就一起消失
+        if (enemy.hp <= 0 && !isTowerBattle() && game.mobs && game.mobs.length) clearTowerMobs();
+        const trait = getTrait2();
+        const now = performance.now();
+
+        // 🌿 荊棘
+        (game.thorns || []).forEach((t) => {
+            const fade = Math.min(1, t.life / 0.6);
+            ctx.save();
+            ctx.globalAlpha = 0.85 * fade;
+            ctx.fillStyle = "#166534";
+            ctx.fillRect(t.x - t.w / 2, PLATFORM_Y - 4, t.w, 4);
+            ctx.fillStyle = "#4ade80";
+            const n = 7;
+            for (let k = 0; k < n; k++) {
+                const x = t.x - t.w / 2 + (k + 0.5) * (t.w / n);
+                const h = 12 + ((k * 37) % 7);
+                ctx.beginPath();
+                ctx.moveTo(x - 4, PLATFORM_Y - 2);
+                ctx.lineTo(x, PLATFORM_Y - 2 - h);
+                ctx.lineTo(x + 4, PLATFORM_Y - 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            ctx.restore();
+        });
+
+        // 🌀 傳送門：上方的門＋地上的落點
+        (game.portals || []).forEach((p) => {
+            const k = 1 - p.timer / p.total;
+            ctx.save();
+            ctx.globalAlpha = 0.9;
+            ctx.strokeStyle = "#22d3ee";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.ellipse(p.x, 40, 22, 8 + 3 * Math.sin(now / 80), 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.globalAlpha = 0.25 + 0.5 * k;
+            ctx.fillStyle = "#67e8f9";
+            ctx.beginPath();
+            ctx.ellipse(p.x, PLATFORM_Y - 2, 14 + 10 * k, 5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 0.15 + 0.2 * k;
+            ctx.fillRect(p.x - 2, 48, 4, PLATFORM_Y - 50);
+            ctx.restore();
+        });
+
+        // 🪝 鉤索：敵人到鉤子之間的繩子
+        const ropes = game.arrows.filter((a) => a.hookArrow && a.owner === "enemy");
+        if (ropes.length || player.hookPull > 0) {
+            const bow = trait2BowPos();
+            ctx.save();
+            ctx.strokeStyle = "#fcd34d";
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ropes.forEach((a) => { ctx.moveTo(bow.x, bow.y); ctx.lineTo(a.x, a.y); });
+            if (player.hookPull > 0) { ctx.moveTo(bow.x, bow.y); ctx.lineTo(player.x, player.y - 46); }
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        // 🪃 回力鏢：轉動的鏢
+        game.arrows.forEach((a) => {
+            if (!a.boomerangE) return;
+            ctx.save();
+            ctx.translate(a.x, a.y);
+            ctx.rotate(now / 60);
+            ctx.strokeStyle = "#f472b6";
+            ctx.lineWidth = 4;
+            ctx.lineCap = "round";
+            ctx.beginPath();
+            ctx.moveTo(-12, -6); ctx.lineTo(0, 0); ctx.lineTo(-12, 6);
+            ctx.stroke();
+            ctx.restore();
+        });
+
+        if (!trait || enemy.hp <= 0) return;
+
+        if (trait === "magnet" && enemy.magnetOn) {
+            ctx.save();
+            ctx.strokeStyle = "#60a5fa";
+            for (let k = 0; k < 3; k++) {
+                const r = TRAIT2.magnetR * (0.45 + 0.55 * (((now / 900) + k / 3) % 1));
+                ctx.globalAlpha = 0.5 * (1 - r / TRAIT2.magnetR) + 0.1;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(enemy.x, enemy.y - 50, r, Math.PI * 0.55, Math.PI * 1.45);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        if (trait === "shell" && enemy.shellState) {
+            const inShell = enemy.shellState === "in";
+            ctx.save();
+            ctx.globalAlpha = inShell ? 0.95 : 0.35 + 0.25 * Math.sin(now / 70);
+            ctx.fillStyle = inShell ? "#065f46" : "rgba(187, 247, 208, 0.25)";
+            ctx.strokeStyle = "#34d399";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.ellipse(enemy.x, enemy.y - 30, 40, inShell ? 36 : 44, 0, Math.PI, Math.PI * 2);
+            ctx.lineTo(enemy.x + 40, enemy.y - 2);
+            ctx.lineTo(enemy.x - 40, enemy.y - 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            if (inShell) {
+                ctx.strokeStyle = "#6ee7b7";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(enemy.x - 20, enemy.y - 30); ctx.lineTo(enemy.x, enemy.y - 52); ctx.lineTo(enemy.x + 20, enemy.y - 30);
+                ctx.moveTo(enemy.x - 30, enemy.y - 12); ctx.lineTo(enemy.x + 30, enemy.y - 12);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        if (trait === "drum") {
+            const beat = enemy.traitShotCount % TRAIT2.drumBeats;
+            const warn = beat === TRAIT2.drumBeats - 1;
+            ctx.save();
+            ctx.fillStyle = "#92400e";
+            ctx.strokeStyle = warn ? "#f87171" : "#fcd34d";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.ellipse(enemy.x + 18, enemy.y - 56, 11, 13, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            if (warn) {
+                ctx.globalAlpha = 0.35 + 0.3 * Math.sin(now / 60);
+                ctx.beginPath();
+                ctx.arc(enemy.x, enemy.y - 50, 52, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+    }
+
+    // =========================================================================
+
+;
 // ==== js/20-combat-physics.js
  // 20. 物理、單向穿透高台、擋彈牆、引力黑洞、箭矢互撞與命中判定
     // =========================================================================
@@ -35413,6 +38164,12 @@
                 }
             }
 
+            // 🗼 天弓塔：小怪（16m）
+            if (a.owner === "player" && hitTowerMob(a)) {
+                game.arrows.splice(i, 1);
+                continue;
+            }
+
             // 第三章：蛛卵、星核（可以打破的物件）
             if (a.owner === "player" && (hitChapter3Object(a) || hitComboObject(a) || hitChapter4Object(a))) { // 19j：影子分身、19k：閘門、浮游之眼、巨像的部位
                 if (!a.pierceGale) {
@@ -35558,6 +38315,7 @@
                 dmg *= getPlayerArrowHitMult(a, target);
                 const finalDmg = Math.max(1, Math.round(dmg));
                 const dealtDmg = applyDamageToCharacter(target, finalDmg, a.pierceGale ? "pierce_arrow" : "arrow");
+                if (target === player && a.owner === "enemy" && dealtDmg > 0) onTrait2ArrowHitPlayer(a); // 鉤索、荊棘種子（19l）
                 if (a.owner === "player" && target === enemy) onPlayerArrowHitEnemy(a, isCrit);
                 spawnParticles(a.x, a.y, isCrit ? "#fbbf24" : target === enemy ? "#f43f5e" : "#38bdf8", isCrit ? 18 : 10);
 
@@ -35694,6 +38452,7 @@
                 if (arrowOwner === "player" && a.flame && !isMineArrow) spawnFirePatch(landX, arrowOwner, getAwakenFirePatchDuration());
                 // 熔岩巨漢：箭落地留下 1.2 秒熔岩（燒玩家）
                 if (arrowOwner === "enemy" && getEnemyTrait() === "lava" && !isMineArrow) spawnFirePatch(landX, "enemy", 1.2);
+                if (arrowOwner === "enemy") onTrait2ArrowLanded(a, landX); // 荊棘德魯伊（19l）
 
                 if (isMineArrow) {
                     game.landmines.push({
@@ -35924,6 +38683,7 @@
         player.equippedSkills.forEach((s) => {
             if (s.cd > 0) {
                 s.cd = Math.max(0, s.cd - dt);
+                if (s.cd <= 0) s.refunded = 0;
                 cdChanged = true;
             }
         });
@@ -35958,7 +38718,7 @@
                 }
             }
         } else if (player.bindTimer <= 0) {
-            const pSlow = (player.frostTimer > 0 ? 0.55 : 1.0) * getPvpGazeSlow(); // 對戰：被對手凝視
+            const pSlow = (player.frostTimer > 0 ? 0.55 : 1.0) * getPvpGazeSlow() * getTrait2PlayerMoveMult(); // 荊棘（19l） // 對戰：被對手凝視
             let moveDir = 0;
             if (input.left) moveDir -= 1;
             if (input.right) moveDir += 1;
@@ -35985,6 +38745,8 @@
         updateLandmines(dt);
         updateRapidVolleys(dt);
         updateArrows(dt);
+        updateTowerMobs(dt); // 🗼 天弓塔的小怪（16m）；主線蜂群馴師的毒蜂也是
+        updateTrait2World(dt); // 第二批特色敵人：磁場、回力鏢、荊棘、傳送門、鉤索（19l）
 
         // 效能：狀態列每秒更新約 10 次（事件發生時其他地方仍會立即呼叫 updateHUD）
         game.hudTimer = (game.hudTimer || 0) - dt;
@@ -36983,6 +39745,7 @@
         renderTwinMirageClone();
         renderStickman(enemy, false);
         renderStickman(player, true);
+        renderTowerMobs(); // 🗼 天弓塔的小怪（16m）
         renderArrows();
         renderZeusBolts();
         renderTitanOverlay();
@@ -38674,6 +41437,7 @@
     updateHUD();
     applyArt2Body(); // 🎨 新美術風格樣品（22e，網址加 ?art=2）
     startI18n(); // 🌐 英文模式：畫面文字自動翻譯（12o）
+    setupStartLangButtons(); // 🌐 開始畫面的語言按鈕（12o）
     requestAnimationFrame(gameLoop);
 
     </script>
