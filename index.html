@@ -12985,7 +12985,7 @@
                     ${settingsToggle("hints", "💡", "第一次觸發的提示")}
                 </div>
                 <div class="set-sec"><div class="set-title">📊 匿名遊玩統計</div>
-                    <button type="button" class="set-toggle${isPlayStatsOn() ? " on" : ""}" id="set-stats"><span class="set-ico">📊</span><span class="set-label">幫忙改進遊戲<small>只記隨機編號、最高關卡、遊玩天數，不記名字、帳號或 IP</small></span><span class="set-pill">${isPlayStatsOn() ? "開" : "關"}</span></button>
+                    <button type="button" class="set-toggle${isPlayStatsOn() ? " on" : ""}" id="set-stats"><span class="set-ico">📊</span><span class="set-label">幫忙改進遊戲<small>只記隨機編號、最高關卡、遊玩天數、教學有沒有打完、主線輸在哪一關，不記名字、帳號或 IP</small></span><span class="set-pill">${isPlayStatsOn() ? "開" : "關"}</span></button>
                 </div>
             </div>`;
         box.querySelectorAll(".set-toggle").forEach((b) => b.addEventListener("click", () => {
@@ -13665,7 +13665,7 @@
         "✅ 使用中": "✅ Equipped", "🎰 弓抽獎": "🎰 Bow Gacha", "▶ 從這裡開始": "▶ Start here", "⚔️ 回到戰場": "⚔️ Back to battle", "點一下換弓": "Tap to change bow",
         "🏹 沒箭了！快走到地上發光的箭那裡撿起來 ⬇️": "🏹 Out of arrows! Walk to a glowing arrow to pick it up ⬇️", "射出去的箭會插在你的平台上，走過去就能撿回來": "Your arrows stick in your platform — walk over to pick them up",
         "🏹 沒有箭了！走到地上發光的箭旁邊撿回來": "🏹 No arrows! Walk to a glowing arrow to pick it up", "這一關就是 Boss：": "This stage is a Boss: ",
-        "音效": "Sound", "音樂": "Music", "只記隨機編號、最高關卡、遊玩天數，不記名字、帳號或 IP": "Only a random ID, best stage and days played — no name, account or IP",
+        "音效": "Sound", "音樂": "Music", "只記隨機編號、最高關卡、遊玩天數、教學有沒有打完、主線輸在哪一關，不記名字、帳號或 IP": "Only a random ID, highest stage, days played, whether you finished the tutorial, and which main-story stage you lost on — no name, account or IP",
         "切換後會重新載入；英文版的部分長篇說明還在翻譯中。": "The page reloads after switching.", "Combo 挑戰": "Combo Boss"
     };
 
@@ -30802,6 +30802,7 @@
             return;
         }
         if (game.weeklyRun) submitWeeklyScore(); // 每週挑戰：上傳排行榜（22c）
+        else if (!game.tutorial && enemy.archetype) { recordPlayDeath(game.stage, enemy.archetype.key); sendPlayStats(); } // 📊 主線死在哪（22d）
         game.state = "GAMEOVER";
         input.isDragging = false;
         input.fullDrawPlayed = false;
@@ -40835,13 +40836,17 @@
 // ==== js/22d-play-stats.js
 // 22d. 📊 匿名遊玩統計（給開發者看：玩家玩到哪裡、隔幾天還會不會回來）
 //   只送：隨機編號（這台裝置自己產生，跟帳號、名字、雲端存檔都無關）、最高關卡、射手等級、
-//   累計遊玩分鐘、過關數、遊戲版本。伺服器用自己的時間記「哪幾天來過」，不存 IP。
+//   累計遊玩分鐘、過關數、遊戲版本、有沒有打完第 0 章教學、主線死在哪（關卡＋敵人種類的次數、最後一次）。
+//   伺服器用自己的時間記「哪幾天來過」，不存 IP。
 //   設定裡可以關掉；用自己電腦（file://、localhost、區網）打開時不會送，避免開發測試灌進統計
     // =========================================================================
     const PLAY_STATS = {
         idKey: "aog_anon_id",
         offKey: "aog_stats_off",
         minKey: "aog_play_min",
+        deathKey: "aog_stat_deaths",   // { "關卡|敵人key": 次數 }
+        lastDeathKey: "aog_stat_lastdeath",
+        maxDeathKeys: 40,
         pingEveryMs: 3 * 60 * 1000,
         firstPingMs: 8000
     };
@@ -40880,6 +40885,39 @@
         try { localStorage.setItem(PLAY_STATS.minKey, String(getPlayMinutes() + 1)); } catch (e) { /* 無痕模式 */ }
     }
 
+    // 💀 主線打輸：記下關卡和敵人（finishGameOverNow 呼叫；訓練、聖域、天弓塔、週挑戰、教學不算）
+    function recordPlayDeath(stage, enemyKey) {
+        if (!(stage >= 1) || !/^[a-z0-9_]{1,40}$/.test(String(enemyKey || ""))) return false;
+        try {
+            let m = {};
+            try { m = JSON.parse(localStorage.getItem(PLAY_STATS.deathKey) || "{}") || {}; } catch (e) { m = {}; }
+            const k = Math.floor(stage) + "|" + enemyKey;
+            m[k] = (m[k] || 0) + 1;
+            const keys = Object.keys(m);
+            if (keys.length > PLAY_STATS.maxDeathKeys) {
+                // 太多種：留次數多的，這次的一定留
+                const keep = keys.filter((x) => x !== k).sort((a, b) => m[b] - m[a]).slice(0, PLAY_STATS.maxDeathKeys - 1).concat([k]);
+                const n = {};
+                keep.forEach((x) => { n[x] = m[x]; });
+                m = n;
+            }
+            localStorage.setItem(PLAY_STATS.deathKey, JSON.stringify(m));
+            localStorage.setItem(PLAY_STATS.lastDeathKey, k);
+            return true;
+        } catch (e) { return false; }
+    }
+
+    function getPlayDeaths() {
+        try {
+            const m = JSON.parse(localStorage.getItem(PLAY_STATS.deathKey) || "{}") || {};
+            return Object.keys(m).map((k) => { const p = k.split("|"); return [+p[0], p[1], m[k]]; }).filter((e) => e[0] >= 1 && e[2] >= 1);
+        } catch (e) { return []; }
+    }
+
+    function getLastPlayDeath() {
+        try { const k = localStorage.getItem(PLAY_STATS.lastDeathKey); if (!k) return null; const p = k.split("|"); return [+p[0], p[1]]; } catch (e) { return null; }
+    }
+
     // 只有正式上線的網址（https、不是自己電腦）才送
     function canSendPlayStats() {
         if (!isPlayStatsOn() || typeof fetch !== "function" || typeof location === "undefined") return false;
@@ -40896,7 +40934,10 @@
             lv: typeof getArcherLevel === "function" ? getArcherLevel() : 1,
             m: getPlayMinutes(),
             c: (getStats().stagesCleared || 0),
-            v: typeof GAME_VERSION !== "undefined" ? GAME_VERSION : ""
+            v: typeof GAME_VERSION !== "undefined" ? GAME_VERSION : "",
+            t: game.tutorialCh0Done ? 1 : 0,
+            dz: getPlayDeaths(),
+            ld: getLastPlayDeath()
         };
     }
 
