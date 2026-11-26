@@ -2942,7 +2942,7 @@
             display: flex;
             gap: 5px;
         }
-        .set-q {
+        .set-q, .set-lang {
             flex: 1 1 0;
             width: auto !important;
             margin: 0 !important;
@@ -2954,7 +2954,7 @@
             color: #cbd5e1;
             cursor: pointer;
         }
-        .set-q.on {
+        .set-q.on, .set-lang.on {
             background: rgba(251, 191, 36, 0.2);
             border-color: #fbbf24;
             color: #fde68a;
@@ -3828,6 +3828,8 @@
             background: rgba(167, 139, 250, 0.08);
             border-color: rgba(167, 139, 250, 0.45);
         }
+        /* 主機存檔「搬家用」模式：只留讀取 */
+        .host-legacy #btn-host-upload, .host-legacy .host-auto, .host-legacy #btn-host-help { display: none !important; }
         .host-save-box.hidden {
             display: none;
         }
@@ -3965,6 +3967,81 @@
         #keybind-list .keybind-row button {
             padding: 2px 6px !important;
             font-size: 0.6rem !important;
+        }
+        /* ================================================================
+           簡潔版大廳＋技能頁（年紀小的玩家也能很快上手）
+           ================================================================ */
+        .hub-skill-strip-title { display: none !important; }
+        .hub-simple-label { font-weight: 900; color: #fde68a; font-size: 0.78rem; margin-bottom: 4px; text-align: left; }
+        .hub-simple-label span { color: #94a3b8; font-weight: 400; font-size: 0.64rem; }
+        #hub-skill-strip { cursor: pointer; transition: box-shadow 0.15s; }
+        #hub-skill-strip:hover { box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.65); }
+        #hub-bow-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+        .hub-stat-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); background: color-mix(in srgb, var(--c) 12%, rgba(15, 23, 42, 0.85)); }
+        .hub-stat-chip b { color: var(--c); font-size: 0.92rem; }
+        .hub-stat-chip small { color: #cbd5e1; font-size: 0.62rem; }
+        #hub-player-vitals { display: none !important; }
+        .hub-center-stage { overflow-y: auto !important; }
+        .hub-next-box, .hub-status-slim { text-align: left; }
+        .hub-status-slim { font-size: 0.7rem !important; }
+        .hub-next-box .next-step-btn { font-size: 0.7rem !important; padding: 6px 8px !important; }
+        .hub-mode-box #hub-btn-battle { position: static !important; margin: 0 0 8px !important; padding: 16px 8px !important; font-size: 1.2rem !important; width: 100%; letter-spacing: 1px; }
+        .hub-mode-box #hub-btn-forfeit { margin: 0 0 8px !important; width: 100%; }
+        .hub-more-title { display: block !important; font-weight: 900; color: #cbd5e1; font-size: 0.72rem; margin: 2px 0 5px; text-align: left; }
+        .hub-mode-row { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 6px !important; }
+        .hub-mode-row .hub-nav-btn { font-size: 0.74rem !important; padding: 9px 4px !important; justify-content: center; }
+        .hub-mode-row .hub-nav-btn.feature-locked { display: none !important; } /* 還沒解鎖的玩法先藏起來，按鈕少一點 */
+        /* 技能頁 */
+        .loadout-toolbar { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; min-width: 0; }
+        .loadout-toolbar #cat-filter-bar { flex: 1 1 auto; min-width: 0; margin-bottom: 0 !important; }
+        .loadout-owned-toggle { display: flex; align-items: center; gap: 3px; font-size: 0.66rem; color: #cbd5e1; white-space: nowrap; cursor: pointer; }
+        .loadout-auto-btn { width: auto !important; margin: 0 !important; padding: 4px 10px !important; font-size: 0.68rem !important; white-space: nowrap; }
+        .loadout-slots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 3px 0 6px; }
+        .loadout-slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 0; padding: 7px 2px 4px; border-radius: 8px; border: 1.5px solid rgba(255, 255, 255, 0.2); background: rgba(15, 23, 42, 0.85); color: #e2e8f0; font: inherit; cursor: pointer; }
+        .loadout-slot:hover { box-shadow: 0 0 8px rgba(251, 191, 36, 0.55); }
+        .loadout-slot.empty { border-style: dashed; color: #64748b; cursor: default; }
+        .loadout-slot-key { position: absolute; top: 1px; left: 3px; font-size: 0.5rem; color: #94a3b8; }
+        .loadout-slot-icon { font-size: 1.15rem; }
+        .loadout-slot-name { font-size: 0.55rem; line-height: 1.1; text-align: center; word-break: break-all; }
+        #loadout-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important; }
+        #loadout-grid .loadout-item.compact .loadout-head { font-size: 0.68rem !important; }
+        #loadout-grid .loadout-head > span:first-child { font-size: 1rem !important; }
+        #loadout-grid .loadout-more { border-style: dashed !important; border-color: rgba(251, 191, 36, 0.6) !important; }
+        #hub-bow-card { cursor: pointer; transition: box-shadow 0.15s; }
+        #hub-bow-card:hover { box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.65); }
+        #hub-bow-card .hub-simple-label { text-align: center; margin-bottom: 2px; }
+        .hub-mode-box #hub-btn-battle small { display: block; font-size: 0.72rem; font-weight: 700; opacity: 0.9; margin-top: 3px; letter-spacing: 0; }
+        .bow-pick-card { max-width: 820px; width: 94vw; display: flex; flex-direction: column; max-height: 92vh; }
+        .bow-pick-msg { font-size: 0.78rem; color: #cbd5e1; margin: 4px 0 8px; min-height: 1.2em; }
+        .bow-pick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; overflow-y: auto; min-height: 0; padding: 2px; }
+        .bow-pick { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--bc); background: color-mix(in srgb, var(--bc) 10%, rgba(15, 23, 42, 0.9)); color: #e2e8f0; font: inherit; text-align: left; cursor: pointer; }
+        .bow-pick:hover { box-shadow: 0 0 10px color-mix(in srgb, var(--bc) 60%, transparent); }
+        .bow-pick.on { box-shadow: 0 0 0 2px #fbbf24 inset; }
+        .bow-pick b { color: var(--bc); font-size: 0.86rem; }
+        .bow-pick small { color: #94a3b8; font-size: 0.62rem; line-height: 1.3; }
+        .bow-pick .bow-pick-tag { position: absolute; top: 5px; right: 7px; font-size: 0.6rem; color: #fde68a; }
+        .bow-pick-icon { font-size: 1.5rem; }
+        .bow-pick:disabled { opacity: 0.55; cursor: not-allowed; }
+        .region-cell.playable { cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; }
+        .region-cell.playable:hover { transform: translateY(-2px); box-shadow: 0 0 12px color-mix(in srgb, var(--rc) 55%, transparent); }
+        .region-go { margin-top: 4px; font-size: 0.66rem; font-weight: 900; color: var(--rc); }
+        .feedback-card { max-width: 460px; }
+        .feedback-body { display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 0.8rem; color: #e2e8f0; }
+        .fb-step { padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); line-height: 1.45; }
+        .fb-step b { color: #fde68a; }
+        .fb-row { display: flex; gap: 6px; }
+        .fb-row input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #f8fafc; font: inherit; letter-spacing: 1px; }
+        .fb-row button { width: auto !important; margin: 0 !important; padding: 8px 16px !important; }
+        .fb-done { padding: 12px; border-radius: 10px; background: rgba(34, 197, 94, 0.12); color: #bbf7d0; line-height: 1.5; }
+        .feedback-msg { min-height: 1.2em; margin: 8px 0 2px; font-size: 0.8rem; }
+        #btn-loadout-training { display: none !important; }
+        /* 🌐 英文模式：英文單字不要從中間斷開 */
+        html[lang="en"] .hub-skill-mini, html[lang="en"] .loadout-slot-name, html[lang="en"] .loadout-name { word-break: normal !important; overflow-wrap: anywhere; hyphens: auto; }
+        html[lang="en"] .hub-skill-mini { font-size: 0.5rem !important; }
+        html[lang="en"] .hub-mode-row .hub-nav-btn { font-size: 0.68rem !important; } /* 訓練模式從大廳「更多玩法」進去 */
+        @media (max-width: 780px) {
+            .loadout-owned-toggle { font-size: 0.56rem; }
+            .loadout-auto-btn { padding: 3px 6px !important; font-size: 0.58rem !important; }
         }
     </style>
 </head>
@@ -4108,10 +4185,11 @@
                 </div>
 
                 <div class="hub-center-stage">
-                    <div class="hub-archer-showcase">
+                    <div id="hub-bow-card" class="hub-archer-showcase" title="點一下換弓">
                         <div style="font-size: 0.74rem; color: #cbd5e1; letter-spacing: 1px; margin-bottom: 4px;">
                             ACTIVE STICKMAN ARCHER // 穿透高台 · 新技能 · 階梯抽獎升等
                         </div>
+                        <div class="hub-simple-label">🏹 我的弓 <span>（點這裡換）</span></div>
                         <div id="hub-bow-title" style="font-size: 1.35rem; font-weight: 900; color: var(--gold-accent); margin-bottom: 6px;">
                             🏹 聖光長弓 Lv.1
                         </div>
@@ -4123,9 +4201,17 @@
                         </div>
                     </div>
 
-                    <div class="hub-skill-strip-box">
+                    <div id="hub-skill-strip" class="hub-skill-strip-box" title="點一下換技能">
                         <div class="hub-skill-strip-title">Ⅰ — Ⅱ — Ⅲ — Ⅳ — Ⅴ｜目前搭載之 5 項技能（含階級與抽獎進度）</div>
+                        <div class="hub-simple-label">⚡ 我的 5 個技能 <span>（點這裡換）</span></div>
                         <div id="hub-equipped-skills" class="hub-skill-mini-grid"></div>
+                    </div>
+                    <div class="hub-info-box hub-next-box">
+                        <div class="hub-simple-label">🧭 下一步做什麼？</div>
+                        <div id="hub-next-steps" class="next-step-list"></div>
+                    </div>
+                    <div class="hub-info-box hub-status-slim">
+                        <div id="hub-status-box">載入中...</div>
                     </div>
                 </div>
 
@@ -4134,16 +4220,10 @@
                         <div style="font-weight: 900; color: #fb7185; margin-bottom: 4px;">😈 本關敵人與技能</div>
                         <div id="hub-enemy-summary">載入中...</div>
                     </div>
-                    <div class="hub-info-box">
-                        <div style="font-weight: 900; color: #86efac; margin-bottom: 4px;">🧭 建議下一步</div>
-                        <div id="hub-next-steps" class="next-step-list"></div>
-                    </div>
-                    <div class="hub-info-box">
-                        <div style="font-weight: 900; color: var(--gold-accent); margin-bottom: 4px;">📋 戰況總覽</div>
-                        <div id="hub-status-box">載入中...</div>
-                    </div>
                     <div class="hub-mode-box">
-                        <div class="hub-mode-title">🗺️ 選擇模式</div>
+                        <button id="hub-btn-battle" type="button" class="primary-btn">⚔️ 進入戰鬥（主線）</button>
+                        <button id="hub-btn-forfeit" type="button" class="secondary-btn danger-btn hidden">🏳️ 放棄這局</button>
+                        <div class="hub-mode-title hub-more-title">🎮 更多玩法</div>
                         <div class="hub-mode-row">
                             <button id="hub-nav-map" type="button" class="hub-nav-btn gacha-tab"><span>🗺️</span><span>主線地圖</span><span id="hub-badge-map" class="nav-hint"></span></button>
                             <button id="hub-nav-pvp" type="button" class="hub-nav-btn combo-tab"><span>🤺</span><span>連線對戰</span></button>
@@ -4153,8 +4233,6 @@
                             <button id="hub-nav-trial" type="button" class="hub-nav-btn gacha-tab"><span>⚔️</span><span>Boss 試煉</span></button>
                             <button id="hub-nav-combo-boss" type="button" class="hub-nav-btn skill-gacha-tab"><span>🔗</span><span>Combo 挑戰</span></button>
                         </div>
-                        <button id="hub-btn-battle" type="button" class="primary-btn">⚔️ 進入戰鬥（主線）</button>
-                        <button id="hub-btn-forfeit" type="button" class="secondary-btn danger-btn hidden">🏳️ 放棄這局</button>
                     </div>
                 </div>
             </div>
@@ -4185,7 +4263,11 @@
         <div class="modal-card loadout-card op-zoom">
             <div class="version-pill">SKILL LOADOUT // 分類平衡構築 (選 5 · 含被動技)</div>
             <div class="hero-subtitle loadout-subtitle" style="margin-bottom: 8px;">請從已解鎖技能中選擇 5 項帶入戰鬥（快捷鍵預設 Q E R F C，可在「按鍵設定」更改 · 未解鎖技能可至「技能抽獎」解鎖）</div>
-            <div id="cat-filter-bar" class="cat-filter-bar"></div>
+            <div class="loadout-toolbar">
+                <div id="cat-filter-bar" class="cat-filter-bar"></div>
+                <label class="loadout-owned-toggle"><input id="loadout-owned-only" type="checkbox" checked> 只看我有的</label>
+                <button id="btn-loadout-auto" type="button" class="gold-btn loadout-auto-btn">✨ 自動幫我配</button>
+            </div>
             <div id="loadout-counter" class="loadout-counter">已選擇技能：5 / 5</div>
             <div class="loadout-body">
                 <div id="loadout-grid" class="loadout-grid"></div>
@@ -4451,6 +4533,32 @@
             <div class="btn-row">
                 <button id="btn-settings-reset" type="button" class="secondary-btn">↺ 恢復預設</button>
                 <button id="btn-close-settings" type="button" class="primary-btn">完成</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏹 大廳換弓 -->
+    <div id="bow-pick-modal" class="modal-overlay op-overlay hidden">
+        <div class="modal-card bow-pick-card op-zoom">
+            <div class="version-pill">BOWS // 換弓</div>
+            <div id="bow-pick-msg" class="bow-pick-msg">點一把弓就會換上</div>
+            <div id="bow-pick-grid" class="bow-pick-grid"></div>
+            <div class="btn-row">
+                <button id="btn-bow-pick-gacha" type="button" class="gold-btn">🎰 弓抽獎</button>
+                <button id="btn-bow-pick-close" type="button" class="secondary-btn">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💬 試玩回饋（填完問卷輸入兌換碼領獎勵） -->
+    <div id="feedback-modal" class="modal-overlay op-overlay hidden">
+        <div class="modal-card feedback-card op-zoom">
+            <div class="version-pill">FEEDBACK // 試玩回饋</div>
+            <div id="feedback-body" class="feedback-body"></div>
+            <div id="feedback-msg" class="feedback-msg"></div>
+            <div class="btn-row">
+                <button id="btn-feedback-open" type="button" class="primary-btn">📝 打開問卷</button>
+                <button id="btn-feedback-close" type="button" class="secondary-btn">返回</button>
             </div>
         </div>
     </div>
@@ -6366,10 +6474,10 @@
             name: "影分身",
             icon: "🌑",
             color: "#a78bfa",
-            maxCd: 14.0,
+            maxCd: 10.0,
             baseMult: 1.0,
             gachaStatLabel: "每升1級 +0.5s 影子時間、+5% 影子傷害",
-            desc: "在身後召喚 1 個影子（12 秒，打不到）：你每射一箭，影子 0.12 秒後也朝敵人射一箭（0.5 倍傷害、會帶附魔）。"
+            desc: "召喚 1 個會走動的影子（8 秒，可以重複疊，場上最多 5 個）：你每射一箭，每個影子 0.12 秒後也朝敵人射一箭（0.5 倍傷害、會帶附魔）。影子很脆弱：被任何攻擊打到就消散。"
         },
         shadow_swap: {
             id: "shadow_swap",
@@ -6411,7 +6519,7 @@
             maxCd: 20.0,
             baseMult: 1.0,
             gachaStatLabel: "每升1級 +0.3s 影群時間",
-            desc: "6 秒內多召喚 2 個影子，而且所有影子的複製箭傷害 0.5 → 0.6 倍。接影爆可以一次炸掉一群。"
+            desc: "多召喚 2 個影子（6 秒，可以跟影分身疊在一起，最多 5 個），而且所有影子的複製箭傷害 0.5 → 0.6 倍。接影爆可以一次炸掉一群。"
         },
         passive_shadow_pact: {
             id: "passive_shadow_pact",
@@ -7340,6 +7448,105 @@
             bulwarkInterval: 999,
             desc: "【三階段神王】星鏡：3 秒內射向他的箭會被反彈回來（先停手）。星核：在你身邊生成星核，5 秒後爆炸，要先打破。66% 血：每招都會降下流星。33% 血：每 14 秒蓄力超新星，打出 7% 最大生命能打斷，否則吃 35% 最大生命。"
         },
+        // ---------- 第四章「混沌戰場」區域霸主（第 114／120／126／132／138／144 關，行為在 19k-chapter4-bosses.js）----------
+        //   規則類（限制玩家）：奇竊術士、箭術審判官、千眼空靈；場地類：潮汐巨獸、裂地領主；多部位：混沌巨像
+        thief_juggler: {
+            key: "boss_thief_juggler",
+            bossType: "thief_juggler",
+            chapter: 4, homeStage: 114,
+            title: "🤹 奇竊術士・洛基",
+            badge: "BOSS XXIII // SKILL THIEF",
+            primaryColor: "#fcd34d",
+            glowColor: "#b45309",
+            hornColor: "#78350f",
+            fixedRotation: ["steal_skill", "scramble_skills", "juggle_knives", "invert_controls"],
+            hpMult: 1.4, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【詐術】專門搞亂你：① 偷走你技能欄的 1 格（第二階段 2 格）10 秒、拿你的技能打你，爆頭他 3 次搶回來；② 打亂技能順序 8 秒（按 Q 可能放出 R 的技能）；③ 上下左右顛倒 5 秒（左右相反、跳和往下穿互換）。第二階段打亂得更久。"
+        },
+        tide_beast: {
+            key: "boss_tide_beast",
+            bossType: "tide_beast",
+            chapter: 4, homeStage: 120,
+            title: "🌊 潮汐巨獸・利維坦",
+            badge: "BOSS XXIV // RISING TIDE",
+            primaryColor: "#7dd3fc",
+            glowColor: "#0369a1",
+            hornColor: "#082f49",
+            fixedRotation: ["raise_tide", "tidal_wave", "bubble_volley"],
+            hpMult: 1.4, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "frost",
+            bulwarkInterval: 999,
+            desc: "【漲潮】你的平台下層會慢慢淹水：站在水裡持續扣血、移動變慢，要跳到高台上打。他身邊有兩座「閘門」，打破一座水位降一半（之後會重建）。浪潮：一排浪從平台捲過。"
+        },
+        arrow_judge: {
+            key: "boss_arrow_judge",
+            bossType: "arrow_judge",
+            chapter: 4, homeStage: 126,
+            title: "🏹 箭術審判官・阿特密",
+            badge: "BOSS XXV // LIMITED ARROWS",
+            primaryColor: "#fda4af",
+            glowColor: "#be123c",
+            hornColor: "#4c0519",
+            fixedRotation: ["verdict_volley", "confiscate", "judgment_strike"],
+            hpMult: 1.4, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【箭矢有限】這一場你只有 10 支箭（技能不算）：射出去的箭會插在你的平台上，要走過去撿回來。沒收：他會把地上的箭收走 2 支。審判落雷專打插著箭的位置。"
+        },
+        rift_shaper: {
+            key: "boss_rift_shaper",
+            bossType: "rift_shaper",
+            chapter: 4, homeStage: 132,
+            title: "🌀 裂地領主・泰拉",
+            badge: "BOSS XXVI // SHIFTING GROUND",
+            primaryColor: "#d6d3d1",
+            glowColor: "#57534e",
+            hornColor: "#1c1917",
+            fixedRotation: ["quake_split", "shift_drift", "rock_fall"],
+            hpMult: 1.4, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【移動的大地】你的平台會左右漂移（像輸送帶一樣把你帶走），方向會變；地裂：平台裂開一段，掉進裂縫持續扣血。第二階段漂移更快、裂縫更多。"
+        },
+        eye_wraith: {
+            key: "boss_eye_wraith",
+            bossType: "eye_wraith",
+            chapter: 4, homeStage: 138,
+            title: "👁️ 千眼空靈・阿古斯",
+            badge: "BOSS XXVII // HEADSHOT ONLY",
+            primaryColor: "#c4b5fd",
+            glowColor: "#5b21b6",
+            hornColor: "#1e1b4b",
+            fixedRotation: ["eye_beam", "gaze_lock", "closed_eye"],
+            hpMult: 1.0, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            desc: "【只有爆頭有效】身體打不痛：只有爆頭的箭有傷害（技能、持續傷害只剩 25%）。閉眼：3 秒連頭都打不痛，身邊冒出 2 顆浮游之眼，打破一顆他就硬直。凝視：被看到會定身一下。第二階段的凝視還會讓你上下左右顛倒 5 秒（要按「下」才會跳）。"
+        },
+        chaos_colossus: {
+            key: "boss_chaos_colossus",
+            bossType: "chaos_colossus",
+            chapter: 4, homeStage: 144,
+            title: "🦾 混沌巨像・泰坦諾斯",
+            badge: "BOSS XXVIII // MULTI-PART",
+            primaryColor: "#fca5a5",
+            glowColor: "#991b1b",
+            hornColor: "#450a0a",
+            fixedRotation: ["boulder_throw", "laser_sweep", "head_barrage"],
+            hpMult: 1.0, dmgMult: 0.9,
+            isArchitect: false, isBulwark: false, isBomber: false,
+            elementMode: "omni",
+            bulwarkInterval: 999,
+            speedMult: 0,
+            desc: "【多部位】巨大的巨像：頭、左手、右手各有自己的血條，核心被保護著打不到。打掉左手就不能丟巨石、打掉右手就不能掃雷射、打掉頭就不能連射。三個部位都打掉，核心露出來（承傷 +30%）。"
+        },
         // ---------- Combo 挑戰 Boss（只在「Combo 挑戰」出現；掉專屬傳說，行為在 19j-combo-bosses.js）----------
         elem_empress: {
             key: "boss_elem_empress",
@@ -7506,8 +7713,13 @@
     const CHAPTER3_VETERANS = [BOSS_ROSTER.eclipse_twin, BOSS_ROSTER.tyrant, BOSS_ROSTER.rift_lord, BOSS_ROSTER.element_devourer, BOSS_ROSTER.rot_king, BOSS_ROSTER.abyss_lord];
     const CH3_FIRST_STAGE = 73;
     const CH3_LAST_STAGE = 108;
+    // 第四章（第 109～144 關）：每區第 3 關是第三章的霸主回來當老對手，第 6 關是新的區域霸主
+    const CHAPTER4_BOSSES = [BOSS_ROSTER.thief_juggler, BOSS_ROSTER.tide_beast, BOSS_ROSTER.arrow_judge, BOSS_ROSTER.rift_shaper, BOSS_ROSTER.eye_wraith, BOSS_ROSTER.chaos_colossus];
+    const CHAPTER4_VETERANS = [BOSS_ROSTER.storm_seraph, BOSS_ROSTER.lava_queen, BOSS_ROSTER.fate_weaver, BOSS_ROSTER.phoenix, BOSS_ROSTER.lich_king, BOSS_ROSTER.astral_king];
+    const CH4_FIRST_STAGE = 109;
+    const CH4_LAST_STAGE = 144;
     // 全部主線 Boss（圖鑑、成就、天賦、本命碎片都用這個）
-    const BOSS_ORDER = BOSS_ROTATION.concat(CHAPTER3_BOSSES);
+    const BOSS_ORDER = BOSS_ROTATION.concat(CHAPTER3_BOSSES, CHAPTER4_BOSSES);
 
     // 第 stageNum 關（Boss 關）出現哪一隻 Boss
     function getBossForStage(stageNum) {
@@ -7516,8 +7728,12 @@
             const r = Math.floor((s - CH3_FIRST_STAGE) / 6);
             return (s - CH3_FIRST_STAGE) % 6 === 5 ? CHAPTER3_BOSSES[r] : CHAPTER3_VETERANS[r];
         }
-        // 無盡深淵（第 109 關起）：全部 22 隻輪替
-        if (s > CH3_LAST_STAGE) return BOSS_ORDER[Math.floor((s - CH3_LAST_STAGE - 3) / 3) % BOSS_ORDER.length];
+        if (s >= CH4_FIRST_STAGE && s <= CH4_LAST_STAGE) {
+            const r = Math.floor((s - CH4_FIRST_STAGE) / 6);
+            return (s - CH4_FIRST_STAGE) % 6 === 5 ? CHAPTER4_BOSSES[r] : CHAPTER4_VETERANS[r];
+        }
+        // 無盡深淵（第 145 關起）：全部主線 Boss 輪替
+        if (s > CH4_LAST_STAGE) return BOSS_ORDER[Math.floor((s - CH4_LAST_STAGE - 3) / 3) % BOSS_ORDER.length];
         const bIdx = Math.floor((s - 3) / 3);
         return BOSS_ROTATION[bIdx % BOSS_ROTATION.length];
     }
@@ -8316,6 +8532,7 @@
                 chests: game.chests || null,
                 bowOverflow: game.bowOverflow || null,
                 feedbackClicked: Boolean(game.feedbackClicked),
+                feedbackRewarded: Boolean(game.feedbackRewarded),
                 archerXp: getArcherXp(),
                 wishBowId: game.wishBowId || null,
                 settings: getSettings(),
@@ -8513,6 +8730,7 @@
             game.chests = data.chests && typeof data.chests === "object" ? data.chests : null; // 🔑 寶箱（13q）
             game.bowOverflow = data.bowOverflow && typeof data.bowOverflow === "object" ? data.bowOverflow : null; // ♻️ 溢出弓等級換 💠 的每週紀錄（13o）
             game.feedbackClicked = Boolean(data.feedbackClicked); // 💬 點過試玩回饋就不再提醒
+        game.feedbackRewarded = Boolean(data.feedbackRewarded); // 💬 領過填問卷的獎勵
             if (!game.chests) {
                 // 舊存檔：補發以前的 Boss 首殺、射手等級的鑰匙（沒有射手等級的舊存檔，等一下補算射手等級時會一起發）
                 const kills = Object.keys((game.stats && game.stats.bossKills) || {}).length;
@@ -8616,6 +8834,7 @@
         game.chests = null;
         game.bowOverflow = null;
         game.feedbackClicked = false;
+        game.feedbackRewarded = false;
         game.sigShards = 0;
         game.shardClaims = {};
         game.sigShardFirst = null;
@@ -8878,7 +9097,7 @@
         dom.saveExportText.value = encodeSaveText(raw);
         dom.saveImportText.value = "";
         const ios = typeof isIOSDevice === "function" && isIOSDevice() && !(typeof isAppStandalone === "function" && isAppStandalone());
-        dom.saveBanner.innerHTML = getBackupStatusText() + "｜" + (hasCloudServer() ? "☁️ 推薦用「雲端存檔」：設一組帳號密碼，換手機、換電腦都能讀回來。" : hostInfo
+        dom.saveBanner.innerHTML = getBackupStatusText() + "｜" + (hasCloudServer() ? "☁️ 用「雲端存檔」：設一組帳號密碼，換手機、換電腦都能讀回來（左邊的代碼／檔案是額外的備份）。" : hostInfo
             ? "🖥️ 推薦用下面的「主機存檔」：輸入帳號名稱按「存到主機」，換網址或換手機時按「從主機讀取」。"
             : "📤 複製左邊的存檔代碼或下載檔案保存；📥 要還原時，把代碼貼到右邊或選擇存檔檔案再按「匯入」。") +
             (ios ? "<br>📱 iPhone 提醒：網站超過 7 天沒開，Safari 可能會清掉存檔；記得常備份，或加到主畫面當 App 玩。" : "");
@@ -8945,7 +9164,7 @@
         fetch("/api/info").then((r) => (r.ok ? r.json() : null)).then((d) => {
             if (!d || !Array.isArray(d.ips)) return;
             hostInfo = d;
-            if (!hadLocalSave) {
+            if (!hadLocalSave && !hasCloudServer()) {
                 queueAchievementToast("🖥️ 這個網址還沒有進度。之前在主機存過的話：戰備大廳 → 左邊最下面一排的「💾 存檔匯出／匯入」 → 「從主機讀取」", 7);
             }
             if (typeof renderPvpLobby === "function") renderPvpLobby();
@@ -9019,7 +9238,7 @@
 
     // 存檔時呼叫：開了自動同步就在 3 秒後上傳（連續存檔只傳最後一次）
     function hostSyncAfterSave() {
-        if (!hostInfo) return;
+        if (!hostInfo || hasCloudServer()) return; // 有雲端存檔就不再自動存主機（改用雲端的自動同步）
         const p = getHostSyncPrefs();
         if (!p.auto || !p.name) return;
         clearTimeout(hostSyncTimer);
@@ -9028,6 +9247,33 @@
 
     function renderHostSaveBox() {
         if (!dom.hostSaveBox) return;
+        // 有雲端存檔之後：主機存檔只留「搬家用」——主機上真的有舊存檔才顯示，而且只能讀取（讀完請改存到雲端）
+        if (hasCloudServer()) {
+            dom.hostSaveBox.classList.add("hidden");
+            if (!hostInfo || typeof fetch !== "function") return;
+            fetch("/api/saves").then((r) => r.json()).then((d) => {
+                if (!(d.saves || []).length) return;
+                dom.hostSaveBox.classList.remove("hidden");
+                dom.hostSaveBox.classList.add("host-legacy");
+                const title = dom.hostSaveBox.querySelector && dom.hostSaveBox.querySelector(".codex-section-title");
+                if (title) title.textContent = "📥 主機上的舊存檔（搬家用：讀取之後，請在上面「存到雲端」）";
+                dom.hostSaveRow.classList.remove("hidden");
+                dom.hostSaveList.classList.remove("hidden");
+                dom.hostRemoteRow.classList.add("hidden");
+                dom.hostOffHint.classList.add("hidden");
+                dom.hostUrl.classList.add("hidden");
+                dom.hostSaveList.innerHTML = "";
+                d.saves.slice(0, 8).forEach((s) => {
+                    const b = document.createElement("button");
+                    b.type = "button";
+                    b.textContent = (s.locked ? "🔒 " : "👤 ") + s.name + "（STAGE " + s.stage + "）";
+                    b.addEventListener("click", () => { dom.hostSaveName.value = s.name; dom.hostSavePw.value = ""; dom.hostSavePw.focus(); });
+                    dom.hostSaveList.appendChild(b);
+                });
+            }).catch(() => {});
+            return;
+        }
+        dom.hostSaveBox.classList.remove("host-legacy");
         // 不是從伺服器網址開的：還是顯示這一區和教學按鈕，但改成提示怎麼開伺服器
         dom.hostSaveRow.classList.toggle("hidden", !hostInfo);
         dom.hostSaveList.classList.toggle("hidden", !hostInfo);
@@ -9414,6 +9660,7 @@
         if (dom.comboBossModal) dom.comboBossModal.classList.add("hidden");
         if (dom.treasureModal) dom.treasureModal.classList.add("hidden");
         if (dom.featureGuide) dom.featureGuide.classList.add("hidden");
+        ["feedback-modal", "bow-pick-modal"].forEach((id) => { const m = typeof document !== "undefined" && document.getElementById ? document.getElementById(id) : null; if (m && m.classList) m.classList.add("hidden"); });
         dom.buildModal.classList.add("hidden");
         dom.achievementModal.classList.add("hidden");
         dom.chestModal.classList.add("hidden");
@@ -9501,7 +9748,161 @@
     }
 
     function shouldAskFeedback() {
-        return !game.feedbackClicked && (game.highestStage || 1) >= FEEDBACK_ASK_STAGE;
+        return !game.feedbackRewarded && (game.highestStage || 1) >= FEEDBACK_ASK_STAGE;
+    }
+
+    // ---------- ⚔️ 出發：直接從目前推進到的區域開局（想打以前的區域 → 主線地圖點區域）----------
+    function getQuickStartRegionIdx() {
+        return canChooseStartRegion() ? getMaxStartRegionIdx() : 0;
+    }
+
+    function getQuickStartLabel(idx) {
+        const i = idx == null ? getQuickStartRegionIdx() : idx;
+        return getStageLabel(i * REGION_SIZE + 1);
+    }
+
+    // idx：從第幾個區域開始（不給＝目前推進到的區域）；fromMap：從主線地圖點的（一局進行中也要重開，enterArena 會先確認）
+    function quickStartMainRun(idx, fromMap) {
+        if (isRunLocked() && !fromMap) { // 一局還在進行中 → 回到戰場
+            hideAllModals();
+            game.state = "PLAYING";
+            updateHUD();
+            return true;
+        }
+        game.selectedSkillIds = (game.selectedSkillIds || []).filter((id) => isSkillUnlocked(id));
+        if (game.selectedSkillIds.length !== 5) game.selectedSkillIds = pickBestSkills(); // 技能沒配滿：自動幫忙配
+        if (game.selectedSkillIds.length !== 5) { openLoadoutScreen(); return false; }
+        saveGameProgress();
+        const target = Math.max(0, Math.min(getQuickStartRegionIdx(), idx == null ? getQuickStartRegionIdx() : idx | 0));
+        const back = game.state;
+        hideAllModals();
+        startFromRegion(target);
+        if (game.state !== "PLAYING" && game.state !== "UPGRADE") { // 取消了放棄目前這局
+            if (back === "LOADOUT") openLoadoutScreen(); else openHubModal(game.prevStateBeforeHub || "START");
+            return false;
+        }
+        return true;
+    }
+
+    // ---------- 🏹 大廳換弓 ----------
+    const BOW_PICK_RANK = { COMMON: 0, RARE: 1, EPIC: 2, LEGENDARY: 3, MYTHIC: 4 };
+
+    function getOwnedBowIds() {
+        return (getSig() ? [SIGNATURE_BOW_ID] : []).concat(BOW_ORDER, REBIRTH_BOW_ORDER).filter((id) => (player.bowLevels[id] || 0) > 0 && BOW_CATALOG[id]);
+    }
+
+    function openBowPicker() {
+        sfx.unlock();
+        sfx.skill();
+        const m = document.getElementById("bow-pick-modal");
+        if (!m) return;
+        m.classList.remove("hidden");
+        renderBowPicker("");
+    }
+
+    function closeBowPicker() {
+        const m = document.getElementById("bow-pick-modal");
+        if (m) m.classList.add("hidden");
+        if (game.state === "HUB") renderHubUI();
+    }
+
+    function equipBowFromHub(id) {
+        if (isRunLocked()) return false;
+        if (!(player.bowLevels[id] > 0) || !BOW_CATALOG[id]) return false;
+        player.equippedBowId = id;
+        saveGameProgress();
+        updateHUD();
+        return true;
+    }
+
+    function renderBowPicker(msg) {
+        const grid = document.getElementById("bow-pick-grid");
+        if (!grid) return;
+        const locked = isRunLocked();
+        const msgEl = document.getElementById("bow-pick-msg");
+        if (msgEl) msgEl.innerHTML = msg || (locked ? `<span style="color:#fca5a5;">${RUN_LOCK_TEXT}</span>` : "點一把弓就會換上（強的排前面）");
+        const ids = getOwnedBowIds().sort((a, b) => (BOW_PICK_RANK[BOW_CATALOG[b].rarity] || 0) * 1000 + getBowEffectiveLevel(b) - ((BOW_PICK_RANK[BOW_CATALOG[a].rarity] || 0) * 1000 + getBowEffectiveLevel(a)));
+        grid.innerHTML = "";
+        ids.forEach((id) => {
+            const b = BOW_CATALOG[id];
+            const on = player.equippedBowId === id;
+            const rar = RARITY_META[b.rarity] || RARITY_META.COMMON;
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "bow-pick" + (on ? " on" : "");
+            btn.disabled = locked && !on;
+            if (btn.style && btn.style.setProperty) btn.style.setProperty("--bc", b.color || rar.color);
+            btn.innerHTML = `${on ? '<span class="bow-pick-tag">✅ 使用中</span>' : ""}<span class="bow-pick-icon">${b.icon}</span><b>${b.name} Lv.${Math.max(1, getBowEffectiveLevel(id))}</b><small style="color:${rar.color};">${rar.label}</small><small>${b.desc || ""}</small>`;
+            btn.addEventListener("click", () => {
+                if (on) return;
+                if (equipBowFromHub(id)) { sfx.skill(); renderBowPicker("✅ 換上了 " + b.icon + b.name); }
+            });
+            grid.appendChild(btn);
+        });
+    }
+
+    // ---------- 🎁 填問卷的獎勵：表單最後一頁顯示兌換碼，回遊戲輸入就能領（每個存檔一次）----------
+    //   兌換碼要在 Google 表單「設定 → 簡報 → 確認訊息」寫上；想換碼就改 FEEDBACK_REWARD_CODE
+    const FEEDBACK_REWARD_CODE = "ARCHER-THANKS";
+    const FEEDBACK_REWARD = { coins: 800, skillTickets: 3, bowTickets: 1, keys: 1 };
+
+    function normalizeRewardCode(s) {
+        return String(s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    }
+
+    function feedbackRewardText() {
+        const r = FEEDBACK_REWARD;
+        return "🪙" + r.coins + "、🎟️技能券×" + r.skillTickets + "、🎫弓券×" + r.bowTickets + "、🔑鑰匙×" + r.keys;
+    }
+
+    // 回傳 { ok, msg }
+    function claimFeedbackReward(code) {
+        if (game.feedbackRewarded) return { ok: false, msg: "這個存檔已經領過了，謝謝你！" };
+        if (normalizeRewardCode(code) !== normalizeRewardCode(FEEDBACK_REWARD_CODE)) return { ok: false, msg: "兌換碼不對喔，填完問卷後最後一頁會顯示" };
+        const r = FEEDBACK_REWARD;
+        game.coins += r.coins;
+        const tk = getTickets();
+        tk.skill += r.skillTickets;
+        tk.bow += r.bowTickets;
+        addChestKeys(r.keys);
+        game.feedbackRewarded = true;
+        game.feedbackClicked = true;
+        saveGameProgress();
+        sfx.coin();
+        return { ok: true, msg: "🎉 謝謝你的回饋！獲得 " + feedbackRewardText() };
+    }
+
+    function openFeedbackModal() {
+        sfx.unlock();
+        const m = document.getElementById("feedback-modal");
+        if (!m) { openFeedbackForm(); return; }
+        m.classList.remove("hidden");
+        renderFeedbackModal("");
+    }
+
+    function closeFeedbackModal() {
+        const m = document.getElementById("feedback-modal");
+        if (m) m.classList.add("hidden");
+        if (game.state === "HUB") renderHubUI();
+    }
+
+    function renderFeedbackModal(msg) {
+        const body = document.getElementById("feedback-body");
+        if (!body) return;
+        body.innerHTML = game.feedbackRewarded
+            ? `<div class="fb-done">✅ 已經領過填問卷的獎勵，謝謝你！<br>還有想說的話，隨時可以再填一次問卷。</div>`
+            : `<div class="fb-step"><b>① 填問卷</b>（大約 3 分鐘）<br>告訴我們哪裡好玩、哪裡卡住。</div>
+               <div class="fb-step"><b>② 拿兌換碼</b><br>送出後，最後一頁會顯示兌換碼。</div>
+               <div class="fb-step"><b>③ 回來領獎勵</b><br>${feedbackRewardText()}</div>
+               <div class="fb-row"><input id="feedback-code" type="text" maxlength="24" placeholder="輸入兌換碼" autocomplete="off"><button id="btn-feedback-claim" type="button" class="gold-btn">領取</button></div>`;
+        const msgEl = document.getElementById("feedback-msg");
+        if (msgEl) msgEl.innerHTML = msg || "";
+        const btn = document.getElementById("btn-feedback-claim");
+        if (btn) btn.addEventListener("click", () => {
+            const inp = document.getElementById("feedback-code");
+            const r = claimFeedbackReward(inp ? inp.value : "");
+            renderFeedbackModal(`<span style="color:${r.ok ? "#86efac" : "#fca5a5"};">${r.msg}</span>`);
+        });
     }
 
     // ---------- 大廳左側分頁（⭐ 每日／🎒 配置／🧬 養成／📖 收藏／⚙️ 其他）----------
@@ -9610,13 +10011,8 @@
         const bossArch = getBossForStage(nextBossStage);
         const seen = game.seenEnemies && game.seenEnemies[bossArch.key];
         const left = nextBossStage - stage;
-        lines.push(`👑 ${left === 0 ? "本關就是 Boss" : "再 " + left + " 關遇到 Boss"}：<b style="color:${seen ? bossArch.primaryColor : "#94a3b8"};">${seen ? bossArch.title : "？？？"}</b>`);
-
-        const relics = (game.equippedRelics || []).map((id) => getRelic(id)).filter(Boolean);
-        lines.push("💍 遺物：" + (relics.length ? relics.map((r) => r.icon + r.name).join("、") : "<span style='color:#94a3b8;'>尚未裝備</span>"));
-
-        const bow = getEquippedBowStats();
-        lines.push("🏹 弓：" + bow.bow.icon + bow.bow.name + " Lv." + bow.level);
+        lines.push(`👑 ${left === 0 ? "這一關就是 Boss" : "再 " + left + " 關遇到 Boss"}：<b style="color:${seen ? bossArch.primaryColor : "#94a3b8"};">${seen ? bossArch.title : "？？？"}</b>`);
+        // 簡潔版：弓和遺物已經顯示在中間／技能頁，這裡只留 Boss 提醒
 
         if (isRunLocked()) {
             lines.unshift(`<span style="color:#fca5a5;">${RUN_LOCK_TEXT}</span>`);
@@ -9641,13 +10037,16 @@
 
         dom.hubBowTitle.style.color = bowStats.bow.color;
         dom.hubBowTitle.textContent = bowStats.bow.icon + " " + bowStats.bow.name + " Lv." + bowStats.level;
-        dom.hubBowStats.textContent =
-            "攻擊倍率 " + Math.round(bowStats.dmgMult * 100) +
-            "% ｜ 射箭冷卻 " + getPlayerShotCooldownDuration().toFixed(2) +
-            "s ｜ 箭速上限 " + Math.round(MAX_ARROW_SPEED * bowStats.speedMult) + " px/s";
-        dom.hubPlayerVitals.textContent =
-            "生命 " + Math.ceil(player.hp) + " / " + player.maxHp +
-            " ｜ 跑速 " + player.speed + " px/s ｜ 跳躍冷卻 " + player.jumpCooldownDuration.toFixed(2) + "s";
+        // 簡潔版：只顯示 3 個大數字（生命、攻擊、射速），細項放在滑鼠提示
+        const chip = (icon, label, val, color) => `<span class="hub-stat-chip" style="--c:${color};"><span>${icon}</span><b>${val}</b><small>${label}</small></span>`;
+        const hpShown = isRunLocked() ? Math.ceil(player.hp) + "/" + player.maxHp : player.maxHp; // 局外只顯示最大生命（避免死掉後顯示 0）
+        dom.hubBowStats.innerHTML =
+            chip("❤️", "生命", hpShown, "#fda4af") +
+            chip("⚔️", "攻擊", Math.round(bowStats.dmgMult * 100) + "%", "#fdba74") +
+            chip("⏱️", "射一箭", getPlayerShotCooldownDuration().toFixed(2) + " 秒", "#7dd3fc");
+        if (dom.hubBowStats.setAttribute) dom.hubBowStats.setAttribute("title", "箭速上限 " + Math.round(MAX_ARROW_SPEED * bowStats.speedMult) + " px/s｜跑速 " + player.speed + " px/s｜跳躍冷卻 " + player.jumpCooldownDuration.toFixed(2) + " 秒");
+        dom.hubPlayerVitals.textContent = "";
+        dom.hubBtnBattle.innerHTML = isRunLocked() ? "⚔️ 回到戰場<small>" + getStageLabel(game.stage) + "</small>" : "⚔️ 出發！<small>從 " + getQuickStartLabel() + " 開始</small>";
 
         const activeSkillIds =
             player.equippedSkills.length === 5
@@ -10310,6 +10709,7 @@
             { id: "rebirth_1", icon: "♻️", name: "浴火重生", desc: "第一次轉生", target: 1, prog: () => game.rebirths || 0, coins: 800, crystals: 15 },
             { id: "rebirth_5", icon: "🔥", name: "輪迴之主", desc: "累積轉生 5 次", target: 5, prog: () => game.rebirths || 0, coins: 3000, crystals: 40, tp: 2 },
             { id: "region_ch2", icon: "⚔️", name: "暮光制霸", desc: "第二章 6 個區域全部制霸（2-1～2-6）", target: 12, prog: () => Math.min(12, game.regionCleared || 0), coins: 2000, crystals: 20, tp: 2 },
+            { id: "region_ch4", icon: "🌋", name: "混沌制霸", desc: "第四章 6 個區域全部制霸（4-1～4-6）", target: 24, prog: () => Math.min(24, game.regionCleared || 0), coins: 6000, crystals: 40, tp: 3 },
             { id: "region_ch3", icon: "🌌", name: "神域制霸", desc: "第三章 6 個區域全部制霸（3-1～3-6）", target: 18, prog: () => Math.min(18, game.regionCleared || 0), coins: 4000, crystals: 30, tp: 3 },
             { id: "clears_50", icon: "📈", name: "身經百戰", desc: "累計通過 50 關", target: 50, prog: () => s().stagesCleared, coins: 300, tp: 1 }
         ];
@@ -10585,15 +10985,15 @@
         { id: "evolution", nav: "hubNavEvolution", name: "角色進化", group: "🧬 養成", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
         { id: "talents", nav: "hubNavTalents", name: "天賦樹", group: "🧬 養成", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
         { id: "builds", nav: "hubNavBuilds", name: "流派推薦", group: "🎒 配置", need: "通過 1-1 新手草原解鎖", check: () => game.highestStage >= 7 },
-        { id: "training", nav: "hubNavTraining", extra: ["btnLoadoutTraining"], name: "訓練模式", group: "右邊「選擇模式」", need: "通過 1-2 烈焰峽谷解鎖", check: () => game.highestStage >= 13 },
+        { id: "training", nav: "hubNavTraining", extra: ["btnLoadoutTraining"], name: "訓練模式", group: "右邊「更多玩法」", need: "通過 1-2 烈焰峽谷解鎖", check: () => game.highestStage >= 13 },
         { id: "relics", nav: "hubNavRelics", name: "遺物", group: "🧬 養成", need: "取得第一個遺物解鎖", check: () => Object.keys(game.relics || {}).some((k) => game.relics[k]) },
         { id: "daily", nav: "hubNavDaily", name: "每日任務", group: "⭐ 每日", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
         { id: "signature", nav: "hubNavSignature", name: "本命弓", group: "🧬 養成", need: "通過 1-1 新手草原解鎖", check: () => Boolean(getSig()) },
-        { id: "weekly", nav: "hubNavWeekly", name: "每週挑戰", group: "右邊「選擇模式」", need: "通過 1-3 冰霜高原解鎖", check: () => game.highestStage >= WEEKLY_UNLOCK_STAGE },
-        { id: "trial", nav: "hubNavTrial", name: "Boss 試煉", group: "右邊「選擇模式」", need: "通過 1-4 毒霧沼澤解鎖", check: () => game.highestStage >= BOSS_TRIAL_UNLOCK_STAGE },
-        { id: "combo_boss", nav: "hubNavComboBoss", name: "Combo 挑戰", group: "右邊「選擇模式」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= COMBO_CHALLENGE.unlockStage },
+        { id: "weekly", nav: "hubNavWeekly", name: "每週挑戰", group: "右邊「更多玩法」", need: "通過 1-3 冰霜高原解鎖", check: () => game.highestStage >= WEEKLY_UNLOCK_STAGE },
+        { id: "trial", nav: "hubNavTrial", name: "Boss 試煉", group: "右邊「更多玩法」", need: "通過 1-4 毒霧沼澤解鎖", check: () => game.highestStage >= BOSS_TRIAL_UNLOCK_STAGE },
+        { id: "combo_boss", nav: "hubNavComboBoss", name: "Combo 挑戰", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= COMBO_CHALLENGE.unlockStage },
         { id: "chests", nav: "hubNavChest", name: "寶箱", group: "⭐ 每日", need: "拿到第一把 🔑 寶箱鑰匙解鎖", check: () => getChestKeys() > 0 || getChestSave().opened > 0 },
-        { id: "dungeon", nav: "hubNavDungeon", name: "遠古聖域", group: "右邊「選擇模式」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= DUNGEON_UNLOCK_STAGE },
+        { id: "dungeon", nav: "hubNavDungeon", name: "遠古聖域", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= DUNGEON_UNLOCK_STAGE },
         { id: "awaken", nav: "hubNavAwaken", name: "覺醒", group: "🧬 養成", need: "取得第一個 💠 覺醒結晶解鎖", check: () => (game.crystals || 0) > 0 || Object.keys(game.awakened || {}).length > 0 }
     ];
 
@@ -10976,7 +11376,7 @@
             if (tk.bow > 0) parts.push("弓券 ×" + tk.bow);
             add(86, "🎟️", "有抽獎券可以用（" + parts.join("、") + "）", tk.skill > 0 ? "hubNavSkillGacha" : "hubNavGacha");
         }
-        if (shouldAskFeedback()) add(75, "💬", "幫忙填試玩回饋（3 分鐘，讓遊戲變更好）", "hubNavFeedback");
+        if (shouldAskFeedback()) add(75, "💬", "填試玩回饋領獎勵（3 分鐘）", "hubNavFeedback");
         if (game.coins >= getBowGachaCost()) add(50, "🏹", "金幣夠抽弓", "hubNavGacha");
         else if (game.coins >= getSkillGachaCost()) add(45, "🎰", "金幣夠抽技能", "hubNavSkillGacha");
         if (isFeatureUnlocked("builds") && !game.runBuildId) {
@@ -11025,7 +11425,7 @@
 
     // reward 欄位：coins／essence／crystals（直接給）＋ epicBow／epicSkill／legendary（開選擇視窗）
     const NEWBIE_QUESTS = [
-        { id: "clear1", icon: "⚔️", text: "通過第 1 關", hint: "按「⚔️ 進入戰鬥（主線）」", prog: () => getStats().stagesCleared, target: 1, reward: { coins: 200 } },
+        { id: "clear1", icon: "⚔️", text: "通過第 1 關", hint: "按右上的「⚔️ 出發！」", prog: () => getStats().stagesCleared, target: 1, reward: { coins: 200 } },
         { id: "skillpull", icon: "🎰", text: "抽 1 次技能", hint: "大廳「🎰 技能抽獎」", prog: () => getStats().skillPulls || 0, target: 1, reward: { coins: 300 } },
         { id: "stage3", icon: "🗺️", text: "通過 1-1 新手草原", hint: "主線一路往前打；每個區域第一次通過有區域寶箱", prog: () => game.highestStage >= 7 ? 1 : 0, target: 1, reward: { coins: 200, essence: 20 } },
         { id: "bowpull", icon: "🏹", text: "抽 1 次弓", hint: "大廳「🏹 弓抽獎」", prog: () => getStats().bowPulls || 0, target: 1, reward: { coins: 400 } },
@@ -11279,7 +11679,7 @@
     //   sel：要框起來的元素；找不到（例如手機才有的按鈕）就跳過那一步
     const HUB_TOUR_STEPS = [
         { sel: null, title: "👋 歡迎來到戰備大廳！", text: "我帶你花 1 分鐘認識這裡的功能。看完導覽可以領 <b>新手禮包</b>：" + "500 🪙、20 🧪，再從 3 個 <b style='color:#c084fc;'>史詩技能</b> 裡選一個！" },
-        { sel: "#hub-btn-battle", title: "⚔️ 進入戰鬥（主線）", text: "從這裡開始闖關。每過一關可以選 1 個 <b>賜福</b> 讓這一局變強；每 3 關有一隻 Boss。輸了也會保留金幣和素材。" },
+        { sel: "#hub-btn-battle", title: "⚔️ 出發！", text: "按這裡直接開始闖關（會從你推進到的區域開始；想打以前的區域，到「🗺️ 主線地圖」點那個區域）。每過一關可以選 1 個 <b>賜福</b> 讓這一局變強；每 3 關有一隻 Boss。輸了也會保留金幣和素材。" },
         { sel: "#hub-nav-loadout", title: "⚡ 技能配置", text: "選 5 個技能帶上場，戰鬥中按 Q E R F C（手機點右下角）施放。不同技能搭配會觸發 <b>Combo</b>。" },
         { sel: "#hub-nav-skill-gacha", title: "🎰 技能抽獎", text: "花 180 🪙（或技能券）抽技能：抽到新技能就解鎖，抽到已有的會升級。連續 10 抽沒新技能，保底送一個。" },
         { sel: "#hub-nav-gacha", title: "🏹 弓抽獎", text: "花 240 🪙（或弓券）抽弓。每把弓的攻擊、射速、特殊效果都不一樣，抽到後到弓的畫面裝備。" },
@@ -11288,7 +11688,7 @@
         { sel: "#hub-nav-login", title: "📅 每日", text: "每天記得領登入獎勵（第 7 天有傳說寶箱），每日任務完成也有獎勵。" },
         { sel: "#hub-next-steps", title: "🧭 建議下一步", text: "不知道要做什麼？看這裡！它會列出現在最值得做的事，點一下就直接打開。" },
         { sel: "#hub-nav-save", title: "💾 存檔", text: "進度會自動存在這個瀏覽器。換電腦、換手機前，用這裡匯出存檔或存到主機。" },
-        { sel: null, title: "🎉 導覽完成！", text: "按「領取禮包」拿獎勵，然後就去 <b>進入戰鬥</b> 吧！想再看一次導覽，到「🔰 新手任務」裡按「重看導覽」；完整規則（元素、Combo、養成）在左下的「📜 遊戲說明」。" }
+        { sel: null, title: "🎉 導覽完成！", text: "按「領取禮包」拿獎勵，然後就按 <b>⚔️ 出發！</b> 吧！想再看一次導覽，到「🔰 新手任務」裡按「重看導覽」；完整規則（元素、Combo、養成）在左下的「📜 遊戲說明」。" }
     ];
     const tour = { step: 0, els: null, onResize: null };
 
@@ -11987,6 +12387,10 @@
                     ${settingsToggle("hitFlash", "⚡", "受擊閃白")}
                 </div>
                 <div class="set-sec"><div class="set-title">📲 安裝成 App</div><div id="set-install"></div></div>
+                <div class="set-sec"><div class="set-title">🌐 語言 Language</div>
+                    <div class="set-seg"><button type="button" class="set-lang${getLang() === "zh" ? " on" : ""}" data-lang="zh">中文</button><button type="button" class="set-lang${getLang() === "en" ? " on" : ""}" data-lang="en">English</button></div>
+                    <div class="set-note">${getLang() === "en" ? "Some long descriptions are still in Chinese and will be translated in updates." : "切換後會重新載入；英文版的部分長篇說明還在翻譯中。"}</div>
+                </div>
             </div>
             <div class="set-col">
                 <div class="set-sec"><div class="set-title">🔢 文字顯示</div>
@@ -11995,6 +12399,9 @@
                     ${settingsToggle("stackLabels", "🔥", "頭上的元素層數")}
                     ${settingsToggle("hints", "💡", "第一次觸發的提示")}
                 </div>
+                <div class="set-sec"><div class="set-title">📊 匿名遊玩統計</div>
+                    <button type="button" class="set-toggle${isPlayStatsOn() ? " on" : ""}" id="set-stats"><span class="set-ico">📊</span><span class="set-label">幫忙改進遊戲<small>只記隨機編號、最高關卡、遊玩天數，不記名字、帳號或 IP</small></span><span class="set-pill">${isPlayStatsOn() ? "開" : "關"}</span></button>
+                </div>
             </div>`;
         box.querySelectorAll(".set-toggle").forEach((b) => b.addEventListener("click", () => {
             const k = b.getAttribute("data-key");
@@ -12002,6 +12409,12 @@
             sfx.unlock();
             sfx.skill();
         }));
+        box.querySelectorAll(".set-lang").forEach((b) => b.addEventListener("click", () => {
+            const l = b.getAttribute("data-lang");
+            if (l !== getLang()) setLang(l);
+        }));
+        const statsBtn = document.getElementById("set-stats");
+        if (statsBtn) statsBtn.addEventListener("click", () => { setPlayStatsOn(!isPlayStatsOn()); sfx.unlock(); sfx.skill(); renderSettingsUI(); });
         box.querySelectorAll(".set-q").forEach((b) => b.addEventListener("click", () => {
             setSetting("quality", b.getAttribute("data-q"));
             sfx.skill();
@@ -12176,7 +12589,14 @@
         { name: "千絲迷宮", icon: "🕸️", color: "#d8b4fe" },
         { name: "鳳凰之巢", icon: "🪶", color: "#fde047" },
         { name: "亡骨王陵", icon: "💀", color: "#cbd5e1" },
-        { name: "星界神殿", icon: "🌌", color: "#a5b4fc" }
+        { name: "星界神殿", icon: "🌌", color: "#a5b4fc" },
+        // 第四章
+        { name: "盜賊市集", icon: "🤹", color: "#fcd34d" },
+        { name: "怒濤海淵", icon: "🌊", color: "#7dd3fc" },
+        { name: "審判之庭", icon: "⚖️", color: "#fda4af" },
+        { name: "漂移裂谷", icon: "🌀", color: "#d6d3d1" },
+        { name: "千眼迴廊", icon: "👁️", color: "#c4b5fd" },
+        { name: "混沌王座", icon: "🦾", color: "#fca5a5" }
     ];
     const REGION_TOTAL = REGIONS.length;
     const ENDLESS_REGION = { name: "無盡深淵", icon: "♾️", color: "#94a3b8" };
@@ -12302,11 +12722,13 @@
             const here = !done && best >= info.first;
             const locked = !done && !here;
             const pct = done ? 100 : here ? Math.round(((Math.min(best, info.last) - info.first) / REGION_SIZE) * 100) : 0;
-            return `<div class="region-cell${done ? " done" : ""}${here ? " here" : ""}${locked ? " locked" : ""}" style="--rc:${info.color}">
+            const playable = !locked && idx <= getQuickStartRegionIdx();
+            return `<div class="region-cell${done ? " done" : ""}${here ? " here" : ""}${locked ? " locked" : ""}${playable ? " playable" : ""}" data-idx="${idx}" style="--rc:${info.color}">
                 <div class="region-top"><span class="region-icon">${locked ? "🔒" : info.icon}</span><b>${info.label}</b> ${info.name}</div>
                 <div class="region-sub">${done ? "✅ 已制霸" : here ? "📍 推進中（" + (Math.min(best, info.last) - info.first + 1) + "/" + REGION_SIZE + "）" : "共 " + REGION_SIZE + " 關"}</div>
                 <div class="region-bar"><div style="width:${pct}%"></div></div>
                 <div class="region-reward">${done ? "寶箱已領取" : "🎁 " + regionRewardText(rw)}</div>
+                ${playable ? '<div class="region-go">▶ 從這裡開始</div>' : ""}
             </div>`;
         };
         let html = `<div class="region-ch">第一章・黎明戰場</div><div class="region-grid">`;
@@ -12315,8 +12737,14 @@
         for (let i = 6; i < 12; i++) html += cell(i);
         html += `</div><div class="region-ch">第三章・神域戰場（敵人再 ×1.3 生命、×1.15 攻擊；每區最後一關是新的區域霸主）</div><div class="region-grid">`;
         for (let i = 12; i < 18; i++) html += cell(i);
-        html += `</div><div class="region-note">♾️ 通過 3-6 之後是「無盡深淵」，每 6 關一樣有區域寶箱。區域只是把同一局分段，賜福會一路累積、不會重置。<br>▶ 到過的區域都能重複挑戰：開新局時可以選擇從那個區域的第一關開始（會給開局補給）。</div>`;
+        html += `</div><div class="region-ch">第四章・混沌戰場（敵人再 ×1.3 生命、×1.15 攻擊；霸主們會改變規則和戰場）</div><div class="region-grid">`;
+        for (let i = 18; i < 24; i++) html += cell(i);
+        html += `</div><div class="region-note">♾️ 通過 4-6 之後是「無盡深淵」，每 6 關一樣有區域寶箱。區域只是把同一局分段，賜福會一路累積、不會重置。<br>▶ 到過的區域都能重複挑戰：<b>點上面的區域</b>就會從那個區域的第一關開始（會給開局補給）。大廳的「出發」會直接從你推進到的區域開始。</div>`;
         dom.regionBody.innerHTML = html;
+        // 點區域：直接從那個區域開新局（技能沒配滿會自動配）
+        if (dom.regionBody.querySelectorAll) dom.regionBody.querySelectorAll(".region-cell.playable").forEach((c) => c.addEventListener("click", () => {
+            quickStartMainRun(parseInt(c.getAttribute("data-idx"), 10) || 0, true); // 一局進行中時 enterArena 會先問要不要放棄
+        }));
     }
 
     // =========================================================================
@@ -12340,6 +12768,13 @@
                 "🏹 <b>本命弓</b>（通過 1-1 解鎖）：每個人一把專屬的弓，出生隨機一個<b>弓靈</b>（🔥烈 ❄️寒 🌿毒 ⚡迅 🌑影 ⏳時，可花 💠 重塑）；從普通開始用 🪶 弓魂淬鍊（每顆 ★ 不同屬性），升階還要 🧩 本命碎片（每隻 Boss 第一次打倒才給，不能刷）：數值詞條 → 被動能力 → 第二能力或強化 → 弓靈專屬神話特性＋光環，名字和顏色自己決定",
                 "🌌 <b>第三章「神域戰場」</b>（第 73～108 關）：6 個新區域、6 隻新的區域霸主（風暴熾天使、熔岩龍后、織命蛛后、不死鳳凰、亡骨君王、星界神王）",
                 "⚔️ <b>Boss 試煉</b>（通過 1-4 解鎖）：遇過的 Boss 可以用 ★1～★3 難度單挑，第一次通過給 🧩 本命碎片；📖 碎片圖鑑列出所有碎片的來源",
+                "⚔️ <b>一鍵出發</b>：大廳的「出發！」直接從你推進到的區域開打；想打以前的區域，到「🗺️ 主線地圖」點那一區。點大廳的弓就能換弓",
+                "⚖️ <b>箭術審判官</b>：加上撿箭提示，地上的箭會發光、標出「⬇ 撿」",
+                "🌐 <b>English</b>：設定 → 語言可以切換成英文（部分長篇說明還在翻譯中）",
+                "🎁 <b>填問卷領獎勵</b>：其他 → 意見回饋，填完問卷輸入兌換碼就能領 🪙800、抽獎券和鑰匙",
+                "🧒 <b>大廳和技能頁變簡單了</b>：大廳只留弓、技能和「下一步做什麼」，右上一顆大大的「出發！」；技能頁預設只列出你有的技能、強的排前面，還有「✨ 自動幫我配」",
+                "🌋 <b>第四章「混沌戰場」</b>（第 109～144 關）：6 隻會改變規則和戰場的霸主——偷技能又打亂技能順序、上下左右的奇竊術士、淹水的潮汐巨獸、只給 10 支箭的箭術審判官、漂移大地的裂地領主、只吃爆頭（第二階段還會顛倒上下左右）的千眼空靈，以及多部位的混沌巨像",
+                "🌑 <b>影子改版</b>：影分身、影刃短弓的影子可以疊在場上（最多 5 個）、會走動，但很脆弱，被任何攻擊打到就消散",
                 "💬 <b>試玩回饋</b>：大廳「⚙️ 其他」→「意見回饋」，歡迎告訴我們哪裡好玩、哪裡卡關！",
                 "🔗 <b>Combo 挑戰</b>（通過 1-5 解鎖）：5 隻新的 Combo Boss，會用自己的技能組打你；打倒他掉 Combo 專屬傳說（5%，沒掉就給稀有／史詩技能），殘片 20 個可以直接換傳說",
                 "🌟 <b>傳說更稀有</b>：抽獎池只留 👑 阿奇爾神弓、☄️ 讀條火球箭、🦅 獵鷹召喚（弓約 1.5%、技能約 2%）；其他 10 個傳說改成 Combo 專屬",
@@ -12496,6 +12931,264 @@
 
     function closeFeatureGuide() {
         if (dom.featureGuide) dom.featureGuide.classList.add("hidden");
+    }
+
+    // =========================================================================
+
+;
+// ==== js/12o-i18n.js
+// 12o. 🌐 語言切換（中文／English）
+//   做法：不改各系統的程式，畫面上的文字出現時再查字典換成英文
+//     ① 整段完全一樣 → 直接換（I18N_EN）
+//     ② 數字不同的句子 → 用 {0}、{1} 樣板（I18N_EN_TPL）
+//     ③ 都查不到 → 把認得的名詞（技能、弓、區域…）換掉；換完還剩太多中文就保留原文（避免中英夾雜看不懂）
+//   畫面上的 DOM 用 MutationObserver 自動翻；畫布上的跳字由 addFloatingText 呼叫 trText
+//   語言存在 localStorage（不跟存檔走），切換時重新載入網頁
+//   字典還沒涵蓋的長篇說明（技能說明、Boss 介紹等）會先維持中文，之後陸續補
+    // =========================================================================
+    const LANG_KEY = "aog_lang";
+
+    function getLang() {
+        try { return localStorage.getItem(LANG_KEY) === "en" ? "en" : "zh"; } catch (e) { return "zh"; }
+    }
+
+    function isEnglish() {
+        return getLang() === "en";
+    }
+
+    function setLang(lang) {
+        try { localStorage.setItem(LANG_KEY, lang === "en" ? "en" : "zh"); } catch (e) { /* 無痕模式 */ }
+        try { saveGameProgress(); } catch (e) { /* 測試環境 */ }
+        if (typeof location !== "undefined" && location.reload) location.reload();
+    }
+
+    // ---------- 字典：整段對照 ----------
+    const I18N_EN = {
+        // 共用
+        "關閉": "Close", "✕ 關閉": "✕ Close", "返回": "Back", "完成": "Done", "知道了": "Got it", "確定": "OK", "取消": "Cancel",
+        "載入中...": "Loading...", "開": "On", "關": "Off", "領取": "Claim", "🎁 領取": "🎁 Claim", "已領取": "Claimed", "可領取": "Claim!",
+        "返回戰備大廳": "Back to Hub", "🏛️ 回到戰備大廳": "🏛️ Back to Hub", "🏛️ 戰備大廳": "🏛️ Hub", "⚔️ 戰備大廳": "⚔️ Hub",
+        // 大廳
+        "金幣・抽獎": "Coins", "精華・進化": "Essence", "結晶・覺醒": "Crystals", "天賦點": "Talent pts",
+        "⭐ 每日": "⭐ Daily", "🎒 配置": "🎒 Gear", "🧬 養成": "🧬 Grow", "📖 收藏": "📖 Collection", "⚙️ 其他": "⚙️ More",
+        "新手任務": "Starter Quests", "登入獎勵": "Login Bonus", "每日任務": "Daily Quests", "寶箱": "Chests",
+        "技能配置": "Skills", "流派推薦": "Builds", "技能抽獎": "Skill Gacha", "弓抽獎": "Bow Gacha",
+        "角色進化": "Evolution", "天賦樹": "Talents", "遺物": "Relics", "覺醒": "Awaken", "本命弓": "Signature Bow",
+        "成就": "Achievements", "組合技圖鑑": "Combo Codex", "敵人圖鑑": "Enemy Codex",
+        "意見回饋": "Feedback", "設定": "Settings", "更新公告": "What's New", "按鍵設定": "Key Bindings",
+        "手機操控：圓盤搖桿": "Touch: Joystick", "手機操控：按鈕": "Touch: Buttons", "存檔匯出／匯入": "Save / Load", "遊戲說明": "How to Play", "重置本機存檔": "Reset Save",
+        "⚡ 我的 5 個技能": "⚡ My 5 Skills", "（點這裡換）": "(tap to change)", "🧭 下一步做什麼？": "🧭 What next?",
+        "🎮 更多玩法": "🎮 More Modes", "主線地圖": "Map", "連線對戰": "Online PvP", "訓練模式": "Training",
+        "遠古聖域": "Sanctum", "每週挑戰": "Weekly", "Boss 試煉": "Boss Trial",
+        "⚔️ 出發！": "⚔️ Go!", "⚔️ 進入戰鬥（主線）": "⚔️ Battle!", "🏳️ 放棄這局": "🏳️ Give up this run", "放棄這一局": "Give up this run",
+        "生命": "HP", "攻擊": "ATK", "射一箭": "per shot", "點一下換技能": "Tap to change skills",
+        "可抽": "Ready", "有空格": "Empty slot", "可覺醒": "Awaken!", "該備份": "Back up!",
+        // 戰鬥畫面
+        "🏳️ 放棄": "🏳️ Give up", "🔊 音效開": "🔊 Sound on", "🔇 音效關": "🔇 Sound off", "⛶ 全螢幕": "⛶ Fullscreen",
+        "👆 按住這裡移動": "👆 Hold here to move", "往上撥＝跳｜往下撥＝下穿": "Swipe up = jump | down = drop", "▼ 下穿": "▼ Drop",
+        "向左移動": "Move left", "向右移動": "Move right", "下穿平台": "Drop down", "跳躍": "Jump",
+        "請把手機轉成橫向": "Please rotate your phone", "這是橫向的射箭遊戲，橫著玩畫面比較大。": "This game plays in landscape — it's much bigger sideways.",
+        "⛶ 全螢幕＋橫向": "⛶ Fullscreen + landscape", "還是直著玩": "Keep portrait",
+        "👼 火柴人射手 (YOU)": "👼 Stickman Archer (YOU)",
+        // 開始畫面
+        "阿齊爾之神 — 拉弓、爆頭、闖關，打造你的流派": "Draw, headshot, conquer — build your own style",
+        "射箭：": "Shoot: ", "按住往後拖曳拉弓，放開射箭；打中頭是": "Drag back to draw, release to fire. Hitting the head is a ",
+        "爆頭": "headshot", "，還能用箭在空中撞掉敵人的箭。": ", and your arrows can knock enemy arrows out of the air.",
+        "闖關：": "Stages: ", "養成：": "Grow: ",
+        "每過一關選 1 個賜福，每 3 關一隻 Boss；每 6 關是一個區域（1-1 新手草原、1-2 烈焰峽谷…），第一次通過有區域寶箱；2-1 起是更難的第二章。": "Pick 1 blessing after each stage; a boss every 3 stages; every 6 stages is a region with a first-clear chest. Chapter 2 starts at 2-1.",
+        "回到戰備大廳抽技能和弓、進化、點天賦、裝遺物，搭配出自己的流派再挑戰更高關卡。": "Back in the Hub, pull skills and bows, evolve, spend talents and equip relics to build your style.",
+        "📜 遊戲說明": "📜 How to Play", "🏛️ 開啟戰備大廳": "🏛️ Open Hub", "START BATTLE // 配置 5 技能": "START BATTLE // Pick 5 skills",
+        // 技能頁
+        "只看我有的": "Owned only", "✨ 自動幫我配": "✨ Auto pick", "⚔️ 進入戰場": "⚔️ Enter battle", "🎯 訓練模式": "🎯 Training",
+        "全部": "All", "🔥 射擊": "🔥 Shooting", "⛓️ 地形": "⛓️ Control", "⛲ 召喚": "⛲ Summon", "💨 位移": "💨 Mobility", "🌟 被動": "🌟 Passive",
+        "全部技能": "All skills", "🔥 射擊與元素輸出": "🔥 Shooting & Elements", "⛓️ 地形控制與硬控場": "⛓️ Terrain & Control", "⛲ 召喚與場地輔助": "⛲ Summons & Support", "💨 位移與解控保命": "💨 Mobility & Survival", "🌟 被動常駐效果": "🌟 Passive effects",
+        "（點一下拿掉）": "(tap to remove)", "空": "Empty", "（空）": "(empty)", "🏹 弓": "🏹 Bow",
+        "點技能可以在這裡看說明": "Tap a skill to see what it does", "尚未解鎖，到技能抽獎抽取": "Locked — get it from Skill Gacha",
+        "還沒有遺物（精英、Boss 會掉）": "No relics yet (elites and bosses drop them)", "被動": "Passive",
+        "⚡正前方瞬發": "⚡Instant forward", "⏳讀條光束/火球": "⏳Channeled beam", "🎯下箭拋物線": "🎯Next arrow", "✨自身瞬發": "✨Self instant", "🌟被動常駐": "🌟Passive",
+        // 抽獎、其他畫面
+        "返回技能配置": "Back to Skills", "🧬 抽取進化": "🧬 Evolve", "♻️ 轉生": "♻️ Rebirth", "♻️ 重置天賦": "♻️ Reset talents",
+        "🏹 裝備本命弓": "🏹 Equip Signature Bow", "🏛️ 進入聖域": "🏛️ Enter Sanctum", "🗓️ 開始挑戰（用目前的配置）": "🗓️ Start (current loadout)",
+        "抵達關卡": "Stage reached", "累計爆頭": "Headshots", "持有金幣": "Coins", "重新配置技能並挑戰": "Change skills and retry",
+        "你已力竭倒下（已擁有的弓箭、技能等級與進度、剩餘金幣已自動保存）": "You fell! (Bows, skill levels, progress and coins are saved.)",
+        "擊敗敵人！選擇一項關內進化賜福": "Enemy defeated! Choose a blessing",
+        "⭐ 擊敗精英敵人！選擇一項寶箱獎勵（之後照常選關內賜福）": "⭐ Elite defeated! Choose a chest reward",
+        "知道了，開始玩！": "Got it, let's play!", "↺ 恢復預設": "↺ Defaults", "📝 打開問卷": "📝 Open survey",
+        "📘 重看大廳導覽": "📘 Replay Hub tour", "🏠 建立房間": "🏠 Create room", "🚪 加入": "🚪 Join", "⚔️ 開始對戰": "⚔️ Start match", "離開房間": "Leave room",
+        "你的名字": "Your name", "房號": "Room #", "射手": "Archer", "帳號名稱": "Account name", "密碼（4 字以上）": "Password (4+ chars)",
+        "☁️ 存到雲端": "☁️ Save to cloud", "☁️ 從雲端讀取": "☁️ Load from cloud", "自動同步": "Auto sync",
+        "📋 複製代碼": "📋 Copy code", "⬇️ 下載存檔檔案": "⬇️ Download save", "📂 選擇存檔檔案": "📂 Choose file", "📥 匯入": "📥 Import",
+        "📤 匯出（目前的進度）": "📤 Export (current progress)", "📥 匯入（會覆蓋目前進度）": "📥 Import (overwrites progress)",
+        "快速套用": "Presets", "自訂 5 個技能鍵": "Customize 5 skill keys", "請先選擇敵人": "Pick an enemy first",
+        "😈 普通敵人": "😈 Enemies", "👑 Boss（每 3 關輪替）": "👑 Bosses (every 3 stages)",
+        "🏹 弓的覺醒": "🏹 Bow awakening", "⚡ 技能的覺醒": "⚡ Skill awakening",
+        // 設定
+        "🔊 音效": "🔊 Sound", "全部靜音": "Mute all", "▶ 試聽": "▶ Test", "✨ 特效品質": "✨ Effects quality", "低": "Low", "中": "Mid", "高": "High",
+        "手機卡頓時選「低」：粒子和衝擊波大幅減少，不影響玩法。": "Choose Low if your phone lags — fewer particles, same gameplay.",
+        "📳 畫面效果": "📳 Screen effects", "畫面震動": "Screen shake", "爆頭定格放大": "Headshot zoom", "受擊閃白": "Hit flash",
+        "📲 安裝成 App": "📲 Install as app", "🔢 文字顯示": "🔢 Text", "傷害數字": "Damage numbers", "大招與 Combo 的大字照常顯示": "Big ult/combo text still shows",
+        "金幣／素材跳字": "Loot popups", "頭上的元素層數": "Element stacks", "第一次觸發的提示": "First-time tips",
+        "🌐 語言 Language": "🌐 Language", "📊 匿名遊玩統計": "📊 Anonymous stats", "幫忙改進遊戲": "Help improve the game",
+        // 回饋
+        "填試玩回饋領獎勵（3 分鐘）": "Fill the feedback survey for a reward (3 min)", "輸入兌換碼": "Enter code",
+        // 稀有度
+        "COMMON": "COMMON", "RARE": "RARE", "EPIC": "EPIC", "LEGENDARY": "LEGENDARY", "MYTHIC": "MYTHIC",
+        // 下一步
+        "精華足夠角色進化": "Enough essence to evolve", "遺物欄還有空位，去裝一個": "A relic slot is empty — equip one", "金幣夠抽弓": "Enough coins for a bow pull",
+        "金幣夠抽技能": "Enough coins for a skill pull", "先配置滿 5 個技能才能開戰": "Pick 5 skills before battle", "準備好了！進入戰鬥推進最高關卡": "Ready! Go push your best stage",
+        "這一關就是 Boss": "This stage is a Boss", "⬇ 撿": "⬇ Pick up", "🏹 我的弓": "🏹 My Bow", "點一把弓就會換上（強的排前面）": "Tap a bow to equip it (best first)",
+        "✅ 使用中": "✅ Equipped", "🎰 弓抽獎": "🎰 Bow Gacha", "▶ 從這裡開始": "▶ Start here", "⚔️ 回到戰場": "⚔️ Back to battle", "點一下換弓": "Tap to change bow",
+        "🏹 沒箭了！快走到地上發光的箭那裡撿起來 ⬇️": "🏹 Out of arrows! Walk to a glowing arrow to pick it up ⬇️", "射出去的箭會插在你的平台上，走過去就能撿回來": "Your arrows stick in your platform — walk over to pick them up",
+        "🏹 沒有箭了！走到地上發光的箭旁邊撿回來": "🏹 No arrows! Walk to a glowing arrow to pick it up", "這一關就是 Boss：": "This stage is a Boss: ",
+        "音效": "Sound", "音樂": "Music", "只記隨機編號、最高關卡、遊玩天數，不記名字、帳號或 IP": "Only a random ID, best stage and days played — no name, account or IP",
+        "切換後會重新載入；英文版的部分長篇說明還在翻譯中。": "The page reloads after switching.", "Combo 挑戰": "Combo Boss"
+    };
+
+    // ---------- 數字會變的句子：{0}、{1}… ----------
+    const I18N_EN_TPL = {
+        "射手 Lv.{0}": "Archer Lv.{0}", "射手 Lv.{0}（滿級）": "Archer Lv.{0} (MAX)",
+        "{0} / {1} XP｜弓上限 Lv.{2}": "{0} / {1} XP | Bow cap Lv.{2}", "弓等級上限 Lv.{0}": "Bow cap Lv.{0}",
+        "{0} 點可用": "{0} pts", "已選 {0} / {1}": "Picked {0} / {1}", "已選擇技能：{0} / {1}": "Skills picked: {0} / {1}", "可領 {0}": "Claim {0}",
+        "再 {0} 關遇到 Boss：": "Boss in {0} stages: ",
+        "🎰 技能抽獎 ({0} 🪙)": "🎰 Skill Gacha ({0} 🪙)", "🎰 抽取一項技能 ({0} 🪙)": "🎰 Pull a skill ({0} 🪙)", "🎰 抽取一把弓箭 ({0} 🪙)": "🎰 Pull a bow ({0} 🪙)",
+        "🪙 持有金幣：{0}": "🪙 Coins: {0}", "已解鎖：{0} 技": "Unlocked: {0}", "總進化等級：{0}": "Total evolution: {0}", "已遭遇 {0} / {1}": "Seen {0} / {1}",
+        "🎯 爆頭: {0}": "🎯 Headshots: {0}", "{0} 秒": "{0} s", "冷卻 {0}s": "CD {0}s", "冷卻：{0}s": "Cooldown: {0}s",
+        "新手任務有 {0} 個獎勵可以領": "{0} starter rewards to claim", "還有 {0} 點天賦沒點": "{0} talent points to spend",
+        "今天還有 {0} 次遠古聖域": "{0} Sanctum runs left today", "再 {0} 關遇到 Boss": "Boss in {0} stages",
+        "還有 {0} 個技能・去抽獎": "{0} more skills · go pull", "遺物（{0} / {1}）": "Relics ({0} / {1})", "💍 遺物（{0} / {1}）": "💍 Relics ({0} / {1})",
+        "音效 {0}%": "Sound {0}%", "音樂 {0}%": "Music {0}%", "技能券 ×{0}": "Skill tickets ×{0}", "弓券 ×{0}": "Bow tickets ×{0}",
+        "可以轉生了！永久攻擊／生命 +{0}%，還有轉生恩賜": "You can Rebirth! Permanent ATK/HP +{0}% plus a boon",
+        "+{0} 🪙": "+{0} 🪙", "⚖️ 箭術審判官：你只有 {0} 支箭！": "⚖️ Arrow Judge: you only have {0} arrows!", "🏹 箭剩 {0} 支：走過去撿地上的箭": "🏹 {0} arrows left — pick up the ones on the ground"
+    };
+
+    // 名詞（技能、弓、遺物、區域）：用在句子裡的部分替換
+    const I18N_EN_NAMES = {
+        // 技能
+        "讀條火球箭": "Fireball Channel", "雷射貫穿光束": "Laser Beam", "烈焰重箭": "Flame Arrow", "劇毒腐蝕箭": "Venom Arrow", "冰凍箭": "Frost Arrow",
+        "雷電破盾箭": "Thunder Breaker", "三連散射": "Triple Shot", "疾風連發": "Gale Volley", "裂風穿透箭": "Piercing Gust", "吸血箭": "Vampire Arrow",
+        "引力箭": "Gravity Arrow", "牆箭": "Wall Arrow", "鎖鍊箭": "Chain Arrow", "地震箭": "Quake Arrow", "爆炸陷阱箭": "Mine Arrow", "奧術共鳴": "Arcane Resonance",
+        "替身稻草人": "Decoy Dummy", "聖泉回血雕像": "Healing Totem", "疾風加速雕像": "Haste Totem", "傀儡助戰雕像": "Puppet Totem", "時間回溯": "Time Rewind",
+        "跳射": "Leap Shot", "幻影疾步": "Phantom Dash", "神聖護盾": "Holy Shield", "聖光淨化": "Purify", "箭雨天幕": "Arrow Rain", "弱點標記": "Weak Mark",
+        "鉤爪攀升": "Grapple", "反射之鏡": "Reflect Mirror", "煙霧彈": "Smoke Bomb", "寒霜方尖碑": "Frost Obelisk", "避雷針": "Lightning Rod", "守護石像": "Guardian Golem",
+        "獵鷹召喚": "Falcon", "時緩增幅": "Time Slow", "潮濕之箭": "Soaking Arrow", "鷹眼本能": "Hawk Instinct", "戰地急救": "Field Aid", "連擊心流": "Combo Flow",
+        "元素精通": "Element Master", "閃避反擊": "Dodge Counter", "星軌召喚": "Orbit Stars", "星爆齊射": "Star Burst", "星盾": "Star Shield", "隕星墜落": "Meteor Fall",
+        "星辰引力": "Star Gravity", "弩砲塔": "Ballista Tower", "迫擊砲台": "Mortar Tower", "磁暴塔": "Magnet Tower", "工程大師": "Master Engineer",
+        "影分身": "Shadow Clone", "影換位": "Shadow Swap", "影爆": "Shadow Burst", "影群": "Shadow Legion", "影契": "Shadow Pact",
+        "回力刃": "Boomerang", "迴旋飛刃": "Blade Cyclone", "牽引回收": "Tether Return", "回力風暴": "Return Storm", "回流": "Backflow",
+        "詛咒之箭": "Curse Arrow", "凝視": "Evil Gaze", "血契": "Blood Covenant", "審判": "Judgment", "蔓延": "Curse Spread",
+        // 弓
+        "聖光長弓": "Holy Longbow", "疾風短弓": "Gale Shortbow", "巨神重砲弓": "Titan Cannon Bow", "焚天炎弓": "Skyfire Bow", "永凍霜弓": "Permafrost Bow",
+        "雷鳴獵弓": "Storm Hunter", "冥界噬魂弓": "Soul Reaper Bow", "阿奇爾神弓": "Archer God Bow", "爆裂火藥弓": "Blast Powder Bow", "鷹眼蓄能弓": "Hawkeye Charge Bow",
+        "回音連鎖弓": "Echo Chain Bow", "血契狂弓": "Bloodpact Bow", "毒火雙子弓": "Venomfire Twins", "奧術迴路神弓": "Arcane Circuit Bow", "潮汐連擊弓": "Tidal Combo Bow",
+        "星軌曲射弓": "Star Orbit Bow", "碎冰弓": "Icebreaker Bow", "守護者之弓": "Guardian Bow", "時蝕增幅弓": "Chrono Amp Bow", "獵人短弓": "Hunter Shortbow",
+        "腐蝕毒牙弓": "Venom Fang Bow", "連珠分裂弓": "Split Bead Bow", "熾焰連弩": "Blaze Repeater", "寒鋒冰晶弓": "Frost Edge Bow", "破城穿心弓": "Siege Piercer",
+        "元素稜鏡弓": "Prism Bow", "影刃短弓": "Shadow Blade Bow", "迴旋長弓": "Boomerang Longbow", "咒怨之弓": "Cursed Bow",
+        "輪迴之弓": "Samsara Bow", "天命之弓": "Destiny Bow", "霜焰之弓": "Frostfire Bow",
+        // 遺物
+        "幸運幣": "Lucky Coin", "灰燼之心": "Ember Heart", "永凍核心": "Frost Core", "寒霜之羽": "Frost Feather", "鐵指環": "Iron Ring", "銳利箭羽": "Sharp Fletching",
+        "輕靴": "Light Boots", "精華袋": "Essence Pouch", "狂血護符": "Berserk Charm", "貪婪錢袋": "Greedy Purse", "疾風箭袋": "Gale Quiver", "荊棘甲": "Thorn Armor",
+        "羽翼墜飾": "Wing Pendant", "精準透鏡": "Precision Lens", "急救繃帶": "First-Aid Bandage", "鏡面徽章": "Mirror Badge", "吸魂寶珠": "Soul Orb",
+        "時之沙漏": "Hourglass", "雷霆核心": "Thunder Core", "第二口氣": "Second Wind", "獵人之眼": "Hunter's Eye", "鳳凰灰燼": "Phoenix Ash", "龍之心": "Dragon Heart",
+        "時之碎片": "Time Shard", "神弓之魂": "Bow God's Soul", "永恆王冠": "Eternal Crown", "混沌之心": "Chaos Heart", "世界樹之種": "World Tree Seed",
+        // 區域
+        "新手草原": "Starter Meadow", "烈焰峽谷": "Blaze Canyon", "冰霜高原": "Frost Plateau", "毒霧沼澤": "Toxic Swamp", "雷鳴山巔": "Thunder Peak",
+        "神射殿堂": "Archer's Hall", "月蝕荒原": "Eclipse Wastes", "時空裂隙": "Time Rift", "暴君要塞": "Tyrant Fortress", "深淵之門": "Abyss Gate",
+        "星墜廢墟": "Starfall Ruins", "諸神黃昏": "Twilight of Gods", "天穹階梯": "Sky Stairs", "熔火王座": "Molten Throne", "千絲迷宮": "Thread Maze",
+        "鳳凰之巢": "Phoenix Nest", "亡骨王陵": "Bone Tomb", "星界神殿": "Astral Temple", "盜賊市集": "Thieves' Bazaar", "怒濤海淵": "Raging Abyss",
+        "審判之庭": "Court of Judgment", "漂移裂谷": "Drift Rift", "千眼迴廊": "Hall of Eyes", "混沌王座": "Chaos Throne", "無盡深淵": "Endless Abyss",
+        // 常見字
+        "最高": "Best", "精英": "Elite", "制霸": "Conquered", "可以覺醒了": "can be awakened", "可以用 💠 升級": "can be upgraded with 💠",
+        "新手任務：": "Starter quest: ", "每日任務：": "Daily: ", "可以挑戰流派：": "Try build: ", "有抽獎券可以用": "You have gacha tickets",
+        "本週的每週挑戰還沒打": "This week's Weekly not played yet", "從 ": "Start at ", " 開始": "", "、": ", ", "（": " (", "）": ")", "：": ": ", "｜": " | "
+    };
+
+    const CJK_RE = /[㐀-鿿]/g;
+    let i18nPhraseRe = null;
+    let i18nPhraseMap = null;
+    const i18nCache = new Map();
+
+    function buildI18nPhrases() {
+        i18nPhraseMap = Object.assign({}, I18N_EN_NAMES);
+        Object.keys(I18N_EN).forEach((k) => { if (k.length >= 2 && CJK_RE.test(k)) i18nPhraseMap[k] = I18N_EN[k]; CJK_RE.lastIndex = 0; });
+        const keys = Object.keys(i18nPhraseMap).sort((a, b) => b.length - a.length).map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        i18nPhraseRe = new RegExp(keys.join("|"), "g");
+    }
+
+    function lookupI18n(core) {
+        if (Object.prototype.hasOwnProperty.call(I18N_EN, core)) return I18N_EN[core];
+        if (Object.prototype.hasOwnProperty.call(I18N_EN_NAMES, core)) return I18N_EN_NAMES[core];
+        const nums = [];
+        const tpl = core.replace(/\d+(?:\.\d+)?/g, (n) => { nums.push(n); return "{" + (nums.length - 1) + "}"; });
+        if (nums.length && Object.prototype.hasOwnProperty.call(I18N_EN_TPL, tpl)) return I18N_EN_TPL[tpl].replace(/\{(\d+)\}/g, (m, i) => nums[+i]);
+        return null;
+    }
+
+    // 翻一段文字（中文模式直接回傳原文）
+    function trText(s) {
+        if (typeof s !== "string" || !isEnglish()) return s;
+        CJK_RE.lastIndex = 0;
+        if (!CJK_RE.test(s)) return s;
+        if (i18nCache.has(s)) return i18nCache.get(s);
+        let out = null;
+        const lead = s.match(/^\s*/)[0], trail = s.match(/\s*$/)[0];
+        const core = s.trim();
+        out = lookupI18n(core);
+        // 「SETTINGS // 設定」這種標籤：英文模式只留英文那半
+        if (out === null) { const pill = core.match(/^([A-Z0-9'&\s]+?)\s*\/\/\s*[^A-Za-z]*[\u3400-\u9fff]/); if (pill) out = pill[1].trim(); }
+        if (out === null) {
+            // 前面的圖示（🏹、⚔️…）分開查
+            const m = core.match(/^([^㐀-鿿A-Za-z0-9]+)(.*)$/);
+            if (m) { const r = lookupI18n(m[2]); if (r !== null) out = m[1] + r; }
+        }
+        if (out === null) {
+            if (!i18nPhraseRe) buildI18nPhrases();
+            const before = (core.match(CJK_RE) || []).length;
+            const replaced = core.replace(i18nPhraseRe, (k) => i18nPhraseMap[k]);
+            const after = (replaced.match(CJK_RE) || []).length;
+            out = after === 0 || after <= before * 0.3 ? replaced : core;
+        }
+        out = lead + out + trail;
+        if (i18nCache.size > 5000) i18nCache.clear();
+        i18nCache.set(s, out);
+        return out;
+    }
+
+    function translateTextNode(node) {
+        const t = node.nodeValue;
+        if (!t || !/[㐀-鿿]/.test(t)) return;
+        const r = trText(t);
+        if (r !== t) node.nodeValue = r;
+    }
+
+    function translateElement(root) {
+        if (!root) return;
+        if (root.nodeType === 3) { translateTextNode(root); return; }
+        if (root.nodeType !== 1) return;
+        const tag = root.tagName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEXTAREA") return;
+        ["title", "placeholder", "aria-label"].forEach((a) => {
+            const v = root.getAttribute && root.getAttribute(a);
+            if (v && /[㐀-鿿]/.test(v)) { const r = trText(v); if (r !== v) root.setAttribute(a, r); }
+        });
+        if (tag === "INPUT") return;
+        const kids = root.childNodes || [];
+        for (let i = 0; i < kids.length; i++) translateElement(kids[i]);
+    }
+
+    // 啟動時呼叫：英文模式才開始自動翻譯
+    function startI18n() {
+        if (!isEnglish() || typeof document === "undefined" || !document.body) return;
+        try { document.documentElement.setAttribute("lang", "en"); } catch (e) { /* 舊瀏覽器 */ }
+        translateElement(document.body);
+        if (typeof MutationObserver !== "function") return;
+        const obs = new MutationObserver((list) => {
+            list.forEach((m) => {
+                if (m.type === "characterData") translateTextNode(m.target);
+                else if (m.type === "attributes") translateElement(m.target);
+                else m.addedNodes.forEach((n) => translateElement(n));
+            });
+        });
+        obs.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ["title", "placeholder", "aria-label"] });
     }
 
     // =========================================================================
@@ -13481,8 +14174,8 @@
         { k: "hp", v: 0.03, text: "生命 +3%" }
     ];
     // 🧩 本命碎片：升階必備，只有「固定 Boss 第一次通過」才拿得到（來源在 13n）
-    //   刻意讓神話的需求（累計 170）比目前的總量（165）多：之後加新 Boss 才升得到，是長期目標
-    const SIG_TIERUP_SHARDS = [3, 12, 35, 120];
+    //   刻意讓神話的需求（累計 230）比目前的總量（207，含第四章）多：之後加新 Boss 才升得到，是長期目標
+    const SIG_TIERUP_SHARDS = [3, 12, 35, 180];
     // 平衡：升到神話約 1760 弓魂，神話淬鍊滿再 400
     const SIG_REFINE_COST = [12, 24, 40, 60, 80];
     const SIG_TIERUP_COST = [80, 180, 320, 800];
@@ -14459,7 +15152,7 @@
     }
 
     function getMainBossShards(arch) {
-        if (arch.chapter === 3) return 3;
+        if (arch.chapter >= 3) return 3; // 第三、四章的區域霸主
         return SHARD_STRONG_MAIN.includes(arch.bossType) ? 2 : 1;
     }
 
@@ -18212,14 +18905,16 @@
         dom.catFilterBar.innerHTML = "";
         Object.keys(SKILL_CATEGORIES).forEach((catKey) => {
             const cat = SKILL_CATEGORIES[catKey];
+            const pool = getLoadoutPool();
             const countInCat =
                 catKey === "ALL"
-                    ? SKILL_ORDER.length
-                    : SKILL_ORDER.filter((sid) => SKILL_CATALOG[sid].category === catKey).length;
+                    ? pool.length
+                    : pool.filter((sid) => SKILL_CATALOG[sid].category === catKey).length;
             const btn = document.createElement("button");
             btn.type = "button";
             btn.className = "cat-tab-btn" + (game.activeCategoryFilter === catKey ? " active" : "");
-            btn.textContent = `${cat.label} (${countInCat})`;
+            btn.textContent = `${getShortCategoryLabel(catKey)} (${countInCat})`;
+            btn.title = cat.label;
             btn.addEventListener("click", () => {
                 sfx.unlock();
                 sfx.skill();
@@ -18229,6 +18924,51 @@
             });
             dom.catFilterBar.appendChild(btn);
         });
+    }
+
+    // 簡潔版：分類名稱縮短（🔥 射擊與元素輸出 → 🔥 射擊）
+    function getShortCategoryLabel(catKey) {
+        const cat = SKILL_CATEGORIES[catKey];
+        if (!cat) return catKey;
+        if (catKey === "ALL") return "全部";
+        const parts = cat.label.split(" ");
+        return parts[0] + " " + (parts[1] || "").slice(0, 2);
+    }
+
+    // 技能頁要列出哪些技能：預設只看已經擁有的（勾掉「只看我有的」才顯示全部）
+    function getLoadoutPool() {
+        return game.loadoutShowAll ? SKILL_ORDER.slice() : SKILL_ORDER.filter((id) => isSkillUnlocked(id));
+    }
+
+    // 排序：擁有的在前，稀有度高、等級高的排前面（小朋友一眼看到最強的）
+    const LOADOUT_RARITY_RANK = { COMMON: 0, RARE: 1, EPIC: 2, LEGENDARY: 3, MYTHIC: 4 };
+    function loadoutSortScore(id) {
+        if (!isSkillUnlocked(id)) return -100;
+        return (LOADOUT_RARITY_RANK[SKILL_CATALOG[id].rarity] || 0) * 10 + getSkillGachaLevel(id);
+    }
+
+    // ✨ 自動幫我配：挑最強的 5 個（被動技最多 1 個）
+    function pickBestSkills() {
+        const owned = SKILL_ORDER.filter((id) => isSkillUnlocked(id)).sort((a, b) => loadoutSortScore(b) - loadoutSortScore(a));
+        const pick = [];
+        let passives = 0;
+        owned.forEach((id) => { if (pick.length < 5 && (!isPassiveSkill(id) || passives++ < 1)) pick.push(id); });
+        owned.forEach((id) => { if (pick.length < 5 && !pick.includes(id)) pick.push(id); });
+        return pick;
+    }
+
+    function autoPickSkills() {
+        if (blockIfRunLocked(null)) {
+            if (dom.loadoutDetail) dom.loadoutDetail.innerHTML = `<span style="color:#fca5a5;">${RUN_LOCK_TEXT}</span>`;
+            return false;
+        }
+        sfx.unlock();
+        sfx.skill();
+        game.selectedSkillIds = pickBestSkills();
+        game.loadoutFocus = game.selectedSkillIds[0];
+        saveGameProgress();
+        renderLoadoutCards();
+        return true;
     }
 
     function toggleSkillSelection(skillId) {
@@ -18288,10 +19028,10 @@
         dom.btnEnterArena.disabled = game.selectedSkillIds.length !== 5;
         dom.loadoutGrid.innerHTML = "";
 
-        const visibleSkills = SKILL_ORDER.filter((id) => {
+        const visibleSkills = getLoadoutPool().filter((id) => {
             if (game.activeCategoryFilter === "ALL") return true;
             return SKILL_CATALOG[id].category === game.activeCategoryFilter;
-        });
+        }).sort((a, b) => loadoutSortScore(b) - loadoutSortScore(a));
 
         visibleSkills.forEach((id) => {
             const sk = SKILL_CATALOG[id];
@@ -18353,6 +19093,15 @@
             });
             dom.loadoutGrid.appendChild(card);
         });
+        // 只看擁有的時候：最後放一格「還有幾個沒拿到 → 去抽」
+        const missing = SKILL_ORDER.filter((id) => !isSkillUnlocked(id) && (game.activeCategoryFilter === "ALL" || SKILL_CATALOG[id].category === game.activeCategoryFilter)).length;
+        if (!game.loadoutShowAll && missing > 0) {
+            const more = document.createElement("div");
+            more.className = "loadout-item compact loadout-more";
+            more.innerHTML = `<div class="loadout-head" style="color:#fbbf24;"><span style="font-size:1.1rem;">🎰</span><span class="loadout-name">還有 ${missing} 個技能・去抽獎</span></div>`;
+            more.addEventListener("click", () => openSkillGachaModal("LOADOUT"));
+            dom.loadoutGrid.appendChild(more);
+        }
         renderLoadoutSide();
     }
 
@@ -18360,14 +19109,15 @@
     function renderLoadoutSide() {
         if (!dom.loadoutPicked || !dom.loadoutDetail) return;
         const picked = game.selectedSkillIds;
-        let html = `<div style="font-weight:900;color:#fde047;margin-bottom:2px;">已選 ${picked.length} / 5</div>`;
+        let html = `<div style="font-weight:900;color:#fde047;margin-bottom:2px;">已選 ${picked.length} / 5 <span style="color:#94a3b8;font-weight:400;">（點一下拿掉）</span></div><div class="loadout-slots">`;
         for (let i = 0; i < 5; i++) {
             const sk = SKILL_CATALOG[picked[i]];
             const key = typeof getSkillKeyLabel === "function" ? getSkillKeyLabel(i) : String(i + 1);
             html += sk
-                ? `<div>${i + 1}. ${sk.icon} <span style="color:${sk.color};">${sk.name}</span> <span style="color:#64748b;">[${key}]</span></div>`
-                : `<div style="color:#64748b;">${i + 1}. （空）</div>`;
+                ? `<button type="button" class="loadout-slot" data-skill="${picked[i]}" style="border-color:${sk.color};"><span class="loadout-slot-key">${key}</span><span class="loadout-slot-icon">${sk.icon}</span><span class="loadout-slot-name" style="color:${sk.color};">${sk.name}</span></button>`
+                : `<div class="loadout-slot empty"><span class="loadout-slot-key">${key}</span><span class="loadout-slot-icon">➕</span><span class="loadout-slot-name">空</span></div>`;
         }
+        html += "</div>";
         html += renderLoadoutGearHtml(); // 🏹 弓、💍 遺物也能在這裡換
         dom.loadoutPicked.innerHTML = html;
         bindLoadoutGear();
@@ -18424,6 +19174,7 @@
             updateHUD();
             renderLoadoutSide();
         });
+        if (box.querySelectorAll) box.querySelectorAll(".loadout-slot[data-skill]").forEach((b) => b.addEventListener("click", () => { game.loadoutFocus = b.getAttribute("data-skill"); toggleSkillSelection(b.getAttribute("data-skill")); }));
         if (box.querySelectorAll) box.querySelectorAll(".loadout-relic").forEach((sel) => sel.addEventListener("change", () => setLoadoutRelic(+sel.getAttribute("data-slot"), sel.value)));
     }
 
@@ -18642,6 +19393,7 @@
         resetChapter2State();
         resetChapter3State(); // 第三章（19i）
         resetComboBossState(); // Combo Boss（19j）
+        resetChapter4State(); // 第四章（19k）
         player.x =platforms.left.x + platforms.left.w * 0.45;
         player.y = platforms.left.y;
         player.vx = 0;
@@ -18905,7 +19657,8 @@
             ...getDungeonHudTags(),
             ...getChapter2PlayerHudTags(),
             ...getChapter3PlayerHudTags(),
-            ...getComboPlayerHudTags()
+            ...getComboPlayerHudTags(),
+            ...getChapter4PlayerHudTags()
         ];
         if (player.channelTimer > 0) {
             const cLabel = player.channelType === "snipe_beam" ? "🔦 光束蓄力" : "☄️ 火球讀條";
@@ -18979,6 +19732,7 @@
         eTags.push(...getChapter2BossHudTags());
         eTags.push(...getChapter3BossHudTags());
         eTags.push(...getComboBossHudTags());
+        eTags.push(...getChapter4BossHudTags());
         if (enemy.bindTimer > 0) {
             eTags.push(`<span class="tag-pill" style="color:#c084fc;background:rgba(192,132,252,0.35);">⛓️ 鎖鍊束縛 ${enemy.bindTimer.toFixed(1)}s</span>`);
         }
@@ -20209,12 +20963,23 @@
 
     function triggerEquippedSkill(slotIndex) {
         if (game.state !== "PLAYING" || !pvpCanAct()) return; // 對戰倒數中不能放技能
+        const pressed = slotIndex;
+        slotIndex = remapSkillSlot(slotIndex); // 奇竊術士：技能順序被打亂（19k）
+        if (slotIndex !== pressed && player.equippedSkills[slotIndex]) {
+            const sk = SKILL_CATALOG[player.equippedSkills[slotIndex].id];
+            if (sk) addFloatingText(player.x, player.y - 96, "🔀 放出了 " + sk.icon + sk.name, "#fcd34d", 12);
+        }
         const slot = player.equippedSkills[slotIndex];
         if (!slot) return;
 
         const id = slot.id;
         // 被動技沒有主動效果
         if (isPassiveSkill(id)) return;
+        // 奇竊術士：這格技能被偷走了（19k）
+        if (isSkillSlotStolen(slotIndex)) {
+            addFloatingText(player.x, player.y - 104, "🤹 這個技能被偷走了！爆頭搶回來", "#fcd34d", 14);
+            return;
+        }
         // 靜默賢者：沉默中不能放技能
         if (isPlayerSilenced()) {
             addFloatingText(player.x, player.y - 104, "🤫 沉默中！", "#c4b5fd", 14);
@@ -20348,6 +21113,7 @@
 
     function triggerPlayerJump() {
         if (game.state !== "PLAYING") return;
+        if (swapJumpIfInverted(true)) return; // 奇竊術士：跳 ↔ 往下穿互換（19k）
         if (player.channelTimer > 0) return;
         if (player.bindTimer > 0) {
             addFloatingText(player.x, player.y - 100, "⛓️ 鎖鍊束縛中無法跳躍!", "#c084fc", 13);
@@ -20377,6 +21143,7 @@
 
     function triggerPlayerDropThrough() {
         if (game.state !== "PLAYING") return;
+        if (swapJumpIfInverted(false)) return; // 奇竊術士：跳 ↔ 往下穿互換（19k）
         if (player.channelTimer > 0 || player.bindTimer > 0) return;
         if (player.y < platforms.left.y - 10) {
             player.isGrounded = false;
@@ -20788,6 +21555,7 @@
             player.pullPower = 0;
             return;
         }
+        if (!consumeChapter4Ammo()) { player.pullPower = 0; return; } // 箭術審判官：箭用完了（19k）
 
         const speed = player.pullPower * MAX_ARROW_SPEED;
         const bowX = player.x + PLAYER_DIR * 14;
@@ -20833,6 +21601,7 @@
         onOrbitPlayerShot(wasFullPower); // 星辰引力：有機率多一顆星軌（16i）
         onNewBuildPlayerShot(); // 影子複製射擊、回流小回力刃（16l）
         onSignatureShot(bowX, bowY, player.aimAngle, shotSpeed, firedCount); // 本命弓：記錄打法、回音、破城（13m）
+        onChapter4Shot(firedCount); // 箭術審判官：標記實體箭（19k）
         onFrostfireShot(firedCount, mods.volley_burst ? getVolleyCount("player") : 0); // 霜焰之弓集氣（16k）
         onChapter2PlayerShot(player.aimAngle, shotSpeed, firedCount); // 時空裂隙：時間殘影
         fireAwakenCounterVolley(bowX, bowY, shotSpeed); // 閃避反擊覺醒：三連反擊
@@ -21399,6 +22168,7 @@
         mult *= getSignatureHitMult(a); // 13m：本命弓
         mult *= getChapter3ArrowMult(a); // 19i：熔岩護甲（冰箭擊碎）
         mult *= getComboArrowMult(a); // 19j：元素皇女的元素護盾
+        mult *= getChapter4ArrowMult(a); // 19k：千眼空靈只吃爆頭
         if (a.flightDmgBonus > 0) {
             mult *= 1 + Math.min(1.2, (a.flightTime || 0) * a.flightDmgBonus); // 星軌曲射弓：最高 +120%（平衡：+90% → +120%）
         }
@@ -21432,6 +22202,7 @@
         onRebirthBowArrowHit(a); // 16k：輪迴之弓
         onNewBuildArrowHit(a, isCrit); // 16l：影契、咒印、血契
         onSignatureArrowHit(a, isCrit); // 13m：本命弓（記錄打法、獵首）
+        onChapter4ArrowHit(a, isCrit); // 19k：奇竊術士（爆頭搶回技能）、箭術審判官（箭回到平台）
 
         if (isCrit && hasEquippedPassive("passive_eagle_eye")) {
             const heal = Math.max(1, Math.round(player.maxHp * 0.02 * getPlayerHealMult()));
@@ -21476,6 +22247,7 @@
     // 玩家箭矢落地（沒射中）時呼叫
     function onPlayerArrowLanded(a) {
         onSignatureArrowLanded(a); // 13m：本命弓神話「回溯之箭」
+        onChapter4ArrowLanded(a); // 19k：箭術審判官（箭插在地上要撿）
         onRebirthBowArrowLanded(a); // 16k：輪迴之弓（落空也會轉生）
         if (!a.puppet) onTalentArrowMissed(); // 連擊手感：射空就歸零
         if (getBowSpecial() !== "tide" || !a.tideShotId) return;
@@ -23889,17 +24661,20 @@
         enemy.curseTimer = 0;
         enemy.gazeTimer = 0;
         enemy.gazeTick = 0;
+        game.curseShots = {}; // 每關清掉「哪些射擊已經上過咒印」（不清的話跨局會有射擊編號撞到，少疊一層）
     }
 
     // =========================================================================
     // 🌑 影武分身流
     // =========================================================================
     const SHADOW = {
-        life: 12, offsets: [-70, -140, -35, -105], copyDelay: 0.12, copyDmg: 0.5,
+        // 影子（2026-11-26 改版）：可以重複疊在場上（最多 5 個）、會走動、續航短、被任何攻擊打到就消散 → 跟助戰雕像（不動、耐打）做出區別
+        life: 8, maxShadows: 5, walkSpeed: 55, wanderRange: 130, hitHalfW: 14,
+        offsets: [-70, -140, -35, -105], copyDelay: 0.12, copyDmg: 0.5,
         legionSec: 6, legionExtra: 2, legionDmg: 0.6,
         swapInvuln: 0.4, ambushMult: 1.4, ambushWindow: 2.0,
         burstDmg: 1.2, burstEmptyDmg: 0.6, burstBindSec: 0.6,
-        pactRefund: 0.3, pactIcd: 0.25, pactLifeBonus: 4
+        pactRefund: 0.3, pactIcd: 0.25, pactLifeBonus: 2
     };
 
     function shadowSpot(off) {
@@ -23908,17 +24683,47 @@
     }
 
     function spawnShadow(off, life, temp) {
-        const s = { x: shadowSpot(off), y: player.y, life: life, maxLife: life, temp: Boolean(temp) };
+        const s = { x: shadowSpot(off), y: player.y, life: life, maxLife: life, temp: Boolean(temp), vx: 0, walkT: 0.3 + Math.random() * 0.6, targetX: null, facing: 1 };
         game.shadows.push(s);
+        // 最多 5 個：超過就讓最舊的消散
+        const cap = isPvp() ? 3 : SHADOW.maxShadows; // 對戰：複製箭是 1.0 倍傷害 → 最多 3 個
+        while (game.shadows.length > cap) dissipateShadow(game.shadows[0], false);
         spawnParticles(s.x, s.y - 40, "#7c3aed", 10);
         return s;
     }
 
+    // 影子消散（被打到、超過上限）
+    function dissipateShadow(s, hit) {
+        const i = game.shadows.indexOf(s);
+        if (i < 0) return;
+        game.shadows.splice(i, 1);
+        spawnParticles(s.x, s.y - 40, "#a78bfa", hit ? 16 : 8);
+        if (hit) addFloatingText(s.x, s.y - 90, "🌑 影子消散", "#c4b5fd", 12);
+    }
+
+    // 敵人的箭打到影子（20-combat-physics 呼叫）：影子消散（箭不會被擋下來，繼續飛）
+    function hitShadowByEnemyArrow(a) {
+        if (a.owner === "player" || !game.shadows || !game.shadows.length) return false;
+        for (const s of game.shadows) {
+            if (Math.abs(a.x - s.x) <= SHADOW.hitHalfW && a.y >= s.y - 68 && a.y <= s.y) {
+                dissipateShadow(s, true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 地面攻擊（落雷、隕石）打到附近的影子
+    function hitShadowsNear(x, r) {
+        if (!game.shadows || !game.shadows.length) return;
+        game.shadows.slice().forEach((s) => { if (Math.abs(s.x - x) <= r && s.y >= PLATFORM_Y - 70) dissipateShadow(s, true); });
+    }
+
     function castShadowClone() {
-        game.shadows = game.shadows.filter((s) => s.temp);
+        // 改版：不會取代舊的影子，直接再多一個（最多 5 個）
         const life = SHADOW.life + skillSteps("shadow_clone") * 0.5 + (hasEquippedPassive("passive_shadow_pact") ? SHADOW.pactLifeBonus : 0);
-        spawnShadow(SHADOW.offsets[0], life, false);
-        if (skAw("shadow_clone")) spawnShadow(SHADOW.offsets[1], life, false); // 覺醒：雙影
+        spawnShadow(SHADOW.offsets[game.shadows.length % SHADOW.offsets.length], life, false);
+        if (skAw("shadow_clone")) spawnShadow(SHADOW.offsets[(game.shadows.length + 1) % SHADOW.offsets.length], life, false); // 覺醒：雙影
         sfx.mirrorSwap();
         addFloatingText(player.x, player.y - 104, "🌑 影分身！", "#c4b5fd", 15);
     }
@@ -23966,7 +24771,6 @@
 
     function castShadowLegion() {
         const extra = SHADOW.legionExtra + (skAw("shadow_legion") ? 1 : 0); // 覺醒：萬影
-        game.shadows = game.shadows.filter((s) => !s.temp);
         for (let k = 0; k < extra; k++) spawnShadow(SHADOW.offsets[(k + 2) % SHADOW.offsets.length] + (k >= 2 ? 50 : 0), SHADOW.legionSec, true);
         player.shadowLegionTimer = SHADOW.legionSec + skillSteps("shadow_legion") * 0.3;
         sfx.timeSlow();
@@ -24008,9 +24812,24 @@
         if (player.shadowAmbushTimer > 0) player.shadowAmbushTimer = Math.max(0, player.shadowAmbushTimer - dt);
         if (player.shadowLegionTimer > 0) player.shadowLegionTimer = Math.max(0, player.shadowLegionTimer - dt);
         if (player.shadowPactCd > 0) player.shadowPactCd -= dt;
+        const plat = platforms.left;
         for (let i = game.shadows.length - 1; i >= 0; i--) {
-            game.shadows[i].life -= dt;
-            if (game.shadows[i].life <= 0) game.shadows.splice(i, 1);
+            const s = game.shadows[i];
+            s.life -= dt;
+            if (s.life <= 0) { game.shadows.splice(i, 1); continue; }
+            // 走動：在你附近晃來晃去（走得慢、偶爾停下來）
+            s.walkT -= dt;
+            if (s.walkT <= 0) {
+                s.walkT = 0.8 + Math.random() * 1.4;
+                s.targetX = Math.random() < 0.3 ? null : Math.max(plat.x + 20, Math.min(plat.x + plat.w - 20, player.x + (Math.random() * 2 - 1) * SHADOW.wanderRange));
+            }
+            if (s.targetX != null && Math.abs(s.targetX - s.x) > 6) {
+                s.vx = Math.sign(s.targetX - s.x) * SHADOW.walkSpeed;
+                s.facing = s.vx > 0 ? 1 : -1;
+                s.x = Math.max(plat.x + 20, Math.min(plat.x + plat.w - 20, s.x + s.vx * dt));
+            } else {
+                s.vx = 0;
+            }
         }
         for (let i = game.shadowShotQueue.length - 1; i >= 0; i--) {
             const q = game.shadowShotQueue[i];
@@ -24027,6 +24846,8 @@
             ctx.globalAlpha = Math.min(0.75, s.life / 0.8) * (0.55 + 0.1 * Math.sin(performance.now() / 120));
             ctx.translate(s.x, s.y);
             ctx.scale(CHAR_SCALE, CHAR_SCALE);
+            // 走路時腳交替擺動
+            const step = s.vx ? Math.sin(performance.now() / 90 + s.maxLife) * 7 : 0;
             ctx.strokeStyle = s.temp ? "#a78bfa" : "#7c3aed";
             ctx.shadowColor = "#7c3aed";
             ctx.shadowBlur = 10;
@@ -24034,8 +24855,8 @@
             ctx.beginPath();
             ctx.arc(0, -62, 10, 0, Math.PI * 2);
             ctx.moveTo(0, -52); ctx.lineTo(0, -24);
-            ctx.moveTo(0, -24); ctx.lineTo(-10, 0);
-            ctx.moveTo(0, -24); ctx.lineTo(10, 0);
+            ctx.moveTo(0, -24); ctx.lineTo(-10 + step, 0);
+            ctx.moveTo(0, -24); ctx.lineTo(10 - step, 0);
             ctx.moveTo(0, -44); ctx.lineTo(14, -38);
             ctx.stroke();
             ctx.restore();
@@ -24684,18 +25505,21 @@
     dom.btnClosePvp.addEventListener("click", () => closePvpModal());
     dom.hubBtnForfeit.addEventListener("click", () => forfeitRun());
     dom.btnHubClose.addEventListener("click", () => closeHubToBattleOrPrev());
-    dom.hubBtnBattle.addEventListener("click", () => {
-        // 只有「這局還在進行中」才接回戰場；局已結束就去配置畫面開新局
-        if (isRunLocked()) {
-            hideAllModals();
-            game.state = "PLAYING";
-            updateHUD();
-        } else {
-            openLoadoutScreen();
-        }
-    });
+    // ⚔️ 出發：進行中就回戰場；不然直接從目前推進到的區域開局（不經過技能頁、選區域）
+    dom.hubBtnBattle.addEventListener("click", () => quickStartMainRun());
+    { const b = document.getElementById("hub-bow-card"); if (b) b.addEventListener("click", () => openBowPicker()); }
+    { const b = document.getElementById("btn-bow-pick-close"); if (b) b.addEventListener("click", () => closeBowPicker()); }
+    { const b = document.getElementById("btn-bow-pick-gacha"); if (b) b.addEventListener("click", () => { closeBowPicker(); openGachaModalFromHub(); }); }
 
     dom.hubNavLoadout.addEventListener("click", () => openLoadoutScreen());
+    // 簡潔版大廳：點中間的 5 個技能＝去換技能
+    const hubSkillStrip = document.getElementById("hub-skill-strip");
+    if (hubSkillStrip) hubSkillStrip.addEventListener("click", () => openLoadoutScreen());
+    // 技能頁：只看我有的／自動幫我配
+    const loadoutOwnedOnly = document.getElementById("loadout-owned-only");
+    if (loadoutOwnedOnly) loadoutOwnedOnly.addEventListener("change", () => { game.loadoutShowAll = !loadoutOwnedOnly.checked; renderCategoryFilterBar(); renderLoadoutCards(); });
+    const btnLoadoutAuto = document.getElementById("btn-loadout-auto");
+    if (btnLoadoutAuto) btnLoadoutAuto.addEventListener("click", () => autoPickSkills());
     dom.hubNavSkillGacha.addEventListener("click", () => openSkillGachaModal("HUB"));
     dom.hubNavGacha.addEventListener("click", () => openGachaModalFromHub());
     dom.hubNavCombo.addEventListener("click", () => openComboCodex());
@@ -24738,7 +25562,7 @@
     dom.btnOpenLoadout.addEventListener("click", () => openLoadoutScreen());
     dom.btnLoadoutSkillGacha.addEventListener("click", () => openSkillGachaModal("LOADOUT"));
     dom.btnLoadoutHub.addEventListener("click", () => openHubModal("LOADOUT"));
-    dom.btnEnterArena.addEventListener("click", () => startMainRun()); // 解鎖第二章後會先選章節
+    dom.btnEnterArena.addEventListener("click", () => quickStartMainRun()); // 直接從目前推進到的區域開局；以前的區域從主線地圖選
 
     dom.btnCloseChapter.addEventListener("click", () => closeChapterModal());
 
@@ -24794,7 +25618,9 @@
     dom.hubNavWeekly.addEventListener("click", () => openFeature("weekly", () => openWeeklyModal()));
     dom.hubNavTrial.addEventListener("click", () => openFeature("trial", () => openShardModal("trial"))); // ⚔️ Boss 試煉（13n）
     dom.btnCloseShard.addEventListener("click", () => closeShardModal());
-    dom.hubNavFeedback.addEventListener("click", () => openFeedbackForm()); // 💬 試玩回饋（12-hub-combo）
+    dom.hubNavFeedback.addEventListener("click", () => openFeedbackModal()); // 💬 試玩回饋＋填完領獎勵（12-hub-combo）
+    { const b = document.getElementById("btn-feedback-open"); if (b) b.addEventListener("click", () => openFeedbackForm()); }
+    { const b = document.getElementById("btn-feedback-close"); if (b) b.addEventListener("click", () => closeFeedbackModal()); }
     dom.hubNavComboBoss.addEventListener("click", () => openFeature("combo_boss", () => openComboModal())); // 🔗 Combo 挑戰（13p）
     dom.btnCloseComboBoss.addEventListener("click", () => closeComboModal());
     dom.hubNavChest.addEventListener("click", () => openFeature("chests", () => openChestModal())); // 🔑 寶箱（13q）
@@ -26047,6 +26873,8 @@
             if (game.state !== "PLAYING") return;
             updateComboBosses(dt); // Combo Boss（19j）
             if (game.state !== "PLAYING") return;
+            updateChapter4Bosses(dt); // 第四章區域霸主（19k）
+            if (game.state !== "PLAYING") return;
         }
 
         updateEnemyAffixes(dt); // 詞綴：堅盾、閃現、復仇
@@ -26157,6 +26985,8 @@
                     executeChapter3BossSkill(); // 19i
                 } else if (getComboBossType()) {
                     executeComboBossSkill(); // 19j
+                } else if (getC4BossType()) {
+                    executeChapter4BossSkill(); // 19k
                 } else {
                     executeBossFixedSkill();
                 }
@@ -26361,6 +27191,7 @@
         spawnParticles(s.x, PLATFORM_Y - 4, "#e0f2fe", 6);
         game.shockwaves.push({ x: s.x, y: PLATFORM_Y - 4, r: 8, maxR: s.r + 18, color: "#fde047", alpha: 0.9 });
 
+        hitShadowsNear(s.x, s.r + 10); // 影子被落雷打到就消散（16l）
         const inRange = Math.abs(player.x - s.x) <= s.r + 10;
         if (!inRange || !isPlayerOnZeusGround()) return;
 
@@ -28275,6 +29106,7 @@
         enemy.hp = enemy.maxHp;
         enemy.baseDamage = Math.round(enemy.baseDamage * CHAPTER2_SCALING.dmg);
         applyChapter3Scaling(stageNum); // 第三章再加強（19i）
+        applyChapter4Scaling(stageNum); // 第四章再加強（19k）
     }
 
     function isChapter2Unlocked() {
@@ -28406,6 +29238,7 @@
             updateHUD();
             if (firstStage >= CHAPTER2_START && firstStage < CHAPTER2_START + REGION_SIZE) addFloatingText(LOGICAL_W * 0.5, 170, "🌒 第二章開始！敵人大幅強化", "#f0abfc", 20);
             if (firstStage >= CHAPTER3_START && firstStage < CHAPTER3_START + REGION_SIZE) addFloatingText(LOGICAL_W * 0.5, 170, "🌌 第三章開始！敵人再次強化", "#a5b4fc", 20);
+            if (firstStage >= CHAPTER4_START && firstStage < CHAPTER4_START + REGION_SIZE) addFloatingText(LOGICAL_W * 0.5, 170, "🌋 第四章開始！霸主們會改變規則和戰場", "#fca5a5", 20);
         };
         const seq = [];
         if (s.bossBoons) seq.push({ count: s.bossBoons, make: makeBossBoonOptions, label: "📦 Boss 戰利品" });
@@ -28432,7 +29265,7 @@
             btn.className = "region-cell region-start-cell" + (idx < cleared ? " done" : " here");
             if (btn.style && typeof btn.style.setProperty === "function") btn.style.setProperty("--rc", info.color);
             const supply = idx === 0 ? "從頭開始，一路累積賜福與戰利品。" : "📦 " + regionSupplyText(getRegionStartSupply(first));
-            const chapterNote = idx === 6 ? "<div class=\"region-sub\" style=\"color:#f0abfc;\">🌒 第二章：敵人生命 ×1.5、攻擊 ×1.25</div>" : idx === 12 ? "<div class=\"region-sub\" style=\"color:#a5b4fc;\">🌌 第三章：敵人再 ×1.3 生命、×1.15 攻擊</div>" : "";
+            const chapterNote = idx === 6 ? "<div class=\"region-sub\" style=\"color:#f0abfc;\">🌒 第二章：敵人生命 ×1.5、攻擊 ×1.25</div>" : idx === 12 ? "<div class=\"region-sub\" style=\"color:#a5b4fc;\">🌌 第三章：敵人再 ×1.3 生命、×1.15 攻擊</div>" : idx === 18 ? "<div class=\"region-sub\" style=\"color:#fca5a5;\">🌋 第四章：敵人再 ×1.3 生命、×1.15 攻擊</div>" : "";
             btn.innerHTML = `<div class="region-top"><span class="region-icon">${info.icon}</span><b>${info.label}</b> ${info.name}</div>
                 <div class="region-sub">${idx < cleared ? "✅ 已制霸" : "📍 推進中（寶箱還沒拿）"}</div>${chapterNote}
                 <div class="region-reward">${supply}</div>`;
@@ -28585,7 +29418,7 @@
             }
             return dmg;
         }
-        return applyComboBossDamageToEnemy(applyC3BossDamageToEnemy(applyC2BossDamageToEnemy(dmg, reasonLabel), reasonLabel)); // 第三章區域霸主（19i）、Combo Boss（19j）
+        return applyChapter4DamageToEnemy(applyComboBossDamageToEnemy(applyC3BossDamageToEnemy(applyC2BossDamageToEnemy(dmg, reasonLabel), reasonLabel)), reasonLabel); // 第三章（19i）、Combo Boss（19j）、第四章（19k）
     }
 
     // =========================================================================
@@ -28603,6 +29436,7 @@
         renderC2BossOverlay();
         renderChapter3Overlay(); // 19i
         renderComboBossOverlay(); // 19j
+        renderChapter4Overlay(); // 19k
     }
 
     // 第二章背景的殘月（renderBackground 呼叫；sky 是天空顏色，用來挖出月牙）
@@ -28765,7 +29599,7 @@
 
     // 方向顛倒（updateGame 移動時乘上）
     function getC2ControlMult() {
-        return player.c2Invert > 0 ? -1 : 1;
+        return player.c2Invert > 0 || isC4InvertActive() ? -1 : 1; // 時空裂隙、奇竊術士（19k）
     }
 
     // =========================================================================
@@ -30740,6 +31574,807 @@
     // =========================================================================
 
 ;
+// ==== js/19k-chapter4-bosses.js
+// 19k. 第四章「混沌戰場」（第 109～144 關）：敵人再加強、混沌背景、6 隻區域霸主（每區第 6 關）
+//   規則類（限制玩家）
+//     🤹 奇竊術士：偷走你的技能格、拿你的技能打你；爆頭 3 次搶回來
+//     🏹 箭術審判官：這場只有 10 支箭，射出去的箭插在平台上要走過去撿
+//     👁️ 千眼空靈：只有爆頭有效；閉眼時連頭都打不痛，要打浮游之眼
+//   場地類（改變戰場）
+//     🌊 潮汐巨獸：下層慢慢淹水（站水裡扣血、變慢），打破閘門退水
+//     🌀 裂地領主：平台像輸送帶一樣漂移、地面裂開
+//   多部位
+//     🦾 混沌巨像：頭、左手、右手各有血條，打掉手就不能放那招，三個都打掉才露出核心
+    // =========================================================================
+    const CHAPTER4_START = 109;
+    const CHAPTER4_END = 144;
+    const CHAPTER4_SCALING = { hp: 1.3, dmg: 1.15 };
+    const C4_BOSS_TYPES = ["thief_juggler", "tide_beast", "arrow_judge", "rift_shaper", "eye_wraith", "chaos_colossus"];
+
+    const C4B = {
+        // 奇竊術士
+        stealSec: 10, stealCrits: 3, stealCastEvery: 3,
+        scrambleSec: 8, scrambleSecP2: 11, invertSec: 5, invertSecP2: 7,
+        // 潮汐巨獸
+        waterRise: 0.045, waterRiseP2: 0.07, waterDps: 0.03, waterSafeLevel: 0.15, gateHpRatio: 0.045, gateRespawn: 20, raiseTide: 0.3,
+        // 箭術審判官
+        ammoMax: 10, ammoReturnHit: 1.2, ammoReturnMiss: 2.5, pickupR: 34, confiscateDelay: 6,
+        // 裂地領主
+        driftSpeed: 55, driftSpeedP2: 90, driftFlip: 6, gapSec: 5,
+        // 千眼空靈
+        otherMult: 0.25, closedSec: 3, eyeHpRatio: 0.03, gazeWarn: 1.0, gazeBind: 1.0, gazeDmg: 0.08,
+        // 混沌巨像
+        armRatio: 0.35, headRatio: 0.3, coreVuln: 1.3
+    };
+
+    function isChapter4Stage(stageNum) {
+        return stageNum >= CHAPTER4_START && !game.dungeon && !game.training;
+    }
+
+    // applyChapterScaling（19f）呼叫：第四章的額外加強
+    function applyChapter4Scaling(stageNum) {
+        if (stageNum < CHAPTER4_START || game.dungeon) return;
+        enemy.maxHp = Math.round(enemy.maxHp * CHAPTER4_SCALING.hp);
+        enemy.hp = enemy.maxHp;
+        enemy.baseDamage = Math.round(enemy.baseDamage * CHAPTER4_SCALING.dmg);
+    }
+
+    function getC4BossType() {
+        const t = enemy.archetype && enemy.archetype.bossType;
+        return C4_BOSS_TYPES.includes(t) ? t : null;
+    }
+
+    // ---------- 狀態（setupStage 呼叫）----------
+    function resetChapter4State() {
+        enemy.c4Phase2 = false;
+        enemy.c4Init = false;
+        player.c4Stolen = [];
+        player.c4StealCrits = 0;
+        enemy.c4StealCast = 0;
+        player.c4SkillMap = null;
+        player.c4ScrambleT = 0;
+        player.c4InvertT = 0;
+        enemy.c4Water = 0;
+        game.c4Objs = [];
+        game.c4Pickups = [];
+        game.c4Returning = [];
+        player.c4Ammo = C4B.ammoMax;
+        player.c4ShotPending = false;
+        enemy.c4AmmoCheck = 2;
+        enemy.c4DriftDir = 1;
+        enemy.c4DriftT = C4B.driftFlip;
+        enemy.c4DriftBoost = 0;
+        enemy.c4Closed = 0;
+        enemy.c4Gaze = 0;
+        enemy.c4Parts = null;
+        enemy.c4CoreExposed = false;
+        game.c4LastArrowCrit = false;
+        game.c4MsgT = 0;
+        if (isChapter4Stage(game.stage) && game.stage <= CHAPTER4_START + 5 && !game.chapter4Announced) {
+            game.chapter4Announced = true;
+            addFloatingText(LOGICAL_W * 0.5, 146, "🌋 第四章「混沌戰場」：霸主們會改變規則和戰場本身", "#fca5a5", 17);
+        }
+        if (game.stage < CHAPTER4_START) game.chapter4Announced = false;
+    }
+
+    function c4Say(text, color) {
+        if (game.c4MsgT > 0) return;
+        game.c4MsgT = 0.8;
+        addFloatingText(player.x, player.y - 120, text, color || "#e2e8f0", 13);
+    }
+
+    // ---------- 🤹 偷技能 ----------
+    function isSkillSlotStolen(idx) {
+        return getC4BossType() === "thief_juggler" && (player.c4Stolen || []).some((s) => s.idx === idx);
+    }
+
+    function stealSkills(n) {
+        const free = player.equippedSkills.map((s, i) => i).filter((i) => !isPassiveSkill(player.equippedSkills[i].id) && !isSkillSlotStolen(i));
+        for (let k = 0; k < n && free.length; k++) {
+            const idx = free.splice(Math.floor(Math.random() * free.length), 1)[0];
+            player.c4Stolen.push({ idx: idx, id: player.equippedSkills[idx].id, t: C4B.stealSec });
+        }
+        player.c4StealCrits = 0;
+        enemy.c4StealCast = 1.2;
+        if (typeof updateSkillDockUI === "function") updateSkillDockUI();
+    }
+
+    function returnStolenSkills(text) {
+        if (!player.c4Stolen.length) return;
+        player.c4Stolen = [];
+        player.c4StealCrits = 0;
+        addFloatingText(player.x, player.y - 124, text, "#bbf7d0", 15);
+        if (typeof updateSkillDockUI === "function") updateSkillDockUI();
+    }
+
+    // ---------- 🔀 打亂技能順序／🔄 上下左右顛倒 ----------
+    // triggerEquippedSkill 呼叫：按第 slotIndex 格，實際放出哪一格
+    function remapSkillSlot(slotIndex) {
+        return player.c4ScrambleT > 0 && player.c4SkillMap && player.c4SkillMap[slotIndex] != null ? player.c4SkillMap[slotIndex] : slotIndex;
+    }
+
+    function scrambleSkills(sec) {
+        const n = player.equippedSkills.length;
+        const idx = Array.from({ length: n }, (_, i) => i);
+        let map = idx.slice();
+        for (let k = 0; k < 20 && map.every((v, i) => v === i); k++) {
+            for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = map[i]; map[i] = map[j]; map[j] = t; }
+        }
+        if (map.every((v, i) => v === i) && n > 1) map = idx.map((i) => (i + 1) % n);
+        player.c4SkillMap = map;
+        player.c4ScrambleT = sec;
+    }
+
+    // 左右顛倒（21-effects 的移動）：時空裂隙也用這個
+    function isC4InvertActive() {
+        const t = getC4BossType();
+        return (t === "thief_juggler" || t === "eye_wraith") && player.c4InvertT > 0; // 奇竊術士、千眼空靈第二階段
+    }
+
+    // 跳躍 ↔ 往下穿過平台互換（16 的 triggerPlayerJump／triggerPlayerDropThrough 呼叫）：回傳 true＝已經改做另一個動作
+    function swapJumpIfInverted(isJump) {
+        if (!isC4InvertActive() || player.c4Swapping) return false;
+        player.c4Swapping = true;
+        try { if (isJump) triggerPlayerDropThrough(); else triggerPlayerJump(); } finally { player.c4Swapping = false; }
+        return true;
+    }
+
+    // ---------- 🏹 箭矢有限 ----------
+    // releasePlayerShot 射之前呼叫：回傳 false＝沒箭了不能射
+    function consumeChapter4Ammo() {
+        if (getC4BossType() !== "arrow_judge") return true;
+        if (player.c4Ammo <= 0) {
+            c4Say("🏹 沒有箭了！走到地上發光的箭旁邊撿回來", "#fda4af");
+            return false;
+        }
+        player.c4Ammo -= 1;
+        player.c4ShotPending = true;
+        return true;
+    }
+
+    // 射完之後：這一射的第一支箭標記成「實體箭」（落地／命中之後要變成可以撿的箭）
+    function onChapter4Shot(firedCount) {
+        if (!player.c4ShotPending) return;
+        player.c4ShotPending = false;
+        for (let k = game.arrows.length - 1, c = 0; k >= 0 && c < firedCount; k--) {
+            const a = game.arrows[k];
+            if (a.owner !== "player" || a.puppet) continue;
+            c++;
+            if (c === firedCount) a.c4Ammo = true;
+        }
+    }
+
+    function randomLeftX() {
+        const plat = platforms.left;
+        return plat.x + 30 + Math.random() * (plat.w - 60);
+    }
+
+    function addPickup(x) {
+        const plat = platforms.left;
+        game.c4Pickups.push({ x: Math.max(plat.x + 16, Math.min(plat.x + plat.w - 16, x)), y: PLATFORM_Y });
+    }
+
+    function onChapter4ArrowLanded(a) {
+        if (!a.c4Ammo) return;
+        a.c4Ammo = false;
+        const plat = platforms.left;
+        if (a.x >= plat.x && a.x <= plat.x + plat.w && a.y >= PLATFORM_Y - 30) addPickup(a.x);
+        else game.c4Returning.push({ t: C4B.ammoReturnMiss });
+    }
+
+    // ---------- 命中 hook（onPlayerArrowHitEnemy）----------
+    function onChapter4ArrowHit(a, isCrit) {
+        const type = getC4BossType();
+        if (!type) return;
+        if (a.c4Ammo) { a.c4Ammo = false; game.c4Returning.push({ t: C4B.ammoReturnHit }); }
+        if (type === "thief_juggler" && isCrit && player.c4Stolen.length) {
+            player.c4StealCrits += 1;
+            if (player.c4StealCrits >= C4B.stealCrits) {
+                returnStolenSkills("🎯 搶回技能！");
+                breakBoss(2, "💫 術士手忙腳亂 2 秒・承傷 +20%");
+            } else {
+                addFloatingText(player.x, player.y - 128, "🎯 搶回進度 " + player.c4StealCrits + "/" + C4B.stealCrits, "#bbf7d0", 13);
+            }
+        }
+    }
+
+    // ---------- 可以打的物件（閘門、浮游之眼）與巨像的部位 ----------
+    function addC4Obj(kind, x, y, hp, r) {
+        game.c4Objs.push({ kind: kind, x: x, y: y, hp: hp, maxHp: hp, r: r || 20, hitFlash: 0 });
+    }
+
+    // 玩家箭命中（20-combat-physics 呼叫）：回傳 true＝打中了
+    function hitChapter4Object(a) {
+        if (a.owner !== "player" || !getC4BossType()) return false;
+        const d = Math.max(1, Math.round(a.damage || 10));
+        // 巨像的部位
+        if (enemy.c4Parts) {
+            for (const p of enemy.c4Parts) {
+                if (!p.alive) continue;
+                const px = enemy.x + p.dx, py = enemy.y + p.dy;
+                if (Math.hypot(a.x - px, a.y - py) > p.r) continue;
+                p.hp -= d;
+                p.hitFlash = 0.15;
+                sfx.hit();
+                spawnParticles(a.x, a.y, "#fca5a5", 8);
+                if (p.hp <= 0) breakColossusPart(p);
+                else addFloatingText(px, py - p.r - 8, p.name + " -" + d, "#fecaca", 12);
+                return true;
+            }
+        }
+        for (let i = 0; i < game.c4Objs.length; i++) {
+            const o = game.c4Objs[i];
+            if (Math.hypot(a.x - o.x, a.y - (o.y - o.r)) > o.r + 4) continue;
+            o.hp -= d;
+            o.hitFlash = 0.15;
+            sfx.hit();
+            if (o.hp <= 0) {
+                game.c4Objs.splice(i, 1);
+                spawnParticles(o.x, o.y - o.r, o.kind === "gate" ? "#7dd3fc" : "#c4b5fd", 22);
+                if (o.kind === "gate") {
+                    enemy.c4Water *= 0.5;
+                    enemy.c4GateT = C4B.gateRespawn;
+                    addFloatingText(o.x, o.y - 70, "💥 閘門破了！水位下降", "#bae6fd", 15);
+                } else {
+                    enemy.c4Closed = 0;
+                    game.c4Objs = game.c4Objs.filter((x) => x.kind !== "eye");
+                    breakBoss(2, "💥 浮游之眼破了！空靈睜眼・硬直 2 秒");
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    function breakColossusPart(p) {
+        p.alive = false;
+        p.hp = 0;
+        sfx.explosion();
+        triggerShake(12, 0.3);
+        const px = enemy.x + p.dx, py = enemy.y + p.dy;
+        spawnParticles(px, py, "#fca5a5", 30);
+        game.shockwaves.push({ x: px, y: py, r: 10, maxR: 90, color: "#f87171", alpha: 1 });
+        addFloatingText(px, py - 50, { left: "💥 打掉左手！不能再丟巨石", right: "💥 打掉右手！不能再掃雷射", head: "💥 打掉頭！不能再連射" }[p.id], "#fde047", 17);
+        breakBoss(1.5, null);
+        if (enemy.c4Parts.every((x) => !x.alive)) {
+            enemy.c4CoreExposed = true;
+            enemy.bossEnraged = true;
+            addFloatingText(LOGICAL_W * 0.5, 140, "⚡ 核心露出來了！承傷 +30%", "#fde047", 20);
+        }
+    }
+
+    function initColossus() {
+        const plat = platforms.right;
+        enemy.x = plat.x + plat.w * 0.62;
+        enemy.c4FixedX = enemy.x;
+        enemy.speed = 0;
+        enemy.c4Parts = [
+            { id: "head", name: "頭", dx: 0, dy: -158, r: 26, hp: Math.round(enemy.maxHp * C4B.headRatio), alive: true, hitFlash: 0 },
+            { id: "left", name: "左手", dx: -78, dy: -96, r: 28, hp: Math.round(enemy.maxHp * C4B.armRatio), alive: true, hitFlash: 0 },
+            { id: "right", name: "右手", dx: 62, dy: -104, r: 28, hp: Math.round(enemy.maxHp * C4B.armRatio), alive: true, hitFlash: 0 }
+        ];
+        enemy.c4Parts.forEach((p) => { p.maxHp = p.hp; });
+    }
+
+    function colossusPart(id) {
+        return enemy.c4Parts && enemy.c4Parts.find((p) => p.id === id && p.alive);
+    }
+
+    // =========================================================================
+    // 每幀（19-enemy-ai 的 Boss 區塊呼叫）
+    // =========================================================================
+    function updateChapter4Bosses(dt) {
+        const type = getC4BossType();
+        if (!type) return;
+        updateZeusStrikes(dt);
+        if (game.state !== "PLAYING") return;
+        updateC2Zones(dt);
+        if (game.state !== "PLAYING") return;
+        if (game.c4MsgT > 0) game.c4MsgT -= dt;
+        game.c4Objs.forEach((o) => { o.hitFlash = Math.max(0, o.hitFlash - dt); });
+
+        if (!enemy.c4Init) {
+            enemy.c4Init = true;
+            if (type === "tide_beast") spawnGates();
+            if (type === "chaos_colossus") initColossus();
+        }
+        if (!enemy.c4Phase2 && type !== "chaos_colossus" && enemy.hp <= enemy.maxHp * 0.5) {
+            enemy.c4Phase2 = true;
+            sfx.timeSlow();
+            triggerShake(12, 0.35);
+            game.shockwaves.push({ x: enemy.x, y: enemy.y - 46, r: 14, maxR: 160, color: enemy.archetype.primaryColor, alpha: 1 });
+            const msg = {
+                thief_juggler: "🤹 第二階段：一次偷 2 格技能！",
+                tide_beast: "🌊 第二階段：水漲得更快了！",
+                arrow_judge: "🏹 第二階段：沒收更多箭！",
+                rift_shaper: "🌀 第二階段：大地漂移更快、裂縫更多！",
+                eye_wraith: "👁️ 第二階段：閉眼更頻繁，凝視還會讓你上下左右顛倒！"
+            }[type];
+            addFloatingText(LOGICAL_W * 0.5, 140, msg, enemy.archetype.primaryColor, 18);
+        }
+
+        // 上下左右顛倒的倒數（奇竊術士、千眼空靈第二階段）
+        if (player.c4InvertT > 0) {
+            player.c4InvertT = Math.max(0, player.c4InvertT - dt);
+            if (player.c4InvertT === 0) addFloatingText(player.x, player.y - 110, "🔄 上下左右恢復正常", "#bbf7d0", 13);
+        }
+
+        if (type === "thief_juggler") updateThief(dt);
+        else if (type === "tide_beast") updateTide(dt);
+        else if (type === "arrow_judge") updateArrowJudge(dt);
+        else if (type === "rift_shaper") updateRift(dt);
+        else if (type === "eye_wraith") updateEyeWraith(dt);
+        else if (type === "chaos_colossus") updateColossus(dt);
+    }
+
+    function updateThief(dt) {
+        if (player.c4ScrambleT > 0) {
+            player.c4ScrambleT = Math.max(0, player.c4ScrambleT - dt);
+            if (player.c4ScrambleT === 0) { player.c4SkillMap = null; addFloatingText(player.x, player.y - 116, "🔀 技能順序恢復正常", "#bbf7d0", 13); }
+        }
+        if (!player.c4Stolen.length) return;
+        player.c4Stolen.forEach((s) => { s.t -= dt; });
+        if (player.c4Stolen.every((s) => s.t <= 0)) { returnStolenSkills("✨ 被偷的技能回來了"); return; }
+        enemy.c4StealCast -= dt;
+        if (enemy.c4StealCast <= 0 && !(enemy.breakStun > 0)) {
+            enemy.c4StealCast = C4B.stealCastEvery;
+            const s = player.c4Stolen[Math.floor(Math.random() * player.c4Stolen.length)];
+            const sk = SKILL_CATALOG[s.id];
+            if (sk && !sk.playerOnly) enemyCastPickedSkill(s.id);
+            else c3Volley(3, {}, 1.1);
+            addFloatingText(enemy.x, enemy.y - 130, "🤹 用你的「" + (sk ? sk.icon + sk.name : "技能") + "」打你！", "#fcd34d", 14);
+        }
+    }
+
+    function spawnGates() {
+        const plat = platforms.right;
+        game.c4Objs = game.c4Objs.filter((o) => o.kind !== "gate");
+        [plat.x + 40, plat.x + plat.w - 40].forEach((x) => addC4Obj("gate", x, PLATFORM_Y, Math.round(enemy.maxHp * C4B.gateHpRatio), 22));
+        enemy.c4GateT = 0;
+    }
+
+    function updateTide(dt) {
+        enemy.c4Water = Math.min(1, enemy.c4Water + (enemy.c4Phase2 ? C4B.waterRiseP2 : C4B.waterRise) * dt);
+        // 閘門被打破之後會重建
+        if (enemy.c4GateT > 0) {
+            enemy.c4GateT -= dt;
+            if (enemy.c4GateT <= 0 && !game.c4Objs.some((o) => o.kind === "gate")) { spawnGates(); addFloatingText(enemy.x, enemy.y - 130, "🌊 閘門重建了", "#7dd3fc", 13); }
+            else if (enemy.c4GateT <= 0 && game.c4Objs.filter((o) => o.kind === "gate").length < 2) spawnGates();
+        }
+        // 站在水裡（下層）：持續扣血、變慢；跳到高台就安全
+        const inWater = enemy.c4Water > C4B.waterSafeLevel && player.y >= PLATFORM_Y - 6;
+        if (!inWater) { enemy.c4WaterTick = 0; return; }
+        player.frostTimer = Math.max(player.frostTimer || 0, 0.3);
+        enemy.c4WaterTick = (enemy.c4WaterTick || 0) - dt;
+        if (enemy.c4WaterTick > 0) return;
+        enemy.c4WaterTick = 0.5;
+        if (player.invulnTimer > 0) return;
+        const d = applyDamageToCharacter(player, Math.round(player.maxHp * C4B.waterDps * enemy.c4Water * 0.5), "zone");
+        if (d > 0) addFloatingText(player.x, player.y - 96, "🌊 -" + d, "#7dd3fc", 12);
+        if (player.hp <= 0) handleGameOver();
+    }
+
+    // 撿箭提示：開場說明一次；箭剩 3 支以下、地上有箭時定期提醒（模擬顯示「不知道要撿箭」會在這裡卡很久）
+    function updateArrowJudgeHints(dt) {
+        if (!enemy.c4JudgeIntro) {
+            enemy.c4JudgeIntro = true;
+            enemy.c4AmmoHintT = 6;
+            addFloatingText(LOGICAL_W * 0.5, 150, "⚖️ 箭術審判官：你只有 " + C4B.ammoMax + " 支箭！", "#fda4af", 22);
+            addFloatingText(LOGICAL_W * 0.5, 180, "射出去的箭會插在你的平台上，走過去就能撿回來", "#fecdd3", 16);
+            return;
+        }
+        enemy.c4AmmoHintT = (enemy.c4AmmoHintT || 0) - dt;
+        if (enemy.c4AmmoHintT > 0 || !game.c4Pickups.length) return;
+        if (player.c4Ammo <= 0) {
+            enemy.c4AmmoHintT = 3;
+            addFloatingText(LOGICAL_W * 0.5, 160, "🏹 沒箭了！快走到地上發光的箭那裡撿起來 ⬇️", "#fb7185", 20);
+        } else if (player.c4Ammo <= 3) {
+            enemy.c4AmmoHintT = 6;
+            addFloatingText(player.x, player.y - 130, "🏹 箭剩 " + player.c4Ammo + " 支：走過去撿地上的箭", "#fda4af", 15);
+        }
+    }
+
+    function updateArrowJudge(dt) {
+        updateArrowJudgeHints(dt);
+        // 回到平台上的箭
+        for (let i = game.c4Returning.length - 1; i >= 0; i--) {
+            game.c4Returning[i].t -= dt;
+            if (game.c4Returning[i].t > 0) continue;
+            game.c4Returning.splice(i, 1);
+            addPickup(randomLeftX());
+        }
+        // 撿箭：走到箭旁邊（在地面上）
+        if (player.y >= PLATFORM_Y - 10) {
+            for (let i = game.c4Pickups.length - 1; i >= 0; i--) {
+                if (Math.abs(game.c4Pickups[i].x - player.x) > C4B.pickupR) continue;
+                game.c4Pickups.splice(i, 1);
+                player.c4Ammo = Math.min(C4B.ammoMax, player.c4Ammo + 1);
+                addFloatingText(player.x, player.y - 100, "🏹 +1（" + player.c4Ammo + "/" + C4B.ammoMax + "）", "#fda4af", 12);
+            }
+        }
+        // 保險：箭飛出畫面等情況弄丟的箭，補回平台上（總數一直是 10 支）
+        enemy.c4AmmoCheck -= dt;
+        if (enemy.c4AmmoCheck <= 0) {
+            enemy.c4AmmoCheck = 2;
+            const flying = game.arrows.filter((a) => a.c4Ammo).length;
+            const total = player.c4Ammo + game.c4Pickups.length + game.c4Returning.length + flying;
+            for (let k = total; k < C4B.ammoMax; k++) game.c4Returning.push({ t: 1 });
+        }
+    }
+
+    function updateRift(dt) {
+        enemy.c4DriftT -= dt;
+        if (enemy.c4DriftT <= 0) {
+            enemy.c4DriftT = C4B.driftFlip;
+            enemy.c4DriftDir = -enemy.c4DriftDir;
+            addFloatingText(LOGICAL_W * 0.25, 210, enemy.c4DriftDir > 0 ? "🌀 大地往右漂 ➡️" : "⬅️ 大地往左漂 🌀", "#d6d3d1", 14);
+        }
+        if (enemy.c4DriftBoost > 0) enemy.c4DriftBoost -= dt;
+        // 只帶走站在下層地面的你（高台不會漂）
+        if (player.y >= PLATFORM_Y - 6 && player.isGrounded) {
+            const plat = platforms.left;
+            const spd = (enemy.c4Phase2 ? C4B.driftSpeedP2 : C4B.driftSpeed) * (enemy.c4DriftBoost > 0 ? 1.8 : 1);
+            player.x = Math.max(plat.x + 12, Math.min(plat.x + plat.w - 12, player.x + enemy.c4DriftDir * spd * dt));
+        }
+    }
+
+    function updateEyeWraith(dt) {
+        if (enemy.c4Closed > 0) {
+            enemy.c4Closed = Math.max(0, enemy.c4Closed - dt);
+            if (enemy.c4Closed === 0) { game.c4Objs = game.c4Objs.filter((o) => o.kind !== "eye"); addFloatingText(enemy.x, enemy.y - 130, "👁️ 空靈睜眼了", "#c4b5fd", 13); }
+        }
+        if (enemy.c4Gaze > 0) {
+            enemy.c4Gaze = Math.max(0, enemy.c4Gaze - dt);
+            if (enemy.c4Gaze === 0) {
+                if (player.isGrounded && player.invulnTimer <= 0) {
+                    player.bindTimer = Math.max(player.bindTimer || 0, C4B.gazeBind);
+                    c3HitPlayer(player.maxHp * C4B.gazeDmg, "gaze", "👁️ 被凝視定身");
+                } else {
+                    addFloatingText(player.x, player.y - 110, "💨 躲過凝視！", "#bbf7d0", 14);
+                }
+            }
+        }
+    }
+
+    function updateColossus(dt) {
+        // 巨像不會移動、不會跳
+        enemy.vx = 0;
+        enemy.jumpCooldown = 99;
+        if (enemy.c4FixedX) enemy.x = enemy.c4FixedX;
+        if (enemy.y < PLATFORM_Y) { enemy.y = PLATFORM_Y; enemy.vy = 0; enemy.isGrounded = true; }
+        if (enemy.c4Parts) enemy.c4Parts.forEach((p) => { p.hitFlash = Math.max(0, (p.hitFlash || 0) - dt); });
+    }
+
+    // =========================================================================
+    // 招式輪替
+    // =========================================================================
+    function executeChapter4BossSkill() {
+        const rot = enemy.archetype.fixedRotation || [];
+        const action = rot[enemy.bossCycleIndex % rot.length];
+        enemy.bossCycleIndex = (enemy.bossCycleIndex + 1) % rot.length;
+        const type = getC4BossType();
+        const say = (txt) => addFloatingText(enemy.x, enemy.y - 118, txt, enemy.archetype.primaryColor, 16);
+        const p2 = enemy.c4Phase2;
+        const plat = platforms.left;
+        const gid = (s) => s + "_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+
+        if (type === "thief_juggler") {
+            if (action === "steal_skill") {
+                if (!player.c4Stolen.length) { stealSkills(p2 ? 2 : 1); sfx.mirrorSwap(); say("🤹 ① 妙手空空！偷走你的技能（爆頭 3 次搶回來）"); }
+                else { c3Volley(3, {}, 1.1); say("🤹 ① 嘿嘿，還沒還你"); }
+            } else if (action === "scramble_skills") {
+                scrambleSkills(p2 ? C4B.scrambleSecP2 : C4B.scrambleSec);
+                sfx.mirrorSwap();
+                say("🔀 ② 洗牌！你的技能順序被打亂了");
+                addFloatingText(player.x, player.y - 130, "🔀 技能鍵被打亂 " + player.c4ScrambleT + " 秒（按下去放的不一定是那一格）", "#fcd34d", 14);
+            } else if (action === "juggle_knives") {
+                c3Volley(p2 ? 6 : 5, { gravityScale: 0.7 }, 1.0, true);
+                say("🔪 ③ 飛刀拋接！");
+            } else {
+                player.c4InvertT = p2 ? C4B.invertSecP2 : C4B.invertSec;
+                const rp = platforms.right;
+                spawnParticles(enemy.x, enemy.y - 46, "#fcd34d", 16);
+                enemy.x = rp.x + 50 + Math.random() * (rp.w - 100);
+                enemy.moveTargetX = enemy.x;
+                spawnParticles(enemy.x, enemy.y - 46, "#fcd34d", 16);
+                c3Volley(2, {}, 1.15);
+                sfx.timeSlow();
+                say("🔄 ④ 顛倒戲法！上下左右全部反過來");
+                addFloatingText(player.x, player.y - 130, "🔄 左右顛倒、跳↔往下穿互換 " + player.c4InvertT + " 秒", "#fcd34d", 14);
+            }
+        } else if (type === "tide_beast") {
+            if (action === "raise_tide") {
+                enemy.c4Water = Math.min(1, enemy.c4Water + C4B.raiseTide);
+                sfx.channelStart();
+                say("🌊 ① 漲潮！快上高台");
+            } else if (action === "tidal_wave") {
+                const n = p2 ? 7 : 6;
+                for (let i = 0; i < n; i++) spawnZeusStrike(plat.x + plat.w - 30 - (plat.w - 60) * (i / (n - 1)), { r: 36, delay: 0.7 + i * 0.2, dmgMult: 1.1, groupId: gid("wave") + i });
+                say("🌊 ② 浪潮！跳上高台或看準時機跳過");
+            } else {
+                c3Volley(p2 ? 5 : 4, { frost: true, gravityScale: 0.5 }, 0.8);
+                say("🫧 ③ 泡泡彈！");
+            }
+        } else if (type === "arrow_judge") {
+            if (action === "verdict_volley") {
+                c3Volley(p2 ? 5 : 4, {}, 1.1);
+                say("🏹 ① 判決連射！");
+            } else if (action === "confiscate") {
+                const n = Math.min(game.c4Pickups.length, p2 ? 3 : 2);
+                for (let k = 0; k < n; k++) {
+                    const p = game.c4Pickups.splice(Math.floor(Math.random() * game.c4Pickups.length), 1)[0];
+                    spawnParticles(p.x, PLATFORM_Y - 10, "#fda4af", 8);
+                    game.c4Returning.push({ t: C4B.confiscateDelay });
+                }
+                say(n ? "⚖️ ② 沒收！地上的箭被收走 " + n + " 支（之後會還你）" : "⚖️ ② 沒收…地上沒有箭");
+            } else {
+                const targets = game.c4Pickups.slice(0, 3).map((p) => p.x);
+                if (!targets.length) targets.push(player.x);
+                targets.forEach((x, i) => spawnZeusStrike(clampToPlayerPlatform(x, 26), { r: 42, delay: 0.9 + i * 0.2, dmgMult: 1.2, groupId: gid("verdict") + i }));
+                say("⚡ ③ 審判落雷！專打插著箭的地方");
+            }
+        } else if (type === "rift_shaper") {
+            if (action === "quake_split") {
+                const n = p2 ? 2 : 1;
+                for (let k = 0; k < n; k++) {
+                    const x = clampToPlayerPlatform(k === 0 ? player.x : randomLeftX(), 50);
+                    spawnZeusStrike(x, { r: 46, delay: 1.0, dmgMult: 0.8, groupId: gid("split") + k });
+                    scheduleAwaken(1.0, () => { if (game.state === "PLAYING") addC2Zone("abyss", x - 46, x + 46, C4B.gapSec); return false; });
+                }
+                say("🪨 ① 地裂！別站在裂縫上");
+            } else if (action === "shift_drift") {
+                enemy.c4DriftDir = -enemy.c4DriftDir;
+                enemy.c4DriftT = C4B.driftFlip;
+                enemy.c4DriftBoost = 3;
+                say("🌀 ② 大地翻轉！漂移方向改變、變快");
+            } else {
+                for (let i = 0; i < 4; i++) spawnZeusStrike(clampToPlayerPlatform(player.x + (Math.random() - 0.5) * 300, 26), { r: 40, delay: 0.8 + i * 0.2, dmgMult: 1.1, groupId: gid("rock") + i });
+                say("🪨 ③ 落石！");
+            }
+        } else if (type === "eye_wraith") {
+            if (action === "eye_beam") {
+                for (let i = 0; i < 3; i++) spawnZeusStrike(clampToPlayerPlatform(player.x + (i - 1) * 100, 26), { r: 40, delay: 0.8 + i * 0.15, dmgMult: 1.1, groupId: gid("eyebeam") + i });
+                c3Volley(2, {}, 1.1);
+                say("👁️ ① 眼光！");
+            } else if (action === "gaze_lock") {
+                enemy.c4Gaze = C4B.gazeWarn;
+                sfx.channelStart();
+                if (p2) {
+                    // 第二階段：凝視錯亂——同時上下左右顛倒（要按「下」才會跳起來躲）
+                    player.c4InvertT = Math.max(player.c4InvertT || 0, C4B.invertSec);
+                    say("👁️ ② 凝視錯亂！上下左右顛倒：按「下」才會跳起來躲");
+                } else {
+                    say("👁️ ② 凝視！1 秒後在地上的人會被定身（跳起來躲）");
+                }
+            } else {
+                enemy.c4Closed = C4B.closedSec * (p2 ? 1.3 : 1);
+                game.c4Objs = game.c4Objs.filter((o) => o.kind !== "eye");
+                [-70, 70].forEach((dx) => addC4Obj("eye", Math.max(platforms.right.x + 20, Math.min(platforms.right.x + platforms.right.w - 20, enemy.x + dx)), PLATFORM_Y - 110, Math.round(enemy.maxHp * C4B.eyeHpRatio), 16));
+                say("😑 ③ 閉眼！連頭都打不痛：先打破浮游之眼");
+            }
+        } else if (type === "chaos_colossus") {
+            if (action === "boulder_throw") {
+                if (colossusPart("left")) {
+                    for (let i = 0; i < 3; i++) spawnZeusStrike(clampToPlayerPlatform(player.x + (i - 1) * 110, 30), { r: 48, delay: 1.0 + i * 0.25, dmgMult: 1.3, groupId: gid("boulder") + i });
+                    say("🪨 ① 左手：巨石投擲！");
+                } else { c3Volley(2, {}, 1.0); say("…左手沒了，只能隨便丟"); }
+            } else if (action === "laser_sweep") {
+                if (colossusPart("right")) {
+                    const n = 8;
+                    const fromLeft = Math.random() < 0.5;
+                    for (let i = 0; i < n; i++) {
+                        const k = fromLeft ? i : n - 1 - i;
+                        spawnZeusStrike(plat.x + 25 + (plat.w - 50) * (k / (n - 1)), { r: 32, delay: 1.1 + i * 0.09, dmgMult: 1.2, groupId: gid("laser") + i });
+                    }
+                    sfx.channelStart();
+                    say("🔴 ② 右手：雷射掃射！跳上高台");
+                } else { c3Volley(2, {}, 1.0); say("…右手沒了，雷射發不出來"); }
+            } else {
+                if (colossusPart("head")) { c3Volley(5, { flame: true }, 1.05); say("🔥 ③ 頭：火焰連射！"); }
+                else { c3Volley(2, {}, 1.0); say("…頭沒了，打不準"); }
+            }
+        }
+    }
+
+    // =========================================================================
+    // 傷害 hook
+    // =========================================================================
+    function applyChapter4DamageToEnemy(dmg, reasonLabel) {
+        const type = getC4BossType();
+        if (!type) return dmg;
+        if (type === "eye_wraith" && reasonLabel !== "arrow") return enemy.c4Closed > 0 ? 0 : dmg * C4B.otherMult;
+        if (type === "chaos_colossus") {
+            if (!enemy.c4CoreExposed) { c4Say("🛡️ 核心被保護著：先打頭和雙手", "#fecaca"); return 0; }
+            return dmg * C4B.coreVuln;
+        }
+        return dmg;
+    }
+
+    // 玩家箭命中本體的倍率（16c）：千眼空靈只吃爆頭
+    function getChapter4ArrowMult(a) {
+        if (a.owner !== "player" || getC4BossType() !== "eye_wraith") return 1;
+        if (enemy.c4Closed > 0) { c4Say("😑 閉眼中：先打浮游之眼", "#c4b5fd"); return 0; }
+        if (!game.c4LastArrowCrit) { c4Say("👁️ 只有爆頭有效！", "#c4b5fd"); return 0; }
+        return 1;
+    }
+
+    // =========================================================================
+    // 狀態列與畫面
+    // =========================================================================
+    function getChapter4BossHudTags() {
+        const type = getC4BossType();
+        if (!type) return [];
+        const tags = [];
+        const red = "background:rgba(220,38,38,0.4);";
+        if (enemy.c4Phase2) tags.push(`<span class="tag-pill" style="color:${enemy.archetype.primaryColor};">⚠️ 第二階段</span>`);
+        if (type === "tide_beast") {
+            tags.push(`<span class="tag-pill" style="color:#7dd3fc;${enemy.c4Water > 0.6 ? red : ""}">🌊 水位 ${Math.round(enemy.c4Water * 100)}%</span>`);
+            const g = game.c4Objs.filter((o) => o.kind === "gate").length;
+            tags.push(`<span class="tag-pill" style="color:#bae6fd;">🚪 閘門 ×${g}${g ? "（打破退水）" : "（重建中）"}</span>`);
+        }
+        if (type === "rift_shaper") tags.push(`<span class="tag-pill" style="color:#d6d3d1;">🌀 漂移 ${enemy.c4DriftDir > 0 ? "➡️" : "⬅️"} ${Math.max(0, enemy.c4DriftT).toFixed(0)}s 後換向</span>`);
+        if (type === "eye_wraith") tags.push(enemy.c4Closed > 0 ? `<span class="tag-pill" style="color:#c4b5fd;${red}">😑 閉眼 ${enemy.c4Closed.toFixed(1)}s：打浮游之眼</span>` : `<span class="tag-pill" style="color:#c4b5fd;">🎯 只有爆頭有效</span>`);
+        if (type === "chaos_colossus") {
+            if (enemy.c4CoreExposed) tags.push(`<span class="tag-pill" style="color:#fde047;${red}">⚡ 核心露出：承傷 +30%</span>`);
+            else if (enemy.c4Parts) tags.push(`<span class="tag-pill" style="color:#fca5a5;">🦾 ${enemy.c4Parts.map((p) => (p.alive ? "" : "✖") + p.name + (p.alive ? " " + Math.round(p.hp / p.maxHp * 100) + "%" : "")).join("｜")}</span>`);
+        }
+        return tags;
+    }
+
+    function getChapter4PlayerHudTags() {
+        const type = getC4BossType();
+        const tags = [];
+        if (type === "thief_juggler" && player.c4ScrambleT > 0) tags.push(`<span class="tag-pill" style="color:#fef3c7;background:rgba(180,83,9,0.55);">🔀 技能被打亂 ${player.c4ScrambleT.toFixed(1)}s</span>`);
+        if ((type === "thief_juggler" || type === "eye_wraith") && player.c4InvertT > 0) tags.push(`<span class="tag-pill" style="color:#fef3c7;background:rgba(190,24,93,0.55);">🔄 上下左右顛倒 ${player.c4InvertT.toFixed(1)}s</span>`);
+        if (type === "thief_juggler" && player.c4Stolen.length) {
+            const left = Math.max(...player.c4Stolen.map((s) => s.t));
+            tags.push(`<span class="tag-pill" style="color:#fef3c7;background:rgba(180,83,9,0.55);">🤹 被偷：${player.c4Stolen.map((s) => (SKILL_CATALOG[s.id] || {}).icon || "?").join("")} ${left.toFixed(1)}s｜爆頭 ${player.c4StealCrits}/${C4B.stealCrits} 搶回</span>`);
+        }
+        if (type === "arrow_judge") tags.push(`<span class="tag-pill" style="color:#fecdd3;${player.c4Ammo <= 2 ? "background:rgba(190,18,60,0.5);" : ""}">🏹 箭 ${player.c4Ammo}/${C4B.ammoMax}（地上 ${game.c4Pickups.length}）</span>`);
+        if (type === "eye_wraith" && enemy.c4Gaze > 0) tags.push(`<span class="tag-pill" style="color:#ede9fe;background:rgba(91,33,182,0.6);">👁️ 凝視 ${enemy.c4Gaze.toFixed(1)}s：跳起來！</span>`);
+        return tags;
+    }
+
+    function renderChapter4Overlay() {
+        const type = getC4BossType();
+        if (!type) return;
+        const t = performance.now() / 1000;
+        const plat = platforms.left;
+        ctx.save();
+        // 水位
+        if (type === "tide_beast" && enemy.c4Water > 0.01) {
+            const h = 8 + enemy.c4Water * 40;
+            ctx.globalAlpha = 0.38;
+            ctx.fillStyle = "#0ea5e9";
+            ctx.fillRect(plat.x, PLATFORM_Y - h + Math.sin(t * 3) * 2, plat.w, h + 24);
+            ctx.globalAlpha = 0.7;
+            ctx.strokeStyle = "#bae6fd";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let x = 0; x <= plat.w; x += 12) ctx.lineTo(plat.x + x, PLATFORM_Y - h + Math.sin(t * 4 + x * 0.08) * 3);
+            ctx.stroke();
+        }
+        // 漂移方向
+        if (type === "rift_shaper") {
+            ctx.globalAlpha = 0.4;
+            ctx.fillStyle = "#d6d3d1";
+            ctx.font = "16px sans-serif";
+            ctx.textAlign = "center";
+            const off = (t * 40 * enemy.c4DriftDir) % 60;
+            for (let x = 30; x < plat.w; x += 60) ctx.fillText(enemy.c4DriftDir > 0 ? "›" : "‹", plat.x + ((x + off + plat.w) % plat.w), PLATFORM_Y + 14);
+        }
+        // 插在地上的箭（箭不多時：發光圈＋上下跳動的「⬇ 撿」提示）
+        const lowAmmo = type === "arrow_judge" && player.c4Ammo <= 3;
+        (game.c4Pickups || []).forEach((p) => {
+            if (lowAmmo) {
+                const pulse = 0.5 + 0.5 * Math.sin(t * 6);
+                ctx.globalAlpha = 0.25 + 0.35 * pulse;
+                ctx.fillStyle = "#fb7185";
+                ctx.beginPath();
+                ctx.ellipse(p.x + 3, PLATFORM_Y - 2, 16 + 6 * pulse, 6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = "#fecdd3";
+                ctx.font = "bold 13px sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(trText("⬇ 撿"), p.x + 4, PLATFORM_Y - 38 - 5 * pulse);
+            }
+            ctx.globalAlpha = 0.95;
+            ctx.strokeStyle = "#fda4af";
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, PLATFORM_Y - 2);
+            ctx.lineTo(p.x + 6, PLATFORM_Y - 26);
+            ctx.stroke();
+            ctx.fillStyle = "#fecdd3";
+            ctx.beginPath();
+            ctx.arc(p.x + 6, PLATFORM_Y - 27, 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        // 閘門、浮游之眼
+        (game.c4Objs || []).forEach((o) => {
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = o.hitFlash > 0 ? "#ffffff" : o.kind === "gate" ? "#0369a1" : "#7c3aed";
+            if (o.kind === "gate") ctx.fillRect(o.x - o.r, o.y - o.r * 3, o.r * 2, o.r * 3);
+            else { ctx.beginPath(); ctx.arc(o.x, o.y - o.r, o.r, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = "#fde047"; ctx.beginPath(); ctx.arc(o.x, o.y - o.r, o.r * 0.4, 0, Math.PI * 2); ctx.fill(); }
+            ctx.fillStyle = "rgba(0,0,0,0.55)";
+            ctx.fillRect(o.x - 18, o.y - (o.kind === "gate" ? o.r * 3 : o.r * 2) - 10, 36, 4);
+            ctx.fillStyle = "#f87171";
+            ctx.fillRect(o.x - 18, o.y - (o.kind === "gate" ? o.r * 3 : o.r * 2) - 10, 36 * Math.max(0, o.hp / o.maxHp), 4);
+        });
+        // 千眼空靈：閉眼／凝視
+        if (type === "eye_wraith" && enemy.hp > 0) {
+            if (enemy.c4Gaze > 0) {
+                ctx.globalAlpha = 0.25 + 0.2 * Math.sin(t * 12);
+                ctx.fillStyle = "#7c3aed";
+                ctx.fillRect(plat.x, PLATFORM_Y - 12, plat.w, 12);
+            }
+            ctx.globalAlpha = 0.9;
+            ctx.font = "18px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(enemy.c4Closed > 0 ? "😑" : "👁️", enemy.x, enemy.y - 100);
+        }
+        // 混沌巨像：大身體＋部位血條
+        if (type === "chaos_colossus" && enemy.c4Parts && enemy.hp > 0) renderColossus(t);
+        ctx.restore();
+    }
+
+    function renderColossus(t) {
+        const x = enemy.x, y = enemy.y;
+        ctx.globalAlpha = 1;
+        // 身體與腿
+        ctx.fillStyle = "#3f1d1d";
+        ctx.strokeStyle = "#fca5a5";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(x - 34, y - 132); ctx.lineTo(x + 34, y - 132); ctx.lineTo(x + 26, y - 40); ctx.lineTo(x - 26, y - 40); ctx.closePath();
+        ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x - 16, y - 40); ctx.lineTo(x - 22, y); ctx.moveTo(x + 16, y - 40); ctx.lineTo(x + 22, y); ctx.stroke();
+        // 核心
+        ctx.fillStyle = enemy.c4CoreExposed ? "#fde047" : "#7f1d1d";
+        ctx.globalAlpha = enemy.c4CoreExposed ? 0.8 + 0.2 * Math.sin(t * 8) : 0.9;
+        ctx.beginPath(); ctx.arc(x, y - 88, 14, 0, Math.PI * 2); ctx.fill();
+        if (!enemy.c4CoreExposed) { ctx.globalAlpha = 0.5; ctx.strokeStyle = "#94a3b8"; ctx.beginPath(); ctx.arc(x, y - 88, 20, 0, Math.PI * 2); ctx.stroke(); }
+        // 部位
+        enemy.c4Parts.forEach((p) => {
+            const px = x + p.dx, py = y + p.dy;
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = "#fca5a5";
+            ctx.lineWidth = 6;
+            if (p.id !== "head") { ctx.beginPath(); ctx.moveTo(x + (p.dx < 0 ? -30 : 30), y - 122); ctx.lineTo(px, py); ctx.stroke(); }
+            ctx.fillStyle = !p.alive ? "#374151" : p.hitFlash > 0 ? "#ffffff" : "#b91c1c";
+            ctx.beginPath(); ctx.arc(px, py, p.r, 0, Math.PI * 2); ctx.fill();
+            ctx.lineWidth = 2; ctx.strokeStyle = p.alive ? "#fecaca" : "#6b7280"; ctx.stroke();
+            if (p.id === "head" && p.alive) { ctx.fillStyle = "#fde047"; ctx.fillRect(px - 12, py - 4, 8, 5); ctx.fillRect(px + 4, py - 4, 8, 5); }
+            if (!p.alive) { ctx.strokeStyle = "#9ca3af"; ctx.beginPath(); ctx.moveTo(px - p.r * 0.6, py - p.r * 0.6); ctx.lineTo(px + p.r * 0.6, py + p.r * 0.6); ctx.stroke(); }
+            if (p.alive) {
+                ctx.fillStyle = "rgba(0,0,0,0.6)"; ctx.fillRect(px - 22, py - p.r - 10, 44, 5);
+                ctx.fillStyle = "#f87171"; ctx.fillRect(px - 22, py - p.r - 10, 44 * Math.max(0, p.hp / p.maxHp), 5);
+            }
+        });
+    }
+
+    // 第四章背景：混沌的暗紅天空＋飄動的裂痕（renderBackground 呼叫）
+    function renderChapter4Sky() {
+        ctx.save();
+        const t = performance.now() / 1000;
+        ctx.strokeStyle = "rgba(248, 113, 113, 0.18)";
+        ctx.lineWidth = 2;
+        for (let k = 0; k < 6; k++) {
+            const x = (k * 157 + t * 12) % LOGICAL_W;
+            ctx.beginPath();
+            ctx.moveTo(x, 30 + k * 18);
+            ctx.lineTo(x + 18, 70 + k * 18);
+            ctx.lineTo(x + 6, 100 + k * 18);
+            ctx.lineTo(x + 26, 150 + k * 18);
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
+
+    // =========================================================================
+
+;
 // ==== js/20-combat-physics.js
  // 20. 物理、單向穿透高台、擋彈牆、引力黑洞、箭矢互撞與命中判定
     // =========================================================================
@@ -31351,6 +32986,9 @@
                 continue;
             }
 
+            // 影子：被敵人的箭打到就消散，但箭會繼續飛（影子不擋箭，跟助戰雕像、替身做區別；16l）
+            hitShadowByEnemyArrow(a);
+
             // 替身稻草人吸收彈道判定
             let hitDecoy = false;
             for (let dIdx = game.decoys.length - 1; dIdx >= 0; dIdx--) {
@@ -31475,7 +33113,7 @@
             }
 
             // 第三章：蛛卵、星核（可以打破的物件）
-            if (a.owner === "player" && (hitChapter3Object(a) || hitComboObject(a))) { // 19j：影子分身
+            if (a.owner === "player" && (hitChapter3Object(a) || hitComboObject(a) || hitChapter4Object(a))) { // 19j：影子分身、19k：閘門、浮游之眼、巨像的部位
                 if (!a.pierceGale) {
                     game.arrows.splice(i, 1);
                     continue;
@@ -31507,6 +33145,7 @@
 
             if (hitHead || hitBody) {
                 const isCrit = hitHead || Boolean(a.leapCritArrow) || Boolean(a.forceCrit);
+                if (target === enemy && a.owner === "player") game.c4LastArrowCrit = isCrit; // 千眼空靈：只有爆頭有效（19k）
 
                 // 反射之鏡：敵箭反彈回去（箭矢保留，改由玩家擁有）
                 if (target === player && tryReflectEnemyArrow(a)) {
@@ -31833,6 +33472,7 @@
 
     function addFloatingText(x, y, text, color, size = 15) {
         if (!shouldShowFloatingText(text, size)) return; // 設定：傷害數字、跳字（12j）
+        if (typeof text === "string") text = trText(text); // 🌐 英文模式（12o）
         const list = game.floatingTexts;
 
         for (const ft of list) {
@@ -32234,6 +33874,11 @@
             grad.addColorStop(0, isBoss ? "#2a1c06" : "#1d1608");
             grad.addColorStop(0.55, "#16120a");
             grad.addColorStop(1, "#07080d");
+        } else if (enemy.gravityModeTimer <= 0 && isChapter4Stage(game.stage)) {
+            // 第四章「混沌戰場」：暗紅色天空
+            grad.addColorStop(0, isBoss ? "#2b0a0a" : "#240d12");
+            grad.addColorStop(0.55, isBoss ? "#1f0b16" : "#1a0f1c");
+            grad.addColorStop(1, "#07040a");
         } else if (enemy.gravityModeTimer <= 0 && isChapter3Stage(game.stage)) {
             // 第三章「神域戰場」：深藍星空
             grad.addColorStop(0, isBoss ? "#0b0f2e" : "#0a1230");
@@ -32259,7 +33904,8 @@
         }
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, LOGICAL_W, LOGICAL_H);
-        if (isChapter3Stage(game.stage) && enemy.gravityModeTimer <= 0) renderChapter3Stars();
+        if (isChapter4Stage(game.stage) && enemy.gravityModeTimer <= 0) renderChapter4Sky();
+        else if (isChapter3Stage(game.stage) && enemy.gravityModeTimer <= 0) renderChapter3Stars();
         else if (isChapter2Stage(game.stage) && enemy.gravityModeTimer <= 0) renderChapter2Moon(isBoss ? "#2a0a1f" : "#1f0d2b");
 
         ctx.save();
@@ -34068,6 +35714,100 @@
     // =========================================================================
 
 ;
+// ==== js/22d-play-stats.js
+// 22d. 📊 匿名遊玩統計（給開發者看：玩家玩到哪裡、隔幾天還會不會回來）
+//   只送：隨機編號（這台裝置自己產生，跟帳號、名字、雲端存檔都無關）、最高關卡、射手等級、
+//   累計遊玩分鐘、過關數、遊戲版本。伺服器用自己的時間記「哪幾天來過」，不存 IP。
+//   設定裡可以關掉；用自己電腦（file://、localhost、區網）打開時不會送，避免開發測試灌進統計
+    // =========================================================================
+    const PLAY_STATS = {
+        idKey: "aog_anon_id",
+        offKey: "aog_stats_off",
+        minKey: "aog_play_min",
+        pingEveryMs: 3 * 60 * 1000,
+        firstPingMs: 8000
+    };
+
+    function isPlayStatsOn() {
+        try { return localStorage.getItem(PLAY_STATS.offKey) !== "1"; } catch (e) { return false; }
+    }
+
+    function setPlayStatsOn(on) {
+        try {
+            if (on) localStorage.removeItem(PLAY_STATS.offKey);
+            else localStorage.setItem(PLAY_STATS.offKey, "1");
+        } catch (e) { /* 無痕模式 */ }
+    }
+
+    // 隨機編號：24 個 16 進位字（不含任何個人資料）
+    function getAnonId() {
+        try {
+            let id = localStorage.getItem(PLAY_STATS.idKey) || "";
+            if (!/^[a-f0-9]{24}$/.test(id)) {
+                const a = new Uint8Array(12);
+                if (typeof crypto !== "undefined" && crypto.getRandomValues) crypto.getRandomValues(a);
+                else for (let i = 0; i < a.length; i++) a[i] = Math.floor(Math.random() * 256);
+                id = Array.from(a).map((b) => b.toString(16).padStart(2, "0")).join("");
+                localStorage.setItem(PLAY_STATS.idKey, id);
+            }
+            return id;
+        } catch (e) { return null; }
+    }
+
+    function getPlayMinutes() {
+        try { return Math.max(0, parseInt(localStorage.getItem(PLAY_STATS.minKey), 10) || 0); } catch (e) { return 0; }
+    }
+
+    function addPlayMinute() {
+        try { localStorage.setItem(PLAY_STATS.minKey, String(getPlayMinutes() + 1)); } catch (e) { /* 無痕模式 */ }
+    }
+
+    // 只有正式上線的網址（https、不是自己電腦）才送
+    function canSendPlayStats() {
+        if (!isPlayStatsOn() || typeof fetch !== "function" || typeof location === "undefined") return false;
+        if (typeof hasCloudServer === "function" && !hasCloudServer()) return false;
+        if (location.protocol !== "https:") return false;
+        if (/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname || "")) return false;
+        return true;
+    }
+
+    function buildPlayStatsPayload() {
+        return {
+            id: getAnonId(),
+            h: Math.max(game.highestStage || 1, 1),
+            lv: typeof getArcherLevel === "function" ? getArcherLevel() : 1,
+            m: getPlayMinutes(),
+            c: (getStats().stagesCleared || 0),
+            v: typeof GAME_VERSION !== "undefined" ? GAME_VERSION : ""
+        };
+    }
+
+    function sendPlayStats() {
+        if (!canSendPlayStats()) return false;
+        const p = buildPlayStatsPayload();
+        if (!p.id) return false;
+        try {
+            // text/plain：不會觸發 CORS 預檢；keepalive：關網頁時也送得出去
+            fetch(getCloudOrigin() + "/api/stats", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(p), keepalive: true }).catch(() => {});
+        } catch (e) { return false; }
+        return true;
+    }
+
+    function startPlayStats() {
+        if (typeof window === "undefined" || typeof setInterval !== "function") return;
+        const visible = () => typeof document === "undefined" || !document.visibilityState || document.visibilityState === "visible";
+        // Node 測試環境的計時器不要擋住程式結束（瀏覽器回傳數字，沒有 unref）
+        const soft = (t) => { if (t && typeof t.unref === "function") t.unref(); return t; };
+        // 遊玩分鐘：網頁在前景才算
+        soft(setInterval(() => { if (visible()) addPlayMinute(); }, 60000));
+        soft(setTimeout(sendPlayStats, PLAY_STATS.firstPingMs));
+        soft(setInterval(() => { if (visible()) sendPlayStats(); }, PLAY_STATS.pingEveryMs));
+        if (window.addEventListener) window.addEventListener("pagehide", () => sendPlayStats());
+    }
+
+    // =========================================================================
+
+;
 // ==== js/23-bootstrap.js
     // 23. 啟動初始化（先載入存檔再更新 HUD 與大廳）
     // =========================================================================
@@ -34082,9 +35822,11 @@
     hostStartupCheck(hadLocalSave); // 用區網主機開的：查主機網址；新網址沒有進度就提示從主機讀取
     cloudStartupCheck(hadLocalSave); // ☁️ 新裝置：提示可以從雲端讀取（10c）
     if (typeof window !== "undefined" && window.addEventListener) window.addEventListener("pagehide", () => cloudSyncFlush()); // 關掉網頁前補傳雲端存檔
+    startPlayStats(); // 📊 匿名遊玩統計（22d；設定裡可以關）
     setupStage(1);
     renderHubUI();
     updateHUD();
+    startI18n(); // 🌐 英文模式：畫面文字自動翻譯（12o）
     requestAnimationFrame(gameLoop);
 
     </script>
