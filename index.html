@@ -38,13 +38,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="弓箭對決">
+    <meta name="apple-mobile-web-app-title" content="一箭封神">
     <meta name="theme-color" content="#0f172a">
     <!-- 手機安裝：加到主畫面的圖示與設定（12k-app.js 註冊離線快取） -->
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <title>Archer of God 弓箭對決</title>
+    <title>One Arrow Legend 一箭封神</title>
     <style>
         :root {
             --bg-void: #07080d;
@@ -3522,6 +3522,47 @@
         .sig-spirit-desc { flex: 1; color: #cbd5e1; font-size: 0.66rem; min-width: 140px; }
         .sig-reroll { font: inherit; font-size: 0.66rem; font-weight: 900; padding: 3px 9px; border-radius: 999px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.12); color: #7dd3fc; cursor: pointer; }
         .sig-reroll:disabled { opacity: 0.4; cursor: not-allowed; }
+        /* 本命弓：簡潔版（大數字、下一步卡片、格子、⚙️ 更多收起來） */
+        .sig-mat { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 1rem; }
+        .sig-equipped { font-size: 0.66rem; font-weight: 900; color: #86efac; }
+        .sig-statbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .sig-statbar > div { display: flex; flex-direction: column; align-items: center; padding: 6px 4px; border-radius: 10px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(148, 163, 184, 0.25); }
+        .sig-statbar span { font-size: 0.68rem; color: #94a3b8; }
+        .sig-statbar b { font-size: 1.15rem; color: #f8fafc; }
+        .sig-next { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(253, 230, 138, 0.5); background: linear-gradient(135deg, rgba(253, 230, 138, 0.1), rgba(15, 23, 42, 0.6)); }
+        .sig-next-title { color: #94a3b8; font-size: 0.72rem; }
+        .sig-next-title b { color: #fde68a; font-size: 0.95rem; }
+        .sig-bar { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 8px; font-size: 0.78rem; color: #e2e8f0; }
+        .sig-bar-track { height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+        .sig-bar-track > div { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #f59e0b, #fde68a); }
+        .sig-bar.ok .sig-bar-track > div { background: linear-gradient(90deg, #22c55e, #86efac); }
+        .sig-bar-num { font-weight: 900; min-width: 70px; text-align: right; }
+        .sig-bar.ok .sig-bar-num { color: #86efac; }
+        .sig-next-hint { font-size: 0.68rem; color: #94a3b8; }
+        .sig-next .sig-up { padding: 12px; font-size: 1rem; }
+        .sig-sec { color: #e2e8f0; font-weight: 900; font-size: 0.8rem; margin-top: 2px; }
+        .sig-star-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+        .sig-star { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px; border-radius: 10px; font-size: 0.66rem; text-align: center; color: #94a3b8; background: rgba(15, 23, 42, 0.7); border: 1px dashed rgba(148, 163, 184, 0.4); }
+        .sig-star b { font-size: 1.2rem; line-height: 1; }
+        .sig-star.on { color: #fde68a; border: 1px solid rgba(253, 230, 138, 0.6); background: rgba(253, 230, 138, 0.12); }
+        .sig-abs { grid-template-columns: repeat(4, 1fr); }
+        .sig-ab { gap: 2px; font-size: 0.7rem; color: #cbd5e1; }
+        .sig-locked { background: rgba(15, 23, 42, 0.6); border-style: dashed; border-color: rgba(148, 163, 184, 0.35); }
+        .sig-locked b { color: #94a3b8; }
+        .sig-locked span { color: #64748b; }
+        .sig-more { border-radius: 10px; border: 1px solid rgba(148, 163, 184, 0.25); background: rgba(15, 23, 42, 0.45); }
+        .sig-more > summary { cursor: pointer; padding: 8px 12px; font-weight: 900; color: #cbd5e1; font-size: 0.8rem; list-style: none; }
+        .sig-more > summary::-webkit-details-marker { display: none; }
+        .sig-more > summary::after { content: " ▾"; color: #64748b; }
+        .sig-more[open] > summary::after { content: " ▴"; }
+        .sig-more[open] { display: flex; flex-direction: column; gap: 8px; padding-bottom: 10px; }
+        .sig-more[open] > :not(summary) { margin: 0 10px; }
+        .sig-colors { align-items: center; }
+        .sig-colors-label { font-size: 0.72rem; color: #cbd5e1; margin-right: 2px; }
+        @media (max-width: 640px) {
+            .sig-abs { grid-template-columns: 1fr 1fr; }
+            .sig-star { font-size: 0.58rem; }
+        }
 
         /* 連線對戰：網路／區網切換 */
         .pvp-mode-row {
@@ -4387,8 +4428,8 @@
     <!-- 1. 開始標題畫面 -->
     <div id="start-modal" class="modal-overlay">
         <div class="modal-card">
-            <div class="version-pill">STICKMAN ARCHERY DUEL // 火柴人弓箭對決</div>
-            <div class="hero-title">ARCHER OF GOD</div>
+            <div class="version-pill">一箭封神 // STICKMAN ARCHERY DUEL</div>
+            <div class="hero-title">ONE ARROW LEGEND</div>
             <div class="hero-subtitle">拉弓、爆頭、打倒敵人！</div>
             <div class="guide-panel start-simple">
                 <p>🏹 往後拖曳拉弓，放開就射箭</p>
@@ -14845,10 +14886,16 @@
         "🗓️ 本週任務": "🗓️ Weekly Quests", "🗓️ 週任務完成：": "🗓️ Weekly quest done: ", "🎉 本週任務全部完成！額外": "🎉 All weekly quests done! Bonus ", "🎉 本週的額外獎勵已領取": "🎉 This week's bonus claimed", "🎁 本週全部完成：": "🎁 Finish all this week: ",
         "精美背景": "Detailed backgrounds", "舊手機卡的話可以關掉": "Turn off if an older phone lags",
         "全新場景": "New scenery", "：四章各有自己的背景——黎明的弓手石像、月下古城堡、雲上的天空神殿、熔岩中的混沌王座（設定 → 精美背景可以關）": ": each chapter has its own backdrop — a dawn archer statue, a moonlit castle, a temple above the clouds and a chaos throne in lava (toggle in Settings → Detailed backgrounds)",
+        "一箭封神 // STICKMAN ARCHERY DUEL": "STICKMAN ARCHERY DUEL",
+        "🪶 用弓魂把本命弓越升越強！": "🪶 Use Bow Soul to make your Signature Bow stronger!", "⚔️ 攻擊": "⚔️ Attack", "⏱️ 冷卻": "⏱️ Cooldown", "💨 箭速": "💨 Arrow speed",
+        "下一步": "Next", "弓魂": "Bow Soul", "碎片": "Shards", "（解鎖新能力）": " (unlocks a new ability)", "⚒️ 淬鍊！": "⚒️ Refine!", "⬆️ 升階！": "⬆️ Tier up!",
+        "🧩 碎片：第一次打倒 Boss 就會拿到（主線、聖域、Boss 試煉）": "🧩 Shards: earned the first time you defeat a Boss (main stages, Sanctum, Boss Trials)", "🪶 弓魂：打 Boss、精英、開區域寶箱、聖域通關都會拿到": "🪶 Bow Soul: from Bosses, elites, region chests and Sanctum clears",
+        "⭐ 星星（每顆都會加能力，升階後保留）": "⭐ Stars (each one adds stats, kept after tiering up)", "✨ 特殊能力": "✨ Special abilities", "⚙️ 更多（弓靈、顏色、碎片）": "⚙️ More (spirit, color, shards)", "🎨 顏色": "🎨 Color",
+        "數值詞條": "Stat affix", "被動能力": "Passive ability", "第二個被動能力或強化": "2nd passive or empower", "神話特性": "Mythic trait",
         "按 ": "Press ", "：": ": "
     });
     Object.assign(I18N_EN_TPL, {
-        "點技能欄第 {0} 格": "Tap skill slot {0}", "（每週一換新・{0}/{1}）": " (new every Monday · {0}/{1})", "{0}/{1}・週 {2}/{3}": "{0}/{1} · week {2}/{3}", "⬆️ 升到 Lv.{0}！": "⬆️ Now Lv.{0}!", "🧩 升等進度 {0}/{1}": "🧩 Level progress {0}/{1}", "💍 點一下就能裝上或卸下（最多 {0} 個）。": "💍 Tap to equip or unequip (up to {0}).", "還有 {0} 個遺物沒拿到": "{0} relics not found yet",
+        "點技能欄第 {0} 格": "Tap skill slot {0}", "⚒️ 淬鍊第 {0} 顆星：{1}": "⚒️ Refine star {0}: {1}", "還差 {0} 🪶 弓魂": "{0} 🪶 Bow Soul to go", "還差 {0} 🧩 碎片": "{0} 🧩 shards to go", "每隻 Boss 第一次打倒才給，不能刷。升階要：稀有 {0}、史詩 {1}、傳說 {2}、神話 {3}": "Only from each Boss's first defeat — can't be farmed. Tier-up needs: Rare {0}, Epic {1}, Legendary {2}, Mythic {3}", "已收集 {0} / {1}": "Collected {0} / {1}", "（每週一換新・{0}/{1}）": " (new every Monday · {0}/{1})", "{0}/{1}・週 {2}/{3}": "{0}/{1} · week {2}/{3}", "⬆️ 升到 Lv.{0}！": "⬆️ Now Lv.{0}!", "🧩 升等進度 {0}/{1}": "🧩 Level progress {0}/{1}", "💍 點一下就能裝上或卸下（最多 {0} 個）。": "💍 Tap to equip or unequip (up to {0}).", "還有 {0} 個遺物沒拿到": "{0} relics not found yet",
         "🎓 新手教學完成！獲得 {0} 🪙、🎟️ 技能券 ×{1}，接下來按「⚔️ 出發！」開始第 {2} 章": "🎓 Tutorial complete! Got {0} 🪙 and 🎟️ skill ticket ×{1}. Press ⚔️ Go! to start Chapter {2}"
     });
 
@@ -16706,7 +16753,7 @@
         game.state = "SIGNATURE";
         hideAllModals();
         dom.signatureModal.classList.remove("hidden");
-        sigBanner(getSig() ? "用 🪶 弓魂淬鍊、升階。弓靈決定能力比較容易出現的方向，你常用的打法也會影響。" : "🔒 通過 1-1 新手草原就會得到本命弓");
+        sigBanner(getSig() ? "🪶 用弓魂把本命弓越升越強！" : "🔒 通過 1-1 新手草原就會得到本命弓");
         renderSignatureUI();
         if (getSig()) showFeatureGuide("signature");
     }
@@ -16734,6 +16781,7 @@
         return `<button type="button" class="sig-choice" data-ab="${id}"><b>${a.icon} ${a.name}</b><span>${a.desc}</span><em>${tag}</em></button>`;
     }
 
+    let sigMoreOpen = false;
     function renderSignatureUI() {
         const box = dom.signatureBody;
         if (!box) return;
@@ -16749,7 +16797,7 @@
         const shares = getSigStyleShares();
         const topStyle = Object.keys(shares).filter((k) => shares[k] > 0).sort((x, y) => shares[y] - shares[x]).slice(0, 3);
         // 四個欄位：詞條（稀有）、能力 ×2（史詩、傳說）、神話特性
-        const slot = (need, html, empty) => html || `<div class="sig-empty">🔒 ${empty}（升到${SIG_TIER_LABEL[SIG_TIERS[need]]}）</div>`;
+        const slot = (need, html, empty) => html || `<div class="sig-ab sig-locked"><b>🔒 ${SIG_TIER_LABEL[SIG_TIERS[need]]}解鎖</b><span>${empty}</span></div>`;
         const af = s.affix ? sigAffixDef(s.affix) : null;
         const ab = (i) => {
             const id = s.abilities[i];
@@ -16772,40 +16820,64 @@
             const label = next.kind === "refine"
                 ? `⚒️ 淬鍊 ★${s.refine + 1}（${next.cost} 🪶）：${next.star.text}`
                 : `⬆️ 升階到${SIG_TIER_LABEL[SIG_TIERS[s.tier + 1]]}（${next.cost} 🪶 ＋ ${next.shards} 🧩）`;
-            const lack = mat < next.cost ? "🪶 弓魂不足：" : shards < next.shards ? `🧩 碎片不足（${shards}/${next.shards}）：` : "";
-            action = `<button type="button" class="gold-btn sig-up"${lack ? " disabled" : ""}>${lack}${label}</button>`;
+            // 「下一步」卡片：進度條告訴玩家還差多少，按鈕直接寫能不能升
+            const needShards = next.shards || 0;
+            const bar = (icon, name, have, need) => {
+                const ok = have >= need;
+                return `<div class="sig-bar${ok ? " ok" : ""}"><span class="sig-bar-name">${icon} ${name}</span><div class="sig-bar-track"><div style="width:${Math.min(100, Math.round(have / need * 100))}%;"></div></div><span class="sig-bar-num">${ok ? "✅ " : ""}${have} / ${need}</span></div>`;
+            };
+            const goal = next.kind === "refine"
+                ? `⚒️ 淬鍊第 ${s.refine + 1} 顆星：${next.star.text}`
+                : `⬆️ 升階到${SIG_TIER_LABEL[SIG_TIERS[s.tier + 1]]}（解鎖新能力）`;
+            const lackSoul = Math.max(0, next.cost - mat);
+            const lackShard = Math.max(0, needShards - shards);
+            const btnText = lackSoul ? `還差 ${lackSoul} 🪶 弓魂` : lackShard ? `還差 ${lackShard} 🧩 碎片` : (next.kind === "refine" ? "⚒️ 淬鍊！" : "⬆️ 升階！");
+            const hint = lackShard ? `<div class="sig-next-hint">🧩 碎片：第一次打倒 Boss 就會拿到（主線、聖域、Boss 試煉）</div>` : lackSoul ? `<div class="sig-next-hint">🪶 弓魂：打 Boss、精英、開區域寶箱、聖域通關都會拿到</div>` : "";
+            action = `<div class="sig-next"><div class="sig-next-title">下一步　<b>${goal}</b></div>${bar("🪶", "弓魂", mat, next.cost)}${needShards ? bar("🧩", "碎片", shards, needShards) : ""}${hint}<button type="button" class="gold-btn sig-up"${lackSoul || lackShard ? " disabled" : ""} title="${label}">${btnText}</button></div>`;
         } else {
             action = `<div class="sig-empty" style="color:#f0abfc;">🌌 已經是神話本命弓，而且淬鍊滿了！</div>`;
         }
         const crystals = game.crystals || 0;
-        // 這一階的 5 顆星：點亮的、還沒點亮的各給什麼
+        // 這一階的 5 顆星：點亮的、還沒點亮的各給什麼（格子）
         const starRow = Array.from({ length: SIG_REFINE_MAX }, (_, i) => {
             const st = sigStarStat(s.tier, i, s.spirit);
-            return `<span class="sig-star${i < s.refine ? " on" : ""}">${i < s.refine ? "★" : "☆"}${i + 1} ${st.text}</span>`;
+            return `<div class="sig-star${i < s.refine ? " on" : ""}"><b>${i < s.refine ? "★" : "☆"}</b><span>${st.text}</span></div>`;
         }).join("");
         const tot = getSigStarTotals(s);
         const totText = tot.stars ? `已點亮 ${tot.stars}/25 顆星（升階後保留）：${sigStarTotalText(tot)}` : "還沒點亮任何星星（每顆 ★ 給不同屬性，升階後保留）";
         // 🧩 本命碎片：手上幾個、總共收集多少、去哪裡拿（碎片圖鑑在 13n）
         const st = getShardTotals();
-        const shardHtml = `<div class="sig-shards"><div class="sig-shards-title">🧩 本命碎片 ${getSigShards()}　<span>已收集 ${st.got} / ${st.total}｜升階：稀有 ${SIG_TIERUP_SHARDS[0]}、史詩 ${SIG_TIERUP_SHARDS[1]}、傳說 ${SIG_TIERUP_SHARDS[2]}、神話 ${SIG_TIERUP_SHARDS[3]}</span></div>`
-            + `<div class="sig-shards-note">每隻 Boss 第一次打倒才給（主線首殺、聖域各難度、Boss 試煉），不能刷。神話要的碎片比目前的內容還多，之後的新 Boss 會補上。</div>`
+        const shardHtml = `<div class="sig-shards"><div class="sig-shards-title">🧩 本命碎片 ${getSigShards()}　<span>已收集 ${st.got} / ${st.total}</span></div>`
+            + `<div class="sig-shards-note">每隻 Boss 第一次打倒才給，不能刷。升階要：稀有 ${SIG_TIERUP_SHARDS[0]}、史詩 ${SIG_TIERUP_SHARDS[1]}、傳說 ${SIG_TIERUP_SHARDS[2]}、神話 ${SIG_TIERUP_SHARDS[3]}</div>`
             + `<div class="btn-row" style="margin-top:4px;"><button type="button" class="secondary-btn sig-open-codex">📖 碎片圖鑑</button>${isBossTrialUnlocked() ? '<button type="button" class="secondary-btn sig-open-trial">⚔️ Boss 試煉</button>' : ""}</div></div>`;
+        const equipped = player.equippedBowId === SIGNATURE_BOW_ID;
+        // 「⚙️ 更多」打開過就記住（換顏色、重塑後重畫不會自己關起來）
+        const oldMore = box.querySelector && box.querySelector(".sig-more");
+        if (oldMore) sigMoreOpen = Boolean(oldMore.open);
         box.innerHTML = `
             <div class="sig-head" style="--sc:${s.color};">
                 <span class="sig-icon">🏹</span>
-                <div class="sig-title"><input class="sig-name" maxlength="10" value="${s.name}" aria-label="本命弓名字"><div><span class="sig-tier tier-${tierName}">${SIG_TIER_LABEL[tierName]}</span> <span class="sig-stars">${stars}</span></div></div>
-                <div class="sig-mat">🪶 弓魂 ${mat}<br>🧩 碎片 ${getSigShards()}</div>
+                <div class="sig-title"><input class="sig-name" maxlength="10" value="${s.name}" aria-label="本命弓名字"><div><span class="sig-tier tier-${tierName}">${SIG_TIER_LABEL[tierName]}</span> <span class="sig-stars">${stars}</span>${equipped ? ' <span class="sig-equipped">✅ 裝備中</span>' : ""}</div></div>
+                <div class="sig-mat"><span>🪶 ${mat}</span><span>🧩 ${getSigShards()}</span></div>
             </div>
-            <div class="sig-spirit" style="--sp:${sp.color};"><span class="sig-spirit-chip">弓靈 ${sp.icon} ${sp.name}</span><span class="sig-spirit-desc">${sp.desc}：這方向的能力比較容易出現${s.tier >= 3 ? "、決定神話特性" : ""}</span><button type="button" class="sig-reroll"${crystals < SIG_REROLL_COST ? " disabled" : ""}>🔄 重塑（${SIG_REROLL_COST} 💠）</button></div>
-            <div class="sig-colors">${SIG_COLORS.map((c) => `<button type="button" class="sig-color${c === s.color ? " on" : ""}" data-c="${c}" style="background:${c};" aria-label="顏色"></button>`).join("")}</div>
-            <div class="sig-stats">攻擊 ${Math.round(b.dmgMult * 100)}%｜冷卻 ${(BASE_SHOT_COOLDOWN * b.cdMult).toFixed(2)}s｜箭速 ${Math.round(b.speedMult * 100)}%${player.equippedBowId === SIGNATURE_BOW_ID ? "｜✅ 裝備中" : ""}</div>
-            <div class="sig-style">你的打法：${topStyle.length ? topStyle.map((k) => SIG_STYLE_TAGS[k].icon + SIG_STYLE_TAGS[k].name + " " + Math.round(shares[k] * 100) + "%").join("、") : "還在觀察中（多打幾關）"}<span>（升階時這些系的能力也比較容易出現）</span></div>
-            <div class="sig-star-row">${starRow}</div>
-            <div class="sig-star-total">${totText}</div>
-            <div class="sig-abs">${abilityHtml}</div>
+            <div class="sig-statbar">
+                <div><span>⚔️ 攻擊</span><b>${Math.round(b.dmgMult * 100)}%</b></div>
+                <div><span>⏱️ 冷卻</span><b>${(BASE_SHOT_COOLDOWN * b.cdMult).toFixed(2)}s</b></div>
+                <div><span>💨 箭速</span><b>${Math.round(b.speedMult * 100)}%</b></div>
+            </div>
             <div class="sig-action">${action}</div>
-            ${shardHtml}
-            <div class="sig-src">🪶 弓魂來源：Boss +1、精英 +1、區域寶箱 +8、聖域通關 +6、每週挑戰里程碑 +4、每日任務全完成 +4、轉生 +12、🧭 進階任務｜💠 你有 ${crystals}</div>`;
+            <div class="sig-sec">⭐ 星星（每顆都會加能力，升階後保留）</div>
+            <div class="sig-star-row">${starRow}</div>
+            <div class="sig-sec">✨ 特殊能力</div>
+            <div class="sig-abs">${abilityHtml}</div>
+            <details class="sig-more"${sigMoreOpen ? " open" : ""}><summary>⚙️ 更多（弓靈、顏色、碎片）</summary>
+                <div class="sig-spirit" style="--sp:${sp.color};"><span class="sig-spirit-chip">弓靈 ${sp.icon} ${sp.name}</span><span class="sig-spirit-desc">${sp.desc}：這方向的能力比較容易出現${s.tier >= 3 ? "、決定神話特性" : ""}</span><button type="button" class="sig-reroll"${crystals < SIG_REROLL_COST ? " disabled" : ""}>🔄 重塑（${SIG_REROLL_COST} 💠）</button></div>
+                <div class="sig-colors"><span class="sig-colors-label">🎨 顏色</span>${SIG_COLORS.map((c) => `<button type="button" class="sig-color${c === s.color ? " on" : ""}" data-c="${c}" style="background:${c};" aria-label="顏色"></button>`).join("")}</div>
+                <div class="sig-style">你的打法：${topStyle.length ? topStyle.map((k) => SIG_STYLE_TAGS[k].icon + SIG_STYLE_TAGS[k].name + " " + Math.round(shares[k] * 100) + "%").join("、") : "還在觀察中（多打幾關）"}<span>（升階時這些系的能力也比較容易出現）</span></div>
+                <div class="sig-star-total">${totText}</div>
+                ${shardHtml}
+                <div class="sig-src">🪶 弓魂來源：Boss +1、精英 +1、區域寶箱 +8、聖域通關 +6、每週挑戰里程碑 +4、每日任務全完成 +4、轉生 +12、🧭 進階任務｜💠 你有 ${crystals}</div>
+            </details>`;
         const nameInput = box.querySelector && box.querySelector(".sig-name");
         if (nameInput) nameInput.addEventListener("change", () => setSignatureName(nameInput.value));
         if (box.querySelectorAll) {
