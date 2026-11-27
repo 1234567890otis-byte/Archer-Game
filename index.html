@@ -4219,6 +4219,15 @@
         .hub-side-nav .hub-tab-panel.active .hub-nav-btn { width: 100% !important; height: 100% !important; margin: 0 !important; padding: 8px 6px !important; min-height: 0 !important; display: flex !important; flex-direction: column !important; align-items: center; justify-content: center; gap: 6px; font-size: 1rem !important; border-radius: 14px !important; }
         .hub-side-nav .hub-tab-panel.active .hub-nav-btn > span:first-child { font-size: 2.1rem !important; line-height: 1; }
         .hub-side-nav .hub-tab-panel.active .hub-nav-btn.hidden, .hub-side-nav .hub-tab-panel.active .hub-nav-btn[style*="display: none"] { display: none !important; }
+        /* 試玩回饋「系統太多」：還沒解鎖的按鈕直接藏起來（不再放灰色鎖頭）；分頁全空就不顯示那個分頁（12-hub-combo） */
+        .hub-side-nav .hub-tab-panel .hub-nav-btn.feature-locked { display: none !important; }
+        /* 🌱 精簡大廳（射手 Lv.10 前）：不分頁，已開放的按鈕排成一格一格；「其他」只留設定、遊戲說明、意見回饋 */
+        .hub-side-nav.hub-simple { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: minmax(52px, 1fr); gap: 6px; align-content: stretch; overflow-y: auto !important; }
+        .hub-side-nav.hub-simple .hub-tab-panel.active .hub-nav-btn { font-size: 0.85rem !important; gap: 3px; padding: 4px 3px !important; }
+        .hub-side-nav.hub-simple .hub-tab-panel.active .hub-nav-btn > span:first-child { font-size: 1.6rem !important; }
+        .hub-side-nav.hub-simple #hub-nav-tabs { display: none !important; }
+        .hub-side-nav.hub-simple .hub-tab-panel.active { display: contents !important; }
+        .hub-side-nav.hub-simple .hub-tab-panel[data-tab=other] .hub-nav-btn:not(#hub-nav-settings):not(#hub-nav-guide):not(#hub-nav-feedback) { display: none !important; }
         /* ===== 方塊格子：圖示在上、名字在下（技能、抽獎、遺物、覺醒…共用） ===== */
         #loadout-grid, .gacha-card > .gacha-grid, .op-list .loadout-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important; gap: 6px !important; align-content: start; }
         #loadout-grid .loadout-item, .gacha-grid > .loadout-item, .gacha-grid > .bow-card, .op-list .loadout-grid > .loadout-item { min-height: 74px !important; padding: 7px 3px 5px !important; justify-content: center !important; border-width: 2px !important; border-radius: 12px !important; }
@@ -9028,6 +9037,7 @@
                 chests: game.chests || null,
                 bowOverflow: game.bowOverflow || null,
                 feedbackClicked: Boolean(game.feedbackClicked),
+                feedbackOpenedAt: game.feedbackOpenedAt || 0,
                 feedbackRewarded: Boolean(game.feedbackRewarded),
                 archerXp: getArcherXp(),
                 wishBowId: game.wishBowId || null,
@@ -9233,6 +9243,7 @@
             game.chests = data.chests && typeof data.chests === "object" ? data.chests : null; // 🔑 寶箱（13q）
             game.bowOverflow = data.bowOverflow && typeof data.bowOverflow === "object" ? data.bowOverflow : null; // ♻️ 溢出弓等級換 💠 的每週紀錄（13o）
             game.feedbackClicked = Boolean(data.feedbackClicked); // 💬 點過試玩回饋就不再提醒
+            game.feedbackOpenedAt = Number(data.feedbackOpenedAt) || 0;
         game.feedbackRewarded = Boolean(data.feedbackRewarded); // 💬 領過填問卷的獎勵
             if (!game.chests) {
                 // 舊存檔：補發以前的 Boss 首殺、射手等級的鑰匙（沒有射手等級的舊存檔，等一下補算射手等級時會一起發）
@@ -9348,6 +9359,7 @@
         game.chests = null;
         game.bowOverflow = null;
         game.feedbackClicked = false;
+        game.feedbackOpenedAt = 0;
         game.feedbackRewarded = false;
         game.sigShards = 0;
         game.shardClaims = {};
@@ -9392,6 +9404,23 @@
         const hasteMult = hasActiveHasteTotem("player") ? 0.65 : 1;
         const runMult = Math.max(RUN_BALANCE.runShotCdMin, player.shotCdMult || 1); // 局內加成最多 -40%
         return Math.max(RUN_BALANCE.shotCdFloor, BASE_SHOT_COOLDOWN * stats.cdMult * runMult * getRelicShotCdMult() * hasteMult);
+    }
+
+    // 🪙 箭擊中／爆頭的金幣（平衡：模擬 4 小時賺 110 萬、其中擊中＋爆頭佔六成，多箭越多越誇張）
+    //   每支箭 3/6 → 2/4；每關合計有上限 capBase + 關卡 × capPerStage（倍率前的原始值）
+    const HIT_COIN = { hit: 2, crit: 4, capBase: 40, capPerStage: 3 };
+
+    function getHitCoinCap() {
+        return HIT_COIN.capBase + Math.max(1, game.stage || 1) * HIT_COIN.capPerStage;
+    }
+
+    // extra：不算上限的加碼（例：致命爆頭強化賜福的 +8）
+    function addHitCoins(amount, popupX, popupY, labelPrefix, extra) {
+        const left = getHitCoinCap() - (game.hitCoinPaid || 0);
+        const n = Math.max(0, Math.min(amount, left));
+        game.hitCoinPaid = (game.hitCoinPaid || 0) + n;
+        const total = n + Math.max(0, extra || 0);
+        if (total > 0) addCoins(total, popupX, popupY, labelPrefix);
     }
 
     function addCoins(amount, popupX, popupY, labelPrefix = "") {
@@ -10274,14 +10303,21 @@
 
     // ---------- 💬 試玩回饋（Google 表單，另開分頁）----------
     const FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd_eXrDcJ09ehf8meLLAEiru9uwbQlyA3krM3bszld1uwjJnw/viewform";
+    // 英文表單：英文模式開這個（還沒填網址就用中文表單）；確認訊息一樣要寫兌換碼 FEEDBACK_REWARD_CODE
+    const FEEDBACK_URL_EN = "https://docs.google.com/forms/d/e/1FAIpQLScyDdueNE9qu3rOb3c0JlfqjWcmLZn26PGanOOM5DjJYlmIKg/viewform";
     const FEEDBACK_ASK_STAGE = 13; // 通過 1-2 之後才在「建議下一步」提醒
 
+    function getFeedbackUrl() {
+        return typeof isEnglish === "function" && isEnglish() && FEEDBACK_URL_EN ? FEEDBACK_URL_EN : FEEDBACK_URL;
+    }
+
     function openFeedbackForm() {
-        if (!game.feedbackClicked) {
-            game.feedbackClicked = true;
-            saveGameProgress();
-        }
-        try { window.open(FEEDBACK_URL, "_blank", "noopener"); } catch (e) { /* 被擋就算了 */ }
+        game.feedbackClicked = true;
+        if (!game.feedbackOpenedAt) game.feedbackOpenedAt = Date.now(); // 打開問卷滿 FEEDBACK_WAIT_SEC 才能按「我填完了」
+        saveGameProgress();
+        try { window.open(getFeedbackUrl(), "_blank", "noopener"); } catch (e) { /* 被擋就算了 */ }
+        const m = typeof document !== "undefined" && document.getElementById ? document.getElementById("feedback-modal") : null;
+        if (m && m.classList && !m.classList.contains("hidden")) renderFeedbackModal("");
         if (game.state === "HUB") renderHubUI();
     }
 
@@ -10380,10 +10416,19 @@
         });
     }
 
-    // ---------- 🎁 填問卷的獎勵：表單最後一頁顯示兌換碼，回遊戲輸入就能領（每個存檔一次）----------
-    //   兌換碼要在 Google 表單「設定 → 簡報 → 確認訊息」寫上；想換碼就改 FEEDBACK_REWARD_CODE
+    // ---------- 🎁 填問卷的獎勵（每個存檔一次）----------
+    //   試玩回報「填完沒看到兌換碼」→ 改成信任制：打開問卷滿 60 秒就能按「我填完了」領
+    //   舊的兌換碼（表單確認訊息上的）照樣能用
     const FEEDBACK_REWARD_CODE = "ARCHER-THANKS";
     const FEEDBACK_REWARD = { coins: 800, skillTickets: 3, bowTickets: 1, keys: 1 };
+    const FEEDBACK_WAIT_SEC = 60;
+
+    // 還要等幾秒才能領（0＝可以領；-1＝還沒打開問卷）
+    function getFeedbackWaitLeft() {
+        if (!game.feedbackClicked) return -1;
+        if (!game.feedbackOpenedAt) return 0; // 舊存檔：以前就打開過
+        return Math.max(0, Math.ceil(FEEDBACK_WAIT_SEC - (Date.now() - game.feedbackOpenedAt) / 1000));
+    }
 
     function normalizeRewardCode(s) {
         return String(s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -10397,7 +10442,13 @@
     // 回傳 { ok, msg }
     function claimFeedbackReward(code) {
         if (game.feedbackRewarded) return { ok: false, msg: "這個存檔已經領過了，謝謝你！" };
-        if (normalizeRewardCode(code) !== normalizeRewardCode(FEEDBACK_REWARD_CODE)) return { ok: false, msg: "兌換碼不對喔，填完問卷後最後一頁會顯示" };
+        if (code) {
+            if (normalizeRewardCode(code) !== normalizeRewardCode(FEEDBACK_REWARD_CODE)) return { ok: false, msg: "兌換碼不對喔，填完問卷後最後一頁會顯示" };
+        } else {
+            const wait = getFeedbackWaitLeft();
+            if (wait < 0) return { ok: false, msg: "請先按「📝 打開問卷」填寫" };
+            if (wait > 0) return { ok: false, msg: "填完問卷再回來按喔（還要 " + wait + " 秒）" };
+        }
         const r = FEEDBACK_REWARD;
         game.coins += r.coins;
         const tk = getTickets();
@@ -10431,15 +10482,13 @@
         body.innerHTML = game.feedbackRewarded
             ? `<div class="fb-done">✅ 已經領過填問卷的獎勵，謝謝你！<br>還有想說的話，隨時可以再填一次問卷。</div>`
             : `<div class="fb-step"><b>① 填問卷</b>（大約 3 分鐘）<br>告訴我們哪裡好玩、哪裡卡住。</div>
-               <div class="fb-step"><b>② 拿兌換碼</b><br>送出後，最後一頁會顯示兌換碼。</div>
-               <div class="fb-step"><b>③ 回來領獎勵</b><br>${feedbackRewardText()}</div>
-               <div class="fb-row"><input id="feedback-code" type="text" maxlength="24" placeholder="輸入兌換碼" autocomplete="off"><button id="btn-feedback-claim" type="button" class="gold-btn">領取</button></div>`;
+               <div class="fb-step"><b>② 回來領獎勵</b><br>送出問卷後，回到這裡按「我填完了」：${feedbackRewardText()}</div>
+               ${game.feedbackClicked ? `<button id="btn-feedback-claim" type="button" class="gold-btn">✅ 我填完了，領獎勵</button>` : ""}`;
         const msgEl = document.getElementById("feedback-msg");
         if (msgEl) msgEl.innerHTML = msg || "";
         const btn = document.getElementById("btn-feedback-claim");
         if (btn) btn.addEventListener("click", () => {
-            const inp = document.getElementById("feedback-code");
-            const r = claimFeedbackReward(inp ? inp.value : "");
+            const r = claimFeedbackReward();
             renderFeedbackModal(`<span style="color:${r.ok ? "#86efac" : "#fca5a5"};">${r.msg}</span>`);
         });
     }
@@ -10472,13 +10521,37 @@
         } catch (e) { return false; }
     }
 
+    // 🌱 精簡大廳：射手 Lv.10 以前不分頁（按鈕少，一眼看完）；之後才出現分頁
+    const HUB_SIMPLE_UNTIL_LV = 10;
+
+    function isHubSimple() {
+        return getArcherLevel() < HUB_SIMPLE_UNTIL_LV;
+    }
+
+    // 分頁裡有沒有看得到的按鈕（沒解鎖的會藏起來）
+    function hubPanelHasVisible(p) {
+        try {
+            return Array.from(p.querySelectorAll(".hub-nav-btn")).some((b) => !b.classList.contains("feature-locked") && !b.classList.contains("hidden") && !(b.style && b.style.display === "none"));
+        } catch (e) { return true; }
+    }
+
     function renderHubNavTabs() {
         const bar = typeof document !== "undefined" && document.getElementById ? document.getElementById("hub-nav-tabs") : null;
         const panels = getHubTabPanels();
         if (!bar || !panels.length) return;
-        const active = getHubTab();
+        const simple = isHubSimple();
+        const side = bar.parentNode;
+        if (side && side.classList) side.classList.toggle("hub-simple", simple);
+        if (simple) {
+            panels.forEach((p) => p.classList.add("active"));
+            bar.innerHTML = "";
+            return;
+        }
+        const shown = panels.filter(hubPanelHasVisible);
+        let active = getHubTab();
+        if (shown.length && !shown.some((p) => p.getAttribute("data-tab") === active)) active = shown[0].getAttribute("data-tab");
         panels.forEach((p) => p.classList.toggle("active", p.getAttribute("data-tab") === active));
-        bar.innerHTML = panels.map((p) => {
+        bar.innerHTML = (shown.length ? shown : panels).map((p) => {
             const key = p.getAttribute("data-tab");
             return `<button type="button" class="hub-nav-tab${key === active ? " active" : ""}" data-tab="${key}">${p.getAttribute("data-label")}${key !== active && hubPanelHasAlert(p) ? '<span class="tab-dot"></span>' : ""}</button>`;
         }).join("");
@@ -11551,23 +11624,40 @@
 // 12e. 新手引導：大廳功能隨進度逐步解鎖、解鎖提示與 NEW 標記、第一場戰鬥的操作教學
     // =========================================================================
     // nav：大廳按鈕在 dom 裡的名字；extra：其他也要一起鎖的按鈕
+    // lv：還要射手等級（13o）——試玩回饋「系統太多太複雜」：原本 10 分鐘內全開，
+    //   改成照射手等級大約每 5～10 分鐘開一個（Lv.8 ≈ 8 分、Lv.12 ≈ 30 分、Lv.17 ≈ 70 分，見 tools/probe-newbie.js LVMS）
+    //   新手任務（12h）第一階段會用到的進化／天賦／遺物維持早開；沒解鎖的按鈕直接藏起來
     const FEATURE_UNLOCKS = [
         { id: "evolution", nav: "hubNavEvolution", name: "角色進化", group: "🧬 養成", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
         { id: "talents", nav: "hubNavTalents", name: "天賦樹", group: "🧬 養成", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
-        { id: "builds", nav: "hubNavBuilds", name: "流派推薦", group: "🎒 配置", need: "通過 1-1 新手草原解鎖", check: () => game.highestStage >= 7 },
-        { id: "training", nav: "hubNavTraining", extra: ["btnLoadoutTraining"], name: "訓練模式", group: "右邊「更多玩法」", need: "通過 1-2 烈焰峽谷解鎖", check: () => game.highestStage >= 13 },
         { id: "relics", nav: "hubNavRelics", name: "遺物", group: "🧬 養成", need: "取得第一個遺物解鎖", check: () => Object.keys(game.relics || {}).some((k) => game.relics[k]) },
-        { id: "daily", nav: "hubNavDaily", name: "每日任務", group: "⭐ 每日", need: "打倒第一隻 Boss 解鎖", check: () => hasBeatenAnyBoss() },
-        { id: "signature", nav: "hubNavSignature", name: "本命弓", group: "🧬 養成", need: "通過 1-1 新手草原解鎖", check: () => Boolean(getSig()) },
-        { id: "weekly", nav: "hubNavWeekly", name: "每週挑戰", group: "右邊「更多玩法」", need: "通過 1-3 冰霜高原解鎖", check: () => game.highestStage >= WEEKLY_UNLOCK_STAGE },
-        { id: "trial", nav: "hubNavTrial", name: "Boss 試煉", group: "右邊「更多玩法」", need: "通過 1-4 毒霧沼澤解鎖", check: () => game.highestStage >= BOSS_TRIAL_UNLOCK_STAGE },
-        { id: "combo_boss", nav: "hubNavComboBoss", name: "Combo 挑戰", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= COMBO_CHALLENGE.unlockStage },
-        { id: "chests", nav: "hubNavChest", name: "寶箱", group: "⭐ 每日", need: "拿到第一把 🔑 寶箱鑰匙解鎖", check: () => getChestKeys() > 0 || getChestSave().opened > 0 },
-        { id: "tower", nav: "hubNavTower", name: "天弓塔", group: "右邊「更多玩法」", need: "通過第 12 關解鎖", check: () => game.highestStage >= TOWER.unlockStage },
-        { id: "gear", nav: "hubNavGear", name: "裝備", group: "🧬 養成", need: "通過第 12 關解鎖（天弓塔會掉裝備）", check: () => game.highestStage >= TOWER.unlockStage },
-        { id: "dungeon", nav: "hubNavDungeon", name: "遠古聖域", group: "右邊「更多玩法」", need: "通過 1-5 雷鳴山巔解鎖", check: () => game.highestStage >= DUNGEON_UNLOCK_STAGE },
-        { id: "awaken", nav: "hubNavAwaken", name: "覺醒", group: "🧬 養成", need: "取得第一個 💠 覺醒結晶解鎖", check: () => (game.crystals || 0) > 0 || Object.keys(game.awakened || {}).length > 0 }
+        { id: "daily", nav: "hubNavDaily", name: "每日任務", group: "⭐ 每日", lv: 5, check: () => hasBeatenAnyBoss() },
+        { id: "signature", nav: "hubNavSignature", name: "本命弓", group: "🧬 養成", lv: 6, check: () => Boolean(getSig()) },
+        { id: "collect", nav: "hubNavAchievements", extra: ["hubNavCombo", "hubNavEnemyCodex"], name: "成就與圖鑑", group: "📖 收藏", lv: 7, check: () => true },
+        { id: "chests", nav: "hubNavChest", name: "寶箱", group: "⭐ 每日", lv: 8, check: () => getChestKeys() > 0 || getChestSave().opened > 0 },
+        { id: "builds", nav: "hubNavBuilds", name: "流派推薦", group: "🎒 配置", lv: 9, check: () => game.highestStage >= 7 },
+        { id: "hub_tabs", name: "大廳分頁", group: "左上，功能變多了改成分類切換", lv: 10, check: () => true }, // 12-hub-combo HUB_SIMPLE_UNTIL_LV
+        { id: "dungeon", nav: "hubNavDungeon", name: "遠古聖域", group: "右邊「更多玩法」", lv: 10, need: "通過 1-5 雷鳴山巔、射手 Lv.10 解鎖", check: () => game.highestStage >= DUNGEON_UNLOCK_STAGE },
+        { id: "training", nav: "hubNavTraining", extra: ["btnLoadoutTraining"], name: "訓練模式", group: "右邊「更多玩法」", lv: 11, check: () => game.highestStage >= 13 },
+        { id: "tower", nav: "hubNavTower", name: "天弓塔", group: "右邊「更多玩法」", lv: 12, check: () => game.highestStage >= TOWER.unlockStage },
+        { id: "gear", nav: "hubNavGear", name: "裝備", group: "🧬 養成", lv: 12, check: () => game.highestStage >= TOWER.unlockStage },
+        { id: "pvp", nav: "hubNavPvp", name: "連線對戰", group: "右邊「更多玩法」", lv: 13, check: () => true },
+        { id: "weekly", nav: "hubNavWeekly", name: "每週挑戰", group: "右邊「更多玩法」", lv: 14, check: () => game.highestStage >= WEEKLY_UNLOCK_STAGE },
+        { id: "awaken", nav: "hubNavAwaken", name: "覺醒", group: "🧬 養成", lv: 15, check: () => (game.crystals || 0) > 0 || Object.keys(game.awakened || {}).length > 0 },
+        { id: "trial", nav: "hubNavTrial", name: "Boss 試煉", group: "右邊「更多玩法」", lv: 16, check: () => game.highestStage >= BOSS_TRIAL_UNLOCK_STAGE },
+        { id: "combo_boss", nav: "hubNavComboBoss", name: "Combo 挑戰", group: "右邊「更多玩法」", lv: 17, need: "通過 1-5 雷鳴山巔、射手 Lv.17 解鎖", check: () => game.highestStage >= COMBO_CHALLENGE.unlockStage }
     ];
+    FEATURE_UNLOCKS.forEach((f) => {
+        const base = f.check;
+        if (f.lv) f.check = () => getArcherLevel() >= f.lv && base();
+        if (!f.need) f.need = "射手 Lv." + f.lv + " 解鎖";
+    });
+
+    // 新手任務指到還沒解鎖的功能 → 提示用（12h）
+    function getFeatureLockText(id) {
+        const f = FEATURE_UNLOCKS.find((x) => x.id === id);
+        return f && !isFeatureUnlocked(id) ? "🔒 " + f.need : "";
+    }
 
     function hasBeatenAnyBoss() {
         const s = game.stats || {};
@@ -12013,21 +12103,21 @@
         { id: "stage3", icon: "🗺️", text: "通過 1-1 新手草原", hint: "主線一路往前打；每個區域第一次通過有區域寶箱", prog: () => game.highestStage >= 7 ? 1 : 0, target: 1, reward: { coins: 200, essence: 20 } },
         { id: "bowpull", icon: "🏹", text: "抽 1 次弓", hint: "大廳「🏹 弓抽獎」", prog: () => getStats().bowPulls || 0, target: 1, reward: { coins: 400 } },
         { id: "boss1", icon: "👑", text: "打倒第一隻 Boss", hint: "每 3 關有一隻 Boss", prog: () => Object.keys(getStats().bossKills || {}).length, target: 1, reward: { epicBow: true } },
-        { id: "talent1", icon: "🌟", text: "在天賦樹點 1 點天賦", hint: "大廳「🌟 天賦樹」", prog: () => getTalentSpent(), target: 1, reward: { essence: 30 } },
-        { id: "evo1", icon: "🧬", text: "角色進化 1 次", hint: "大廳「🧬 角色進化」，用 🧪 精華", prog: () => game.evoPulls || 0, target: 1, reward: { coins: 300, crystals: 5 } },
+        { id: "talent1", feature: "talents", icon: "🌟", text: "在天賦樹點 1 點天賦", hint: "大廳「🌟 天賦樹」", prog: () => getTalentSpent(), target: 1, reward: { essence: 30 } },
+        { id: "evo1", feature: "evolution", icon: "🧬", text: "角色進化 1 次", hint: "大廳「🧬 角色進化」，用 🧪 精華", prog: () => game.evoPulls || 0, target: 1, reward: { coins: 300, crystals: 5 } },
         { id: "stage8", icon: "🗺️", text: "通過 1-2 烈焰峽谷", hint: "記得每關選賜福變強", prog: () => game.highestStage >= 13 ? 1 : 0, target: 1, reward: { epicSkill: true } },
         { id: "combo1", icon: "🔗", text: "打出 1 次 Combo（技能連攜）", hint: "例：冰凍中的敵人再用雷擊", prog: () => Object.keys(getStats().combos || {}).length, target: 1, reward: { coins: 400, essence: 20 } },
         { id: "elite1", icon: "⭐", text: "擊敗 1 隻精英敵人", hint: "頭上有 ⭐ 的敵人", prog: () => getStats().elitesKilled, target: 1, reward: { crystals: 8, relic: true } },
-        { id: "relic1", icon: "💍", text: "裝備 1 個遺物", hint: "Boss／精英會掉遺物，到「💍 遺物」裝上", prog: () => (game.equippedRelics || []).length, target: 1, reward: { coins: 300, crystals: 10 } },
+        { id: "relic1", feature: "relics", icon: "💍", text: "裝備 1 個遺物", hint: "Boss／精英會掉遺物，到「💍 遺物」裝上", prog: () => (game.equippedRelics || []).length, target: 1, reward: { coins: 300, crystals: 10 } },
         { id: "stage15", icon: "🏔️", text: "通過 1-3 冰霜高原", hint: "卡關就去抽卡、進化、點天賦", prog: () => game.highestStage >= 19 ? 1 : 0, target: 1, reward: { coins: 800, essence: 50 } },
         { id: "stage20", icon: "🏆", text: "通過 1-4 毒霧沼澤（畢業）", hint: "新手任務的最終大獎", prog: () => game.highestStage >= 25 ? 1 : 0, target: 1, reward: { legendary: true, crystals: 10 } },
         // ---- 🧭 進階任務（新手任務全部領完才出現）：帶到中期、把本命弓升到神話 ----
-        { id: "adv_sig_refine", phase: 2, icon: "⚒️", text: "本命弓淬鍊 1 次", hint: "大廳「🏹 本命弓」，用 🪶 弓魂淬鍊", prog: () => (getSig() && (getSig().refine > 0 || getSig().tier > 0)) ? 1 : 0, target: 1, reward: { coins: 300, bowSoul: 20 } },
+        { id: "adv_sig_refine", feature: "signature", phase: 2, icon: "⚒️", text: "本命弓淬鍊 1 次", hint: "大廳「🏹 本命弓」，用 🪶 弓魂淬鍊", prog: () => (getSig() && (getSig().refine > 0 || getSig().tier > 0)) ? 1 : 0, target: 1, reward: { coins: 300, bowSoul: 20 } },
         { id: "adv_stage31", phase: 2, icon: "⚡", text: "通過 1-5 雷鳴山巔", hint: "通過後解鎖遠古聖域", prog: () => game.highestStage >= 31 ? 1 : 0, target: 1, reward: { crystals: 15, essence: 60 } },
-        { id: "adv_dungeon", phase: 2, icon: "🏛️", text: "通關遠古聖域 1 次", hint: "大廳「🏛️ 遠古聖域」，守護者會掉神話遺物", prog: () => (typeof getDungeonSave === "function" ? getDungeonSave().clears || 0 : 0), target: 1, reward: { crystals: 20, bowSoul: 15 } },
-        { id: "adv_sig_rare", phase: 2, icon: "🔷", text: "本命弓升到稀有", hint: "淬鍊滿 5 顆星＋2 個 🧩 本命碎片（Boss 首殺）就能升階", prog: () => (getSig() ? getSig().tier : 0) >= 1 ? 1 : 0, target: 1, reward: { bowSoul: 30, skillTickets: 1 } },
-        { id: "adv_awaken", phase: 2, icon: "✨", text: "覺醒 1 把弓或 1 個技能", hint: "大廳「✨ 覺醒」，有 💠可覺醒 標記的就能覺醒", prog: () => Object.keys(game.awakened || {}).filter((k) => game.awakened[k]).length, target: 1, reward: { crystals: 20, coins: 500 } },
-        { id: "adv_weekly", phase: 2, icon: "🗓️", text: "每週挑戰抵達第 10 關", hint: "大廳「🗓️ 每週挑戰」，每週規則都不一樣", prog: () => getStats().weeklyBestEver || 0, target: 10, reward: { coins: 800, bowSoul: 20 } },
+        { id: "adv_dungeon", feature: "dungeon", phase: 2, icon: "🏛️", text: "通關遠古聖域 1 次", hint: "大廳「🏛️ 遠古聖域」，守護者會掉神話遺物", prog: () => (typeof getDungeonSave === "function" ? getDungeonSave().clears || 0 : 0), target: 1, reward: { crystals: 20, bowSoul: 15 } },
+        { id: "adv_sig_rare", feature: "signature", phase: 2, icon: "🔷", text: "本命弓升到稀有", hint: "淬鍊滿 5 顆星＋2 個 🧩 本命碎片（Boss 首殺）就能升階", prog: () => (getSig() ? getSig().tier : 0) >= 1 ? 1 : 0, target: 1, reward: { bowSoul: 30, skillTickets: 1 } },
+        { id: "adv_awaken", feature: "awaken", phase: 2, icon: "✨", text: "覺醒 1 把弓或 1 個技能", hint: "大廳「✨ 覺醒」，有 💠可覺醒 標記的就能覺醒", prog: () => Object.keys(game.awakened || {}).filter((k) => game.awakened[k]).length, target: 1, reward: { crystals: 20, coins: 500 } },
+        { id: "adv_weekly", feature: "weekly", phase: 2, icon: "🗓️", text: "每週挑戰抵達第 10 關", hint: "大廳「🗓️ 每週挑戰」，每週規則都不一樣", prog: () => getStats().weeklyBestEver || 0, target: 10, reward: { coins: 800, bowSoul: 20 } },
         { id: "adv_target", phase: 2, icon: "🎯", text: "用定向池或心願池抽 1 次", hint: "抽獎畫面上方切換「今日定向」或「心願池」", prog: () => getStats().targetPulls || 0, target: 1, reward: { coins: 500, essence: 40 } },
         { id: "adv_chapter1", phase: 2, icon: "🏛️", text: "通過 1-6 神射殿堂（第一章）", hint: "打完第一章，第二章「暮光戰場」開放", prog: () => game.highestStage >= 37 ? 1 : 0, target: 1, reward: { legendary: true, crystals: 20 } },
         { id: "adv_sig_epic", phase: 2, icon: "🟣", text: "本命弓升到史詩", hint: "選的能力會偏向你的弓靈和常用的打法", prog: () => (getSig() ? getSig().tier : 0) >= 2 ? 1 : 0, target: 1, reward: { bowSoul: 50, bowTickets: 1 } },
@@ -12213,7 +12303,7 @@
             row.className = "newbie-row" + (got ? " got" : done ? " ready" : "") + (big ? " big" : "");
             row.innerHTML = `<div class="newbie-main">
                     <div class="newbie-title">${got ? "✅" : q.icon} ${q.text}</div>
-                    <div class="newbie-meta">${got ? "已領取" : "進度 " + cur + " / " + q.target + "｜" + q.hint}</div>
+                    <div class="newbie-meta">${got ? "已領取" : "進度 " + cur + " / " + q.target + "｜<span>" + ((q.feature && getFeatureLockText(q.feature)) || q.hint) + "</span>"}</div>
                 </div>
                 <div class="newbie-reward">${newbieRewardText(q.reward)}</div>`;
             const btn = document.createElement("button");
@@ -12261,12 +12351,12 @@
     // ---------- 大廳導覽 ----------
     //   sel：要框起來的元素；找不到（例如手機才有的按鈕）就跳過那一步
     const HUB_TOUR_STEPS = [
-        { sel: null, title: "👋 歡迎來到戰備大廳！", text: "我帶你花 1 分鐘認識這裡的功能。看完導覽可以領 <b>新手禮包</b>：" + "500 🪙、20 🧪，再從 3 個 <b style='color:#c084fc;'>史詩技能</b> 裡選一個！" },
+        { sel: null, title: "👋 歡迎來到戰備大廳！", text: "我帶你花 30 秒認識這裡。功能會隨射手等級慢慢開放，現在只要記得幾個按鈕。看完導覽可以領 <b>新手禮包</b>：" + "500 🪙、20 🧪，再從 3 個 <b style='color:#c084fc;'>史詩技能</b> 裡選一個！" },
         { sel: "#hub-btn-battle", title: "⚔️ 出發！", text: "按這裡直接開始闖關（會從你推進到的區域開始；想打以前的區域，到「🗺️ 主線地圖」點那個區域）。每過一關可以選 1 個 <b>賜福</b> 讓這一局變強；每 3 關有一隻 Boss。輸了也會保留金幣和素材。" },
         { sel: "#hub-nav-loadout", title: "⚡ 技能配置", text: "選 5 個技能帶上場，戰鬥中按 Q E R F C（手機點右下角）施放。不同技能搭配會觸發 <b>Combo</b>。" },
         { sel: "#hub-nav-skill-gacha", title: "🎰 技能抽獎", text: "花 180 🪙（或技能券）抽技能：抽到新技能就解鎖，抽到已有的會升級。連續 10 抽沒新技能，保底送一個。" },
         { sel: "#hub-nav-gacha", title: "🏹 弓抽獎", text: "花 240 🪙（或弓券）抽弓。每把弓的攻擊、射速、特殊效果都不一樣，抽到後到弓的畫面裝備。" },
-        { sel: "#hub-nav-evolution", title: "🧬 養成", text: "左上的分頁可以切換功能分類（⭐ 每日／🎒 配置／🧬 養成／📖 收藏／⚙️ 其他），有東西可以領的分頁會亮紅點。角色進化（花 🧪 精華）、天賦樹（打 Boss 拿 🌟）、遺物、覺醒、本命弓都在「🧬 養成」。<b>灰色按鈕</b> 是還沒解鎖，滑鼠移上去或點一下會告訴你解鎖條件。" },
+        { sel: "#hub-nav-evolution", title: "🧬 角色進化", text: "角色進化（花 🧪 精華）讓你永久變強。其他功能會隨 <b>射手等級</b> 一個一個開放，開放時會跳提示，不用一次全部學會。" },
         { sel: "#hub-nav-newbie", title: "🔰 新手任務", text: "照著任務做就能快速上手，獎勵有 <b style='color:#c084fc;'>史詩弓</b>、<b style='color:#c084fc;'>史詩技能</b>，通過 1-4 還有 <b style='color:#fde047;'>傳說寶箱</b>！" },
         { sel: "#hub-nav-login", title: "📅 每日", text: "每天記得領登入獎勵（第 7 天有傳說寶箱），每日任務完成也有獎勵。" },
         { sel: "#hub-next-steps", title: "🧭 建議下一步", text: "不知道要做什麼？看這裡！它會列出現在最值得做的事，點一下就直接打開。" },
@@ -13360,13 +13450,16 @@
                 "🎒 <b>裝備</b>：打天弓塔會掉 🎀弓飾、🪶箭羽、🧤護手（10F 守護者再開 🔮護符），品質 ⚪普通～🔴神話，越上層越容易掉好的；穿著在主線、訓練、聖域都有效。不要的拆成 🔩 鍛造石，可以開自動拆解",
                 "👾 <b>8 種新敵人</b>（主線第 8～28 關陸續出現，天弓塔 7～10 層當隊長）：會把你拉過去的🪝鉤索獵人、放毒蜂的🐝蜂群馴師、把平射彈開的🧲磁力射手、種荊棘的🌿荊棘德魯伊、會飛回來的🪃回力鏢手、縮殼無敵的🐢龜甲兵、從頭上掉箭的🌀傳送門術士、越打越快的🥁戰鼓手；第二章的爆破工兵改名「⏰ 定時炸彈兵」",
                 "⚖️ <b>平衡</b>：減傷、射速、技能冷卻、吸血都有上限；「放技能減其他冷卻」不會再無限連鎖",
+                "🧹 <b>更簡單的大廳</b>：沒解鎖的功能不再顯示；新功能改成隨射手等級一個一個開放（大約每 5～10 分鐘一個），前期大廳不分頁、按鈕只剩幾個",
+                "📝 <b>填問卷不用兌換碼</b>：填完問卷回到遊戲按「我填完了」就能領獎勵",
+                "🪙 <b>金幣平衡</b>：箭擊中的金幣 3 → 2、爆頭 6+5 → 4+4，每關擊中＋爆頭的金幣有上限（40＋關卡 × 3），多箭流派不會再一關噴上千金幣；過關賞金不變",
                 "🏞️ <b>全新場景</b>：四章各有自己的背景——黎明的弓手石像、月下古城堡、雲上的天空神殿、熔岩中的混沌王座（設定 → 精美背景可以關）",
                 "🎓 <b>第 0 章・新手教學</b>：新玩家第一次出發會先實戰學射箭、爆頭、跳躍躲箭和 5 個新手技能（三連散射、讀條火球、冰凍箭、神聖護盾、幻影疾步），完成送 🪙300 和技能券；主線地圖可以重玩",
                 "🌱 <b>新手區</b>：第 1～12 關變好打（每關約 30 秒、每過一關回滿血），前幾關不會出現會蓋牆、開盾的敵人",
                 "⚔️ <b>一鍵出發</b>：大廳的「出發！」直接從你推進到的區域開打；想打以前的區域，到「🗺️ 主線地圖」點那一區。點大廳的弓就能換弓",
                 "⚖️ <b>箭術審判官</b>：加上撿箭提示，地上的箭會發光、標出「⬇ 撿」",
                 "🌐 <b>English</b>：設定 → 語言可以切換成英文（介面、技能、弓、Boss、說明都翻好了）",
-                "🎁 <b>填問卷領獎勵</b>：其他 → 意見回饋，填完問卷輸入兌換碼就能領 🪙800、抽獎券和鑰匙",
+                "🎁 <b>填問卷領獎勵</b>：其他 → 意見回饋，填完問卷回來按「我填完了」就能領 🪙800、抽獎券和鑰匙",
                 "🧒 <b>大廳和技能頁變簡單了</b>：大廳只留弓、技能和「下一步做什麼」，右上一顆大大的「出發！」；技能頁預設只列出你有的技能、強的排前面，還有「✨ 自動幫我配」",
                 "🌋 <b>第四章「混沌戰場」</b>（第 109～144 關）：6 隻會改變規則和戰場的霸主——偷技能又打亂技能順序、上下左右的奇竊術士、淹水的潮汐巨獸、只給 10 支箭的箭術審判官、漂移大地的裂地領主、只吃爆頭（第二階段還會顛倒上下左右）的千眼空靈，以及多部位的混沌巨像",
                 "🌑 <b>影子改版</b>：影分身、影刃短弓的影子可以疊在場上（最多 5 個）、會走動，但很脆弱，被任何攻擊打到就消散",
@@ -14843,7 +14936,9 @@
         "一鍵出發": "One-tap Go", "：大廳的「出發！」直接從你推進到的區域開打；想打以前的區域，到「🗺️ 主線地圖」點那一區。點大廳的弓就能換弓": ": Go! in the Hub starts from your furthest region; to replay an earlier one, tap it on the 🗺️ Map. Tap your bow in the Hub to change it",
         "箭術審判官": "Arrow Judge", "：加上撿箭提示，地上的箭會發光、標出「⬇ 撿」": ": added pickup hints — arrows on the ground glow and show '⬇ Pick up'",
         "：設定 → 語言可以切換成英文（介面、技能、弓、Boss、說明都翻好了）": ": switch to English in Settings → Language (UI, skills, bows, Bosses and guides)", "切換後會重新載入。": "The page reloads after switching.", "填問卷領獎勵": "Survey reward",
-        "：其他 → 意見回饋，填完問卷輸入兌換碼就能領 🪙800、抽獎券和鑰匙": ": More → Feedback — finish the survey and enter the code for 🪙800, tickets and a key",
+        "：其他 → 意見回饋，填完問卷回來按「我填完了」就能領 🪙800、抽獎券和鑰匙": ": More → Feedback — finish the survey, come back and tap \"I'm done\" for 🪙800, tickets and a key",
+        "送出問卷後，回到這裡按「我填完了」：": "After submitting the survey, come back here and tap \"I'm done\": ", "✅ 我填完了，領獎勵": "✅ I'm done — claim reward", "② 回來領獎勵": "② Come back for your reward",
+        "請先按「📝 打開問卷」填寫": "Tap \"📝 Open survey\" first",
         "大廳和技能頁變簡單了": "Simpler Hub and Skills page", "：大廳只留弓、技能和「下一步做什麼」，右上一顆大大的「出發！」；技能頁預設只列出你有的技能、強的排前面，還有「✨ 自動幫我配」": ": the Hub shows just your bow, skills and 'What next?', with a big Go! button; the Skills page lists only owned skills, best first, plus ✨ Auto pick",
         "第四章「混沌戰場」": "Chapter 4 'Chaos Battlefield'", "（第 109～144 關）：6 隻會改變規則和戰場的霸主——偷技能又打亂技能順序、上下左右的奇竊術士、淹水的潮汐巨獸、只給 10 支箭的箭術審判官、漂移大地的裂地領主、只吃爆頭（第二階段還會顛倒上下左右）的千眼空靈，以及多部位的混沌巨像": " (stages 109–144): 6 overlords that change the rules and battlefield — the Thief Juggler who steals and scrambles skills and flips controls, the flooding Tide Beast, the Arrow Judge who gives you only 10 arrows, the drifting Rift Shaper, the headshot-only Eye Wraith (which flips controls in phase 2), and the multi-part Chaos Colossus",
         "影子改版": "Shadow rework", "：影分身、影刃短弓的影子可以疊在場上（最多 5 個）、會走動，但很脆弱，被任何攻擊打到就消散": ": shadows from Shadow Clone and the Shadow Blade Bow stack (up to 5) and walk around, but vanish when hit by anything",
@@ -15271,7 +15366,11 @@
         "數值詞條": "Stat affix", "被動能力": "Passive ability", "第二個被動能力或強化": "2nd passive or empower", "神話特性": "Mythic trait",
         "額外賞金": "Extra bounty", "休整": "Rest", "立刻回復 35% 生命。": "Restore 35% HP right away.", " 冷卻減半": " cooldown halved",
         "天弓塔": "Sky Tower", "：一層 7 關往上爬，有飛蝠、小弓兵、炸彈蟲、盾兵、史萊姆、跳跳兵一大群小怪；打完拿 ★～★★★，三星就能用 ⚡ 體力掃蕩（通過第 12 關解鎖）": ": climb 7 stages per floor against swarms of bats, archers, bomb bugs, shieldbearers, slimes and hoppers; earn ★ to ★★★, and 3 stars lets you sweep with ⚡ stamina (unlocks at stage 12)",
-        "平衡": "Balance", "：減傷、射速、技能冷卻、吸血都有上限；「放技能減其他冷卻」不會再無限連鎖": ": damage reduction, fire rate, skill cooldown and lifesteal now have caps; 'casting reduces other cooldowns' no longer chains forever", "SKY TOWER // 天弓塔": "SKY TOWER", "🗼 一關一關往上爬！拿到 ⭐⭐⭐ 就能用 ⚡ 體力掃蕩": "🗼 Climb stage by stage! Get ⭐⭐⭐ to sweep with ⚡ stamina",
+        "平衡": "Balance", "：減傷、射速、技能冷卻、吸血都有上限；「放技能減其他冷卻」不會再無限連鎖": ": damage reduction, fire rate, skill cooldown and lifesteal now have caps; 'casting reduces other cooldowns' no longer chains forever", "金幣平衡": "Coin balance", "成就與圖鑑": "Achievements & Codex", "大廳分頁": "Hub tabs", "左上，功能變多了改成分類切換": "top left — with more features, they're now sorted into tabs", "🧬 角色進化": "🧬 Evolution",
+        "我帶你花 30 秒認識這裡。功能會隨射手等級慢慢開放，現在只要記得幾個按鈕。看完導覽可以領": "Let me show you around in 30 seconds. Features open gradually as your Archer Level rises — for now you only need a few buttons. Finish the tour to get a ",
+        "角色進化（花 🧪 精華）讓你永久變強。其他功能會隨": "Evolution (costs 🧪 essence) makes you permanently stronger. Other features open one by one as your ", "一個一個開放，開放時會跳提示，不用一次全部學會。": " rises, with a popup each time — no need to learn everything at once.",
+        "更簡單的大廳": "Simpler hub", "：沒解鎖的功能不再顯示；新功能改成隨射手等級一個一個開放（大約每 5～10 分鐘一個），前期大廳不分頁、按鈕只剩幾個": ": locked features are no longer shown; new features now open one by one with Archer Level (about every 5–10 minutes), and the early hub has no tabs, just a few buttons",
+        "填問卷不用兌換碼": "No code needed for the survey", "：填完問卷回到遊戲按「我填完了」就能領獎勵": ": after the survey, come back and tap \"I'm done\" to get your reward", "：箭擊中的金幣 3 → 2、爆頭 6+5 → 4+4，每關擊中＋爆頭的金幣有上限（40＋關卡 × 3），多箭流派不會再一關噴上千金幣；過關賞金不變": ": arrow hit coins 3 → 2, headshots 6+5 → 4+4, and hit + headshot coins per stage are capped (40 + stage × 3), so multi-arrow builds no longer spray thousands of coins per stage; stage clear bounty unchanged", "SKY TOWER // 天弓塔": "SKY TOWER", "🗼 一關一關往上爬！拿到 ⭐⭐⭐ 就能用 ⚡ 體力掃蕩": "🗼 Climb stage by stage! Get ⭐⭐⭐ to sweep with ⚡ stamina",
         "野外": "Field", "迷宮": "Maze", "樓層守護者": "Floor Guardian",
         "3 波小怪：前兩波打完，隊長的護盾才會破": "3 waves of minions: clear the first two to break the leader's shield",
         "小怪會一直冒出來：打倒一定數量，精英的護盾就會破，打倒精英過關": "Minions keep coming: defeat enough of them to break the elite's shield, then defeat the elite",
@@ -15365,7 +15464,10 @@
     Object.assign(I18N_EN_TPL, {
         "難度 Lv.{0}": "Difficulty Lv.{0}", "（生命／攻擊 ×{0}）": " (HP/attack ×{0})", "再打倒 {0} 次升 Lv.{1}": "{0} more wins to Lv.{1}",
         "🌟 傳說 {0}%｜🔸 殘片 +{1}｜🪙 ×{2}": "🌟 Legendary {0}% | 🔸 Fragments +{1} | 🪙 ×{2}", "⬆️ 難度升到 Lv.{0}（傳說機率 {1}%）": "⬆️ Difficulty up to Lv.{0} (legendary chance {1}%)",
-        "🔸 傳說殘片 +{0}（{1} / {2}）": "🔸 Legendary fragments +{0} ({1} / {2})", "（難度 Lv.{0}）": " (Lv.{0})"
+        "🔸 傳說殘片 +{0}（{1} / {2}）": "🔸 Legendary fragments +{0} ({1} / {2})", "（難度 Lv.{0}）": " (Lv.{0})",
+        "填完問卷再回來按喔（還要 {0} 秒）": "Finish the survey first, then tap again ({0}s left)",
+        "射手 Lv.{0} 解鎖": "Unlocks at Archer Lv.{0}", "🔒 射手 Lv.{0} 解鎖": "🔒 Unlocks at Archer Lv.{0}",
+        "通過 {0}-{1} 雷鳴山巔、射手 Lv.{2} 解鎖": "Clear {0}-{1} and reach Archer Lv.{2} to unlock", "🔒 通過 {0}-{1} 雷鳴山巔、射手 Lv.{2} 解鎖": "🔒 Clear {0}-{1} and reach Archer Lv.{2} to unlock"
     });
 
 ;
@@ -23271,6 +23373,7 @@
         }
 
         game.arrows = [];
+        game.hitCoinPaid = 0; // 本關擊中／爆頭金幣（10-storage addHitCoins 上限）
         game.totems = [];
         game.stoneWalls = [];
         game.decoys = [];
@@ -38302,7 +38405,7 @@
                         sfx.crit();
                         game.hitstopTimer = 0.045;
                         triggerShake(9, 0.22);
-                        addCoins(5 + player.critBonusCoins, target.x, bodyTopY - 34, "爆頭 ");
+                        addHitCoins(HIT_COIN.crit, target.x, bodyTopY - 34, "爆頭 ", player.critBonusCoins); // 每關上限（10-storage）
                     } else {
                         sfx.hit();
                         triggerShake(6, 0.16);
@@ -38321,8 +38424,7 @@
                 spawnParticles(a.x, a.y, isCrit ? "#fbbf24" : target === enemy ? "#f43f5e" : "#38bdf8", isCrit ? 18 : 10);
 
                 if (a.owner === "player") {
-                    const hitCoins = isCrit ? 6 : 3;
-                    addCoins(hitCoins, a.x, a.y - 24);
+                    addHitCoins(isCrit ? HIT_COIN.crit : HIT_COIN.hit, a.x, a.y - 24);
                 }
 
                 if (a.arcaneSurge) {
